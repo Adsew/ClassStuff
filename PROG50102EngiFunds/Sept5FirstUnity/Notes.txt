@@ -9,3 +9,9 @@ Scene only has the hierarchy just like one level where the whole project is the 
 Use hierarchy to group things together
 
 Rigid body can be the source of issues if nothing happens also does physics
+
+Hierarchies are good for
+1. Animation
+2. Data organization
+
+Is kinimatic stops object physics
