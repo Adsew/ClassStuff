@@ -1,0 +1,11 @@
+Objects have 4 vectors, 3 typicals and the actualy position
+
+Aspect oriented programming : objects have aspects like light objec has light and transform.
+
+Material is a container for a texture which gives colour. Can right click assets to create them.
+
+Scene only has the hierarchy just like one level where the whole project is the whole hting.
+
+Use hierarchy to group things together
+
+Rigid body can be the source of issues if nothing happens also does physics
