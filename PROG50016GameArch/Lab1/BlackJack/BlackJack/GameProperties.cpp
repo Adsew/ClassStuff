@@ -10,14 +10,45 @@ Description: Class responsible for maintaining the properties/values of the
 
 
 #include "GameProperties.h"
+#include "Deck.h"
 
+
+/***** Constructor *****/
 
 GameProperties::GameProperties() {
 
-
+    isRunning = false;
 }
 
+
+/***** Functions *****/
+
+// Initialize game to be ready for first turn.
+int GameProperties::init() {
+
+    isRunning = true;
+
+    currentBet = 0;
+    pCurrency = 500;
+    dHand = 0;
+    pHand = 0;
+    pHandSplit = 0;
+
+    return 1;
+}
+
+// Main game loop processing turns and the mediator of i/o.
 int GameProperties::run() {
 
 
+
+    return 1;
+}
+
+// Clean any required memory and end the game.
+int GameProperties::shutdown() {
+
+    isRunning = false;
+
+    return 1;
 }

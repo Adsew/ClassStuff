@@ -10,16 +10,46 @@ current execution of the game. Due to the size of the game it also handles
 functions for running the game.
 */
 
+
+/***** Definitions *****/
+
+class Deck;
+
+
 class GameProperties {
+
+private:
+
+
+    /***** Variables *****/
+
+    Deck deck;
+
+        /* Engine Variables */
+
+    bool isRunning;
+
+        /* Games Variables */
+
+    int currentBet;
+    int pCurrency;
+    int pHand;
+    int pHandSplit;
+    int dHand;
+
+
+    /***** Functions *****/
+
+
+
 
 public:
 
     GameProperties();
     
-    int run();
+    int init();         // Initialize game to be ready for first turn.
 
+    int run();          // Main game loop processing turns and the mediator of i/o.
 
-private:
-
-
+    int shutdown();     // Clean any required memory and end the game.
 };

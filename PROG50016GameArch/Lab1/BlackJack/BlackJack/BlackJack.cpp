@@ -5,10 +5,17 @@ Description: Main file creates the game and executes it.
 */
 
 
-int main()
-{
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
     
-    
+    string str;
+
+    cout << "This is working!!!";
+    cin >> str;
+
     return 0;
 }
 
