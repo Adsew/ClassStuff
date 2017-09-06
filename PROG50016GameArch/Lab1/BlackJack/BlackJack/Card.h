@@ -37,9 +37,11 @@ public:
 
     /***** Functions *****/
 
-    Card();                     // Creates a random card. Face down by default.
+    Card();                 // Creates a random card. Face down by default.
 
-    Card(int num, int su);    // Create a specified card.
+    Card(int num, int su);  // Create a specified card.
 
-    int flip();
+    int flip();             // Flip the card from face up to down or vice versa.
+
+    bool isValid();         // Determine if card is a valid playing card or scrap.
 };
