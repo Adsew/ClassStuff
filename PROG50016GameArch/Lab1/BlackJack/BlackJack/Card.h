@@ -26,7 +26,7 @@ Description: Class used to contain the properties of a playing card, including s
 
 class Card {
 
-public:
+private:
 
     /***** Variables *****/
 
@@ -34,6 +34,7 @@ public:
     int suit;
     bool flipped;
 
+public:
 
     /***** Functions *****/
 

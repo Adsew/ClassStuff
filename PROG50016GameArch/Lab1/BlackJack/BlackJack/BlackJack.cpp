@@ -5,16 +5,19 @@ Description: Main file creates the game and executes it.
 */
 
 
-#include <iostream>
-#include <string>
-using namespace std;
+#include "GameProperties.h"
+
 
 int main() {
     
-    string str;
+    GameProperties game;
 
-    cout << "This is working!!!";
-    cin >> str;
+    if (game.init()) {
+
+        game.run();
+    }
+
+    game.shutdown();
 
     return 0;
 }

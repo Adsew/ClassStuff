@@ -10,8 +10,6 @@ Description: Class responsible for maintaining the properties/values of the
 
 
 #include "GameProperties.h"
-#include "Deck.h"
-#include "BlackJackIO.h"
 
 
 /***** Constructor *****/
@@ -35,7 +33,7 @@ int GameProperties::init() {
 
 
     // Get player input to set up the game
-    isRunning = runTitleScreen();
+    isRunning = screen.runTitleScreen();
 
     return isRunning;
 }
@@ -50,6 +48,8 @@ int GameProperties::run() {
 
 // Clean any required memory and end the game.
 int GameProperties::shutdown() {
+
+    screen.exitScreen();
 
     isRunning = false;
 

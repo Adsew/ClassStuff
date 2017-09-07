@@ -11,6 +11,7 @@ functions for running the game.
 */
 
 
+#include "BlackJackIO.h"
 #include "Deck.h"
 
 
@@ -21,14 +22,14 @@ private:
 
     /***** Variables *****/
 
-    Deck deck;
-
         /* Engine Variables */
 
+    BlackjackIO screen;
     bool isRunning;
 
         /* Games Variables */
 
+    Deck deck;
     int currentBet;
     int pCurrency;
     int pHand;
