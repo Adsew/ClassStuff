@@ -10,7 +10,6 @@ with the player.
 
 
 #include <iostream>
-#include <stdio.h>
 
 #include "BlackJackIO.h"
 
@@ -132,7 +131,7 @@ int BlackjackIO::runBetting(int maxBet){
 }
 
 // Runs the current main game display
-int BlackjackIO::runGameDisplay(int bet) {
+int BlackjackIO::runGameDisplay(int bet, vector<Card> ph, vector<Card> dh) {
 
     int temp = 0;
 

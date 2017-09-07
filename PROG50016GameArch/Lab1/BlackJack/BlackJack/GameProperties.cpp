@@ -41,6 +41,7 @@ int GameProperties::init() {
 // Main game loop processing turns and the mediator of i/o.
 int GameProperties::run() {
 
+    Card c;
     int choice = 0;
 
     while (isRunning){
@@ -48,7 +49,20 @@ int GameProperties::run() {
         // Start with the initial bid then deal the first cards
         currentBet = screen.runBetting(pCurrency);
         
-        screen.runGameDisplay(currentBet);
+        c = deck.draw();// ENSURE VALIDATION OF CARDS
+        dHand.push_back(c);
+        c = deck.draw();
+        c.flip();
+        dHand.push_back(c);
+
+        c = deck.draw();
+        c.flip();
+        pHand.push_back(c);
+        c = deck.draw();
+        c.flip();
+        pHand.push_back(c);
+
+        screen.runGameDisplay(currentBet, pHand, dHand);
 
         if (choice == HIT) {
 
