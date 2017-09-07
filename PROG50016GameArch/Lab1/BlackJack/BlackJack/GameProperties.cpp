@@ -22,6 +22,41 @@ GameProperties::GameProperties() {
 
 /***** Functions *****/
 
+// Get the count of the given hand, taking rules into account
+int GameProperties::countHand(std::vector<Card> hand) {
+
+    int count = 0, i = 0;
+    bool hasAce = false;
+
+    for (i = 0; i < hand.size; i++) {
+
+        // Ace case, can only upscale 1 ace to 11 andyway, so use bool
+        if (hand[i].getNumber() == 1) {
+
+            hasAce = true;
+
+            count = count + hand[i].getNumber();
+        }
+        // Royal card case
+        else if (hand[i].getNumber() > 10) {
+
+            count = count + 10;
+        }
+        else {
+
+            count = count + hand[i].getNumber();
+        }
+    }
+
+    // If you can remane under blackjack, count the ace as 11
+    if (hasAce && count <= 11) {
+
+        count = count + 10;
+    }
+
+    return count;
+}
+
 // Initialize game to be ready for first turn.
 int GameProperties::init() {
 
@@ -43,6 +78,7 @@ int GameProperties::run() {
 
     Card c;
     int choice = 0;
+    bool bustOccured = false;
 
     while (isRunning){
         

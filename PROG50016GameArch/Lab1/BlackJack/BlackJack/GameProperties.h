@@ -46,9 +46,12 @@ private:
     int pHandSplit;
     int dHandVal;
 
-public:
 
     /***** Functions *****/
+
+    int countHand(std::vector<Card> hand);  // Get the count of the given hand
+
+public:
 
     GameProperties();
     
