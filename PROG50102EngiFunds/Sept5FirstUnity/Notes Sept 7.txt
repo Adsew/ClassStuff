@@ -1,0 +1,28 @@
+Things we did
+
+Changing coord of instantiating an object
+
+Add component to spawner and get that sub object from script
+
+Using tags to make sets or find components in scripts
+
+rotation of spawn obj
+
+
+FOR MIDTERM this is the component script not the object it is attached to. this.gameObject is the object it is attached to
+
+a transform has position scale and rotation
+
+quadrian? quaternion (quad) is a 4 vector with x,y,z,roation (around it)
+it is used to fix gimblelock where 2 axis collapse on each other. If you rotate 2 axis the machine will stop rotating.
+
+Ways to get child object references
+-> transform.getchild
+-> create new script object in unity on the script component and use that in the code
+->GameObject.Find finds it by name but if something changes you have to change the name everywhere
+-> Add meta data to locate it. Like using tags
+	FindObjWithTag. Problems oculd be it doesnt know which obj to use if multiple use same tag.Another problem is you can only have 1 tag per game object.
+-> Way we will use is make a new component and search using getcomponentinchildren<component to search>
+
+
+3 Cs = camera character control
