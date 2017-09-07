@@ -11,9 +11,7 @@ functions for running the game.
 */
 
 
-/***** Definitions *****/
-
-class Deck;
+#include "Deck.h"
 
 
 class GameProperties {

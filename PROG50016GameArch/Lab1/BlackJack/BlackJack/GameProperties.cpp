@@ -11,6 +11,7 @@ Description: Class responsible for maintaining the properties/values of the
 
 #include "GameProperties.h"
 #include "Deck.h"
+#include "BlackJackIO.h"
 
 
 /***** Constructor *****/
@@ -26,15 +27,17 @@ GameProperties::GameProperties() {
 // Initialize game to be ready for first turn.
 int GameProperties::init() {
 
-    isRunning = true;
-
     currentBet = 0;
     pCurrency = 500;
     dHand = 0;
     pHand = 0;
     pHandSplit = 0;
 
-    return 1;
+
+    // Get player input to set up the game
+    isRunning = runTitleScreen();
+
+    return isRunning;
 }
 
 // Main game loop processing turns and the mediator of i/o.

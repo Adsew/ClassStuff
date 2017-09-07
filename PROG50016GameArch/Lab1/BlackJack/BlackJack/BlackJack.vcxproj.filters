@@ -25,6 +25,12 @@
     <Filter Include="Header Files\Objects">
       <UniqueIdentifier>{1f878f55-6c44-4c04-a052-d8d9292f5640}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\IO">
+      <UniqueIdentifier>{f5d1a02f-a336-4986-8b9c-11b63f15bd78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IO">
+      <UniqueIdentifier>{a69a6144-474b-46a4-bdd7-57cf3cc613f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -42,6 +48,9 @@
     <ClCompile Include="Deck.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="BlackJackIO.cpp">
+      <Filter>Source Files\IO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameProperties.h">
@@ -52,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="Deck.h">
       <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackJackIO.h">
+      <Filter>Header Files\IO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
