@@ -100,16 +100,74 @@ bool BlackjackIO::runTitleScreen() {
     pushToScreen();
 
     enterToCont();
-
-    int i = selectToCont(5);
-
-    cout << i;
+    
+    clearDisplay();
+    
+    display[9] = "    Dealing....";
 
     return true;
 }
 
+// Request the current bet from the player
+int BlackjackIO::runBetting(int maxBet){
+    
+    int input = 0;
+    
+    display[14] = "How much do you wish to bet? Current budget: " + to_string(maxBet);
+    
+    pushToScreen();
+
+    input = selectToCont(maxBet);
+    
+    while (input <= 0){
+        
+        display[14] = "Bet must be in your budget. Current budget: " + to_string(maxBet);
+        
+        pushToScreen();
+
+        input = selectToCont(maxBet);
+    }
+
+    return input;
+}
+
+// Runs the current main game display
+int BlackjackIO::runGameDisplay(int bet) {
+
+    int temp = 0;
+
+    display[0] = "";
+    display[1] = "";
+    display[2] = "";
+    display[3] = "";
+    display[4] = "";
+    display[5] = "";
+    display[6] = "";
+    display[7] = "";
+    display[8] = "";
+    display[9] = "";
+    display[10] = "";
+    display[11] = "Your bet: " + to_string(bet) + ".";
+    display[12] = "What do you want to do?";
+    display[13] = "1. Hit    2. Stand    3. Double";
+    display[14] = "";
+
+    pushToScreen();
+
+    while (temp <= 0) {
+
+        display[14] = "Enter the number of the option you want to use.";
+
+        pushToScreen();
+
+        temp = selectToCont(3);
+    }
+    
+    return temp;
+}
+
 // Display the exit screen
-void BlackjackIO::exitScreen() {
+void BlackjackIO::runExitScreen() {
 
     clearDisplay();
 
@@ -133,3 +191,20 @@ void BlackjackIO::exitScreen() {
 
     enterToCont();
 }
+/*
+display[0] = "";
+display[1] = "";
+display[2] = "";
+display[3] = "";
+display[4] = "";
+display[5] = "";
+display[6] = "";
+display[7] = "";
+display[8] = "";
+display[9] = "";
+display[10] = "";
+display[11] = "";
+display[12] = "";
+display[13] = "";
+display[14] = "";
+*/

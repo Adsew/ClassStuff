@@ -42,6 +42,12 @@ public:
 
     Card(int num, int su);  // Create a specified card.
 
+    int getNumber();        // Get card number value
+
+    int getSuit();          // Get card suit value
+
+    bool getFlipped();      // Get card flipped value
+
     int flip();             // Flip the card from face up to down or vice versa.
 
     bool isValid();         // Determine if card is a valid playing card or scrap.

@@ -11,9 +11,17 @@ functions for running the game.
 */
 
 
+#include <vector>
+
 #include "BlackJackIO.h"
 #include "Deck.h"
 
+
+/***** Definitions *****/
+
+#define HIT 1
+#define STAND 2
+#define DOUBLE 3
 
 class GameProperties {
 
@@ -30,19 +38,17 @@ private:
         /* Games Variables */
 
     Deck deck;
+    std::vector<Card> pHand;
+    std::vector<Card> dHand;
     int currentBet;
     int pCurrency;
-    int pHand;
+    int pHandVal;
     int pHandSplit;
-    int dHand;
-
-
-    /***** Functions *****/
-
-
-
+    int dHandVal;
 
 public:
+
+    /***** Functions *****/
 
     GameProperties();
     

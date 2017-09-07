@@ -37,6 +37,24 @@ Card::Card(int num, int su) {
 
 /***** Functions *****/
 
+// Get card number value
+int Card::getNumber() {
+
+    return number;
+}
+
+// Get card suit value
+int Card::getSuit() {
+
+    return suit;
+}
+
+// Get card flipped value
+bool Card::getFlipped() {
+
+    return flipped;
+}
+
 // Flip the card from face up to down or vice versa.
 int Card::flip() {
 

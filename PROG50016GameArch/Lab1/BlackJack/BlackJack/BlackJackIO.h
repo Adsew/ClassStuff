@@ -44,6 +44,10 @@ public:
     BlackjackIO();
 
     bool runTitleScreen();          // Display a title screen and ask player to begin
+    
+    int runBetting(int maxBet);     // Request the current bet from the player
 
-    void exitScreen();              // Display the exit screen
+    int runGameDisplay(int bet);    // Runs the current main game display
+
+    void runExitScreen();           // Display the exit screen
 };
