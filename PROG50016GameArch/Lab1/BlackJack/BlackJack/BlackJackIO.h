@@ -36,6 +36,8 @@ private:
 
     void pushToScreen();            // Push the current display to the output stream
 
+    void displayHands(vector<Card> ph, vector<Card> dh);    // Display cards nicely in display array
+
     void enterToCont();             // Input control game pauses until player presses enter
 
     int selectToCont(int options);  // Input control to recieve a given option from player
@@ -50,7 +52,10 @@ public:
     
     int runBetting(int maxBet);     // Request the current bet from the player
 
-    int runGameDisplay(int bet, vector<Card> ph, vector<Card> dh);    // Runs the current main game display
+    int runGameDisplay(int bet, int pCount, int dCount, vector<Card> ph, vector<Card> dh);  // Runs the current main game display
+
+    bool runEndRoundScreen(int totCurrency, int winner,
+        int pCount, int dCount, vector<Card> ph, vector<Card> dh);                          // End round summary screen
 
     void runExitScreen();           // Display the exit screen
 };
