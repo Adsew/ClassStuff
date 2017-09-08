@@ -18,7 +18,7 @@ Description: Class used to contain the properties of a playing card, including s
 #define faceUp true
 
 /* Suits */
-#define hearts 0
+#define heart 0
 #define spade 1
 #define diamond 2
 #define club 3

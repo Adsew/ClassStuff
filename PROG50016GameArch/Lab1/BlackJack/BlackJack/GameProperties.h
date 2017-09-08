@@ -21,7 +21,13 @@ functions for running the game.
 
 #define HIT 1
 #define STAND 2
-#define DOUBLE 3
+#define DOUBLE_DOWN 3
+
+#define END_NO_REASON 0
+#define PLAYER_WIN 1
+#define DEALER_WIN 2
+#define PUSH_DRAW 3
+
 
 class GameProperties {
 
@@ -43,12 +49,23 @@ private:
     int currentBet;
     int pCurrency;
     int pHandVal;
-    int pHandSplit;
     int dHandVal;
+    int dHandTrueVal;
+
+
+    /***** Functions *****/
+
+        /***** Support Functions *****/
+
+    void startNewRound();   // Return most values to fresh round values
+
+    int countHand(std::vector<Card> hand, bool countHidden);  // Get the count of the given hand
+
+    int endRound();         // Draw for the deal until a winner is determined, handle bets, end round
 
 public:
 
-    /***** Functions *****/
+        /***** Main Runtime Functions *****/
 
     GameProperties();
     
