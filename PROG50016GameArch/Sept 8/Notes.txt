@@ -1,0 +1,9 @@
+Memory
+
+(Static) Stack allocated for each program
+(Dynamic) Heap is the dynamic area
+(Global/magic land) Global variables made in a fixed location at the begining of the stack, cannot change in size.
+
+Mono and how unity chnaged C# to C++ to reduce update times on 10k calls
+
+IL2CPP is the converting language to make cpp from c#

@@ -1,0 +1,6 @@
+Memory
+
+(Static) Stack allocated for each program
+(Dynamic) Heap is the dynamic area
+(Global/magic land) Global variables made in a fixed location at the begining of the stack, cannot change in size.
+
