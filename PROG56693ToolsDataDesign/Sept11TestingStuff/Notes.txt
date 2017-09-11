@@ -1,0 +1,23 @@
+
+Things we did.
+--------------------------
+To ddo sprites
+- import sprite into folder assets
+- change texture type to 2d sprrite
+- change sprite mode to multiple for moer than one frame
+
+challenge change sprite mode and what else can be modified
+
+
+scriptablewizard to select all of a certain tag
+creating menu items in the unity editor to do things for you
+using wizard to find all objects of one tag. Making a tool for us to use
+getting tag list for purpose of error chacking
+
+same thing but getting all objects and searching by component
+
+
+
+Notes
+-------------------
+mnight need to hit the attach to unity in visual studio
