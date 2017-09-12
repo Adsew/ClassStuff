@@ -1,0 +1,28 @@
+things we did today
+-=---------------
+Increase score on target
+
+NEVCER DO THIS: GameObject.find("a game object"), getComp, then use. Poor practice. Obj name could change etc.
+
+NEVER DO THIS: Drag the script to the references list in unity at design time. Doesnt let you do stuff in code as well at runtime. References dont hold from prefabs. So a pattern to a game obj in the game references will be null but if you copied exisintg ones in the game scene they will still be there
+
+DO make a static item in a class to make itaccessable everywehre
+
+Cabvas items are in their own heirarchy. UI objs have to be a child of the canvas. Dont use GUItext and whatever else now theyre outdated.
+
+physics to keep them attached together multiple objcets using joints and breaking them at a threshhold
+
+Adding sound using clips. BVest way to have a central location with global for all clip references. Playing on button push
+
+Input manager inputs range from -1 to 1 0 being no movements
+
+get axis bette rfor cross plat
+
+
+
+
+
+
+Notes
+
+Componnents inherit from monobehaviour

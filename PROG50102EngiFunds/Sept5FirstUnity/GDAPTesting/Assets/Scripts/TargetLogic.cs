@@ -6,12 +6,18 @@ public class TargetLogic : MonoBehaviour {
 
     public void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.GetComponent<IsProjectile>() != null) //fix this
+        if (col.gameObject != null)
         {
-            Destroy(this.gameObject); // this is the script component
-            Destroy(col.gameObject);
+            if (col.gameObject.GetComponent<IsProjectile>() != null) //fix this
+            {
+                Destroy(this.gameObject); // this is the script component
+                Destroy(col.gameObject);
+
+                // need to incrasescore now
+                ScoreMgr.This.IncScore(1);
+            }
         }
-        
+
         //Somehting hit me do somehting
         Debug.Log("I was hit by: " + col.gameObject.name);
     }
