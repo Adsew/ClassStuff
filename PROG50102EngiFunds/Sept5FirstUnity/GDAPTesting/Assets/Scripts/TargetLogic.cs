@@ -15,6 +15,7 @@ public class TargetLogic : MonoBehaviour {
 
                 // need to incrasescore now
                 ScoreMgr.This.IncScore(1);
+                SoundMgr.This.PlayRandomExplosionSound();
             }
         }
 

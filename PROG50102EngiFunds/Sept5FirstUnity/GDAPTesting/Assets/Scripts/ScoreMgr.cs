@@ -13,6 +13,8 @@ public class ScoreMgr : MonoBehaviour {
     public void IncScore(int n)
     {
         score += n;
+
+        DisplayMgr.This.UpdateText(score);
     }
 
 	// Use this for initialization
