@@ -1,8 +1,1 @@
-﻿  namespaces.cpp
-c:\users\brookjam\class projects\classstuff\prog50016gamearch\sept11\cplusplusexamples\prog.50016.namespaces\namespaces.cpp(49): warning C4101: 'p5': unreferenced local variable
-c:\users\brookjam\class projects\classstuff\prog50016gamearch\sept11\cplusplusexamples\prog.50016.namespaces\namespaces.cpp(42): warning C4101: 'p3': unreferenced local variable
-c:\users\brookjam\class projects\classstuff\prog50016gamearch\sept11\cplusplusexamples\prog.50016.namespaces\namespaces.cpp(36): warning C4101: 'p1': unreferenced local variable
-c:\users\brookjam\class projects\classstuff\prog50016gamearch\sept11\cplusplusexamples\prog.50016.namespaces\namespaces.cpp(43): warning C4101: 'p4': unreferenced local variable
-c:\users\brookjam\class projects\classstuff\prog50016gamearch\sept11\cplusplusexamples\prog.50016.namespaces\namespaces.cpp(37): warning C4101: 'p2': unreferenced local variable
-  prog.50016.namespaces.vcxproj -> C:\Users\brookjam\Class Projects\ClassStuff\PROG50016GameArch\Sept11\CPlusPlusExamples\Debug\prog.50016.namespaces.exe
-  prog.50016.namespaces.vcxproj -> C:\Users\brookjam\Class Projects\ClassStuff\PROG50016GameArch\Sept11\CPlusPlusExamples\Debug\prog.50016.namespaces.pdb (Partial PDB)
+﻿

@@ -1,0 +1,7 @@
+Done today
+----
+Sizeof testing
+using random and flaws with rand without seeding and time seeing
+
+
+Test question how many bits are in a byte? 8 or greater
