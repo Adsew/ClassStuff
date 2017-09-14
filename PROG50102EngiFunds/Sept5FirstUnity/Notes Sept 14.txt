@@ -1,0 +1,22 @@
+What we did today
+=======================
+Eular integration - usng derivative and integrations to get your d = v(t) and arranging it for acceleration etc.
+
+If your interesting runshkuta fpr springs?
+
+Remade hero into a tnak
+
+how to decide who to target?
+- distance
+- sphere cast (inside a radius)
+
+two ways of rotation (gameplay prog toolbox)
+- crossproduct dotproduct
+
+Dotproduct
+a-> . b-> = |a||b|cos(theta) gives angle between. 1.0 and angle = 0 implies colinear,
+-1 and 180 means opposite direction but parallel so both have shared info but,
+90degree is no similar info
+when using dot product use the target vector as te a vector and b as the facting vector. This is why dot product is less reliable than cross product.
+
+Using dot product to auto target a target
