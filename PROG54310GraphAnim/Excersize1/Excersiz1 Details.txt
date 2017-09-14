@@ -1,0 +1,1 @@
+BONUS make an interesting scene, outline of a shape not solid somewhere, use a colour buffer style to change colour, use classes

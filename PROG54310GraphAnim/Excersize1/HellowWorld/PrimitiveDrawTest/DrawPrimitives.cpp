@@ -82,10 +82,10 @@ int main(void)
 			);
 
 		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, 6);  
+		glDrawArrays(GL_TRIANGLES, 0, 6);         // First number is the starting indices of the array, second is how many indices to draw after
 
 		glPointSize(10);
-		glDrawArrays(GL_POINTS, 6, 4);
+		//glDrawArrays(GL_POINTS, 6, 4);        // Cant draw past 6+3 array out of bounds? Looping around?
 
 		//glDrawArrays(GL_LINES, 6, 2); 
 
