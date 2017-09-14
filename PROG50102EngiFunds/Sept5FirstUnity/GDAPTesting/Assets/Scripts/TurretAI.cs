@@ -20,7 +20,7 @@ public class TurretAI : MonoBehaviour {
         {
             target = targetComp.gameObject;
 
-            coords = target.transform.position + this.transform.position;
+            coords = target.transform.position - this.transform.position;
         }
 
         return coords;
@@ -29,26 +29,25 @@ public class TurretAI : MonoBehaviour {
     private void TurretMovementUpdate()
     {
         Vector3 targVec = FindTargetVector();
-        Vector3 myVec = this.transform.forward;
+        Vector3 myVec = this.transform.right;
         Vector2 targVec2 = new Vector2(targVec.x, targVec.z);
-        Vector2 myVec2 = new Vector2(myVec.x, myVec.y);
+        Vector2 myVec2 = new Vector2(myVec.x, myVec.z);
 
-        float dotResult = Vector2.Dot(targVec2, myVec2);
-        float angleResult = Vector2.Angle(targVec2, myVec2);
-
-        if (angleResult < 180 && angleResult > 0)
+        float dotResult = Vector2.Dot(targVec2.normalized, myVec2.normalized);
+        
+        //this.transform.Rotate(Vector3.up, -1);
+        
+        // The problem is 0 could refer to the opposite direction,
+        // need some kind of if to determine what way you are facing.
+        if (dotResult > 0)
         {
             //turn left
-            this.transform.Rotate(Vector3.up /*y*/, -1);
-        }
-        else if (angleResult >= 180)
-        {
-            //turn right
             this.transform.Rotate(Vector3.up /*y*/, 1);
         }
-        else if (angleResult == 0)
+        else if (dotResult < 0)
         {
-            this.transform.Rotate(Vector3.up /*y*/, (float)0.0);
+            // turn right
+           this.transform.Rotate(Vector3.up /*y*/, -1);
         }
     }
     
