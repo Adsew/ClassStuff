@@ -8,12 +8,21 @@ Class: SceneDrawer
 
 Description: Using various colours shaders and vertices, the class
     can be called to draw a scene to a window it creates.
+
+PLEASE NOTE: This file does not require the shader.cpp or the fragment
+    and vertex shader files to run the program.
+    A lot of these items would normally be divided into different
+    files, such as one for the class and others for each of the shader
+    strings. This is due to the one cpp file requirement for submission.
+    I hope this is okay and will not be an issue in the future.
 */
 
 // NOTES FOR IDEAS: Makes a street with a lamp with light on and some randomized snow
 
 
 #include <iostream>
+#include <string>
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -39,23 +48,61 @@ private:
     GLuint vertexPos_modelSpaceID;
     GLuint vertexBuff;
 
+        /***** Shader Strings *****/
+
+    // Credit: These are the strings of shader files provided by Nick Sajadi.
+    std::string vertexShader = ""
+        "#version 120\n"
+        "attribute vec3 vertexPosition_modelspace;\n"
+
+        "void main() {\n"
+        "    gl_Position = vec4(vertexPosition_modelspace, 1.0);\n"
+        "}\n";
+
+    std::string fragShader = ""
+        "#version 120\n"
+
+        "void main() {\n"
+        // Output color = red 
+        "    gl_FragColor = vec4(1, 0.5, 0.5, 1);\n"
+        "}\n";
+
 
     /***** Support Functions *****/
 
-    int loadShader() {
+    void loadShader() {
 
         // Create and compile our GLSL program from the shaders
-        GLuint programID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+        //progID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+
+        // Create the shaders
+        GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+        GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
 
         // Get a handle for our buffers
-        GLuint vertexPosition_modelspaceID = glGetAttribLocation(programID, "vertexPosition_modelspace");
+        vertexPos_modelSpaceID = glGetAttribLocation(progID, "vertexPosition_modelspace");
     }
 
-    int loadBuffer() {
+    void loadBuffer() {
 
+        static const GLfloat gVertBuffData[] = {
+            -0.1f, -1.0f, 0.0f,
+            0.0f, -0.8f, 0.0f,
+            0.1f, -1.0f, 0.0f,
+
+            0.0f, 0.8f, 0.0f,
+            -0.1f, 1.0f, 0.0f,
+            0.1f, 1.0f, 0.0f
+
+            - 0.6f, 0.5f,
+            0.8f, 0.5f,
+            -1.0f, 0.0f,
+            1.0f, 0.0f
+        };
+        
         glGenBuffers(1, &vertexBuff);
         glBindBuffer(GL_ARRAY_BUFFER, vertexBuff);
-        // glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW); // Can we keep changing this?
+        glBufferData(GL_ARRAY_BUFFER, sizeof(gVertBuffData), gVertBuffData, GL_STATIC_DRAW);
     }
 
 
@@ -143,6 +190,8 @@ public:
     }
 
     void draw() {
+
+        glClear(GL_COLOR_BUFFER_BIT);
 
         // Dark blue background
         glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
