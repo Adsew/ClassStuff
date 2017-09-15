@@ -22,6 +22,7 @@ PLEASE NOTE: This file does not require the shader.cpp or the fragment
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -51,7 +52,7 @@ private:
         /***** Shader Strings *****/
 
     // Credit: These are the strings of shader files provided by Nick Sajadi.
-    std::string vertexShader = ""
+    std::string vertShaderCode = ""
         "#version 120\n"
         "attribute vec3 vertexPosition_modelspace;\n"
 
@@ -59,7 +60,7 @@ private:
         "    gl_Position = vec4(vertexPosition_modelspace, 1.0);\n"
         "}\n";
 
-    std::string fragShader = ""
+    std::string fragShaderCode = ""
         "#version 120\n"
 
         "void main() {\n"
@@ -70,14 +71,75 @@ private:
 
     /***** Support Functions *****/
 
+    // Credit: Majority of code is from Nick Sajadi's LoadShaders given in his example
+    // I have retyped it into my own code to learn the process of making shaders
     void loadShader() {
 
-        // Create and compile our GLSL program from the shaders
-        //progID = LoadShaders("SimpleVertexShader.vertexshader", "SimpleFragmentShader.fragmentshader");
+        GLint result = GL_FALSE;
+        int infoLogLen;
 
         // Create the shaders
-        GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-        GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+        GLuint vertShaderID = glCreateShader(GL_VERTEX_SHADER);
+        GLuint fragShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+
+        // Compile Vertex Shader
+        char const *vertSourcePointer = vertShaderCode.c_str();
+        glShaderSource(vertShaderID, 1, &vertSourcePointer, NULL);
+        glCompileShader(vertShaderID);
+
+        // Check Vertex Shader
+        glGetShaderiv(vertShaderID, GL_COMPILE_STATUS, &result);
+        glGetShaderiv(vertShaderID, GL_INFO_LOG_LENGTH, &infoLogLen);
+
+        if (infoLogLen > 0) {
+
+            std::vector<char> vertShaderErrMsg(infoLogLen + 1);
+            glGetShaderInfoLog(vertShaderID, infoLogLen, NULL, &vertShaderErrMsg[0]);
+            printf("%s\n", &vertShaderErrMsg[0]);
+        }
+
+        // Compile Fragment Shader
+        char const * fragSourcePointer = fragShaderCode.c_str();
+        glShaderSource(fragShaderID, 1, &fragSourcePointer, NULL);
+        glCompileShader(fragShaderID);
+
+        // Check Fragment Shader
+        glGetShaderiv(fragShaderID, GL_COMPILE_STATUS, &result);
+        glGetShaderiv(fragShaderID, GL_INFO_LOG_LENGTH, &infoLogLen);
+        
+        if (infoLogLen > 0) {
+
+            std::vector<char> fragShaderErrMsg(infoLogLen + 1);
+            glGetShaderInfoLog(fragShaderID, infoLogLen, NULL, &fragShaderErrMsg[0]);
+            printf("%s\n", &fragShaderErrMsg[0]);
+        }
+
+        // Link the program
+        printf("Linking program\n");
+
+        progID = glCreateProgram();
+
+        glAttachShader(progID, vertShaderID);
+        glAttachShader(progID, fragShaderID);
+        glLinkProgram(progID);
+
+        // Check the program
+        glGetProgramiv(progID, GL_LINK_STATUS, &result);
+        glGetProgramiv(progID, GL_INFO_LOG_LENGTH, &infoLogLen);
+
+        if (infoLogLen > 0) {
+
+            std::vector<char> progErrMsg(infoLogLen + 1);
+            glGetProgramInfoLog(progID, infoLogLen, NULL, &progErrMsg[0]);
+            printf("%s\n", &progErrMsg[0]);
+        }
+
+
+        glDetachShader(progID, vertShaderID);
+        glDetachShader(progID, fragShaderID);
+
+        glDeleteShader(vertShaderID);
+        glDeleteShader(fragShaderID);
 
         // Get a handle for our buffers
         vertexPos_modelSpaceID = glGetAttribLocation(progID, "vertexPosition_modelspace");

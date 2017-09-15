@@ -1,0 +1,6 @@
+test: he loves destructors probs a question on it
+
+on test and real world use #ifndef to safegaurd includes NOT pragma once as it is not c standard due to not safegaurding against headers in different locations.
+
+test: using if endif on debug log statements to remove processing time and space removed at compile time
+

@@ -16,7 +16,7 @@ void sizeofLook() {
     std::cout << "\n";
 }
 
-void randomGenerator() {
+void randomgenerator() {
 
     int num[10];
     int i = 0;
