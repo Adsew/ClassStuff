@@ -17,8 +17,6 @@ PLEASE NOTE: This file does not require the shader.cpp or the fragment
     I hope this is okay and will not be an issue in the future.
 */
 
-// NOTES FOR IDEAS: Makes a street with a lamp with light on and some randomized snow
-
 
 #include <iostream>
 #include <string>
@@ -54,6 +52,7 @@ private:
         /***** Shader Strings *****/
 
     // Credit: These are the strings of shader files provided by Nick Sajadi.
+    // They have been modified to support colours in the fragment shader.
     std::string vertShaderCode = ""
         "#version 120\n"
         "attribute vec3 vertexPosition_modelspace;\n"
@@ -82,6 +81,7 @@ private:
 
     // Credit: Majority of code is from Nick Sajadi's LoadShaders given in his example
     // I have retyped it into my own code to learn the process of making shaders
+    // and modified where neccessary to support new features
     void loadShader() {
 
         GLint result = GL_FALSE;
@@ -165,7 +165,7 @@ private:
         colourPos_vec4ID = glGetAttribLocation(progID, "colour");
     }
 
-    // Creates the default buffers
+    // Creates the default buffers given the specified data
     void loadBuffer() {
 
         // VERTICES
@@ -210,7 +210,7 @@ private:
             // Stickman head using point
             0.67f, -0.25f, 0.0f,
 
-            // Staff using line and hollow quad and point
+            // Staff using line, hollow quad, and point
             0.5f, -0.6f, 0.0f,
             0.57f, -0.04f, 0.0f,
 
@@ -230,9 +230,24 @@ private:
             0.6f, -0.15f, 0.0f,
             0.78f, -0.3f, 0.0f,
             0.67f, -0.16f, 0.0f,
-            0.75f, -0.23f, 0.0f,
+            0.74f, -0.22f, 0.0f,
+            0.72f, -0.13f, 0.0f,
+            0.76f, -0.12f, 0.0f,
+            0.8f, -0.16f, 0.0f,
+            0.8f, -0.16f, 0.0f,
 
-            // Dancing monster using polygon
+            // Monster using polygon
+            -0.8f, -0.8f, 0.0f,       // Left leg
+            -0.7f, -0.8f, 0.0f,
+            -0.65f, -0.5f, 0.0f,
+            -0.68f, -0.5f, 0.0f,
+            -0.75f, -0.77f, 0.0f,
+
+            -0.6f, -0.8f, 0.0f,
+            -0.5f, -0.8f, 0.0f,
+            -0.53f, -0.77f, 0.0f,     // End of right foot
+            -0.58f, -0.5f, 0.0f,
+            -0.8f, -0.4f, 0.0f
         };
         
         glGenBuffers(1, &vertexBuff);
@@ -297,12 +312,27 @@ private:
             0.12f, 0.66f, 0.15f, 0.0f,
 
             // Wizard hat
-            0.3f, 0.7f, 0.7f, 1.0f,
-            0.3f, 0.7f, 0.7f, 1.0f,
-            0.3f, 0.7f, 0.7f, 1.0f,
-            0.3f, 0.7f, 0.7f, 1.0f,
+            0.4f, 0.8f, 0.8f, 1.0f,
+            0.4f, 0.8f, 0.8f, 1.0f,
+            0.12f, 0.6f, 0.6f, 1.0f,
+            0.12f, 0.6f, 0.6f, 1.0f,
+            0.4f, 0.8f, 0.8f, 1.0f,
+            0.4f, 0.8f, 0.8f, 1.0f,
+            0.12f, 0.6f, 0.6f, 1.0f,
+            0.12f, 0.6f, 0.6f, 1.0f,
 
-            // Dancing Monster
+            // Monster
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
         };
         glGenBuffers(1, &colourBuff);
         glBindBuffer(GL_ARRAY_BUFFER, colourBuff);
@@ -451,7 +481,9 @@ public:
 
         glDrawArrays(GL_TRIANGLES, 36, 3);      // Drawing ray of light
 
-        glDrawArrays(GL_QUAD_STRIP, 39, 4);     // Drawing wizard hat
+        glDrawArrays(GL_QUAD_STRIP, 39, 8);     // Drawing wizard hat
+        
+        glDrawArrays(GL_POLYGON, 47, 6);       // Drawing monster left leg
 
         // End drawing, disable buffers
         glDisableVertexAttribArray(vertexPos_modelSpaceID);
