@@ -1,0 +1,27 @@
+Splines
+good for smooth curves and shapes
+
+Parametric equation what is it?
+Basically your curves thats what we use to make the smooth line from point a to b
+Vector3.lurb is our linear interpolation gives us a point on that curve between a and b
+Manual (b-a)t ?
+
+3 types of motion equations in our toolbox
+parametric
+historeses well deal with later
+spline - just like parametric byt creates a smooth curve between multiple points
+
+spline types
+- besacre
+- permiate
+- b spline
+- beta spline
+- catwell ronspliler? - doesnt neccessarily give good curve cause it has a momentum so it needs to make turns like a car. Good for camera paths. uses a matrix to make path between for points 
+
+IN CLASSS ASSIGNMENT create catwell ron
+- 
+4 game objects. Head a game obj where we are on curve, script component called spline which has public float t that we can adjust in inspector to slide it, public list game objects called like control points to drag our 4 objs in, public game obj for head. When we hit t from 0-1 it should move between 4 points
+
+
+CONVEX HUL:L prpoerty
+The bounding box of those 4 points where the movement of object t must stay within those bounds. For catmull rom it doe ntot full obey those properties.
