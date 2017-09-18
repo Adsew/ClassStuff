@@ -34,6 +34,14 @@ double min(double a, double b)
 		return b;
 }
 
+std::string min(std::string a, std::string b) {
+
+    if (a < b) {
+        return a;
+    }
+    return b;
+}
+
 int main()
 {
 	int i1 = 3;
@@ -57,4 +65,6 @@ int main()
 
 	std::cout << "The minimum of " << s1 << " and " << s2
 		<< " is " << min(s1, s2) << std::endl;
+
+
 }

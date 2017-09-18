@@ -15,15 +15,21 @@ class Player
 	Point mPosition;
 
 public:
-	Player()
+	Player() : mPosition(0, 0), mMaxHealth(500)
 	{
+        mName = "My name is what";
+        mNumLives = 1;
+        mHealth = 1;
 	}
 
     //
     // a constructor that uses an initializer list
     //
-    Player(std::string name, int numLives, float health, float maxHealth)
+    Player(std::string name, int numLives, float health, float maxHealth) : mPosition(0, 0), mMaxHealth(maxHealth)
     {
+        mName = name;
+        mNumLives = numLives;
+        mHealth = health;
     }
 
     std::string getName() const		{ return mName; }

@@ -12,6 +12,7 @@ public:
 public:
 	Point(float _x, float _y)
 	{
+        setPoint(_x, _y);
 	};
 
 	void setPoint(const float _x, const float _y);

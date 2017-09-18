@@ -1,0 +1,6 @@
+What we did today
+
+We used exampes from sept 15 
+
+TEST when a destructors output will happen and what is the output of a program, when something lives or dies, do it on paper
+

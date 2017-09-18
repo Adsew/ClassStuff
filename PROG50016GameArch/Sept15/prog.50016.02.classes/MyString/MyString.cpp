@@ -7,7 +7,7 @@ MyString::MyString()
 {
     // create an empty string (just a nul terminator)
     mStr = (char*)std::malloc(sizeof(char));
-    mStr[0] = '\0';
+    //mStr[0] = '\0';
 }
 
 MyString::MyString(const char* arg)
