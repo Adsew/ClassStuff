@@ -6,6 +6,7 @@
 // - NOTE 3: use the fully qualified name (Class::Attribute)
 // - NOTE 4: don't forget to intialize here, since there are no "static constructors"!
 
+float Monster::smMaxHealth = 0;
 
 // a constructor
 Monster::Monster(std::string name)
@@ -30,4 +31,9 @@ float Monster::getHealth() const
 void Monster::applyDamage(float damageAmount)
 {
     mHealth -= damageAmount;
+}
+
+float Monster::getMaxHealth() {
+
+    return smMaxHealth;
 }

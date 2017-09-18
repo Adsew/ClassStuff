@@ -25,11 +25,9 @@ public:
     //
     // a constructor that uses an initializer list
     //
-    Player(std::string name, int numLives, float health, float maxHealth) : mPosition(0, 0), mMaxHealth(maxHealth)
+    Player(std::string name, int numLives, float health, float maxHealth)
+        : mPosition(0, 0), mMaxHealth(maxHealth), mName(name), mNumLives(numLives), mHealth(health)
     {
-        mName = name;
-        mNumLives = numLives;
-        mHealth = health;
     }
 
     std::string getName() const		{ return mName; }
