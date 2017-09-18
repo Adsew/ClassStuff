@@ -6,7 +6,7 @@ Assignment: Graphics and Animation Exercise 1
 
 Class: SceneDrawer
 
-Description: Using various colours shaders and vertices, the class
+Description: Using various colours, shaders, and vertices, the class
     can be called to draw a scene to a window it creates.
 
 PLEASE NOTE: This file does not require the shader.cpp or the fragment
@@ -236,18 +236,41 @@ private:
             0.8f, -0.16f, 0.0f,
             0.8f, -0.16f, 0.0f,
 
-            // Monster using polygon
-            -0.8f, -0.8f, 0.0f,       // Left leg
+            // Monster using polygon and quads
+            -0.8f, -0.8f, 0.0f,         // Left leg
             -0.7f, -0.8f, 0.0f,
             -0.65f, -0.5f, 0.0f,
             -0.68f, -0.5f, 0.0f,
-            -0.75f, -0.77f, 0.0f,
 
-            -0.6f, -0.8f, 0.0f,
+            -0.6f, -0.8f, 0.0f,         // Right leg
             -0.5f, -0.8f, 0.0f,
-            -0.53f, -0.77f, 0.0f,     // End of right foot
-            -0.58f, -0.5f, 0.0f,
-            -0.8f, -0.4f, 0.0f
+            -0.61f, -0.5f, 0.0f,
+            -0.65f, -0.5f, 0.0f,
+
+            -0.68f, -0.5f, 0.0f,        // Body
+            -0.61f, -0.5f, 0.0f,
+            -0.55f, -0.3f, 0.0f,
+            -0.61f, -0.2f, 0.0f,
+            -0.68f, -0.2f, 0.0f,
+            -0.74f, -0.3f, 0.0f,
+
+            -0.55f, -0.3f, 0.0f,        // Arm
+            -0.61f, -0.25f, 0.0f,
+            -0.35f, -0.1f, 0.0f,
+            -0.3f, -0.15f, 0.0f,
+            -0.35f, -0.2f, 0.0f,
+
+            // Monster eyes using triangles
+            -0.66f, -0.3f, 0.0f,
+            -0.69f, -0.28f, 0.0f,
+            -0.67f, -0.26f, 0.0f,
+
+            -0.63f, -0.3f, 0.0f,
+            -0.6f, -0.28f, 0.0f,
+            -0.62f, -0.26f, 0.0f,
+
+            // Monster mouth using point
+            -0.645f, -0.35f, 0.0f
         };
         
         glGenBuffers(1, &vertexBuff);
@@ -333,6 +356,25 @@ private:
             0.1f, 0.1f, 0.1f, 1.0f,
             0.1f, 0.1f, 0.1f, 1.0f,
             0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            0.1f, 0.1f, 0.1f, 1.0f,
+            1.0f, 1.0f, 1.0f, 0.5f,
+            1.0f, 1.0f, 1.0f, 0.5f,
+            1.0f, 1.0f, 1.0f, 0.5f,
+            
+            // Monster eyes
+            1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 0.0f, 1.0f,
+
+            // Monster mouth
+            0.7f, 0.0f, 0.0f, 1.0f
         };
         glGenBuffers(1, &colourBuff);
         glBindBuffer(GL_ARRAY_BUFFER, colourBuff);
@@ -483,7 +525,15 @@ public:
 
         glDrawArrays(GL_QUAD_STRIP, 39, 8);     // Drawing wizard hat
         
-        glDrawArrays(GL_POLYGON, 47, 6);       // Drawing monster left leg
+        glDrawArrays(GL_QUADS, 47, 4);          // Drawing monster left leg
+        glDrawArrays(GL_QUADS, 51, 4);          // Drawing monster right leg
+        glDrawArrays(GL_POLYGON, 55, 6);        // Drawing monster body
+        glDrawArrays(GL_POLYGON, 61, 5);        // Drawing monster Arm
+
+        glDrawArrays(GL_TRIANGLES, 66, 6);      // Drawing monster eyes
+
+        glPointSize(15.0);
+        glDrawArrays(GL_POINTS, 72, 1);         // Drawing monster mouth
 
         // End drawing, disable buffers
         glDisableVertexAttribArray(vertexPos_modelSpaceID);
@@ -494,9 +544,11 @@ public:
         glfwPollEvents();
     }
 
+    // Safely delete all our created objects
     ~SceneDrawer() {
 
         glDeleteBuffers(1, &vertexBuff);
+        glDeleteBuffers(1, &colourBuff);
         glDeleteProgram(progID);
 
         glfwDestroyWindow(window);
