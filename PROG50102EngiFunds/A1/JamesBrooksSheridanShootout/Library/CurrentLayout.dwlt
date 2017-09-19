@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 48
+  controlID: 82
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 563}
   m_MaxSize: {x: 22012, y: 14042}
   vertical: 1
-  controlID: 69
+  controlID: 105
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 70
+  controlID: 106
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -375,18 +375,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 48
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs
   m_LastFoldersGridSize: 48
   m_LastProjectPath: C:\Users\brookjam\Class Projects\ClassStuff\PROG50102EngiFunds\A1\JamesBrooksSheridanShootout
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 0c260000
-    m_LastClickedID: 9740
+    m_SelectedIDs: 1e260000
+    m_LastClickedID: 9758
     m_ExpandedIDs: 000000000c26000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -496,7 +496,7 @@ MonoBehaviour:
     y: 92
     width: 294
     height: 859
-  m_ScrollPosition: {x: 0, y: 34.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 160
@@ -531,9 +531,9 @@ MonoBehaviour:
     height: 859
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 60d2ffff
-    m_LastClickedID: -11680
-    m_ExpandedIDs: 32f0ffff1afcffff000000007a260000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 12eaf9ff1afcffff00000000642600008c260000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -588,9 +588,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -8.628106, y: -29.49001, z: 117.22595}
+    m_Target: {x: -0.18578774, y: 3.5111203, z: -10.790216}
     speed: 2
-    m_Value: {x: -8.628106, y: -29.49001, z: 117.22595}
+    m_Value: {x: -0.18578774, y: 3.5111203, z: -10.790216}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -613,13 +613,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.1363533, y: 0.020806625, z: -0.0028644819, w: -0.9904376}
+    m_Target: {x: -0.0065576774, y: 0.97985715, z: -0.19690645, w: -0.03263154}
     speed: 2
-    m_Value: {x: -0.1363533, y: 0.020806625, z: -0.0028644819, w: -0.9904376}
+    m_Value: {x: -0.0065576774, y: 0.97985715, z: -0.19690645, w: -0.03263154}
   m_Size:
-    m_Target: 143.60753
+    m_Target: 3.1949615
     speed: 2
-    m_Value: 143.60753
+    m_Value: 3.1949615
   m_Ortho:
     m_Target: 0
     speed: 2
