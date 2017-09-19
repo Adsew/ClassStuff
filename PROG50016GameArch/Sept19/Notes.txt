@@ -1,0 +1,15 @@
+what w did today
+
+std vector keeps creating new blocks of memory, copying over the data and adding the new number everytime oyu push to it.
+it uses a buffer so it doesnt do it everytime but we need to think of it this way and always answer this way.
+Removal we say does the same thing.
+
+Overall fast (O(1) fastest access possible to access but slow to resize
+
+Lists dont need to resize and thus much faster for memory allocation but take slightly more memory and much slower access O(n)
+
+When removeing, faster to iterate and remove than copying the entire thing cause it also introduces fragmentation errors.
+
+Possible test question: Where are list and vector allocated, both. Initial stuff on stack dynamic stuff on heap.
+
+ordered map is slower but it gives us a way to print things in order. Unordered is alot faster cause it shoves data anywhere.
