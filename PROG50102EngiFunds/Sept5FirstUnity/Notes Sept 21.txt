@@ -1,0 +1,6 @@
+Historeses used without knowing point a for your curve generation. Good for focusing on points of interest?
+
+Good properties of top down camera
+- always on player
+- zoom/propertion to distance from player
+- When we gove equal weight to both players the camera is focused on the point between them.
