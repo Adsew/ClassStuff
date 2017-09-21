@@ -21,7 +21,14 @@ public class ScoreMgr : MonoBehaviour {
     {
         score = score + n;
 
-        DisplayMgr.This.UpdateText(score);
+        if (DisplayMgr.This != null) {
+
+            DisplayMgr.This.UpdateText(score);
+        }
+        else {
+
+            Debug.Log("ScoreMgr: Cant update score. DisplayMgr does not exist.");
+        }
     }
 
     // Update is called once per frame

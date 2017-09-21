@@ -6,9 +6,8 @@ public class PlayerControl : MonoBehaviour {
 
     public Vector2 movement;
 
-    private GameObject bulletSpawnLoc;
+    private IsSpawnLoc bulletSpawnLoc;
     public KeyCode fireButton;
-    public GameObject cannonBall;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +15,7 @@ public class PlayerControl : MonoBehaviour {
         IsSpawnLoc s1 = this.gameObject.GetComponentInChildren<IsSpawnLoc>();
 
         if (s1 != null) {
-            bulletSpawnLoc = s1.gameObject;
+            bulletSpawnLoc = s1;
         }
     }
 
@@ -34,11 +33,9 @@ public class PlayerControl : MonoBehaviour {
 
         if (Input.GetKeyDown(fireButton) == true) {
             
-            if (cannonBall != null && bulletSpawnLoc != null) {
-                
-                Instantiate(cannonBall, 
-                    bulletSpawnLoc.transform.position + Vector3.forward,
-                    bulletSpawnLoc.transform.rotation);
+            if (bulletSpawnLoc != null) {
+
+                bulletSpawnLoc.SpawnObject();
             }
         }
     }

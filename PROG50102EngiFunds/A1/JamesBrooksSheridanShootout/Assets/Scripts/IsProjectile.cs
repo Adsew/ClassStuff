@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IsProjectile : MonoBehaviour {
 
-    public const float deathTime = 10.0f;   // 10 Seconds after collision
+    public const float timeTilDeath = 5.0f;    // Seconds
 
     private float deathTimer;
     private bool needsToDie;
@@ -37,7 +37,7 @@ public class IsProjectile : MonoBehaviour {
 
             deathTimer = deathTimer + Time.deltaTime;
 
-            if (deathTimer > IsProjectile.deathTime) {
+            if (deathTimer > IsProjectile.timeTilDeath) {
 
                 Destroy(this.gameObject);
             }

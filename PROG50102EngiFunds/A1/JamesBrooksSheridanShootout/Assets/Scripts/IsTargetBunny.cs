@@ -14,6 +14,7 @@ public class IsTargetBunny : IsTarget {
     
     // Update is called once per frame
     void Update () {
-		
+
+        determineDeath();
 	}
 }

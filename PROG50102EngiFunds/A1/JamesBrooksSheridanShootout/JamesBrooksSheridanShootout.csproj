@@ -87,12 +87,15 @@
     <Compile Include="Assets\Scripts\DisplayMgr.cs" />
     <Compile Include="Assets\Scripts\IsCannonBall.cs" />
     <Compile Include="Assets\Scripts\IsProjectile.cs" />
+    <Compile Include="Assets\Scripts\IsSpawnCannonBallLoc.cs" />
     <Compile Include="Assets\Scripts\IsSpawnLoc.cs" />
+    <Compile Include="Assets\Scripts\IsSpawnTargetLoc.cs" />
     <Compile Include="Assets\Scripts\IsTarget.cs" />
     <Compile Include="Assets\Scripts\IsTargetBunny.cs" />
     <Compile Include="Assets\Scripts\IsTargetFish.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\ScoreMgr.cs" />
+    <Compile Include="Assets\Scripts\TargetSpawner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
