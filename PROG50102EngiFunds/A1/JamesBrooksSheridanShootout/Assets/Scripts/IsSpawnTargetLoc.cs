@@ -31,7 +31,7 @@ public class IsSpawnTargetLoc : IsSpawnLoc {
 
                 Vector3 temp = new Vector3(myTransform.position.x, y, myTransform.position.z);
 
-                GameObject target = Instantiate(objToSpawn, temp, myTransform.rotation);
+                GameObject target = Instantiate(objToSpawn, temp, objToSpawn.transform.rotation);
 
                 // Now joint target to pole
                 if (target != null) {
