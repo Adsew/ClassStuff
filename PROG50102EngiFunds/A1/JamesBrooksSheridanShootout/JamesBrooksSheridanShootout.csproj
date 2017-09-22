@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\IsTargetFish.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\ScoreMgr.cs" />
+    <Compile Include="Assets\Scripts\TargetMovement.cs" />
     <Compile Include="Assets\Scripts\TargetSpawner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
