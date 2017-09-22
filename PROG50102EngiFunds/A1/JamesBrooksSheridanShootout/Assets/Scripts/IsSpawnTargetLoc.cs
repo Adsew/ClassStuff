@@ -6,6 +6,9 @@ public class IsSpawnTargetLoc : IsSpawnLoc {
 
     public GameObject poleToSpawn;      // Pole target sits on
 
+    [Range(1, 100)]
+    public float spawnChance = 100.0f;
+
     // Use this for initialization
     void Start () {
 
@@ -16,8 +19,37 @@ public class IsSpawnTargetLoc : IsSpawnLoc {
 
         if (objToSpawn != null && poleToSpawn != null) {
 
-            Instantiate(poleToSpawn, myTransform.position, myTransform.rotation);
-            Instantiate(objToSpawn, myTransform.position, myTransform.rotation);
+            GameObject pole = Instantiate(poleToSpawn, myTransform.position, myTransform.rotation);
+
+            if (pole != null) {
+
+                // Generate offset to place target nicely on top of pole
+                float y = myTransform.position.y
+                    + (pole.transform.localScale.y / 2)
+                    + (objToSpawn.transform.localScale.y / 2)
+                    + 0.2f;
+
+                Vector3 temp = new Vector3(myTransform.position.x, y, myTransform.position.z);
+
+                GameObject target = Instantiate(objToSpawn, temp, myTransform.rotation);
+
+                // Now joint target to pole
+                if (target != null) {
+
+                    FixedJoint joint = pole.GetComponent<FixedJoint>();
+
+                    if (joint != null) {
+
+                        Rigidbody targRB = target.GetComponent<Rigidbody>();
+
+                        if (targRB != null) {
+
+                            joint.connectedBody = targRB;
+                        }
+                    }
+                }
+            }
+
         }
     }
 
