@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 413707280}
   - component: {fileID: 413707279}
   m_Layer: 0
-  m_Name: EndLocation2
+  m_Name: EndLocation3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -269,7 +269,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 413707278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.990561, y: -0.18, z: 17.8}
+  m_LocalPosition: {x: -4.990561, y: 0.367, z: 17.8}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 902326324}
@@ -370,7 +370,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.2
+      value: -2.11
       objectReference: {fileID: 0}
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -430,7 +430,17 @@ Prefab:
     - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
         type: 2}
       propertyPath: spawnChance
-      value: 80
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
+        type: 2}
+      propertyPath: despawnLoc
+      value: 
+      objectReference: {fileID: 1901499065}
+    - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
+        type: 2}
+      propertyPath: targTimeToCross
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
@@ -517,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35496bb64b508ab48b55266754574317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawn: 1
+  timeBetweenSpawn: 2
 --- !u!1 &948773549
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,10 +733,9 @@ GameObject:
   m_Component:
   - component: {fileID: 999079421}
   - component: {fileID: 999079424}
-  - component: {fileID: 999079423}
   - component: {fileID: 999079422}
   m_Layer: 0
-  m_Name: SplineEnd
+  m_Name: SplineRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -739,8 +748,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 999079420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.09944, y: -1.2831268, z: 13.90481}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 29.89, y: 3.79, z: 13.90481}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 902326324}
   m_RootOrder: 15
@@ -777,18 +786,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &999079423
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 999079420}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &999079424
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -903,15 +900,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.96
+      value: 15.39
       objectReference: {fileID: 0}
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -2.71
       objectReference: {fileID: 0}
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 10.05
+      value: 9.39
       objectReference: {fileID: 0}
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -963,11 +960,21 @@ Prefab:
     - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
         type: 2}
       propertyPath: spawnChance
-      value: 65
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1896576428306624, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_Name
       value: SpawnLocation1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
+        type: 2}
+      propertyPath: despawnLoc
+      value: 
+      objectReference: {fileID: 1861442455}
+    - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
+        type: 2}
+      propertyPath: targTimeToCross
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
@@ -1079,6 +1086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1299378343}
   - component: {fileID: 1299378344}
+  - component: {fileID: 1299378345}
   m_Layer: 0
   m_Name: GLOBAL
   m_TagString: Untagged
@@ -1110,6 +1118,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c750f6dc93a9ef14bba41ea8dbade503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1299378345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1299378342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4005ecc7e41b54fac60ae2efc89c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineLeft: {fileID: 1942425623}
+  splineRight: {fileID: 999079420}
 --- !u!1001 &1385178140
 Prefab:
   m_ObjectHideFlags: 0
@@ -1201,20 +1222,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -1525,7 +1532,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.18
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 4263691290200996, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1581,7 +1588,17 @@ Prefab:
     - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
         type: 2}
       propertyPath: spawnChance
-      value: 40
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
+        type: 2}
+      propertyPath: despawnLoc
+      value: 
+      objectReference: {fileID: 413707278}
+    - target: {fileID: 114110205140583742, guid: 450ce96af41a57a4186e777db3f60fc5,
+        type: 2}
+      propertyPath: targTimeToCross
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 450ce96af41a57a4186e777db3f60fc5, type: 2}
@@ -1649,7 +1666,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1861442455}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.57, y: -3.5, z: 9.985523}
+  m_LocalPosition: {x: -6.763, y: -2.87, z: 9.41}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 902326324}
@@ -1718,7 +1735,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1901499065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.44, y: -2.2, z: 13.615524}
+  m_LocalPosition: {x: 14.44, y: -2.12, z: 13.615524}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 902326324}
@@ -1831,10 +1848,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1942425624}
   - component: {fileID: 1942425627}
-  - component: {fileID: 1942425626}
   - component: {fileID: 1942425625}
   m_Layer: 0
-  m_Name: SplineStart
+  m_Name: SplineLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1847,8 +1863,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1942425623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.430561, y: -1.2831268, z: 13.90481}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -33.57, y: -9.4, z: 13.90481}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 902326324}
   m_RootOrder: 14
@@ -1885,18 +1901,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1942425626
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1942425623}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1942425627
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1962,6 +1966,37 @@ Prefab:
     - target: {fileID: 4186837374141270, guid: 93d518f26e386e346b07f11506fa5a29, type: 2}
       propertyPath: m_LocalPosition.z
       value: -1.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 114918508843780566, guid: 93d518f26e386e346b07f11506fa5a29,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Welcome one and all!
+
+        Score 20 points to win!
+
+
+        Controls:
+
+        ''A'' and ''D'' arrows to strafe.
+
+        Mouse to aim.
+
+        Left click to shoot.
+
+        ''F'' to unlock free roam.
+
+        ''W'' and ''S'' to move forward
+
+        and back with free roam active.
+
+
+        Points:
+
+        Gold Bunny: 5
+
+        Target: 2
+
+        Fish: 1'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93d518f26e386e346b07f11506fa5a29, type: 2}

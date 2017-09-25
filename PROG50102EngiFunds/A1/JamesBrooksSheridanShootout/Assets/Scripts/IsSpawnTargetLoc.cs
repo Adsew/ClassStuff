@@ -5,6 +5,10 @@ using UnityEngine;
 public class IsSpawnTargetLoc : IsSpawnLoc {
 
     public GameObject poleToSpawn;      // Pole target sits on
+    public GameObject despawnLoc;       // End point for the target
+
+    [Range(1,30)]
+    public int targTimeToCross = 2;     // Set targets time to cross the lane (seconds)
 
     [Range(1, 100)]
     public float spawnChance = 100.0f;
@@ -30,7 +34,7 @@ public class IsSpawnTargetLoc : IsSpawnLoc {
                     + 0.2f;
 
                 Vector3 temp = new Vector3(myTransform.position.x, y, myTransform.position.z);
-
+                // ADD ROTATION TO PREFAB ROTATION ON Y AXIS
                 GameObject target = Instantiate(objToSpawn, temp, objToSpawn.transform.rotation);
 
                 // Now joint target to pole
@@ -42,14 +46,33 @@ public class IsSpawnTargetLoc : IsSpawnLoc {
 
                         Rigidbody targRB = target.GetComponent<Rigidbody>();
 
+                        
                         if (targRB != null) {
 
                             joint.connectedBody = targRB;
+
+                            // Everything set, so initialize target settings
+                            TargetMovement poleSetter = pole.GetComponent<TargetMovement>();
+
+                            if (poleSetter != null) {
+                                
+                                poleSetter.timeToCross = targTimeToCross;
+
+                                // Each target has their own start and end points for spline
+                                if (SplineMgr.This.splineLeft != null
+                                    && SplineMgr.This.splineRight != null
+                                    && this.despawnLoc != null) {
+                                    
+                                    poleSetter.contPoints.Add(SplineMgr.This.splineLeft);
+                                    poleSetter.contPoints.Add(this.gameObject);
+                                    poleSetter.contPoints.Add(this.despawnLoc);
+                                    poleSetter.contPoints.Add(SplineMgr.This.splineRight);
+                                }
+                            }
                         }
                     }
                 }
             }
-
         }
     }
 
