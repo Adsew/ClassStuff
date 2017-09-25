@@ -6,13 +6,13 @@ public class PlayerControl : MonoBehaviour {
 
     public Vector2 movement;
 
-    private IsSpawnLoc bulletSpawnLoc;
+    private IsSpawnCannonBallLoc bulletSpawnLoc;
     public KeyCode fireButton;
 
 	// Use this for initialization
 	void Start () {
 
-        IsSpawnLoc s1 = this.gameObject.GetComponentInChildren<IsSpawnLoc>();
+        IsSpawnCannonBallLoc s1 = this.gameObject.GetComponentInChildren<IsSpawnCannonBallLoc>();
 
         if (s1 != null) {
             bulletSpawnLoc = s1;

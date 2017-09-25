@@ -21,9 +21,16 @@ public class IsCannonBall : IsProjectile {
             temp.velocity = cannonBallVelocity * this.gameObject.transform.forward;
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private new void OnCollisionEnter(Collision col) {
+
+        collisionOccurred(col);
+
+        SoundMgr.This.PlayRandomCollisionSound();
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         determineDeath();
 	}

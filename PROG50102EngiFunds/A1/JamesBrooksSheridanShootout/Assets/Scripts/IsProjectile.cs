@@ -21,7 +21,7 @@ public class IsProjectile : MonoBehaviour {
         needsToDie = false;
     }
 
-    public void OnCollisionEnter(Collision col) {
+    protected void collisionOccurred(Collision col) {
 
         // As long as we hit something, destroy object soon
         if (col.gameObject != null) {
@@ -30,6 +30,12 @@ public class IsProjectile : MonoBehaviour {
         }
     }
 
+    // Default
+    public void OnCollisionEnter(Collision col) {
+
+        collisionOccurred(col);
+    }
+    
     // Destroy bullet if it has hit something
     protected void determineDeath() {
 

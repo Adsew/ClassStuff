@@ -13,10 +13,12 @@ public class IsSpawnCannonBallLoc : IsSpawnLoc {
     new public void SpawnObject() {
 
         if (objToSpawn != null) {
-
+            
             Instantiate(objToSpawn,
                 myTransform.position + Vector3.forward,
                 myTransform.rotation);
+            
+            SoundMgr.This.PlayRandomFireSound();
         }
     }
 

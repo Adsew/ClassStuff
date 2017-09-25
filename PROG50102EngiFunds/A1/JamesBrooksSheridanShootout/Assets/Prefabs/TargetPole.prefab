@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23818138963785390}
   - component: {fileID: 54052379050810348}
   - component: {fileID: 138508851359880792}
+  - component: {fileID: 114935691054485852}
   - component: {fileID: 114873691396020060}
   m_Layer: 0
   m_Name: TargetPole
@@ -124,6 +125,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToCross: 1
   contPoints: []
+--- !u!114 &114935691054485852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1128200600193998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25bc4bc1b936c8e4bbbbc2f3cdfb0737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!138 &138508851359880792
 FixedJoint:
   m_ObjectHideFlags: 1
