@@ -296,10 +296,13 @@ MonoBehaviour:
   fireSounds:
   - {fileID: 8300000, guid: dff4929953e9d0a429f41b687a9295a5, type: 3}
   collisionSounds:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 679398355dede1246a30c3bc1595278f, type: 3}
+  - {fileID: 8300000, guid: ac6c2099090b040448571b0bf467811f, type: 3}
   targetSounds:
   - {fileID: 8300000, guid: ef1767bc6455d054db2d1d7c496b68bf, type: 3}
   - {fileID: 8300000, guid: be6ae3726a3a06844abdb951c616b862, type: 3}
+  - {fileID: 8300000, guid: 1a9d3c85ec71127499a6b7bbd6a86818, type: 3}
+  - {fileID: 8300000, guid: 7a8a43fcbff5663459cfbcc6ed26ce6a, type: 3}
 --- !u!1001 &1385178140
 Prefab:
   m_ObjectHideFlags: 0
