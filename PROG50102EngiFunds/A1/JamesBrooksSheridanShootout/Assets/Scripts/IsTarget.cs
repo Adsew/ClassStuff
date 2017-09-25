@@ -44,7 +44,7 @@ public abstract class IsTarget : MonoBehaviour {
 
             deathTimer = deathTimer + Time.deltaTime;
 
-            if (deathTimer > IsProjectile.timeTilDeath) {
+            if (deathTimer > IsTarget.timeTilDeath) {
 
                 Destroy(this.gameObject);
             }

@@ -6,7 +6,11 @@ public class ScoreMgr : MonoBehaviour {
 
     public static ScoreMgr This;
 
+    [Range(1,100)]
+    public int scoreToWin = 20;
+
     private int score;
+
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +24,11 @@ public class ScoreMgr : MonoBehaviour {
     public void IncScore(int n)
     {
         score = score + n;
+
+        if (score >= scoreToWin) {
+
+            DisplayMgr.This.SetPlayerWon(true);
+        }
 
         if (DisplayMgr.This != null) {
 

@@ -522,7 +522,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1741673644779606}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 17.779438, y: -0.7702594, z: 14.555524}
+  m_LocalPosition: {x: 17.779438, y: -0.7702594, z: 14.62}
   m_LocalScale: {x: 14.88775, y: 8.448034, z: 1}
   m_Children: []
   m_Father: {fileID: 4204549919161128}
@@ -1407,7 +1407,7 @@ MonoBehaviour:
     type: 2}
   despawnLoc: {fileID: 1495109157289880}
   targTimeToCross: 8
-  spawnChance: 60
+  spawnChance: 75
 --- !u!114 &114734432860279670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1424,7 +1424,7 @@ MonoBehaviour:
     type: 2}
   despawnLoc: {fileID: 1614135352095996}
   targTimeToCross: 7
-  spawnChance: 65
+  spawnChance: 80
 --- !u!114 &114904321546256274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1436,9 +1436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e740ded87705714daadeba1e91e9dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objToSpawn: {fileID: 1300387257965426, guid: c6918ab4d1f63664bb1961112a901885, type: 2}
+  objToSpawn: {fileID: 1100176987834760, guid: c6918ab4d1f63664bb1961112a901885, type: 2}
   poleToSpawn: {fileID: 1128200600193998, guid: cdab088f35fadb54b9bfe7973ef883a1,
     type: 2}
   despawnLoc: {fileID: 1356896164821580}
-  targTimeToCross: 4
+  targTimeToCross: 5
   spawnChance: 25

@@ -301,8 +301,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887289683938914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.05, y: 2.3400002, z: -1.69}
-  m_LocalScale: {x: 4.554475, y: 7.356473, z: 0.09963891}
+  m_LocalPosition: {x: 12.05, y: 2.3400002, z: -1.5}
+  m_LocalScale: {x: 4.554475, y: 7.356473, z: 0.43246973}
   m_Children: []
   m_Father: {fileID: 4441055439960456}
   m_RootOrder: 11
@@ -314,8 +314,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646243509127562}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.072258204, y: -0.06699991, z: -1.9123981}
-  m_LocalScale: {x: 1.8629732, y: 1.1676825, z: 0.077439375}
+  m_LocalPosition: {x: 0.072258204, y: -0.06699991, z: -1.88}
+  m_LocalScale: {x: 1.8629732, y: 1.1676825, z: 0.113514334}
   m_Children: []
   m_Father: {fileID: 4441055439960456}
   m_RootOrder: 6
@@ -405,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 1971731592672412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.072258234, y: 7.1899996, z: -1.914398}
-  m_LocalScale: {x: 9.499855, y: 3.170253, z: 0.14336881}
+  m_LocalScale: {x: 9.499855, y: 3.170253, z: 0.25278005}
   m_Children: []
   m_Father: {fileID: 4441055439960456}
   m_RootOrder: 10
@@ -1175,31 +1175,23 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Welcome one and all!
 
-    Shoot the target to begin!
-
     Score 20 points to win!
 
 
     Controls:
 
-    ''A'' and ''D'' arrows to strafe.
+    ''Q'' and ''E'' keys to strafe.
 
-    Mouse to aim.
+    ''WASD'' or arrows to aim.
 
-    Left click to shoot.
+    Space to shoot.
 
     ''F'' to unlock free roam.
-
-    ''W'' and ''S'' to move forward
-
-    and back with free roam active.
 
 
     Points:
 
     Gold Bunny: 5
-
-    Target: 2
 
     Fish: 1'
 --- !u!222 &222215940279030580

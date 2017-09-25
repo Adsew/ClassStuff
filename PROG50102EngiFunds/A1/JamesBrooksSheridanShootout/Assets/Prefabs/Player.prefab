@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33401880650618324}
   - component: {fileID: 65140468826913690}
   - component: {fileID: 23239097973235138}
-  - component: {fileID: 114224245405436828}
+  - component: {fileID: 114793499954632298}
   m_Layer: 0
   m_Name: BarrelEnd
   m_TagString: Untagged
@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 33428900277776162}
   - component: {fileID: 65517862928874684}
   - component: {fileID: 23321100683790386}
+  - component: {fileID: 114576044888367442}
   m_Layer: 0
   m_Name: CannonBody
   m_TagString: Untagged
@@ -137,13 +138,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682508122135244}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.0117683485, y: -0, z: -0, w: 0.9999308}
   m_LocalPosition: {x: -0.11187744, y: 0.069393635, z: 0.32999802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4716180292477444}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3490001, y: 0, z: 0}
 --- !u!4 &4716180292477444
 Transform:
   m_ObjectHideFlags: 1
@@ -151,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136744574604974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11187744, y: 4.0306063, z: -18.21}
+  m_LocalPosition: {x: 12, y: 4.0306063, z: -5.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4722964529490380}
@@ -192,7 +193,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -431,17 +432,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1682508122135244}
   m_Enabled: 1
---- !u!114 &114224245405436828
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1179179512823246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44473549cfc798b44bf8c78841af32dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114224897940783272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,9 +443,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59a81dbdab104b49a511f3422f2d929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {x: 0, y: 0}
-  fireButton: 323
-  cannonBall: {fileID: 1423944438841428, guid: fd365fd7512b4a147b7485775836297e, type: 2}
+  moveSpeed: 0.03
+  fireButton: 32
+  moveLeft: 113
+  moveRight: 101
+  rotateLeft: 276
+  rotateRight: 275
+  rotateUp: 273
+  rotateDown: 274
+--- !u!114 &114576044888367442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504047447292684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567aea97bf5cafe4c89e3b690d9e8103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114793499954632298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1179179512823246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f1e61abaf88844fac465a2982cdd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objToSpawn: {fileID: 1423944438841428, guid: fd365fd7512b4a147b7485775836297e, type: 2}
 --- !u!124 &124278623706476902
 Behaviour:
   m_ObjectHideFlags: 1

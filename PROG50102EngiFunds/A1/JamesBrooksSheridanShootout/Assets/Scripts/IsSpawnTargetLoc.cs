@@ -26,16 +26,21 @@ public class IsSpawnTargetLoc : IsSpawnLoc {
             GameObject pole = Instantiate(poleToSpawn, myTransform.position, myTransform.rotation);
 
             if (pole != null) {
-
+                
                 // Generate offset to place target nicely on top of pole
                 float y = myTransform.position.y
                     + (pole.transform.localScale.y / 2)
                     + (objToSpawn.transform.localScale.y / 2)
                     + 0.2f;
 
-                Vector3 temp = new Vector3(myTransform.position.x, y, myTransform.position.z);
-                // ADD ROTATION TO PREFAB ROTATION ON Y AXIS
-                GameObject target = Instantiate(objToSpawn, temp, objToSpawn.transform.rotation);
+                Vector3 tempTrans = new Vector3(myTransform.position.x, y, myTransform.position.z);
+
+                Quaternion spawnRot = this.gameObject.transform.rotation;
+                spawnRot.x = spawnRot.x + objToSpawn.transform.rotation.x;
+                spawnRot.y = spawnRot.y + objToSpawn.transform.rotation.y;
+                spawnRot.z = spawnRot.z + objToSpawn.transform.rotation.z;
+
+                GameObject target = Instantiate(objToSpawn, tempTrans, spawnRot);
 
                 // Now joint target to pole
                 if (target != null) {
