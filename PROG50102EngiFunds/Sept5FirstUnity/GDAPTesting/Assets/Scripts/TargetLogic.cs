@@ -11,7 +11,6 @@ public class TargetLogic : MonoBehaviour {
             if (col.gameObject.GetComponent<IsProjectile>() != null) //fix this
             {
                 Destroy(this.gameObject); // this is the script component
-                Destroy(col.gameObject);
 
                 // need to incrasescore now
                 ScoreMgr.This.IncScore(1);

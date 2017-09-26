@@ -89,7 +89,9 @@
     <Compile Include="Assets\Scripts\Hysteresis.cs" />
     <Compile Include="Assets\Scripts\IsPlayer.cs" />
     <Compile Include="Assets\Scripts\IsProjectile.cs" />
+    <Compile Include="Assets\Scripts\IsRayProjectile.cs" />
     <Compile Include="Assets\Scripts\IsSpawnLoc.cs" />
+    <Compile Include="Assets\Scripts\RaycastObj.cs" />
     <Compile Include="Assets\Scripts\ScoreMgr.cs" />
     <Compile Include="Assets\Scripts\SoundMgr.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />

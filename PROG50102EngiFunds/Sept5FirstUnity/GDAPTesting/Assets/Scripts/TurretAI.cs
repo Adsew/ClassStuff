@@ -7,6 +7,13 @@ public class TurretAI : MonoBehaviour {
     public GameObject obj;
     public GameObject spawnLoc;
 
+    [Range(1,1000)]
+    public float aimDist = 10;
+
+    private Color drawCol;
+    public Color searchCol;
+    public Color foundCol;
+
     private GameObject curTarget;
     private bool hasFired;
 
@@ -83,14 +90,27 @@ public class TurretAI : MonoBehaviour {
             Vector3 targVec = target.transform.position - this.transform.position;
             Vector3 crossResult = Vector3.Cross(myVec, targVec);
 
-            if (crossResult.y < 0.6 && crossResult.y > -0.6)
+            // Create raycast
+            Vector3 rayStart = this.transform.position;
+            Vector3 rayDir = this.transform.forward;
+            Vector3 rayEnd = rayStart + aimDist * rayDir;
+            
+            RaycastHit hitInfo;
+
+            bool foundSomething = Physics.Raycast(rayStart, rayDir, out hitInfo, aimDist);
+
+            drawCol = searchCol;
+
+            if (foundSomething == true && hitInfo.collider.gameObject.GetComponent<TargetLogic>() != null)
             {
                 Fire();
+
+                drawCol = foundCol;
             }
 
             // The problem is 0 could refer to the opposite direction,
             // need some kind of if to determine what way you are facing.
-            if (crossResult.y > 0)
+            else if (crossResult.y > 0)
             {
                 //turn left
                 this.transform.Rotate(Vector3.up /*y*/, 1);
@@ -100,6 +120,8 @@ public class TurretAI : MonoBehaviour {
                 // turn right
                 this.transform.Rotate(Vector3.up /*y*/, -1);
             }
+
+            Debug.DrawLine(rayStart, rayEnd, drawCol);
         }
     }
 
