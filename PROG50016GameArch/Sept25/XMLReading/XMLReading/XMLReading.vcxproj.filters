@@ -27,15 +27,4 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Xml Include="GameLevel.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
-    <Xml Include="GameLevelExample.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
-    <Xml Include="GameSettings.xml">
-      <Filter>Resource Files</Filter>
-    </Xml>
-  </ItemGroup>
 </Project>

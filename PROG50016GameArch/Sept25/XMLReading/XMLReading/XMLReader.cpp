@@ -13,19 +13,31 @@ Description: Reads XML files and simply displays the data
 using namespace tinyxml2;
 
 
-int loadXMLSettings() {
+int loadXMLLevel() {
 
-    XMLDocument *doc = new XMLDocument();
+    XMLDocument doc;
 
-    if (doc->LoadFile("XMLReading/GameSettings.xml")) {
+    doc.LoadFile("../Res/GameLevel.xml");
 
-        XMLNode *settings = doc->FirstChildElement("GameSettings");
+    if (doc.Error() == false) {
 
-        if (settings != NULL) {
+        XMLNode *level = doc.FirstChildElement("Level");
+        
+        if (level != NULL) {
 
-            XMLElement *gameName = settings->FirstChildElement("Name");
+            XMLElement *firstActor = level->FirstChildElement("Actor"); // Get next sybling using that pointer to get all actors
 
-            std::cout << gameName->GetText();
+            XMLElement *secondActor = firstActor->NextSibling;
+
+            if (firstActor != NULL) {
+
+                //Actor act = new Actor(firstActor);    // Now we let the class handle its own loading, it should know what it needs
+
+                // In calss do same thing get elements of name, rotation, position, etc till all wanted data is loaded.
+                // Dont always have to get everything, can check for null if null set a default, if not use the data, 
+                // this saves memory when saving dont always need to write variables
+                // Elements are like variables and classes tp match your actual code classes
+            }
         }
     }
 
@@ -34,9 +46,9 @@ int loadXMLSettings() {
 
 int main() {
 
-    loadXMLSettings();
+    //loadXMLSettings();
 
-    //loadXMLLevel();
+    loadXMLLevel();
 
     //loadXMLLevelExample();
 

@@ -1,0 +1,4 @@
+
+
+
+For midterm: Main calls game loop creates car exits loop back to main basically question will be for lifespan of a variable. When a var is created in a brace its dead at the end of it.
