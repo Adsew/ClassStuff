@@ -68,7 +68,7 @@ public class DisplayMgr : MonoBehaviour {
 
             txtOnScreenWinMsg.text = "PLAYER WON!!";
         }
-        else {
+        else if (txtOnScreenWinMsg == null) {
 
             Debug.Log("DisplayMgr: Can't update text component, on screen display winner reference missing");
         }
