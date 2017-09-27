@@ -34,8 +34,6 @@ ShaderLoader::ShaderLoader(std::string &fileLoc) {
             fileTxt = fileTxt + line + "\n";
         }
         
-        fileTxt += "\0";
-
         inStream.close();
     }
     else {

@@ -32,7 +32,7 @@ VectorGrapher::VectorGrapher(std::list<glm::vec2> &vectorsToDraw) {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
         // Open a window and create its OpenGL context (Nick's comment)
-        window = glfwCreateWindow(1024, 768, "James Brooks' Power of a Star", NULL, NULL);
+        window = glfwCreateWindow(1024, 768, "James Brooks' Vector Grapher", NULL, NULL);
 
         if (window != NULL) {
 
@@ -107,7 +107,8 @@ void VectorGrapher::loadShaderData() {
 
     // Compile Vertex Shader
     ShaderLoader vertLoader(vertexShaderLoc);
-    char const *vertSourcePointer = vertLoader.getText().c_str();
+    std::string vertShaderCode = vertLoader.getText();
+    char const *vertSourcePointer = vertShaderCode.c_str();
     glShaderSource(vertShaderID, 1, &vertSourcePointer, NULL);
     glCompileShader(vertShaderID);
 
@@ -125,7 +126,8 @@ void VectorGrapher::loadShaderData() {
 
     // Compile Fragment Shader
     ShaderLoader fragLoader(fragShaderLoc);
-    char const * fragSourcePointer = fragLoader.getText().c_str();
+    std::string fragShaderCode = fragLoader.getText();
+    char const * fragSourcePointer = fragShaderCode.c_str();
     glShaderSource(fragShaderID, 1, &fragSourcePointer, NULL);
     glCompileShader(fragShaderID);
 
@@ -140,6 +142,8 @@ void VectorGrapher::loadShaderData() {
         std::cerr << &fragShaderErrMsg[0] << "\n";
         delete fragShaderErrMsg;
     }
+    std::cout << "\n" << vertLoader.getText() << "\n";
+    std::cout << fragLoader.getText() << "\n";
 
     // Link the program
     std::cout << "Linking program\n";
@@ -184,7 +188,29 @@ void VectorGrapher::loadShaderData() {
 /* Load buffer data from vectors */
 void VectorGrapher::loadBufferData() {
 
+    // VERTICES
+    static const GLfloat gVertBuffData[] = {
 
+        -1.0f, -1.0f, 0.0f,
+        1.0f, -1.0f, 0.0f,
+        1.0f, -0.1f, 0.0f
+    };
+
+    glGenBuffers(1, &vertexBuff);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuff);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(gVertBuffData), gVertBuffData, GL_STATIC_DRAW);
+
+
+    // COLOURS
+    static const GLfloat gColBuffData[] = {
+
+        0.10f, 0.55f, 0.13f, 1.0f,
+        0.10f, 0.55f, 0.13f, 1.0f,
+        0.12f, 0.66f, 0.15f, 1.0f
+    };
+    glGenBuffers(1, &colourBuff);
+    glBindBuffer(GL_ARRAY_BUFFER, colourBuff);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(gColBuffData), gColBuffData, GL_STATIC_DRAW);
 }
 
 /* Returns true if all openGL initialized properly and obj is usable */
@@ -215,5 +241,44 @@ void VectorGrapher::update() {
 /* Draws buffer content to screen */
 void VectorGrapher::draw() {
 
+    // Clear buffer for further drawing
+    glClear(GL_COLOR_BUFFER_BIT);
 
+    glUseProgram(progID);
+
+    // Vertices buffer
+    glEnableVertexAttribArray(vertexPos_modelSpaceID);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuff);
+    glVertexAttribPointer(
+        vertexPos_modelSpaceID, // The attribute we want to configure
+        3,                      // size
+        GL_FLOAT,               // type
+        GL_FALSE,               // normalized?
+        0,                      // stride
+        (void*)0                // array buffer offset
+    );
+
+
+    // Colour buffer
+    glEnableVertexAttribArray(colourPos_vec4ID);
+    glBindBuffer(GL_ARRAY_BUFFER, colourBuff);
+    glVertexAttribPointer(
+        colourPos_vec4ID,       // The attribute we want to configure
+        4,                      // size
+        GL_FLOAT,               // type
+        GL_FALSE,               // normalized?
+        0,                      // stride
+        (void*)0                // array buffer offset
+    );
+
+    // Begin drawing scene
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+
+                                            // End drawing, disable buffers
+    glDisableVertexAttribArray(vertexPos_modelSpaceID);
+    glDisableVertexAttribArray(colourPos_vec4ID);
+
+    // Swap buffers
+    glfwSwapBuffers(window);
+    glfwPollEvents();
 }
