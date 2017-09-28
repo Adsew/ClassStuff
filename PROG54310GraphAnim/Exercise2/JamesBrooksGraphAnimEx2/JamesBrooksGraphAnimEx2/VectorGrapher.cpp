@@ -22,7 +22,7 @@ Note: Lots of code is reused from my exersice 1 as it is still applicable.
 
     /* Constructor/Destructor */
 
-VectorGrapher::VectorGrapher(std::list<glm::vec2> &vectorsToDraw) {
+VectorGrapher::VectorGrapher() {
 
     // Initialise GLFW
     if (glfwInit()) {
@@ -142,9 +142,7 @@ void VectorGrapher::loadShaderData() {
         std::cerr << &fragShaderErrMsg[0] << "\n";
         delete fragShaderErrMsg;
     }
-    std::cout << "\n" << vertLoader.getText() << "\n";
-    std::cout << fragLoader.getText() << "\n";
-
+    
     // Link the program
     std::cout << "Linking program\n";
 
@@ -187,27 +185,85 @@ void VectorGrapher::loadShaderData() {
 
 /* Load buffer data from vectors */
 void VectorGrapher::loadBufferData() {
+    
+    int i = 0;
 
-    // VERTICES
-    static const GLfloat gVertBuffData[] = {
+    glm::vec2 v1(0.8f, -0.2f);
+    glm::vec2 v2(0.4f, 0.6f);
+    glm::vec2 v3(-20.0f, 90.0f);
+    glm::vec2 v4 = glm::normalize(v3);
 
-        -1.0f, -1.0f, 0.0f,
-        1.0f, -1.0f, 0.0f,
-        1.0f, -0.1f, 0.0f
+    // Graph first then
+    // Vectors with their arrow heads
+    static const GLfloat gVertBuffData[] {
+
+        1.0f, 0.0f, 0.0f,
+        -1.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, -1.0f, 0.0f,
+
+        0.0f, 0.0f, 0.0f,
+        v1.x, v1.y, 0.0f,
+        v1.x, v1.y, 0.0f,
+        0.76f, -0.24f, 0.0f,
+        v1.x, v1.y, 0.0f,
+        0.77f, -0.14, 0.0f,
+
+        0.0f, 0.0f, 0.0f,
+        v2.x, v2.y, 0.0f,
+        v2.x, v2.y, 0.0f,
+        0.4f, 0.54f, 0.0f,
+        v2.x, v2.y, 0.0f,
+        0.35f, 0.58f, 0.0f,
+
+        0.0f, 0.0f, 0.0f,
+        v4.x, v4.y, 0.0f,
+        v4.x, v4.y, 0.0f,
+        -0.23f, 0.9f, 0.0f,
+        v4.x, v4.y, 0.0f,
+        -0.17f, 0.91f, 0.0f
     };
+
+    // 3 vectors, 3 more for origins, 4 colour vals each
+    static const GLfloat gColBuffData[] {
+
+        1.0f, 1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f, 1.0f,
+        1.0f, 1.0f, 1.0f, 1.0f,
+
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+        0.0f, 0.0f, 1.0f, 1.0f,
+
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
+
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f,
+        1.0f, 0.0f, 0.0f, 1.0f
+    };
+
+    /*for (i = 0; i < (sizeof(gVertBuffData) / sizeof(gVertBuffData[0])); i++) {
+
+        std::cout << gVertBuffData[i] << "\n";
+    }*/
+    
 
     glGenBuffers(1, &vertexBuff);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuff);
     glBufferData(GL_ARRAY_BUFFER, sizeof(gVertBuffData), gVertBuffData, GL_STATIC_DRAW);
 
-
-    // COLOURS
-    static const GLfloat gColBuffData[] = {
-
-        0.10f, 0.55f, 0.13f, 1.0f,
-        0.10f, 0.55f, 0.13f, 1.0f,
-        0.12f, 0.66f, 0.15f, 1.0f
-    };
     glGenBuffers(1, &colourBuff);
     glBindBuffer(GL_ARRAY_BUFFER, colourBuff);
     glBufferData(GL_ARRAY_BUFFER, sizeof(gColBuffData), gColBuffData, GL_STATIC_DRAW);
@@ -272,9 +328,10 @@ void VectorGrapher::draw() {
     );
 
     // Begin drawing scene
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glLineWidth(5.0);
+    glDrawArrays(GL_LINES, 0, 22);
 
-                                            // End drawing, disable buffers
+    // End drawing, disable buffers
     glDisableVertexAttribArray(vertexPos_modelSpaceID);
     glDisableVertexAttribArray(colourPos_vec4ID);
 

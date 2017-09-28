@@ -55,7 +55,7 @@ private:
 public:
 
     /* Constructor */
-    VectorGrapher(std::list<glm::vec2> &vectorsToDraw);
+    VectorGrapher();
 
     /* Destructor */
     ~VectorGrapher();

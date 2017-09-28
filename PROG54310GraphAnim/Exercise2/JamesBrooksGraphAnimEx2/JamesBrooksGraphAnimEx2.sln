@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JamesBrooksGraphAnimEx2", "JamesBrooksGraphAnimEx2\JamesBrooksGraphAnimEx2.vcxproj", "{031BD972-D893-4F13-960E-CE572255E715}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JamesBrooksGraphAnimEx2Pt2", "JamesBrooksGraphAnimEx2Pt2\JamesBrooksGraphAnimEx2Pt2.vcxproj", "{BFB92636-B941-47FF-9E86-07699E8BF9BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{031BD972-D893-4F13-960E-CE572255E715}.Release|x64.Build.0 = Release|x64
 		{031BD972-D893-4F13-960E-CE572255E715}.Release|x86.ActiveCfg = Release|Win32
 		{031BD972-D893-4F13-960E-CE572255E715}.Release|x86.Build.0 = Release|Win32
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Debug|x64.ActiveCfg = Debug|x64
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Debug|x64.Build.0 = Debug|x64
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Debug|x86.ActiveCfg = Debug|Win32
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Debug|x86.Build.0 = Debug|Win32
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Release|x64.ActiveCfg = Release|x64
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Release|x64.Build.0 = Release|x64
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Release|x86.ActiveCfg = Release|Win32
+		{BFB92636-B941-47FF-9E86-07699E8BF9BA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
