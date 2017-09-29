@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<GameObjectManager>
+	<GameObjects>
+		<GameObject class="GameObject">
+			<name>Bob</name>
+			<Components>
+				<Component class="Component">
+					<id>1001</id>
+				</Component>
+			</Components>
+		</GameObject>
+		<GameObject class="GameObject">
+			<name>Fred</name>
+			<Components>
+				<Component class="Component">
+					<id>2001</id>
+				</Component>
+				<Component class="Component">
+					<id>2002</id>
+				</Component>
+			</Components>
+		</GameObject>
+		<GameObject class="GameObject">
+			<name>Mary</name>
+			<Components>
+				<Component class="Component">
+					<id>3001</id>
+				</Component>
+				<Component class="Component">
+					<id>3002</id>
+				</Component>
+				<Component class="Component">
+					<id>3003</id>
+				</Component>
+			</Components>
+		</GameObject>
+	</GameObjects>	
+</GameObjectManager>

@@ -1,0 +1,9 @@
+<GameSettings>
+	<GameEngine>
+		<DefaultFile>../Assets/GameLevelExample.xml</DefaultFile>
+	</GameEngine>
+	<RenderSystem>
+		<Name>Awesome Game</Name>
+		<WindowSize width="1280" height="720" fullscreen="false"/>
+	</RenderSystem>
+</GameSettings>
