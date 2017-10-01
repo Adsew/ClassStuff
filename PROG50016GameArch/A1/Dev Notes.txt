@@ -1,0 +1,6 @@
+Notes for game
+WEapons have a level and can kill monsters based on being a certain level or higher
+
+Multiple endings:
+Need to get sacred water to defeat final boss, die ending
+If you have congealed blood when you kill final boss you get userper ending
