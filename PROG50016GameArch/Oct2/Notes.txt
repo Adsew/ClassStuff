@@ -1,0 +1,9 @@
+Big test problem why calling derived class function calls base class function why?
+Can cause problems when deirived calass is supposed to manage some extra memory or something. Especially when calling delete on something like Object thing = new Component() deleting it only calls object's destructor not ocmponents.
+This is becauce c uses static binding, we have to distinctly say overridden using virtual function.
+
+ON TEST virtual on a destructor. Check which is being used always because destructor is not calling through the hierarchy like constructor is.
+
+virtual void functionName() override final
+
+final allows you to stop people from overriding any further. Override just tells you right away if you can override somehting
