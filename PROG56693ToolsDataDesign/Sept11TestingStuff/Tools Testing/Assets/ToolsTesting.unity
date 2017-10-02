@@ -213,8 +213,9 @@ GameObject:
   - component: {fileID: 450733407}
   - component: {fileID: 450733406}
   - component: {fileID: 450733405}
+  - component: {fileID: 450733409}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: MonsterMaker
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -284,6 +285,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &450733409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 450733404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a68f58acd6320342a71700eb72fc680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mons:
+  - monsterName: 
+    health: 0
+  - monsterName: 
+    health: 0
+  fileName: MonsterList.xml
+  dump: 0
+  retrieve: 0
+  spawnAll: 0
+  monsPref: {fileID: 1015908608015502, guid: 70386cf3845c82c46be1082bdbe3904d, type: 2}
 --- !u!1 &1009304041
 GameObject:
   m_ObjectHideFlags: 0

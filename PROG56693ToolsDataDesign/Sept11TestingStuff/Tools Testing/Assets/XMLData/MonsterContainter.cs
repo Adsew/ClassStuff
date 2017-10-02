@@ -1,0 +1,59 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
+
+[XmlRoot("MonsterCollection")]
+public class MonsterContainer {
+
+    [XmlArray("Monsters"), XmlArrayItem("Monster")]
+    public MonsterData[] monsters;
+
+    public void saveMonsters(MonsterData[] mons, string file) {
+
+        monsters = mons;
+        
+        string path = Path.Combine(Application.persistentDataPath, file);
+        Debug.Log(Application.persistentDataPath);
+        Save(path);
+    }
+
+    public MonsterData[] loadMonsters(string file) {
+        
+        string path = Path.Combine(Application.persistentDataPath, file);
+        Debug.Log(Application.persistentDataPath);
+        MonsterContainer mc = MonsterContainer.Load(path);
+        
+        return mc.monsters;
+    }
+
+    public void Save(string path) {
+
+        var serializer = new XmlSerializer(typeof(MonsterContainer));
+
+        using (var stream = new FileStream(path, FileMode.Create)) {
+
+            serializer.Serialize(stream, this);
+        }
+    }
+
+    public static MonsterContainer Load(string path) {
+
+        var serializer = new XmlSerializer(typeof(MonsterContainer));
+
+        using (var stream = new FileStream(path, FileMode.Open)) {
+
+            return serializer.Deserialize(stream) as MonsterContainer;
+        }
+    }
+
+    //Loads the xml directly from the given string. Useful in combination with www.text.
+    public static MonsterContainer LoadFromText(string text) {
+
+        var serializer = new XmlSerializer(typeof(MonsterContainer));
+
+        return serializer.Deserialize(new StringReader(text)) as MonsterContainer;
+    }
+}
