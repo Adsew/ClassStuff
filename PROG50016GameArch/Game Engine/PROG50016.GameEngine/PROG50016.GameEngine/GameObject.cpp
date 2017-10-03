@@ -12,35 +12,32 @@ Description: A game object to be used to represent objects within the game world
 
 #include <iostream>
 
+#include "Component.h"
 #include "GameObject.h"
 
 
-GameObject::GameObject() {
+GameObject::GameObject()
+    : Object() {
 
-    name = "Game Object";
+
 }
 
-GameObject::GameObject(std::string n) {
+GameObject::GameObject(std::string &n) 
+    : Object(n){
 
-    name = n;
+
 }
 
 GameObject::~GameObject() {
 
-    std::list<Component *>::iterator iter;
+    /*std::list<Component *>::iterator iter;
 
     for (iter = components.begin(); iter != components.end();) {
 
         delete *iter;
 
         iter = components.erase(iter);
-    }
-}
-
-// Get name of the game object
-std::string GameObject::getName() {
-
-    return name;
+    }*/
 }
 
 // Add component to this game object
@@ -48,14 +45,14 @@ void GameObject::addComponent(Component *comp) {
 
     if (comp != NULL) {
 
-        components.push_back(comp);
+        components.insert(std::pair<std::string, Component *>(comp->getComponentId, comp));
     }
 }
 
 // Remove a component, if exists, from game object
 void GameObject::removeComponent(Component *comp) {
 
-    if (comp != NULL) {
+    /*if (comp != NULL) {
 
         std::list<Component *>::iterator iter;
 
@@ -70,32 +67,17 @@ void GameObject::removeComponent(Component *comp) {
                 break;
             }
         }
-    }
+    }*/
 }
 
 // Cycle update for game object
 void GameObject::update() {
+    
+    std::map<std::string, Component *>::iterator iter = components.begin();
 
-    std::list<Component *>::iterator iter;
+    for (iter = components.begin(); iter != components.end(); iter++) {
 
-    for (iter = components.begin(); iter != components.end(); ++iter) {
-
-        (*iter)->update();
-    }
-}
-
-// Display game object to screen
-void GameObject::display() {
-
-    std::list<Component *>::iterator iter;
-
-    std::cout << "    Game Object\n";
-    std::cout << "    -----------------\n";
-
-    std::cout << "    Name: " << name << "\n\n";
-
-    for (iter = components.begin(); iter != components.end(); ++iter) {
-
-        (*iter)->display();
+        // update stuff get ocmponent part of pair
+        //(*iter)->update();
     }
 }

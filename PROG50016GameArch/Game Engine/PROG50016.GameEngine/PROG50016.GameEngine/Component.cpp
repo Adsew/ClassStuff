@@ -18,6 +18,15 @@ Description:
 #include "Component.h"
 
 
+Component::Component() {
+
+    id = 0;
+
+#ifdef DEBUG
+    std::cout << "Component created\n";
+#endif // DEBUG
+}
+
 Component::Component(int myID) {
 
     id = myID;
@@ -44,23 +53,8 @@ void Component::initialize() {
 #endif // DEBUG
 }
 
-// Get ID for component as string
-int Component::getComponentId() {
-
-    return id;
-}
-
 // Cycle update for component
 void Component::update() {
 
 
-}
-
-// Display component to screen
-void Component::display() {
-
-    std::cout << "        Component\n";
-    std::cout << "        --------------\n";
-
-    std::cout << "        ID: " << id << "\n\n";
 }

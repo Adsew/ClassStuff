@@ -26,7 +26,16 @@ Object::Object() {
 #ifdef DEBUG
     std::cout << "Object created\n";
 #endif // DEBUG
+}
 
+Object::Object(std::string &n) {
+
+    name = n;
+    initialized = false;
+
+#ifdef DEBUG
+    std::cout << "Object created\n";
+#endif // DEBUG
 }
 
 Object::~Object() {
@@ -43,7 +52,7 @@ bool Object::isInitialized() {
 }
 
 // Get name of object
-std::string Object::getName() {
+std::string &Object::getName() {
 
     return name;
 }
@@ -56,10 +65,4 @@ void Object::initialize() {
 #ifdef DEBUG
     std::cout << "Object initialized\n";
 #endif // DEBUG
-}
-
-// Display object to the screen
-void Object::display() {
-
-
 }

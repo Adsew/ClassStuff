@@ -1,14 +1,26 @@
 
+#include <iostream>
+
 #include "Object.h"
-#include "Component.h"
+#include "GameObject.h"
 
 
 int main(int argc, const char *argv[]) {
 
-    Object *ptrcomp = new Component(2);
-    ptrcomp->initialize();
+    GameObject *ptr = new GameObject();
 
-    delete ptrcomp;
+    ptr->initialize();
+    ptr->addComponent(new Sprite());
+
+    delete ptr;
+
+    std::cout << "---------------------\n";
+
+    Object *ptrobj = new Object();
+
+    ptrobj->initialize();
+
+    delete ptrobj;
 
     return -1;
 }

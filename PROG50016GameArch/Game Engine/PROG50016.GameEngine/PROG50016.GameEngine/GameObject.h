@@ -14,21 +14,21 @@ Description: A game object to be used to represent objects within the game world
 
 
 #include <string>
-#include <list>
+#include <map>
 
-#include "Component.h"
+#include "Object.h"
 
 
-class GameObject {
+class Component;
+
+
+class GameObject : public Object {
 
 private:
 
     /***** Variables *****/
 
-    std::list<Component *> components;
-
-    std::string name;
-
+    std::map<std::string, Component *> components;
 
 public:
 
@@ -36,12 +36,9 @@ public:
 
     GameObject();
 
-    GameObject(std::string n);
+    GameObject(std::string &n);
 
     ~GameObject();
-
-    // Get name of the game object
-    std::string getName();
 
     // Add component to this game object
     void addComponent(Component *comp);
@@ -50,10 +47,7 @@ public:
    void removeComponent(Component *comp);
 
    // Cycle update for game object
-   void update();
-
-   // Display game object to screen
-   void display();
+   virtual void update();
 };
 
 #endif

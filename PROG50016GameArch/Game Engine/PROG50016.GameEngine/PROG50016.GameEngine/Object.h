@@ -34,19 +34,18 @@ public:
 
     Object();
 
+    Object(std::string &n);
+    
     virtual ~Object();
 
     // Check object initialized correctly and ise usable
     bool isInitialized();
 
     // Get name of object
-    std::string getName();
+    std::string &getName();
 
     // Initialize object to a usable state
     virtual void initialize();
-
-    // Display object to the screen
-    void display();
 };
 
 #endif

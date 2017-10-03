@@ -31,21 +31,20 @@ public:
 
     /*****Functions *****/
 
+    Component();
+
     Component(int myID);
 
     ~Component();
 
     // Initialize component for use
-    void initialize();
+    virtual void initialize() override;
 
     // Get ID for component as string
-    int getComponentId();
+    virtual std::string getComponentId() = 0;
 
     // Cycle update for component
-    void update();
-
-    // Display component to screen
-    void display();
+    virtual void update() = 0;
 };
 
 #endif
