@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public class Spline : MonoBehaviour {
     
     private float pingpongSign = 1.0f;    // Determines direction for pingpong mode
