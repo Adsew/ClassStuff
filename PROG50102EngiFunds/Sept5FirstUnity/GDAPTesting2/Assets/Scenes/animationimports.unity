@@ -145,7 +145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: d967e07aa5fe00347a1b2b06d57fffa5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400138, guid: d967e07aa5fe00347a1b2b06d57fffa5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -170,6 +170,10 @@ Prefab:
     - target: {fileID: 9500000, guid: d967e07aa5fe00347a1b2b06d57fffa5, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100138, guid: d967e07aa5fe00347a1b2b06d57fffa5, type: 3}
+      propertyPath: m_Name
+      value: HeroPerson
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d967e07aa5fe00347a1b2b06d57fffa5, type: 3}
@@ -257,11 +261,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 263132360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -8.82}
+  m_LocalPosition: {x: -0.27, y: 1.5, z: -2.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 1489579478}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322274663
 GameObject:
@@ -343,7 +347,7 @@ Transform:
   m_LocalScale: {x: 100, y: 0.1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1303454857
 GameObject:
@@ -422,11 +426,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1489579476 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100138, guid: d967e07aa5fe00347a1b2b06d57fffa5, type: 3}
+  m_PrefabInternal: {fileID: 255599758}
+--- !u!4 &1489579478 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400138, guid: d967e07aa5fe00347a1b2b06d57fffa5, type: 3}
   m_PrefabInternal: {fileID: 255599758}
 --- !u!114 &1489579479
 MonoBehaviour:
@@ -439,3 +447,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5856d0abf5d1a4fb103c3688f55c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  v: 0
+  h: 0

@@ -8,6 +8,8 @@ public class StandardMovement : MonoBehaviour {
 
     private Animator anim;
     
+    public float v;
+    public float h;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +19,15 @@ public class StandardMovement : MonoBehaviour {
 
     void HeroMovementUpdate() {
 
-        
+        v = Input.GetAxis("Vertical");
+        h = Input.GetAxis("Horizontal");
     }
 
     void HeroAnimationUpdate() {
-
+        
         // Set movements to controller input etc.
         if (anim != null) {
-            
+
             // SHOULD USE THIS THROUGH INPUT MANAGER ALLOWS DESIGN TIME MODIFICATION WITHOUT CHANIGNG CODE
             if (Input.GetButtonDown("Jump")) {
 
@@ -41,14 +44,9 @@ public class StandardMovement : MonoBehaviour {
                 anim.SetTrigger("LightPunch");
             }
 
-            if (Input.GetButton("Vertical")) {
-
-                anim.SetBool("Walking", true);
-            }
-            else {
-
-                anim.SetBool("Walking", false);
-            }
+            anim.SetFloat("Moving", Mathf.Abs(v + h));
+            anim.SetFloat("WalkSpeed", v);
+            anim.SetFloat("TurnSpeed", h);
         }
     }
 
