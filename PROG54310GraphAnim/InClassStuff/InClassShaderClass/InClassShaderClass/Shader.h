@@ -13,6 +13,7 @@ Description: This class will allow the addition of multiple shaders
 
 
 #include <string>
+#include <list>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -26,6 +27,8 @@ private:
 
     GLuint programID;
 
+    std::list<GLuint> shaderList;
+
 
 public:
 
@@ -37,6 +40,6 @@ public:
 
     GLuint getProgramID();
 
-    bool addShader(std::string shaderFile);
+    bool addShader(std::string shaderFile, GLenum shaderType);
 };
 

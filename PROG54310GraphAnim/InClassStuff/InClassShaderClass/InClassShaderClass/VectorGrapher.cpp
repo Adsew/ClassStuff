@@ -45,7 +45,22 @@ VectorGrapher::VectorGrapher() {
                 glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
                 // All good so load shader and buffer
-                loadShaderData();
+                shader.addShader("VertexShader.shader", GL_VERTEX_SHADER);
+                shader.addShader("FragmentShader.shader", GL_FRAGMENT_SHADER);
+                
+                progID = shader.getProgramID();
+
+                // Enable alpha values
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+                // Set background
+                glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+                // Get a handle for our buffers
+                vertexPos_modelSpaceID = glGetAttribLocation(progID, "vertexPosition_modelspace");
+                colourPos_vec4ID = glGetAttribLocation(progID, "colour");
+
                 loadBufferData();
 
                 initSuccess = true;
