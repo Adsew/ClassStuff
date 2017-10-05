@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 
 [InitializeOnLoad]
 public class SplineTool {
@@ -12,9 +15,11 @@ public class SplineTool {
      * Adding spline \
      * adding spline node to created spline  \
      * setting start of spline
-     * loading splines back into tool on startup
+     * loading splines back into tool on startup \
+     * add context menu to gameobject right click in hierarchy
      * saveing loading splines to xml
      * Draw line with debug mode
+     * Use some selecting to improve usability and visibility
     */
     
     private static List<GameObject> splines;   // All splines in the scenes
@@ -50,7 +55,7 @@ public class SplineTool {
         }
     }
 
-    // Creates a new spline
+    // Creates a new ,empty spline
     [MenuItem("JB Tools/Spline/New Spline")]
     public static void CreateNewSpline() {
         
@@ -111,7 +116,7 @@ public class SplineTool {
         }
     }
 
-    // Changes the spline funtions will work on
+    // Changes the spline that functions will operate on
     [MenuItem("CONTEXT/Spline/Select As Working Spline")]
     public static void SelectCurrentSpline(MenuCommand mc) {
 
@@ -129,6 +134,7 @@ public class SplineTool {
         }
     }
 
+    // Add point to the right-clicked spline
     [MenuItem("CONTEXT/Spline/Add Point")]
     public static void AddSplinePointContext(MenuCommand mc) {
 
@@ -136,32 +142,233 @@ public class SplineTool {
         AddSplinePoint();
     }
     
+    // Save all splines to an xml file
+    [MenuItem("JB Tools/Spline/Save All Splines")]
+    public static void SaveAllSplines() {
 
-    /***** Singleton Classes for Editor Interaction *****/
+        SplineFileManager file = SplineFileManager.CreateInstance<SplineFileManager>();
+        
+        file.Save(splines);
+    }
 
+    // Save current spline to an xml file
+    [MenuItem("JB Tools/Spline/Save Current Splines")]
+    public static void SaveCurrentSpline() {
+
+        List<GameObject> singleSpline = new List<GameObject>();
+        singleSpline.Add(workingSpline);
+
+        SplineFileManager file = SplineFileManager.CreateInstance<SplineFileManager>();
+
+        file.Save(singleSpline);
+    }
+
+
+    /***** Classes for Editor Interaction and Serializing *****/
+    
+    // Single point in a spline
+    [System.Serializable]
+    public class SplinePointSerial {
+
+        [XmlAttribute("Name")]
+        public string name;
+
+        [XmlAttribute("PosX")]
+        public float x;
+
+        [XmlAttribute("PosY")]
+        public float y;
+
+        [XmlAttribute("PosZ")]
+        public float z;
+    }
+
+    // Properties of a spline
+    [System.Serializable]
+    public class SplineSerial {
+
+        [XmlArray("Points"), XmlArrayItem("Point")]
+        public SplinePointSerial[] points;
+
+        [XmlAttribute("Name")]
+        public string name;
+        
+        [XmlAttribute("Mode")]
+        public Spline.GameModes gameMode;
+
+        [XmlAttribute("Speed")]
+        public float speed;
+    }
+
+    [XmlRoot("SplineSave")]
+    public class SplineXmlObject {
+
+        [XmlArray("Splines"), XmlArrayItem("Spline")]
+        public SplineSerial[] splines;
+    }
 
     // Class that can get a line of text from the user using a popup window
-    //class SplineSelector : ScriptableWizard {
+    // For saving and loading splines
+    
+    public class SplineFileManager : EditorWindow {
 
-    //    public void Select(string windowText) {
+        public string fileName = "File.xml";
 
-    //        ScriptableWizard.DisplayWizard<SplineSelector>("Select All of Component", "Make Selection");
-    //    }
+        public bool[] selected = null;
+        public List<GameObject> splineList = null;
+        
+        public SplineSerial[] splinesToSave;
 
-    //    private void OnWizardCreate() {
+        private bool saveStarted = false;
+        private bool loadStarted = false;
 
-    //        Debug.Log("WINDOW CLOSED");
-    //    }
-    //}
+        public void Save(List<GameObject> sl) {
 
-    //class SplineSelector {
+            int i = 0;
 
-    //    int selected = 2;
-    //    static string[] options = new string[] { "Option 0", "Option 1", "Option 2" };
+            saveStarted = true;
+            splineList = sl;
+            selected = new bool[splineList.Count];
 
-    //    void OnGUI() {
+            // Default true
+            for (i = 0; i < selected.Length; i++) {
 
-    //        selected = GUILayout.SelectionGrid(selected, options, options.Length, EditorStyles.radioButton);
-    //    }
-    //}
+                selected[i] = true;
+            }
+
+            SplineFileManager window = (SplineFileManager)EditorWindow.GetWindow(typeof(SplineFileManager), true, "Save Splines to File");
+            window.Show();
+        }
+
+        public void Load() {
+
+            loadStarted = true;
+            splineList = null;
+            selected = null;
+
+            SplineFileManager window = (SplineFileManager)EditorWindow.GetWindow(typeof(SplineFileManager), true, "Load Splines from File");
+            window.Show();
+        }
+
+        private void OnGUI() {
+
+            int i = 0, j = 0, k = 0;
+
+            GUILayout.Label("File Name (include .xml):");
+            fileName = EditorGUILayout.TextField(fileName);
+            
+            // Save Mode GUI items
+            if (saveStarted) {
+                
+                bool somethingSelected = false;
+
+                GUILayout.Label("Select Splines to Save:");
+
+                for (i = 0; i < selected.Length; i++) {
+
+                    if (splineList[i] != null) {
+
+                        selected[i] = EditorGUILayout.Toggle(splineList[i].name, selected[i]);
+                    }
+                }
+
+                // Only show save button if something selected
+                for (i = 0; i < selected.Length; i++) {
+
+                    if (selected[i] == true) {
+
+                        somethingSelected = true;
+                        break;
+                    }
+                }
+
+                if (somethingSelected) {
+
+                    if (GUILayout.Button("Save")) {
+
+                        int numToSave = 0;
+
+                        for (i = 0; i < selected.Length; i++) {
+
+                            if (selected[i] == true) {
+
+                                numToSave++;
+                            }
+                        }
+
+                        splinesToSave = new SplineSerial[numToSave];
+
+                        j = 0;  // Increment for each completed spline to save
+
+                        // Construct spline data
+                        for (i = 0; i < selected.Length; i++) {
+
+                            if (selected[i] == true) {
+
+                                Spline curSpline = splineList[i].GetComponent<Spline>();
+
+                                if (curSpline != null) {
+
+                                    splinesToSave[j] = new SplineSerial();
+                                    splinesToSave[j].points = new SplinePointSerial[curSpline.contPoints.Count];
+                                    
+                                    splinesToSave[j].name = splineList[i].name;
+                                    splinesToSave[j].gameMode = curSpline.gameMode;
+                                    splinesToSave[j].speed = curSpline.speed;
+
+                                    k = 0;
+
+                                    foreach (GameObject p in curSpline.contPoints) {
+
+                                        splinesToSave[j].points[k] = new SplinePointSerial();
+
+                                        splinesToSave[j].points[k].name = p.name;
+                                        splinesToSave[j].points[k].x = p.transform.position.x;
+                                        splinesToSave[j].points[k].y = p.transform.position.y;
+                                        splinesToSave[j].points[k].z = p.transform.position.z;
+
+                                        k++;
+                                    }
+
+                                    j++;
+                                }
+                                else {
+
+                                    Debug.Log("Error saving spline " + splineList[i].name + " to " + fileName + ".");
+
+                                    splinesToSave[j].name = splineList[i].name;
+                                    j++;
+                                }
+                            }
+                        }
+
+                        // Push to file
+                        SplineXmlObject splineXML = new SplineXmlObject();
+                        splineXML.splines = splinesToSave;
+                        
+                        var serializer = new XmlSerializer(typeof(SplineXmlObject));
+
+                        using (var stream = new FileStream(fileName, FileMode.Create)) {
+
+                            serializer.Serialize(stream, splineXML);
+                        }
+
+                        saveStarted = false;
+
+                        this.Close();
+                    }
+                }
+            }
+
+            if (loadStarted) {
+
+                if (GUILayout.Button("Load")) {
+
+                    loadStarted = false;
+
+                    this.Close();
+                }
+            }
+        }
+    }
 }

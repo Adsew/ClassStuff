@@ -13,13 +13,15 @@ public class Spline : MonoBehaviour {
     public GameObject head;
     
     public enum GameModes {
-
+        
         Forward,
         Backward,
         PingPong,
         Loop
     };
     public GameModes gameMode;
+
+    public float speed;
     
 	// Use this for initialization
 	void Start () {
