@@ -8,21 +8,35 @@ public class Spline : MonoBehaviour {
     private float pingpongSign = 1.0f;    // Determines direction for pingpong mode
     private float t = 0.0f;               // Variable t of catmulrom
 
-    public List<GameObject> contPoints;
-    
-    public GameObject head;
-    
+    public bool debug;
+
+    [Range(1,60)]
+    public float dt;                      // Time between steps (1 - 60 seconds)
+
     public enum GameModes {
-        
+
+        Invalid,
+        None,
         Forward,
         Backward,
         PingPong,
-        Loop
+        Loop,
+        Pause
     };
     public GameModes gameMode;
 
-    public float speed;
+    public enum PlayBackType {
+
+        Constant_Time,
+        Constant_Speed
+    }
+    public PlayBackType playType;
+
+    public GameObject head;
+
+    public List<GameObject> contPoints;
     
+
 	// Use this for initialization
 	void Start () {
 		
@@ -37,13 +51,13 @@ public class Spline : MonoBehaviour {
         }
     }
 
-    void CatmullRomSpline() {
+    Vector3 CatmullRomSpline(float tVal) {
         
         // Ensure enough points for spline given position t
-        if (contPoints.Count >= ((int)t + 4) || (gameMode == GameModes.Loop && contPoints.Count >= 4)) {
+        if (contPoints.Count >= ((int)tVal + 4) || (gameMode == GameModes.Loop && contPoints.Count >= 4)) {
 
             // Calculate which points to be used (needed for loop mode)
-            int i1 = (int)t;
+            int i1 = (int)tVal;
             int i2 = i1 + 1;
             int i3 = i1 + 2;
             int i4 = i1 + 3;
@@ -78,26 +92,30 @@ public class Spline : MonoBehaviour {
                 Vector3 p2 = contPoints[i3].transform.position;
                 Vector3 p3 = contPoints[i4].transform.position;
 
-                float catT = t - (int)t;    // Keep number between 0 and 1
+                float catmulT = tVal - (int)tVal;    // Keep number between 0 and 1
 
                 //Catmull rom equation converted
                 newPosition = 0.5f * (
                     (p1 * 2.0f)
-                    + (p2 - p0) * catT
-                    + (2.0f * p0 - 5.0f * p1 + 4.0f * p2 - p3) * catT * catT
-                    + (3.0f * p1 - p0 - 3.0f * p2 + p3) * catT * catT * catT
+                    + (p2 - p0) * catmulT
+                    + (2.0f * p0 - 5.0f * p1 + 4.0f * p2 - p3) * catmulT * catmulT
+                    + (3.0f * p1 - p0 - 3.0f * p2 + p3) * catmulT * catmulT * catmulT
                     );
-
-                head.transform.SetPositionAndRotation(newPosition, head.transform.rotation);
+                
+                return newPosition;
             }
         }
+
+        return new Vector3(0.0f, 0.0f, 0.0f);
     }
 
-    void updatePositionUsingGameMode() {
+    void UpdatePositionUsingGameMode() {
+
+        float timeStep = Time.deltaTime / (float)dt;
 
         if (gameMode == GameModes.Forward) {
 
-            t = t + Time.deltaTime;
+            t = t + timeStep;
             
             if (t > (contPoints.Count - 3)) {
                 
@@ -106,7 +124,7 @@ public class Spline : MonoBehaviour {
         }
         else if (gameMode == GameModes.Backward) {
 
-            t = t - Time.deltaTime;
+            t = t - timeStep;
             
             if (t <= 0.0f) {
 
@@ -115,7 +133,7 @@ public class Spline : MonoBehaviour {
         }
         else if (gameMode == GameModes.PingPong) {
 
-            t = t + ( pingpongSign * Time.deltaTime );
+            t = t + ( pingpongSign * timeStep);
 
             // Go backward
             if (t >= (contPoints.Count - 3)) {
@@ -132,19 +150,21 @@ public class Spline : MonoBehaviour {
         }
         else if (gameMode == GameModes.Loop) {
 
-            t = t + Time.deltaTime;
+            t = t + timeStep;
 
             if (t > (contPoints.Count)) {
 
                 t = 0.0f;
             }
         }
+        Vector3 newPos = CatmullRomSpline(t);
+
+        head.transform.SetPositionAndRotation(newPos, head.transform.rotation);
     }
 
     // Update is called once per frame
     void Update () {
         
-        updatePositionUsingGameMode();
-        CatmullRomSpline();
+        UpdatePositionUsingGameMode();
     }
 }

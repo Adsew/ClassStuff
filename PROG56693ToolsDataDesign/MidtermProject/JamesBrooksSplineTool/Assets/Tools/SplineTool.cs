@@ -14,12 +14,14 @@ public class SplineTool {
      * 
      * Adding spline \
      * adding spline node to created spline  \
-     * setting start of spline
      * loading splines back into tool on startup \
      * add context menu to gameobject right click in hierarchy
-     * saveing loading splines to xml
+     * saveing loading splines to xml /
      * Draw line with debug mode
      * Use some selecting to improve usability and visibility
+     * fix loop mode to work on all other modes
+     * figure out specs to match what i have
+     * name points better on add
     */
     
     private static List<GameObject> splines;   // All splines in the scenes
@@ -141,14 +143,21 @@ public class SplineTool {
         SelectCurrentSpline(mc);
         AddSplinePoint();
     }
-    
+
+    [MenuItem("CONTEXT/Spline/Save Spline")]
+    public static void SaveSplineContext(MenuCommand mc) {
+
+        SelectCurrentSpline(mc);
+        SaveCurrentSpline();
+    }
+
     // Save all splines to an xml file
     [MenuItem("JB Tools/Spline/Save All Splines")]
     public static void SaveAllSplines() {
 
-        SplineFileManager file = SplineFileManager.CreateInstance<SplineFileManager>();
-        
-        file.Save(splines);
+        SplineFileManager fileMgr = SplineFileManager.CreateInstance<SplineFileManager>();
+
+        fileMgr.Save(splines);
     }
 
     // Save current spline to an xml file
@@ -158,13 +167,22 @@ public class SplineTool {
         List<GameObject> singleSpline = new List<GameObject>();
         singleSpline.Add(workingSpline);
 
-        SplineFileManager file = SplineFileManager.CreateInstance<SplineFileManager>();
+        SplineFileManager fileMgr = SplineFileManager.CreateInstance<SplineFileManager>();
 
-        file.Save(singleSpline);
+        fileMgr.Save(singleSpline);
+    }
+
+    [MenuItem("JB Tools/Spline/Load from File")]
+    public static void LoadSplineFile() {
+
+        SplineFileManager fileMgr = SplineFileManager.CreateInstance<SplineFileManager>();
+
+        fileMgr.Load();
     }
 
 
-    /***** Classes for Editor Interaction and Serializing *****/
+    /***** Nested Classes for Editor Save/Load and Serializing *****/
+    
     
     // Single point in a spline
     [System.Serializable]
@@ -196,10 +214,15 @@ public class SplineTool {
         [XmlAttribute("Mode")]
         public Spline.GameModes gameMode;
 
+        [XmlAttribute("Type")]
+        public Spline.PlayBackType playType;
+
         [XmlAttribute("Speed")]
-        public float speed;
+        public float dt;
     }
 
+    // Root object to allow saving list to XML file
+    // Cant add list to other class due to "cant serialize transform" error
     [XmlRoot("SplineSave")]
     public class SplineXmlObject {
 
@@ -213,6 +236,7 @@ public class SplineTool {
     public class SplineFileManager : EditorWindow {
 
         public string fileName = "File.xml";
+        public string errorMsg = "";
 
         public bool[] selected = null;
         public List<GameObject> splineList = null;
@@ -254,21 +278,27 @@ public class SplineTool {
 
             int i = 0, j = 0, k = 0;
 
+            GUILayout.Label(errorMsg);
             GUILayout.Label("File Name (include .xml):");
             fileName = EditorGUILayout.TextField(fileName);
             
-            // Save Mode GUI items
+            // For saving option
             if (saveStarted) {
                 
                 bool somethingSelected = false;
 
                 GUILayout.Label("Select Splines to Save:");
 
+                // Get each checked spline to save
                 for (i = 0; i < selected.Length; i++) {
 
                     if (splineList[i] != null) {
 
                         selected[i] = EditorGUILayout.Toggle(splineList[i].name, selected[i]);
+                    }
+                    else {
+
+                        selected[i] = false;
                     }
                 }
 
@@ -307,6 +337,7 @@ public class SplineTool {
 
                                 Spline curSpline = splineList[i].GetComponent<Spline>();
 
+                                // Save spline
                                 if (curSpline != null) {
 
                                     splinesToSave[j] = new SplineSerial();
@@ -314,10 +345,12 @@ public class SplineTool {
                                     
                                     splinesToSave[j].name = splineList[i].name;
                                     splinesToSave[j].gameMode = curSpline.gameMode;
-                                    splinesToSave[j].speed = curSpline.speed;
+                                    splinesToSave[j].playType = curSpline.playType;
+                                    splinesToSave[j].dt = curSpline.dt;
 
-                                    k = 0;
+                                    k = 0;  // Increment for each point to save
 
+                                    // Save points
                                     foreach (GameObject p in curSpline.contPoints) {
 
                                         splinesToSave[j].points[k] = new SplinePointSerial();
@@ -360,13 +393,62 @@ public class SplineTool {
                 }
             }
 
-            if (loadStarted) {
 
+            // For loading option
+            if (loadStarted) {
+                
                 if (GUILayout.Button("Load")) {
 
-                    loadStarted = false;
+                    SplineXmlObject loadedSplineObj = null;
+                    var serializer = new XmlSerializer(typeof(SplineXmlObject));
 
-                    this.Close();
+                    try {
+                        using (var stream = new FileStream(fileName, FileMode.Open)) {
+
+                            loadedSplineObj = serializer.Deserialize(stream) as SplineXmlObject;
+                        }
+                    }
+                    catch (System.Exception e) {
+
+                        errorMsg = "File does not exist or is not spline xml.";
+                    }
+
+                    if (loadedSplineObj != null) {
+
+                        SplineSerial[] loadedSplines = loadedSplineObj.splines;
+
+                        // Create each spline saved i nthe file
+                        for (i = 0; i < loadedSplines.Length; i++) {
+
+                            GameObject newSpline = new GameObject();
+                            Spline newSplineScript = newSpline.AddComponent<Spline>();
+
+                            // Create spline
+                            newSpline.name = loadedSplines[i].name;
+                            newSplineScript.gameMode = loadedSplines[i].gameMode;
+                            newSplineScript.playType = loadedSplines[i].playType;
+                            newSplineScript.dt = loadedSplines[i].dt;
+                            newSplineScript.contPoints = new List<GameObject>();
+
+                            // Create spline's points
+                            for (j = 0; j < loadedSplines[i].points.Length; j++) {
+
+                                SplinePointSerial loadedPoint = loadedSplines[i].points[j];
+
+                                GameObject newPoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                                newPoint.name = loadedPoint.name;
+                                newPoint.transform.position = new Vector3(loadedPoint.x, loadedPoint.y, loadedPoint.z);
+                                newPoint.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                                newPoint.transform.parent = newSpline.transform;
+
+                                newSplineScript.contPoints.Add(newPoint);
+                            }
+                        }
+
+                        loadStarted = false;
+
+                        this.Close();
+                    }
                 }
             }
         }
