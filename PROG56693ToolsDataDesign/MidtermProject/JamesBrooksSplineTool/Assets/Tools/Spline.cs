@@ -13,12 +13,7 @@ public class Spline : MonoBehaviour {
     private LineRenderer debugLine = null;
 
     public bool debug;
-
-    [Range(1,60)]
-    public float dt;                      // Time between steps (1 - 60 seconds)
-
-    public bool loop;
-
+    
     public enum GameModes {
 
         Invalid,
@@ -29,18 +24,21 @@ public class Spline : MonoBehaviour {
         Loop,
         Pause
     };
-    public GameModes gameMode;
+    public GameModes gameMode = GameModes.Forward;
 
     public enum PlayBackType {
 
         Constant_Time,
         Constant_Speed
     }
-    public PlayBackType playType;
+    public PlayBackType playType = PlayBackType.Constant_Time;
 
-    public GameObject head;
+    [Range(1, 60)]
+    public float dt;                      // Time between steps (1 - 60 seconds)
 
-    public List<GameObject> contPoints;
+    public GameObject head = null;
+
+    public List<GameObject> contPoints = new List<GameObject>();
     
 
 	// Use this for initialization
@@ -117,8 +115,23 @@ public class Spline : MonoBehaviour {
 
     void UpdatePositionUsingGameMode() {
 
-        float timeStep = Time.deltaTime / (float)dt;
+        // Time modification
+        float timeStep = 0.1f;
+        
+        if (playType == PlayBackType.Constant_Speed) {
 
+            timeStep = 0.01f * dt;   // dt used as speed
+        }
+        else if (playType == PlayBackType.Constant_Time) {
+
+            timeStep = Time.deltaTime / (float)dt;  // dt used as seconds to complete interval
+        }
+
+        // Position modification
+        if (gameMode == GameModes.None) {
+
+            t = 0.0f;
+        }
         if (gameMode == GameModes.Forward) {
 
             t = t + timeStep;
@@ -170,24 +183,32 @@ public class Spline : MonoBehaviour {
 
     void UpdateDebugLine() {
 
+        // Ensure we have required line component
+        if (debugLine == null) {
+
+            LineRenderer myLine = this.gameObject.GetComponent<LineRenderer>();
+
+            if (myLine == null) {
+
+                debugLine = this.gameObject.AddComponent<LineRenderer>();
+            }
+            else {
+
+                debugLine = myLine;
+            }
+
+            debugLine.startWidth = 0.2f;
+            debugLine.endWidth = 0.2f;
+        }
+
         if (debug == true) {
 
-            // Ensure we have required line component
-            if (debugLine == null) {
+            foreach (GameObject point in contPoints) {
 
-                LineRenderer myLine = this.gameObject.GetComponent<LineRenderer>();
+                if (point != null) {
 
-                if (myLine == null) {
-
-                    debugLine = this.gameObject.AddComponent<LineRenderer>();
+                    point.SetActive(true);
                 }
-                else {
-
-                    debugLine = myLine;
-                }
-
-                debugLine.startWidth = 0.2f;
-                debugLine.endWidth = 0.2f;
             }
 
             if (contPoints.Count >= 4) { 
@@ -226,16 +247,51 @@ public class Spline : MonoBehaviour {
                 debugLine.positionCount = 0;
             }
         }
+        else {
+
+            debugLine.positionCount = 0;
+
+            foreach (GameObject point in contPoints) {
+
+                if (point != null) {
+
+                    point.SetActive(false);
+                }
+            }
+        }
+    }
+
+    // Ensure points list stays up to date to avoid errors
+    private void RefreshPoints() {
+
+        foreach (GameObject p in contPoints) {
+
+            if (p == null) {
+
+                contPoints.Remove(p);
+            }
+        }
     }
 
     // Update is called once per frame or when something moves in editor
     void Update () {
-        
+
+        RefreshPoints();
         UpdateDebugLine();
 
         if (Application.isPlaying) {
 
             UpdatePositionUsingGameMode();
         }
+    }
+
+    public void SetDebug(bool b) {
+
+        debug = b;
+    }
+
+    public void SetMode(GameModes gm) {
+
+        gameMode = gm;
     }
 }

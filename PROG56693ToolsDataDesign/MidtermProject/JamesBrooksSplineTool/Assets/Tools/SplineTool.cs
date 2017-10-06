@@ -21,7 +21,7 @@ public class SplineTool {
      * Use some selecting to improve usability and visibility
      * fix loop mode to work on all other modes and have trhe bool apply to everything
      * figure out specs to match what i have
-     * name points better on add
+     * name points better on add /
     */
     
     private static List<GameObject> splines;   // All splines in the scenes
@@ -102,6 +102,7 @@ public class SplineTool {
                         sp.contPoints = new List<GameObject>();
                     }
 
+                    newPoint.name = "Point " + sp.contPoints.Count;
                     sp.contPoints.Add(newPoint);
                 }
                 else {
@@ -411,6 +412,7 @@ public class SplineTool {
                     catch (System.Exception e) {
 
                         errorMsg = "File does not exist or is not spline xml.";
+                        Debug.Log(e);
                     }
 
                     if (loadedSplineObj != null) {
