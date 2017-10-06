@@ -13,39 +13,45 @@ Description: Renders data to the screen given by other classes
 */
 
 
-#include <string>
+#include <list>
+
+#include "ISystem.h"
 
 
-class RenderSystem {
+class IRenderable;
+
+
+class RenderSystem : public ISystem {
 
 private:
 
+
     /***** Variables *****/
 
-    std::string name;
+    std::list<IRenderable *> renderComponents;
 
-    int width;
-    int height;
+protected:
 
-    bool fullscreen;
-
-
-public:
 
     /***** Functions *****/
+
+    // Get item proirity to render
+    int priority();
+
+    // Cycle update for render system
+    void update();
+
+public:
 
     RenderSystem();
 
     ~RenderSystem();
 
-    // Initialize render system to a usable point
-    void initialize(std::string n, int w, int h, bool fsMode);
+    // Add renderable component to the list
+    void addIRenderable(IRenderable *component);
 
-    // Cycle update for render system
-    void update();
-
-    // Display objects to screen
-    void display();
+    // Remove renderable component to the list
+    void removeIRenderable(IRenderable *component);
 };
 
 #endif

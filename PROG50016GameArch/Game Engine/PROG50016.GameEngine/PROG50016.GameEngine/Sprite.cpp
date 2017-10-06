@@ -21,3 +21,15 @@ Sprite::Sprite() {
 Sprite::~Sprite() {
 
 }
+
+void Sprite::update() {
+
+
+}
+
+void Sprite::render() {
+
+
+}
+
+std::string Sprite::getComponentId() { return "Sprite";  }

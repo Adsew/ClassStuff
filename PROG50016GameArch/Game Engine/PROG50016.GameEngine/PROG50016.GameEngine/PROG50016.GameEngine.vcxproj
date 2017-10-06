@@ -118,6 +118,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="IRenderable.cpp" />
+    <ClCompile Include="ISystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
@@ -132,6 +134,8 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="ISystem.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Sprite.h" />

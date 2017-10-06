@@ -14,9 +14,10 @@ Description:
 
 
 #include "Component.h"
+#include "IRenderable.h"
 
 
-class Sprite : public Component {
+class Sprite : public Component, public IRenderable {
 
 public:
 
@@ -26,7 +27,11 @@ public:
 
     ~Sprite();
 
-    std::string getComponentId() { return "Sprite";  }
+    void update() override;
+
+    void render() override;
+
+    std::string getComponentId();
 };
 
 #endif

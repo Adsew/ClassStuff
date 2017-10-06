@@ -23,11 +23,11 @@ public class SplineTool {
      * figure out specs to match what i have
      * name points better on add /
     */
-    
+
     private static List<GameObject> splines;   // All splines in the scenes
 
     private static GameObject workingSpline;
-    
+
 
     // Called on unity launch
     // Done to get already made splines on opening a project
@@ -60,7 +60,7 @@ public class SplineTool {
     // Creates a new ,empty spline
     [MenuItem("JB Tools/Spline/New Spline")]
     public static void CreateNewSpline() {
-        
+
         if (splines == null) {
 
             GetAllSplinesInScene();
@@ -77,7 +77,7 @@ public class SplineTool {
             workingSpline = emptySpline;
         }
     }
-    
+
     // Add point to current working spline
     [MenuItem("JB Tools/Spline/Add Point")]
     public static void AddSplinePoint() {
@@ -181,10 +181,18 @@ public class SplineTool {
         fileMgr.Load();
     }
 
+    [MenuItem("JB Tools/Spline/Help")]
+    public static void HelpDisplay() {
+
+        HelpPrompt help = HelpPrompt.CreateInstance<HelpPrompt>();
+
+        help.Initialize();
+    }
+
 
     /***** Nested Classes for Editor Save/Load and Serializing *****/
-    
-    
+
+
     // Single point in a spline
     [System.Serializable]
     public class SplinePointSerial {
@@ -211,7 +219,7 @@ public class SplineTool {
 
         [XmlAttribute("Name")]
         public string name;
-        
+
         [XmlAttribute("Mode")]
         public Spline.GameModes gameMode;
 
@@ -233,7 +241,7 @@ public class SplineTool {
 
     // Class that can get a line of text from the user using a popup window
     // For saving and loading splines
-    
+
     public class SplineFileManager : EditorWindow {
 
         public string fileName = "File.xml";
@@ -241,7 +249,7 @@ public class SplineTool {
 
         public bool[] selected = null;
         public List<GameObject> splineList = null;
-        
+
         public SplineSerial[] splinesToSave;
 
         private bool saveStarted = false;
@@ -282,10 +290,10 @@ public class SplineTool {
             GUILayout.Label(errorMsg);
             GUILayout.Label("File Name (include .xml):");
             fileName = EditorGUILayout.TextField(fileName);
-            
+
             // For saving option
             if (saveStarted) {
-                
+
                 bool somethingSelected = false;
 
                 GUILayout.Label("Select Splines to Save:");
@@ -343,7 +351,7 @@ public class SplineTool {
 
                                     splinesToSave[j] = new SplineSerial();
                                     splinesToSave[j].points = new SplinePointSerial[curSpline.contPoints.Count];
-                                    
+
                                     splinesToSave[j].name = splineList[i].name;
                                     splinesToSave[j].gameMode = curSpline.gameMode;
                                     splinesToSave[j].playType = curSpline.playType;
@@ -379,7 +387,7 @@ public class SplineTool {
                         // Push to file
                         SplineXmlObject splineXML = new SplineXmlObject();
                         splineXML.splines = splinesToSave;
-                        
+
                         var serializer = new XmlSerializer(typeof(SplineXmlObject));
 
                         using (var stream = new FileStream(fileName, FileMode.Create)) {
@@ -397,7 +405,7 @@ public class SplineTool {
 
             // For loading option
             if (loadStarted) {
-                
+
                 if (GUILayout.Button("Load")) {
 
                     SplineXmlObject loadedSplineObj = null;
@@ -452,6 +460,39 @@ public class SplineTool {
                         this.Close();
                     }
                 }
+            }
+        }
+    }
+
+    // Display a help prompt with all the information for using spline tool
+    public class HelpPrompt : EditorWindow {
+
+        public void Initialize() {
+
+            HelpPrompt window = (HelpPrompt)EditorWindow.GetWindow(typeof(HelpPrompt), true, "Help");
+            window.Show();
+        }
+
+        private void OnGUI() {
+
+            GUI.skin.label.wordWrap = true;
+
+            GUILayout.Label("How to use");
+            GUILayout.Label("-------------------------------");
+            GUILayout.Label("Spline Tool");
+            GUILayout.Label("");
+            GUILayout.Label("Required Files in Unity");
+            GUILayout.Label("-------------------------------");
+            GUILayout.Label("To use the spline tool, you require Spline.cs and SplineTool.cs. " +
+                "Spline.cs will be a component on each individual spline and manage the data " +
+                "associated with that spline. SplineTool.cs will be responsibile for the creation " +
+                "of splines and points in the splines as well as granting the ability to save and " +
+                "load splines to transfer them between programs. Spline.cs can be used and applied " +
+                "independantly from SplineTool.cs, though manual creation will be required.");
+
+            if (GUILayout.Button("OK!")) {
+
+                this.Close();
             }
         }
     }

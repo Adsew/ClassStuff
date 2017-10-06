@@ -1,0 +1,3 @@
+if base base class of a multiple inherited class where each parent hsa the same parent (object) and we try to access in main basebase->id through the most derived class, whhich id will it use? each parent has its own id even though its a public var from the basebase class so the code cant determine which to use thuse compile error.
+
+Question may be on using copy constructor that odesnt do a deep copy constructor and thus memory leak or double delete etc. Maybe it doesnt have a default constructor copyer and so onyl shallow copy is done

@@ -12,15 +12,13 @@ Description: Renders data to the screen given by other classes
 
 #include <iostream>
 
+#include "IRenderable.h"
 #include "RenderSystem.h"
 
 
 RenderSystem::RenderSystem() {
 
-    name = "";
-    width = 0;
-    height = 0;
-    fullscreen = true;
+    
 }
 
 RenderSystem::~RenderSystem() {
@@ -28,36 +26,39 @@ RenderSystem::~RenderSystem() {
 
 }
 
-// Initialize render system to a usable point
-void RenderSystem::initialize(std::string n, int w, int h, bool fsMode) {
+int RenderSystem::priority() {
 
-    name = n;
-    width = w;
-    height = h;
-    fullscreen = fsMode;
+    
 }
 
 // Cycle update for render system
 void RenderSystem::update() {
 
-
+    
 }
 
-// Display objects to screen
-void RenderSystem::display() {
+// Add renderable component to the list
+void RenderSystem::addIRenderable(IRenderable *component) {
 
-    std::cout << "Render System\n";
-    std::cout << "------------------\n";
+    if (component != NULL) {
 
-    std::cout << "Name: " << name << "\n";
-    std::cout << "Width: " << width << " Height: " << height << "\n";
-
-    if (fullscreen) {
-
-        std::cout << "Fullscreen: true\n";
+        renderComponents.push_back(component);
     }
-    else {
+}
 
-        std::cout << "Fullscreen: false\n";
+// Remove renderable component to the list
+void RenderSystem::removeIRenderable(IRenderable *component) {
+
+    std::list<IRenderable *>::iterator iter;
+
+    for (iter = renderComponents.begin(); iter != renderComponents.end(); iter++) {
+
+        if (component == (*iter)) {
+
+            delete (*iter);
+            iter = renderComponents.erase(iter);
+            
+            break;
+        }
     }
 }

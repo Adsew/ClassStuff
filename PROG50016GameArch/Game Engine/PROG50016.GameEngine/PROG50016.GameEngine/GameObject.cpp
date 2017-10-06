@@ -30,14 +30,12 @@ GameObject::GameObject(std::string &n)
 
 GameObject::~GameObject() {
 
-    /*std::list<Component *>::iterator iter;
+    std::map<std::string, Component *>::iterator iter = components.begin();
 
-    for (iter = components.begin(); iter != components.end();) {
+    for (iter = components.begin(); iter != components.end(); iter++) {
 
-        delete *iter;
-
-        iter = components.erase(iter);
-    }*/
+        //delete (*iter);
+    }
 }
 
 // Add component to this game object
