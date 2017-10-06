@@ -17,9 +17,9 @@ public class SplineTool {
      * loading splines back into tool on startup \
      * add context menu to gameobject right click in hierarchy
      * saveing loading splines to xml /
-     * Draw line with debug mode
+     * Draw line with debug mode \
      * Use some selecting to improve usability and visibility
-     * fix loop mode to work on all other modes
+     * fix loop mode to work on all other modes and have trhe bool apply to everything
      * figure out specs to match what i have
      * name points better on add
     */

@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[ExecuteInEditMode]
+[RequireComponent(typeof(LineRenderer))]
 public class Spline : MonoBehaviour {
     
     private float pingpongSign = 1.0f;    // Determines direction for pingpong mode
     private float t = 0.0f;               // Variable t of catmulrom
 
+    private LineRenderer debugLine = null;
+
     public bool debug;
 
     [Range(1,60)]
     public float dt;                      // Time between steps (1 - 60 seconds)
+
+    public bool loop;
 
     public enum GameModes {
 
@@ -83,7 +89,7 @@ public class Spline : MonoBehaviour {
                 && contPoints[i2] != null
                 && contPoints[i3] != null
                 && contPoints[i4] != null
-                && head != null) {
+                ) {
 
                 Vector3 newPosition;
 
@@ -162,9 +168,74 @@ public class Spline : MonoBehaviour {
         head.transform.SetPositionAndRotation(newPos, head.transform.rotation);
     }
 
-    // Update is called once per frame
+    void UpdateDebugLine() {
+
+        if (debug == true) {
+
+            // Ensure we have required line component
+            if (debugLine == null) {
+
+                LineRenderer myLine = this.gameObject.GetComponent<LineRenderer>();
+
+                if (myLine == null) {
+
+                    debugLine = this.gameObject.AddComponent<LineRenderer>();
+                }
+                else {
+
+                    debugLine = myLine;
+                }
+
+                debugLine.startWidth = 0.2f;
+                debugLine.endWidth = 0.2f;
+            }
+
+            if (contPoints.Count >= 4) { 
+
+                int pointsToDraw;
+
+                if (gameMode == GameModes.Loop) {
+                    
+                    pointsToDraw = ((contPoints.Count) * 4) + 1;  // 4 points per segment + 1 for final point
+                }
+                else {
+
+                    pointsToDraw = ((contPoints.Count - 3) * 4) + 1;  // 4 points per segment + 1 for final point
+                }
+
+                debugLine.positionCount = pointsToDraw;
+                
+                for (int i = 0; i < pointsToDraw - 1; i++) {
+
+                    debugLine.SetPosition(i, CatmullRomSpline(i / 4.0f)); 
+                }
+
+                // Special case to draw perfectly to end point
+                if (gameMode == GameModes.Loop) {
+
+                    debugLine.SetPosition(pointsToDraw - 1, contPoints[1].transform.position);
+                }
+                else {
+
+                    debugLine.SetPosition(pointsToDraw - 1, contPoints[contPoints.Count-2].transform.position);
+                }
+            }
+            // Not enough points to draw spline
+            else {
+
+                debugLine.positionCount = 0;
+            }
+        }
+    }
+
+    // Update is called once per frame or when something moves in editor
     void Update () {
         
-        UpdatePositionUsingGameMode();
+        UpdateDebugLine();
+
+        if (Application.isPlaying) {
+
+            UpdatePositionUsingGameMode();
+        }
     }
 }
