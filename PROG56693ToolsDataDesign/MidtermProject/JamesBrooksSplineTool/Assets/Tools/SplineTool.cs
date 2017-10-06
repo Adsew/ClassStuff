@@ -120,7 +120,7 @@ public class SplineTool {
     }
 
     // Changes the spline that functions will operate on
-    [MenuItem("CONTEXT/Spline/Select As Working Spline")]
+    [MenuItem("CONTEXT/Spline/Select As Current Spline")]
     public static void SelectCurrentSpline(MenuCommand mc) {
 
         Spline selected = mc.context as Spline;
@@ -162,7 +162,7 @@ public class SplineTool {
     }
 
     // Save current spline to an xml file
-    [MenuItem("JB Tools/Spline/Save Current Splines")]
+    [MenuItem("JB Tools/Spline/Save Current Spline")]
     public static void SaveCurrentSpline() {
 
         List<GameObject> singleSpline = new List<GameObject>();
@@ -216,9 +216,15 @@ public class SplineTool {
 
         [XmlArray("Points"), XmlArrayItem("Point")]
         public SplinePointSerial[] points;
-
+        
         [XmlAttribute("Name")]
         public string name;
+
+        [XmlAttribute("Debug")]
+        public bool debug;
+
+        [XmlAttribute("Loop")]
+        public bool loop;
 
         [XmlAttribute("Mode")]
         public Spline.GameModes gameMode;
@@ -351,8 +357,10 @@ public class SplineTool {
 
                                     splinesToSave[j] = new SplineSerial();
                                     splinesToSave[j].points = new SplinePointSerial[curSpline.contPoints.Count];
-
+                                    
                                     splinesToSave[j].name = splineList[i].name;
+                                    splinesToSave[j].debug = curSpline.debug;
+                                    splinesToSave[j].loop = curSpline.loop;
                                     splinesToSave[j].gameMode = curSpline.gameMode;
                                     splinesToSave[j].playType = curSpline.playType;
                                     splinesToSave[j].dt = curSpline.dt;
@@ -435,6 +443,8 @@ public class SplineTool {
 
                             // Create spline
                             newSpline.name = loadedSplines[i].name;
+                            newSplineScript.debug = loadedSplines[i].debug;
+                            newSplineScript.loop = loadedSplines[i].loop;
                             newSplineScript.gameMode = loadedSplines[i].gameMode;
                             newSplineScript.playType = loadedSplines[i].playType;
                             newSplineScript.dt = loadedSplines[i].dt;
@@ -467,19 +477,51 @@ public class SplineTool {
     // Display a help prompt with all the information for using spline tool
     public class HelpPrompt : EditorWindow {
 
-        public void Initialize() {
+        Vector2 scrollPos;
 
+        public void Initialize() {
+            
             HelpPrompt window = (HelpPrompt)EditorWindow.GetWindow(typeof(HelpPrompt), true, "Help");
+
+            window.minSize = new Vector2(500, 525);
+            window.maxSize = new Vector2(500, 525);
+
             window.Show();
         }
 
         private void OnGUI() {
 
             GUI.skin.label.wordWrap = true;
+            
+            EditorGUILayout.BeginVertical();
+            scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Width(500), GUILayout.Height(500));
 
             GUILayout.Label("How to use");
             GUILayout.Label("-------------------------------");
-            GUILayout.Label("Spline Tool");
+            GUILayout.Label("Spline Tool allows the creation of splines and points for use in any scene. " +
+                "All available options are in the JB Tools/Spline menu and the menu when right clicking a " +
+                "spline script component on a game object spline in the inspector.");
+            GUILayout.Label("");
+            GUILayout.Label("Refresh Active Splines: refreshes internal list of splines in the scene. Only " +
+                "needs to be called if splines were made manually since the time project was opened.");
+            GUILayout.Label("");
+            GUILayout.Label("New Spline: Create a new spline in the world space. The spline is set as the " +
+                "active spline.");
+            GUILayout.Label("");
+            GUILayout.Label("Add Point: Adds a single point to the active spline.");
+            GUILayout.Label("");
+            GUILayout.Label("Save All Splines: Open a prompt to save all or only selected splines to a file.");
+            GUILayout.Label("");
+            GUILayout.Label("Save Current Spline: Open prompt to save the active spline.");
+            GUILayout.Label("");
+            GUILayout.Label("Load from File: Opens prompt which loads spline(s) from a file.");
+            GUILayout.Label("");
+            GUILayout.Label("In the right click menu:");
+            GUILayout.Label("Select as Current Spline: Sets the chosen spline as the active spline.");
+            GUILayout.Label("");
+            GUILayout.Label("Add Point: Adds point to the selected spline and sets it as the active spline.");
+            GUILayout.Label("");
+            GUILayout.Label("Save Spline: Opens prompt to save the selected spline to a file.");
             GUILayout.Label("");
             GUILayout.Label("Required Files in Unity");
             GUILayout.Label("-------------------------------");
@@ -489,6 +531,9 @@ public class SplineTool {
                 "of splines and points in the splines as well as granting the ability to save and " +
                 "load splines to transfer them between programs. Spline.cs can be used and applied " +
                 "independantly from SplineTool.cs, though manual creation will be required.");
+
+            EditorGUILayout.EndScrollView();
+            EditorGUILayout.EndVertical();
 
             if (GUILayout.Button("OK!")) {
 

@@ -12,8 +12,9 @@ public class Spline : MonoBehaviour {
 
     private LineRenderer debugLine = null;
 
-    public bool debug;
-    
+    public bool debug = true;
+    public bool loop = false;
+
     public enum GameModes {
 
         Invalid,
@@ -21,7 +22,6 @@ public class Spline : MonoBehaviour {
         Forward,
         Backward,
         PingPong,
-        Loop,
         Pause
     };
     public GameModes gameMode = GameModes.Forward;
@@ -58,7 +58,7 @@ public class Spline : MonoBehaviour {
     Vector3 CatmullRomSpline(float tVal) {
         
         // Ensure enough points for spline given position t
-        if (contPoints.Count >= ((int)tVal + 4) || (gameMode == GameModes.Loop && contPoints.Count >= 4)) {
+        if (contPoints.Count >= 4) {
 
             // Calculate which points to be used (needed for loop mode)
             int i1 = (int)tVal;
@@ -66,21 +66,22 @@ public class Spline : MonoBehaviour {
             int i3 = i1 + 2;
             int i4 = i1 + 3;
 
-            if (gameMode == GameModes.Loop) {
-                
-                // Wrap points around
-                if (i2 > (contPoints.Count - 1)) {
+            // Wrap points around
+            if (i1 > (contPoints.Count - 1)) {
 
-                    i2 = i2 - contPoints.Count;
-                }
-                if (i3 > (contPoints.Count - 1)) {
+                i1 = i1 - contPoints.Count;
+            }
+            if (i2 > (contPoints.Count - 1)) {
 
-                    i3 = i3 - contPoints.Count;
-                }
-                if (i4 > (contPoints.Count - 1)) {
+                i2 = i2 - contPoints.Count;
+            }
+            if (i3 > (contPoints.Count - 1)) {
 
-                    i4 = i4 - contPoints.Count;
-                }
+                i3 = i3 - contPoints.Count;
+            }
+            if (i4 > (contPoints.Count - 1)) {
+
+                i4 = i4 - contPoints.Count;
             }
 
             if (contPoints[i1] != null
@@ -128,15 +129,21 @@ public class Spline : MonoBehaviour {
         }
 
         // Position modification
-        if (gameMode == GameModes.None) {
+        if (gameMode == GameModes.None || gameMode == GameModes.Invalid) {
 
             t = 0.0f;
         }
         if (gameMode == GameModes.Forward) {
 
             t = t + timeStep;
-            
-            if (t > (contPoints.Count - 3)) {
+
+            if (loop == true) {
+                if (t > contPoints.Count) {
+
+                    t = 0.0f;
+                }
+            }
+            else if (t > (contPoints.Count - 3)) {
                 
                 t = 0.0f;
             }
@@ -144,7 +151,11 @@ public class Spline : MonoBehaviour {
         else if (gameMode == GameModes.Backward) {
 
             t = t - timeStep;
-            
+
+            if (loop == true && t <= 0.0f) {
+
+                t = contPoints.Count;
+            }
             if (t <= 0.0f) {
 
                 t = contPoints.Count - 3.0f;
@@ -155,30 +166,39 @@ public class Spline : MonoBehaviour {
             t = t + ( pingpongSign * timeStep);
 
             // Go backward
-            if (t >= (contPoints.Count - 3)) {
 
-                t = contPoints.Count - 3.0f;
-                pingpongSign = -1.0f;
+            if (loop == true) {
+                if (t > contPoints.Count) {
+
+                    t = contPoints.Count;
+                    pingpongSign = -1.0f;
+                }
+                else if (t <= 0.0f) {
+
+                    t = 0.0f;
+                    pingpongSign = 1.0f;
+                }
             }
-            // Go forward
-            else if (t <= 0.0f) {
+            else {
+                if (t >= (contPoints.Count - 3)) {
 
-                t = 0.0f;
-                pingpongSign = 1.0f;
-            }
-        }
-        else if (gameMode == GameModes.Loop) {
+                    t = contPoints.Count - 3.0f;
+                    pingpongSign = -1.0f;
+                }
+                // Go forward
+                else if (t <= 0.0f) {
 
-            t = t + timeStep;
-
-            if (t > (contPoints.Count)) {
-
-                t = 0.0f;
+                    t = 0.0f;
+                    pingpongSign = 1.0f;
+                }
             }
         }
         Vector3 newPos = CatmullRomSpline(t);
 
-        head.transform.SetPositionAndRotation(newPos, head.transform.rotation);
+        if (head != null) {
+
+            head.transform.SetPositionAndRotation(newPos, head.transform.rotation);
+        }
     }
 
     void UpdateDebugLine() {
@@ -215,7 +235,7 @@ public class Spline : MonoBehaviour {
 
                 int pointsToDraw;
 
-                if (gameMode == GameModes.Loop) {
+                if (loop == true) {
                     
                     pointsToDraw = ((contPoints.Count) * 4) + 1;  // 4 points per segment + 1 for final point
                 }
@@ -232,7 +252,7 @@ public class Spline : MonoBehaviour {
                 }
 
                 // Special case to draw perfectly to end point
-                if (gameMode == GameModes.Loop) {
+                if (loop == true) {
 
                     debugLine.SetPosition(pointsToDraw - 1, contPoints[1].transform.position);
                 }
@@ -264,11 +284,17 @@ public class Spline : MonoBehaviour {
     // Ensure points list stays up to date to avoid errors
     private void RefreshPoints() {
 
-        foreach (GameObject p in contPoints) {
+        int i = 0;
 
-            if (p == null) {
+        if (contPoints != null) {
 
-                contPoints.Remove(p);
+            for (i = 0; i < contPoints.Count; i++) {
+
+                if (contPoints[i] == null) {
+
+                    contPoints.RemoveAt(i);
+                    i--;
+                }
             }
         }
     }
