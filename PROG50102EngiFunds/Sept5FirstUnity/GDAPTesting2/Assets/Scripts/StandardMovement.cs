@@ -43,8 +43,8 @@ public class StandardMovement : MonoBehaviour {
 
                 anim.SetTrigger("LightPunch");
             }
-
-            anim.SetFloat("Moving", Mathf.Abs(v + h));
+            
+            anim.SetFloat("Moving", Mathf.Abs(v) + Mathf.Abs(h));
             anim.SetFloat("WalkSpeed", v);
             anim.SetFloat("TurnSpeed", h);
         }

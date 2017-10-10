@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\InPlaceJumpLogic.cs" />
     <Compile Include="Assets\Scripts\Hystoresis.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\StandardMovement.cs" />

@@ -118,6 +118,7 @@ public class Spline : MonoBehaviour {
 
         // Time modification
         float timeStep = 0.1f;
+        float oldT = t;
         
         if (playType == PlayBackType.Constant_Speed) {
 
@@ -194,6 +195,15 @@ public class Spline : MonoBehaviour {
             }
         }
         Vector3 newPos = CatmullRomSpline(t);
+
+        //if (playType == PlayBackType.Constant_Speed) {
+
+        //    float distanceMag = Vector3.Magnitude(newPos - CatmullRomSpline(oldT));
+
+        //    t = timeStep / distanceMag + oldT;
+
+        //    newPos = CatmullRomSpline(t);
+        //}
 
         if (head != null) {
 
