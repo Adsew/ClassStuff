@@ -83,7 +83,7 @@ public class Spline : MonoBehaviour {
 
                 i4 = i4 - contPoints.Count;
             }
-
+            
             if (contPoints[i1] != null
                 && contPoints[i2] != null
                 && contPoints[i3] != null
@@ -91,12 +91,12 @@ public class Spline : MonoBehaviour {
                 ) {
 
                 Vector3 newPosition;
-
+                
                 Vector3 p0 = contPoints[i1].transform.position;
                 Vector3 p1 = contPoints[i2].transform.position;
                 Vector3 p2 = contPoints[i3].transform.position;
                 Vector3 p3 = contPoints[i4].transform.position;
-
+                
                 float catmulT = tVal - (int)tVal;    // Keep number between 0 and 1
 
                 //Catmull rom equation converted
@@ -115,20 +115,15 @@ public class Spline : MonoBehaviour {
     }
 
     void UpdatePositionUsingGameMode() {
-
-        // Time modification
+        
         float timeStep = 0.1f;
         float oldT = t;
         
-        if (playType == PlayBackType.Constant_Speed) {
-
-            timeStep = 0.01f * dt;   // dt used as speed
-        }
-        else if (playType == PlayBackType.Constant_Time) {
+        if (playType == PlayBackType.Constant_Time) {
 
             timeStep = Time.deltaTime / (float)dt;  // dt used as seconds to complete interval
         }
-
+        
         // Position modification
         if (gameMode == GameModes.None || gameMode == GameModes.Invalid) {
 
@@ -137,6 +132,13 @@ public class Spline : MonoBehaviour {
         if (gameMode == GameModes.Forward) {
 
             t = t + timeStep;
+
+            if (playType == PlayBackType.Constant_Speed) {
+
+                float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t));
+
+                t = oldT + ( timeStep / (distanceMag * 10.0f) ) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
+            }
 
             if (loop == true) {
                 if (t > contPoints.Count) {
@@ -151,7 +153,16 @@ public class Spline : MonoBehaviour {
         }
         else if (gameMode == GameModes.Backward) {
 
-            t = t - timeStep;
+            timeStep = -1.0f * timeStep;
+
+            t = t + timeStep;
+
+            if (playType == PlayBackType.Constant_Speed) {
+
+                float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t));
+
+                t = oldT + (timeStep / (distanceMag * 10.0f)) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
+            }
 
             if (loop == true && t <= 0.0f) {
 
@@ -164,16 +175,25 @@ public class Spline : MonoBehaviour {
         }
         else if (gameMode == GameModes.PingPong) {
 
-            t = t + ( pingpongSign * timeStep);
+            timeStep = pingpongSign * timeStep;
 
-            // Go backward
+            t = t + timeStep;
 
+            if (playType == PlayBackType.Constant_Speed) {
+
+                float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t));
+
+                t = oldT + (timeStep / (distanceMag * 10.0f)) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
+            }
+            
             if (loop == true) {
+                // Go Backward
                 if (t > contPoints.Count) {
 
                     t = contPoints.Count;
                     pingpongSign = -1.0f;
                 }
+                // Go Forward
                 else if (t <= 0.0f) {
 
                     t = 0.0f;
@@ -181,12 +201,13 @@ public class Spline : MonoBehaviour {
                 }
             }
             else {
+                // Go Backward
                 if (t >= (contPoints.Count - 3)) {
 
                     t = contPoints.Count - 3.0f;
                     pingpongSign = -1.0f;
                 }
-                // Go forward
+                // Go Forward
                 else if (t <= 0.0f) {
 
                     t = 0.0f;
@@ -194,17 +215,9 @@ public class Spline : MonoBehaviour {
                 }
             }
         }
+
         Vector3 newPos = CatmullRomSpline(t);
-
-        //if (playType == PlayBackType.Constant_Speed) {
-
-        //    float distanceMag = Vector3.Magnitude(newPos - CatmullRomSpline(oldT));
-
-        //    t = timeStep / distanceMag + oldT;
-
-        //    newPos = CatmullRomSpline(t);
-        //}
-
+        
         if (head != null) {
 
             head.transform.SetPositionAndRotation(newPos, head.transform.rotation);
