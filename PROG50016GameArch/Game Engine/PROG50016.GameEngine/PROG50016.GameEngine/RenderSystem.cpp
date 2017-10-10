@@ -21,10 +21,14 @@ RenderSystem::RenderSystem() {
     
 }
 
+RenderSystem::RenderSystem(RenderSystem &rs) {}
+
 RenderSystem::~RenderSystem() {
 
 
 }
+
+RenderSystem &RenderSystem::operator=(RenderSystem &rs) {}
 
 int RenderSystem::priority() {
 
@@ -36,6 +40,7 @@ void RenderSystem::update() {
 
     
 }
+
 
 // Add renderable component to the list
 void RenderSystem::addIRenderable(IRenderable *component) {

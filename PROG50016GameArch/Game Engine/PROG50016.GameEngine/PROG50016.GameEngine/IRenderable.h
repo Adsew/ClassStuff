@@ -16,7 +16,7 @@ Description:
 class IRenderable {
 
 
-public:
+protected:
 
     /***** Functions *****/
 

@@ -9,7 +9,6 @@
 
 int main(int argc, const char *argv[]) {
 
-    RenderSystem *renderSystem = new RenderSystem();
     GameObject *ptr = new GameObject();
     Sprite *sprite = new Sprite();
 
@@ -17,11 +16,10 @@ int main(int argc, const char *argv[]) {
     ptr->initialize();
     ptr->addComponent(sprite);
 
-    renderSystem->addIRenderable(sprite);
+    RenderSystem::Instance().addIRenderable(sprite);
 
     delete sprite;
     delete ptr;
-    delete renderSystem;
 
     std::cout << "---------------------\n";
 

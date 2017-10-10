@@ -19,17 +19,19 @@ Description:
 
 class Sprite : public Component, public IRenderable {
 
-public:
+protected:
 
     /***** Functions *****/
+
+    void render() override;
+
+public:
 
     Sprite();
 
     ~Sprite();
 
     void update() override;
-
-    void render() override;
 
     std::string getComponentId();
 };

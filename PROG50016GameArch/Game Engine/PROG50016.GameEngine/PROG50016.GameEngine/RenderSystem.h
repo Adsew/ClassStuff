@@ -30,10 +30,20 @@ private:
 
     std::list<IRenderable *> renderComponents;
 
-protected:
+private:
 
 
     /***** Functions *****/
+
+    RenderSystem();
+
+    RenderSystem(RenderSystem &rs);
+
+    ~RenderSystem();
+
+    RenderSystem &operator=(RenderSystem &rs);
+
+protected:
 
     // Get item proirity to render
     int priority();
@@ -43,9 +53,13 @@ protected:
 
 public:
 
-    RenderSystem();
+    // Get instance of RenderSystem
+    inline static RenderSystem &Instance() {
 
-    ~RenderSystem();
+        static RenderSystem instance;
+
+        return instance;
+    }
 
     // Add renderable component to the list
     void addIRenderable(IRenderable *component);
