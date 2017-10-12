@@ -11,6 +11,8 @@ a given list of vectors and draw them to an OpenGL window.
 */
 
 
+//http://jonmacey.blogspot.ca/2010/12/glsl-shader-manager-design-part-3.html
+
 #include <iostream>
 #include <string>
 
@@ -48,18 +50,16 @@ Window::Window() {
                 shader.addShader("VertexShader.shader", GL_VERTEX_SHADER);
                 shader.addShader("FragmentShader.shader", GL_FRAGMENT_SHADER);
 
-                progID = shader.getProgramID();
-
                 // Enable alpha values
                 glEnable(GL_BLEND);
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-                // Set background
-                glClearColor(0.0f, 0.0f, 0.5f, 1.0f);
+                // Set default background
+                glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
                 // Get a handle for our buffers
-                vertexPos_modelSpaceID = glGetAttribLocation(progID, "vertexPosition_modelspace");
-                colourPos_vec4ID = glGetAttribLocation(progID, "colour");
+                vertexPos_modelSpaceID = glGetAttribLocation(shader.getProgramID(), "vertexPosition_modelspace");
+                colourPos_vec4ID = glGetAttribLocation(shader.getProgramID(), "colour");
 
                 loadBufferData();
 
@@ -104,7 +104,14 @@ Window::~Window() {
     glfwTerminate();
 }
 
-/* Support Functions */
+
+    /* Support Functions */
+
+/* Sets the clear colour when window refreshes */
+void Window::setClearColour(float r, float g, float b, float a) {
+
+    glClearColor(r, g, b, a);
+}
 
 /* Load buffer data from vectors */
 void Window::loadBufferData() {
@@ -351,7 +358,7 @@ void Window::draw() {
     // Clear buffer for further drawing
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glUseProgram(progID);
+    glUseProgram(shader.getProgramID());
 
     // Vertices buffer
     glEnableVertexAttribArray(vertexPos_modelSpaceID);
@@ -377,7 +384,7 @@ void Window::draw() {
         0,                      // stride
         (void*)0                // array buffer offset
     );
-
+    
     // Begin drawing scene
     glDrawArrays(GL_QUADS, 0, 4);           // Drawing grass
 
@@ -415,18 +422,18 @@ void Window::draw() {
 
 
     // Camera view
-    glm::vec3 camPos(0.0f, 0.0f, 0.0f);
-    glm::vec3 camTarg(0.0f, 0.0f, 1.0f);
-    glm::vec3 upVec(0.0f, 0.1f, 0.0f);
+    //glm::vec3 camPos(0.0f, 0.0f, 0.0f);
+    //glm::vec3 camTarg(0.0f, 0.0f, 1.0f);
+    //glm::vec3 upVec(0.0f, 0.1f, 0.0f);
 
-    glm::mat4 cameraMatrix = glm::lookAt(
+    //glm::mat4 cameraMatrix = glm::lookAt(
 
-        camPos, camTarg, upVec
-    );
+    //    camPos, camTarg, upVec
+    //);
 
-    /*glm::mat4 projection = glm::perspective(
-        glm::
-    )*/
+    //glm::mat4 projection = glm::perspective(
+    //    glm::
+    //)
 
     // End drawing, disable buffers
     glDisableVertexAttribArray(vertexPos_modelSpaceID);

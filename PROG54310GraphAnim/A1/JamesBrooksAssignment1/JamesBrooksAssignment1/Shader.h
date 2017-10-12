@@ -25,9 +25,11 @@ private:
 
     /***** Variables *****/
 
-    GLuint programID;
+    GLuint programID;   // Program's ID position
 
-    std::list<GLuint> shaderList;
+    bool modified;      // True if shader added since last compile, false after compile
+
+    std::list<GLuint> shaderList;   // List of shaders successfully added to program
 
 
 public:
@@ -38,8 +40,11 @@ public:
 
     ~Shader();
 
+    /* Should always be called to get the most up to date Program ID */
+    /* A copy of program ID held by user can become out of date      */
     GLuint getProgramID();
 
+    /* Add a shader to the shader program */
     bool addShader(std::string shaderFile, GLenum shaderType);
 };
 

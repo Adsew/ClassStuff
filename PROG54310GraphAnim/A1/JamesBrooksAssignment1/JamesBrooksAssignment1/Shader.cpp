@@ -19,6 +19,7 @@ to create a concatinated program shader.
 Shader::Shader() {
 
     programID = 0;
+    modified = false;
 }
 
 
@@ -27,49 +28,57 @@ Shader::~Shader() {
     glDeleteProgram(programID);
 }
 
+/* Should always be called to get the most up to date Program ID */
+/* A copy of program ID held by user can become out of date      */
 GLuint Shader::getProgramID() {
 
     std::list<GLuint>::const_iterator iter;
     GLint result = GL_FALSE;
     int infoLogLen = 0;
 
-    // Link the program
-    std::cout << "Linking program\n";
+    // Only link if modified
+    if (modified) {
 
-    programID = glCreateProgram();
+        // Link the program
+        std::cout << "Linking program\n";
 
-    for (iter = shaderList.begin(); iter != shaderList.end(); iter++) {
+        programID = glCreateProgram();
 
-        glAttachShader(programID, *iter);
+        for (iter = shaderList.begin(); iter != shaderList.end(); iter++) {
+
+            glAttachShader(programID, *iter);
+        }
+
+        glLinkProgram(programID);
+
+        // Check the program
+        glGetProgramiv(programID, GL_LINK_STATUS, &result);
+        glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &infoLogLen);
+
+        for (iter = shaderList.begin(); iter != shaderList.end(); iter++) {
+
+            glDetachShader(programID, *iter);
+            glDeleteShader(*iter);
+        }
+
+        if (infoLogLen > 0) {
+
+            GLchar *progErrMsg = new GLchar[infoLogLen + 1];
+            glGetProgramInfoLog(programID, infoLogLen, NULL, &progErrMsg[0]);
+            std::cerr << &progErrMsg[0] << "\n";
+            delete progErrMsg;
+
+            glDeleteProgram(programID);
+            programID = 0;
+        }
+
+        modified = false;
     }
-
-    glLinkProgram(programID);
-
-    // Check the program
-    glGetProgramiv(programID, GL_LINK_STATUS, &result);
-    glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &infoLogLen);
-
-    for (iter = shaderList.begin(); iter != shaderList.end(); iter++) {
-
-        glDetachShader(programID, *iter);
-        glDeleteShader(*iter);
-    }
-
-    if (infoLogLen > 0) {
-
-        GLchar *progErrMsg = new GLchar[infoLogLen + 1];
-        glGetProgramInfoLog(programID, infoLogLen, NULL, &progErrMsg[0]);
-        std::cerr << &progErrMsg[0] << "\n";
-        delete progErrMsg;
-
-        glDeleteProgram(programID);
-        programID = 0;
-    }
-
+    
     return programID;
 }
 
-/* Load shader files and initialize openGL shader data */
+/* Add a shader to the shader program */
 bool Shader::addShader(std::string shaderFile, GLenum shaderType) {
 
     GLint result = GL_FALSE;
@@ -78,14 +87,14 @@ bool Shader::addShader(std::string shaderFile, GLenum shaderType) {
     // Create the shaders
     GLuint shaderID = glCreateShader(shaderType);
 
-    // Compile Vertex Shader
+    // Compile Shader
     ShaderLoader loader(shaderFile);
     std::string shaderCode = loader.getText();
     char const *sourcePointer = shaderCode.c_str();
     glShaderSource(shaderID, 1, &sourcePointer, NULL);
     glCompileShader(shaderID);
 
-    // Check Vertex Shader
+    // Check Shader
     glGetShaderiv(shaderID, GL_COMPILE_STATUS, &result);
     glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &infoLogLen);
 
@@ -98,6 +107,7 @@ bool Shader::addShader(std::string shaderFile, GLenum shaderType) {
     }
     else {
 
+        modified = true;
         shaderList.push_back(shaderID);
     }
 

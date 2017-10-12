@@ -14,8 +14,8 @@ a given list of vectors and draw them to an OpenGL window.
 
 
 #include <list>
-#include <glm/glm.hpp>
 
+#include <glm/glm.hpp>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
@@ -41,7 +41,6 @@ private:
 
     Shader shader;
 
-    GLuint progID;
     GLuint vertexPos_modelSpaceID;
     GLuint vertexBuff;
     GLuint colourPos_vec4ID;
@@ -60,6 +59,9 @@ public:
 
     /* Destructor */
     ~Window();
+
+    /* Sets the clear colour when window refreshes */
+    void setClearColour(float r, float g, float b, float a);
 
     /* Returns true if all openGL initialized properly and obj is usable */
     bool getInitSuccess();
