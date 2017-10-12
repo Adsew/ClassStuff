@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour {
-
-    private GameObject body;
+    
     private IsSpawnLocCannon bulletSpawnLoc;
+    private GameObject body;
     private GameObject turret;
     private GameObject cannon;
 
@@ -52,7 +52,7 @@ public class PlayerControl : MonoBehaviour {
                 body = tempBody.gameObject;
             }
         }
-
+        
         if (tempHead != null) {
             if (tempHead.gameObject != null) {
 
@@ -70,10 +70,122 @@ public class PlayerControl : MonoBehaviour {
         curSpeed = 0.0f;
         timeSinceShot = 0.0f;
     }
+    
+    // Hero translation movement
+    private void HeroMovementUpdate() {
+        
+        Vector3 finalTranslation;
+        xMove = Input.GetAxis("Move Horizontal");
+        yMove = Input.GetAxis("Move Vertical");
+
+        Quaternion turretRotation = turret.transform.rotation;
+        Vector3 crossResult = new Vector3();
+
+        // Rotate towards movement direction based on turret position
+        if (xMove > deadZone) {
+
+            crossResult = Vector3.Cross(turret.transform.right, body.transform.forward);
+
+            //Vector3 newRot = bodyRotationSpeed * (turret.transform.right - body.transform.localRotation.eulerAngles);
+
+            if (crossResult.y < -0.02f) {
+                //turn left
+                body.transform.Rotate(body.transform.up, 1);
+            }
+            else if (crossResult.y > 0.02f) {
+                // turn right
+                body.transform.Rotate(body.transform.up, -1);
+            }
+        }
+        else if (xMove < -deadZone) {
+
+            crossResult = Vector3.Cross(-turret.transform.right, body.transform.forward);
+
+            //Vector3 newRot = bodyRotationSpeed * (-turret.transform.right - body.transform.localRotation.eulerAngles);
+
+            if (crossResult.y < -0.02f) {
+                //turn left
+                body.transform.Rotate(body.transform.up, 1);
+            }
+            else if (crossResult.y > 0.02f) {
+                // turn right
+                body.transform.Rotate(body.transform.up, -1);
+            }
+        }
+
+        if (yMove > deadZone) {
+
+            crossResult = Vector3.Cross(turret.transform.forward, body.transform.forward);
+
+            //Vector3 newRot = bodyRotationSpeed * (turret.transform.forward - body.transform.forward);
+
+            if (crossResult.y < -0.02f) {
+                //turn left
+                body.transform.Rotate(body.transform.up, 1);
+            }
+            else if (crossResult.y > 0.02f) {
+                // turn right
+                body.transform.Rotate(body.transform.up, -1);
+            }
+        }
+        else if (yMove < -deadZone) {
+
+            crossResult = Vector3.Cross(-turret.transform.forward, body.transform.forward);
+
+            //Vector3 newRot = bodyRotationSpeed * (-turret.transform.forward - body.transform.forward);
+
+            if (crossResult.y < -0.02f) {
+                //turn left
+                body.transform.Rotate(body.transform.up, 1);
+            }
+            else if (crossResult.y > 0.02f) {
+                // turn right
+                body.transform.Rotate(body.transform.up, -1);
+            }
+        }
+        
+        // Based on speedup/slowdown movement rather than direct movement
+
+        // Forward-back movement
+        // Only accelerate if not turning hard turning
+        if (Mathf.Abs(yMove) > deadZone
+            || Mathf.Abs(xMove) > deadZone) {
+            if (curSpeed < maxSpeed) {
+                if (crossResult.y < 0.7f && crossResult.y > -0.7f) {
+
+                    curSpeed = curSpeed + moveSpeed;
+                }
+            }
+        }
+        
+        // Not moveing, slow down
+        else {
+
+            float oldMovement = curSpeed;
+
+            if (curSpeed > 0.0f) {
+
+                curSpeed = curSpeed - moveSpeed;
+            }
+            else if (curSpeed < 0.0f) {
+
+                curSpeed = curSpeed + moveSpeed;
+            }
+
+            // If sign changed, trying to move opposite direction, means slow down
+            if ((curSpeed * oldMovement) < 0.0f) {
+
+                curSpeed = 0.0f;
+            }
+        }
+        
+        finalTranslation = curSpeed * body.transform.forward;
+        this.gameObject.transform.Translate(finalTranslation);
+    }
 
     // Hero aiming rotation
     private void HeroCannonRotationUpdate() {
-        
+
         Vector2 rotate;
         Vector2 currRotation;
 
@@ -109,90 +221,6 @@ public class PlayerControl : MonoBehaviour {
                 cannon.transform.Rotate(Vector3.right, -rotate.y);
             }
         }
-    }
-
-    // Hero translation movement
-    private void HeroMovementUpdate() {
-        
-        Vector3 finalTranslation;
-        xMove = Input.GetAxis("Move Horizontal");
-        yMove = Input.GetAxis("Move Vertical");
-
-
-
-        // Rotate towards movement direction based on turret position
-        if (xMove > deadZone) {
-
-            Quaternion turretRotation = turret.transform.rotation;
-            
-            Vector3 newRot = bodyRotationSpeed * (turret.transform.right - body.transform.rotation.eulerAngles);
-
-            body.transform.Rotate(newRot);
-            turret.transform.rotation = turretRotation; // Prevent rotating turret with body
-        }
-        else if (xMove < -deadZone) {
-
-            Quaternion turretRotation = turret.transform.rotation;
-
-            Vector3 newRot = bodyRotationSpeed * (-turret.transform.right - body.transform.rotation.eulerAngles);
-
-            body.transform.Rotate(newRot);
-            turret.transform.rotation = turretRotation; // Prevent rotating turret with body
-        }
-
-        if (yMove > deadZone) {
-
-            Quaternion turretRotation = turret.transform.rotation;
-
-            Vector3 newRot = bodyRotationSpeed * (turretRotation.eulerAngles - body.transform.rotation.eulerAngles);
-
-            body.transform.Rotate(newRot);
-            turret.transform.rotation = turretRotation; // Prevent rotating turret with body
-        }
-        else if (yMove < -deadZone) {
-
-            Quaternion turretRotation = turret.transform.rotation;
-
-            Vector3 newRot = bodyRotationSpeed * (-turretRotation.eulerAngles - body.transform.rotation.eulerAngles);
-
-            body.transform.Rotate(newRot);
-            turret.transform.rotation = turretRotation; // Prevent rotating turret with body
-        }
-
-
-        // Based on speedup/slowdown movement rather than direct movement
-
-        // Forward-back movement
-        if (Mathf.Abs(yMove) > deadZone
-            || Mathf.Abs(xMove) > deadZone) {
-            if (curSpeed < maxSpeed) {
-
-                curSpeed = curSpeed + moveSpeed;
-            }
-        }
-        // Not moveing, slow down
-        else {
-
-            float oldMovement = curSpeed;
-
-            if (curSpeed > 0.0f) {
-
-                curSpeed = curSpeed - moveSpeed;
-            }
-            else if (curSpeed < 0.0f) {
-
-                curSpeed = curSpeed + moveSpeed;
-            }
-
-            // If sign changed, trying to move opposite direction, means slow down
-            if ((curSpeed * oldMovement) < 0.0f) {
-
-                curSpeed = 0.0f;
-            }
-        }
-        
-        finalTranslation = curSpeed * Vector3.forward;
-        body.transform.Translate(finalTranslation);
     }
 
     // Fire projectile
