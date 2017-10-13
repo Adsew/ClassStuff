@@ -85,65 +85,30 @@ public class PlayerControl : MonoBehaviour {
         if (xMove > deadZone) {
 
             crossResult = Vector3.Cross(turret.transform.right, body.transform.forward);
-
-            //Vector3 newRot = bodyRotationSpeed * (turret.transform.right - body.transform.localRotation.eulerAngles);
-
-            if (crossResult.y < -0.02f) {
-                //turn left
-                body.transform.Rotate(body.transform.up, 1);
-            }
-            else if (crossResult.y > 0.02f) {
-                // turn right
-                body.transform.Rotate(body.transform.up, -1);
-            }
         }
         else if (xMove < -deadZone) {
 
             crossResult = Vector3.Cross(-turret.transform.right, body.transform.forward);
-
-            //Vector3 newRot = bodyRotationSpeed * (-turret.transform.right - body.transform.localRotation.eulerAngles);
-
-            if (crossResult.y < -0.02f) {
-                //turn left
-                body.transform.Rotate(body.transform.up, 1);
-            }
-            else if (crossResult.y > 0.02f) {
-                // turn right
-                body.transform.Rotate(body.transform.up, -1);
-            }
         }
 
         if (yMove > deadZone) {
 
             crossResult = Vector3.Cross(turret.transform.forward, body.transform.forward);
-
-            //Vector3 newRot = bodyRotationSpeed * (turret.transform.forward - body.transform.forward);
-
-            if (crossResult.y < -0.02f) {
-                //turn left
-                body.transform.Rotate(body.transform.up, 1);
-            }
-            else if (crossResult.y > 0.02f) {
-                // turn right
-                body.transform.Rotate(body.transform.up, -1);
-            }
         }
         else if (yMove < -deadZone) {
 
             crossResult = Vector3.Cross(-turret.transform.forward, body.transform.forward);
-
-            //Vector3 newRot = bodyRotationSpeed * (-turret.transform.forward - body.transform.forward);
-
-            if (crossResult.y < -0.02f) {
-                //turn left
-                body.transform.Rotate(body.transform.up, 1);
-            }
-            else if (crossResult.y > 0.02f) {
-                // turn right
-                body.transform.Rotate(body.transform.up, -1);
-            }
         }
-        
+
+        if (crossResult.y < -0.02f) {
+            //turn left
+            body.transform.Rotate(body.transform.up, 1);
+        }
+        else if (crossResult.y > 0.02f) {
+            // turn right
+            body.transform.Rotate(body.transform.up, -1);
+        }
+
         // Based on speedup/slowdown movement rather than direct movement
 
         // Forward-back movement
