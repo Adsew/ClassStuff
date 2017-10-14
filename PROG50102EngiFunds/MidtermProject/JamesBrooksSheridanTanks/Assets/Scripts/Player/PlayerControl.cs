@@ -18,7 +18,7 @@ public class PlayerControl : MonoBehaviour {
     private float timeSinceShot;
     
     [Range(0.001f,0.01f)]
-    public float moveSpeed = 0.003f;
+    public float acceleration = 0.003f;
 
     [Range(0.1f, 1.0f)]
     public float maxSpeed = 0.5f;
@@ -118,7 +118,7 @@ public class PlayerControl : MonoBehaviour {
             if (curSpeed < maxSpeed) {
                 if (crossResult.y < 0.7f && crossResult.y > -0.7f) {
 
-                    curSpeed = curSpeed + moveSpeed;
+                    curSpeed = curSpeed + acceleration;
                 }
             }
         }
@@ -130,11 +130,11 @@ public class PlayerControl : MonoBehaviour {
 
             if (curSpeed > 0.0f) {
 
-                curSpeed = curSpeed - moveSpeed;
+                curSpeed = curSpeed - acceleration;
             }
             else if (curSpeed < 0.0f) {
 
-                curSpeed = curSpeed + moveSpeed;
+                curSpeed = curSpeed + acceleration;
             }
 
             // If sign changed, trying to move opposite direction, means slow down
