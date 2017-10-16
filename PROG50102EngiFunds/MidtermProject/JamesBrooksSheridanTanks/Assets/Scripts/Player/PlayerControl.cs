@@ -80,7 +80,7 @@ public class PlayerControl : MonoBehaviour {
 
         Quaternion turretRotation = turret.transform.rotation;
         Vector3 crossResult = new Vector3();
-
+        
         // Rotate towards movement direction based on turret position
         if (xMove > deadZone) {
 
@@ -100,6 +100,8 @@ public class PlayerControl : MonoBehaviour {
             crossResult = Vector3.Cross(-turret.transform.forward, body.transform.forward);
         }
 
+        Debug.Log(crossResult);
+
         if (crossResult.y < -0.02f) {
             //turn left
             body.transform.Rotate(body.transform.up, 1);
@@ -115,8 +117,8 @@ public class PlayerControl : MonoBehaviour {
         // Only accelerate if not turning hard turning
         if (Mathf.Abs(yMove) > deadZone
             || Mathf.Abs(xMove) > deadZone) {
-            if (curSpeed < maxSpeed) {
-                if (crossResult.y < 0.7f && crossResult.y > -0.7f) {
+            if (Mathf.Abs(curSpeed) < maxSpeed) {
+                if (crossResult.y < 0.4f && crossResult.y > -0.4f) {
 
                     curSpeed = curSpeed + acceleration;
                 }

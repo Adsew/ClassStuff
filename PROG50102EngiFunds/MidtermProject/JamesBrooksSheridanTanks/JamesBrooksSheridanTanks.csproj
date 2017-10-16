@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Object\Projectiles\IsProjectile.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLoc.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLocCannon.cs" />
     <Compile Include="Assets\Tools\Spline.cs" />

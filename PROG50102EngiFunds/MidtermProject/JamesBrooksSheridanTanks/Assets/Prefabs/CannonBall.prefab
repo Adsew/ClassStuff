@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3557314d1b325e3428530b63c77c118c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannonBallVelocity: 40
+  cannonBallVelocity: 60
 --- !u!135 &135256648665364350
 SphereCollider:
   m_ObjectHideFlags: 1

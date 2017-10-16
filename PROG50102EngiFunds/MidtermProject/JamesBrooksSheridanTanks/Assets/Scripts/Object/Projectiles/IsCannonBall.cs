@@ -28,7 +28,10 @@ public class IsCannonBall : IsProjectile {
 
         collisionOccurred(col);
 
-        SoundMgr.This.PlayRandomCollisionSound();
+        if (SoundMgr.This.InEarshotOfPlayer(this.gameObject.transform.position)) {
+            
+            SoundMgr.This.PlayRandomCollisionSound();
+        }
     }
 
     // Update is called once per frame

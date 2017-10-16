@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class DisplayMgr : MonoBehaviour {
 
-    private Text txtInGame;
-    private Text txtOnScreenScore;
-    private Text txtOnScreenWinMsg;
+    private Text onScreenMsgLog;
+    private Text onScreenScoreText;
 
     private bool playerWon;
 
     public static DisplayMgr This;
 
-    public GameObject inGameDisplay;
-    public GameObject onScreenDisplay;
-    public GameObject onScreenWinDisplay;
+    public GameObject onScreenMsgLogDisplay;
+    public GameObject onScreenScoreDisplay;
 
 	// Use this for initialization
 	void Start () {
@@ -25,11 +23,10 @@ public class DisplayMgr : MonoBehaviour {
             This = this;
         }
 
-        if (inGameDisplay != null && onScreenDisplay != null && onScreenWinDisplay != null) {
+        if (onScreenMsgLogDisplay != null && onScreenScoreDisplay != null) {
 
-            txtInGame = inGameDisplay.GetComponent<Text>();
-            txtOnScreenScore = onScreenDisplay.GetComponent<Text>();
-            txtOnScreenWinMsg = onScreenWinDisplay.GetComponent<Text>();
+            onScreenMsgLog = onScreenMsgLogDisplay.GetComponent<Text>();
+            onScreenScoreText = onScreenScoreDisplay.GetComponent<Text>();
         }
         else {
 
@@ -44,33 +41,27 @@ public class DisplayMgr : MonoBehaviour {
         playerWon = w;
     }
 
-    public void UpdateText(int num) {
+    public void UpdateText(string msg) {
         
-        if (txtInGame != null) {
+        if (onScreenMsgLog != null) {
 
-            txtInGame.text = "" + num;
+            onScreenMsgLog.text = msg;
         }
         else {
 
-            Debug.Log("DisplayMgr: Can't update text component, in game display reference missing");
+            Debug.Log("DisplayMgr: Can't update text component, message log reference missing");
         }
+    }
 
-        if (txtOnScreenScore != null) {
+    public void UpdateScore(int num) {
 
-            txtOnScreenScore.text = "Score = " + num;
+        if (onScreenScoreText != null) {
+
+            onScreenScoreText.text = "Score = " + num;
         }
         else {
 
-            Debug.Log("DisplayMgr: Can't update text component, on screen display reference missing");
-        }
-
-        if (txtOnScreenWinMsg != null && playerWon == true) {
-
-            txtOnScreenWinMsg.text = "PLAYER WON!!";
-        }
-        else if (txtOnScreenWinMsg == null) {
-
-            Debug.Log("DisplayMgr: Can't update text component, on screen display winner reference missing");
+            Debug.Log("DisplayMgr: Can't update text component, on screen score reference missing");
         }
     }
 

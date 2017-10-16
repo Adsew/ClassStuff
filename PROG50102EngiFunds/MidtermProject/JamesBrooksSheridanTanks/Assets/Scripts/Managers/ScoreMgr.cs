@@ -32,7 +32,7 @@ public class ScoreMgr : MonoBehaviour {
 
         if (DisplayMgr.This != null) {
 
-            DisplayMgr.This.UpdateText(score);
+            DisplayMgr.This.UpdateScore(score);
         }
         else {
 

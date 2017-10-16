@@ -4,119 +4,140 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 
+    private GameObject cameraObj;
+    
     public GameObject playerTrackObj;
     public List<GameObject> trackList;
     
-    [Range(1.0f, 2.0f)]
-    public float playerWeight = 1;
+    [Range(1.0f, 5.0f)]
+    public float playerWeight = 1.0f;
 
     [Range(1.0f, 10.0f)]
     public float baseFollowDistance = 10.0f;
+    [Range(-1.0f, 10.0f)]
     public float baseFollowHeight = 2.0f;
+
     public float kh = 0.1f;
 
     // Use this for initialization
     void Start () {
 		
-        
+        if (cameraObj == null) {
+
+            Camera temp = GetComponentInChildren<Camera>();
+
+            if (temp != null) {
+
+                cameraObj = temp.gameObject;
+            }
+        }
 	}
 
     // Camera Hysteresis to position behind player turret
-    void CameraHysteresisUpdate() {
+    void CameraPositionUpdate() {
         
         if (playerTrackObj != null) {
 
             Transform myTrans = this.gameObject.transform;
-            Transform trackTrans = playerTrackObj.transform;
+            Transform playerTrans = playerTrackObj.transform;
+            Transform camTrans = cameraObj.transform;
             Vector3 newPos;
-
-            float followHeight = baseFollowHeight;
-            float followDistance = baseFollowDistance;
-
-            newPos = myTrans.position + kh * (trackTrans.position - myTrans.position);
+            Quaternion newRot;
             
-            newPos -= trackTrans.forward * followDistance;
-            newPos.y += followHeight;
+            // Set base position
+            newPos = playerTrans.position - playerTrans.forward * baseFollowDistance;
+            newPos.y += baseFollowHeight;
 
-            myTrans.SetPositionAndRotation(newPos, trackTrans.rotation);
+            newPos = myTrans.position + kh * (newPos - myTrans.position);
+
+            // Rotate to match player turret, maintain ground evenness
+            newRot = playerTrans.localRotation;
+            newRot.x = 0.0f;
+            newRot.z = 0.0f;
+
+            myTrans.SetPositionAndRotation(newPos, newRot);
+
+            // Offset the camera based on enemies close in the view
+            // Having camera inside empty object allows local position
+            // offseting for more dynamic camera with enemies
+            Vector3 offset = EnemyViewVectorOffset();
+            Vector3 cross = Vector3.Cross(offset, myTrans.forward);
+            
+            offset.y = offset.y / 2.0f;
+            offset.z = 0.0f;
+            offset.x = 0.0f;
+
+            offset += -(cross.y / 2.0f) * Vector3.right;
+
+            camTrans.localPosition += kh * (offset - camTrans.localPosition);
+            camTrans.rotation = newRot;
         }
     }
 
-    public void CameraPositionTrackUpdate() {
+    private Vector3 EnemyViewVectorOffset() {
 
-        if (trackList.Count > 0) {
-
-            Vector3 newPos;
-            float xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0;
+        float xmin = 0, xmax = 0, ymin = 0, ymax = 0, zmin = 0, zmax = 0;
+        Vector3 offset;
+        
+        if (playerTrackObj != null) {
 
             // Gaurentee focus on singlular object or between n > 1 objects
-            xmin = trackList[0].transform.position.x;
-            xmax = trackList[0].transform.position.x;
-            ymin = trackList[0].transform.position.y;
-            ymax = trackList[0].transform.position.y;
-            zmin = trackList[0].transform.position.z;
-            zmax = trackList[0].transform.position.z;
+            Vector3 playPos = playerTrackObj.transform.position - this.gameObject.transform.position;
 
+            xmin = playPos.x - playerWeight;
+            xmax = playPos.x + playerWeight;
+            ymin = playPos.y - playerWeight;
+            ymax = playPos.y + playerWeight;
+            zmin = playPos.z - playerWeight;
+            zmax = playPos.z + playerWeight;
+        }
+        
+        if (trackList.Count > 0) {
+            
             foreach (GameObject gObj in trackList) {
 
-                Vector3 objPos = gObj.transform.position;
+                if (gObj != null) {
 
-                // Add more weight to player.
-                if (gObj.GetComponent<IsTurretHead>() != null) {
+                    Vector3 objPos = gObj.transform.position - this.gameObject.transform.position;
 
-                    objPos.x = objPos.x * playerWeight;
-                    objPos.y = objPos.y * playerWeight;
-                    objPos.z = objPos.z * playerWeight;
-                }
+                    if (objPos.x < xmin) {
 
-                if (objPos.x < xmin) {
+                        xmin = objPos.x;
+                    }
+                    if (objPos.x > xmax) {
 
-                    xmin = objPos.x;
-                }
-                if (objPos.x > xmax) {
+                        xmax = objPos.x;
+                    }
+                    if (objPos.y < ymin) {
 
-                    xmax = objPos.x;
-                }
-                if (objPos.y < ymin) {
+                        ymin = objPos.y;
+                    }
+                    if (objPos.y > ymax) {
 
-                    ymin = objPos.y;
-                }
-                if (objPos.y > ymax) {
+                        ymax = objPos.y;
+                    }
+                    if (objPos.z < zmin) {
 
-                    ymax = objPos.y;
-                }
-                if (objPos.z < zmin) {
+                        zmin = objPos.z;
+                    }
+                    if (objPos.z > zmax) {
 
-                    zmin = objPos.z;
-                }
-                if (objPos.z > zmax) {
-
-                    zmax = objPos.z;
+                        zmax = objPos.z;
+                    }
                 }
             }
-
-            newPos.x = xmax - (xmax - xmin) / 2;
-            newPos.y = ymax - (ymax - ymin) / 2;
-            newPos.z = -(Mathf.Abs(xmax - xmin) + Mathf.Abs(ymax - ymin) + Mathf.Abs(zmax - zmin)) / baseFollowDistance + (zmax - (zmax - zmin) / 2.0f);
-
-            // Camera should go so far back
-            if (newPos.z < -10) {
-
-                newPos.z = -10.0f;
-            }
-            
-            // P(t) += kh * (vDisp);
-            this.gameObject.transform.SetPositionAndRotation(
-                this.gameObject.transform.position + kh * (newPos - this.gameObject.transform.position),
-                this.gameObject.transform.rotation
-                );
         }
+
+        offset.x = xmax - (xmax - xmin) / 2.0f;
+        offset.y = ymax - (ymax - ymin) / 2.0f;
+        offset.z = zmax - (zmax - zmin) / 2.0f;
+        
+        return offset;
     }
 
     // Update is called once per frame
     void Update () {
 
-        //CameraHysteresisUpdate();
-        CameraPositionTrackUpdate();
+        CameraPositionUpdate();
 	}
 }

@@ -6,6 +6,9 @@ public class SoundMgr : MonoBehaviour {
 
     public static SoundMgr This;
 
+    [Range(10.0f, 100.0f)]
+    public float playerEarshot = 30.0f;
+
     public List<AudioClip> fireSounds;
     public List<AudioClip> collisionSounds;
     public List<AudioClip> targetSounds;
@@ -16,6 +19,11 @@ public class SoundMgr : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+
+        if (This == null) {
+
+            This = this;
+        }
 
         // Set sources
         if (fireSrc == null) {
@@ -32,10 +40,6 @@ public class SoundMgr : MonoBehaviour {
 
             targetSrc = this.gameObject.AddComponent<AudioSource>();
             targetSrc.playOnAwake = false;
-        }
-
-        if (This == null) {
-            This = this;
         }
     }
 
@@ -79,6 +83,18 @@ public class SoundMgr : MonoBehaviour {
                 targetSrc.PlayOneShot(targetSrc.clip);
             }
         }
+    }
+
+    // For other classes trying to play sounds
+    // Each class can determine if this is needed when playing a sound
+    public bool InEarshotOfPlayer(Vector3 soundPos) {
+
+        if (Vector3.Magnitude(soundPos - PlayerStats.This.player.transform.position) <= playerEarshot) {
+
+            return true;
+        }
+
+        return false;
     }
 
     // Update is called once per frame
