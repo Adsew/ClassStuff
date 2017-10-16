@@ -80,6 +80,7 @@ public class SplineTool {
 
                     newPoint.name = "Spline Point";
                     newPoint.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                    newPoint.transform.position = workingSpline.transform.position;
                     newPoint.transform.parent = workingSpline.transform;
 
                     if (sp.contPoints == null) {

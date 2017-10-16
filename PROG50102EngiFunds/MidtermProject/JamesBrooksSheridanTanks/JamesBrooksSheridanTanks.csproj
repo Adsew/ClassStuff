@@ -84,18 +84,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Hystoresis.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Predator.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Prowler.cs" />
     <Compile Include="Assets\Scripts\Managers\DisplayMgr.cs" />
+    <Compile Include="Assets\Scripts\Managers\EnemySpawnMgr.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameStateMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\ScoreMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\SoundMgr.cs" />
     <Compile Include="Assets\Scripts\Object\IsCannon.cs" />
+    <Compile Include="Assets\Scripts\Object\IsPropeller.cs" />
     <Compile Include="Assets\Scripts\Object\IsTankBody.cs" />
     <Compile Include="Assets\Scripts\Object\IsTurretHead.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsCannonBall.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsProjectile.cs" />
+    <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerControl.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLoc.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLocCannon.cs" />
     <Compile Include="Assets\Tools\Spline.cs" />

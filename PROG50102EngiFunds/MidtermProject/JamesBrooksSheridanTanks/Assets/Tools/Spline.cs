@@ -8,7 +8,7 @@ using UnityEngine;
 public class Spline : MonoBehaviour {
     
     private float pingpongSign = 1.0f;    // Determines direction for pingpong mode
-    private float t = 0.0f;               // Variable t of catmulrom
+    private List<float> t;         // Variable t of catmulrom. List count should always = head list count
 
     private LineRenderer debugLine = null;
 
@@ -33,10 +33,10 @@ public class Spline : MonoBehaviour {
     }
     public PlayBackType playType = PlayBackType.Constant_Time;
 
-    [Range(1, 60)]
-    public float dt;                      // Time between steps (1 - 60 seconds)
+    [Range(1.0f, 60.0f)]
+    public float dt = 1.0f;                      // Time between steps (1 - 60 seconds) or speed
 
-    public GameObject head = null;
+    public List<GameObject> heads;
 
     public List<GameObject> contPoints = new List<GameObject>();
     
@@ -44,14 +44,34 @@ public class Spline : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-        // Backward starts at end
-        if (gameMode == GameModes.Backward && contPoints.Count >= 4) {
+        if (heads == null) {
 
-            t = contPoints.Count - 2.0f;
+            heads = new List<GameObject>();
         }
-        else {
+        if (t == null) {
 
-            t = 0.0f;
+            t = new List<float>();
+        }
+
+        // Create a t for each head
+        foreach (GameObject head in heads) {
+
+            t.Add(0.0f);
+        }
+    }
+
+    public void AddHead(GameObject newHead) {
+
+        heads.Add(newHead);
+        t.Add(0.0f);
+    }
+
+    public void AddHeadAtPoint(GameObject newHead, GameObject point) {
+
+        if (contPoints.Contains(point)) {
+
+            heads.Add(newHead);
+            t.Add(contPoints.IndexOf(point)-1);
         }
     }
 
@@ -116,115 +136,123 @@ public class Spline : MonoBehaviour {
 
     void UpdatePositionUsingGameMode() {
         
-        float timeStep = 0.1f;
-        float oldT = t;
-        
-        if (playType == PlayBackType.Constant_Time) {
+        if (t.Count == heads.Count) {
 
-            timeStep = Time.deltaTime / (float)dt;  // dt used as seconds to complete interval
-        }
-        else {
-            
-            timeStep = Time.deltaTime;  // Still move in relation to time passed
-        }
-        
-        // Position modification
-        if (gameMode == GameModes.None || gameMode == GameModes.Invalid) {
+            for (int i = 0; i < t.Count; i++) {
 
-            t = 0.0f;
-        }
-        if (gameMode == GameModes.Forward) {
+                float timeStep = 0.1f;
+                float oldT = t[i];
 
-            t = t + timeStep;
+                if (playType == PlayBackType.Constant_Time) {
 
-            if (playType == PlayBackType.Constant_Speed) {
+                    timeStep = Time.deltaTime / (float)dt;  // dt used as seconds to complete interval
+                }
+                else {
 
-                float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t));
+                    timeStep = Time.deltaTime;  // Still move in relation to time passed
+                }
 
-                t = oldT + ( timeStep / (distanceMag * 10.0f) ) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
-            }
+                // Position modification
+                if (gameMode == GameModes.None || gameMode == GameModes.Invalid) {
 
-            if (loop == true) {
-                if (t > contPoints.Count) {
+                    t[i] = 0.0f;
+                }
+                if (gameMode == GameModes.Forward) {
 
-                    t = 0.0f;
+                    t[i] = t[i] + timeStep;
+
+                    if (playType == PlayBackType.Constant_Speed) {
+
+                        float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t[i]));
+
+                        t[i] = oldT + (timeStep / (distanceMag * 10.0f)) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
+                    }
+
+                    if (loop == true) {
+                        if (t[i] > contPoints.Count) {
+
+                            t[i] = 0.0f;
+                        }
+                    }
+                    else if (t[i] > (contPoints.Count - 3)) {
+
+                        t[i] = 0.0f;
+                    }
+                }
+                else if (gameMode == GameModes.Backward) {
+
+                    timeStep = -1.0f * timeStep;
+
+                    t[i] = t[i] + timeStep;
+
+                    if (playType == PlayBackType.Constant_Speed) {
+
+                        float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t[i]));
+
+                        t[i] = oldT + (timeStep / (distanceMag * 10.0f)) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
+                    }
+
+                    if (loop == true && t[i] <= 0.0f) {
+
+                        t[i] = contPoints.Count;
+                    }
+                    if (t[i] <= 0.0f) {
+
+                        t[i] = contPoints.Count - 3.0f;
+                    }
+                }
+                else if (gameMode == GameModes.PingPong) {
+
+                    timeStep = pingpongSign * timeStep;
+
+                    t[i] = t[i] + timeStep;
+
+                    if (playType == PlayBackType.Constant_Speed) {
+
+                        float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t[i]));
+
+                        t[i] = oldT + (timeStep / (distanceMag * 10.0f)) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
+                    }
+
+                    if (loop == true) {
+                        // Go Backward
+                        if (t[i] > contPoints.Count) {
+
+                            t[i] = contPoints.Count;
+                            pingpongSign = -1.0f;
+                        }
+                        // Go Forward
+                        else if (t[i] <= 0.0f) {
+
+                            t[i] = 0.0f;
+                            pingpongSign = 1.0f;
+                        }
+                    }
+                    else {
+                        // Go Backward
+                        if (t[i] >= (contPoints.Count - 3)) {
+
+                            t[i] = contPoints.Count - 3.0f;
+                            pingpongSign = -1.0f;
+                        }
+                        // Go Forward
+                        else if (t[i] <= 0.0f) {
+
+                            t[i] = 0.0f;
+                            pingpongSign = 1.0f;
+                        }
+                    }
+                }
+
+                Vector3 newPos = CatmullRomSpline(t[i]);
+                heads[i].transform.forward = newPos - heads[i].transform.position;
+
+
+                if (heads[i] != null) {
+
+                    heads[i].transform.SetPositionAndRotation(newPos, heads[i].transform.rotation);
                 }
             }
-            else if (t > (contPoints.Count - 3)) {
-                
-                t = 0.0f;
-            }
-        }
-        else if (gameMode == GameModes.Backward) {
-
-            timeStep = -1.0f * timeStep;
-
-            t = t + timeStep;
-
-            if (playType == PlayBackType.Constant_Speed) {
-
-                float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t));
-
-                t = oldT + (timeStep / (distanceMag * 10.0f)) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
-            }
-
-            if (loop == true && t <= 0.0f) {
-
-                t = contPoints.Count;
-            }
-            if (t <= 0.0f) {
-
-                t = contPoints.Count - 3.0f;
-            }
-        }
-        else if (gameMode == GameModes.PingPong) {
-
-            timeStep = pingpongSign * timeStep;
-
-            t = t + timeStep;
-
-            if (playType == PlayBackType.Constant_Speed) {
-
-                float distanceMag = Vector3.Magnitude(CatmullRomSpline(oldT) - CatmullRomSpline(t));
-
-                t = oldT + (timeStep / (distanceMag * 10.0f)) * (dt / 2.0f);    // Redo new t calculation (dt used as speed)
-            }
-            
-            if (loop == true) {
-                // Go Backward
-                if (t > contPoints.Count) {
-
-                    t = contPoints.Count;
-                    pingpongSign = -1.0f;
-                }
-                // Go Forward
-                else if (t <= 0.0f) {
-
-                    t = 0.0f;
-                    pingpongSign = 1.0f;
-                }
-            }
-            else {
-                // Go Backward
-                if (t >= (contPoints.Count - 3)) {
-
-                    t = contPoints.Count - 3.0f;
-                    pingpongSign = -1.0f;
-                }
-                // Go Forward
-                else if (t <= 0.0f) {
-
-                    t = 0.0f;
-                    pingpongSign = 1.0f;
-                }
-            }
-        }
-
-        Vector3 newPos = CatmullRomSpline(t);
-        
-        if (head != null) {
-
-            head.transform.SetPositionAndRotation(newPos, head.transform.rotation);
         }
     }
 

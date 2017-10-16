@@ -11,8 +11,10 @@ public class PlayerControl : MonoBehaviour {
 
     private const float deadZone = 0.1f;
 
-    private float curSpeed;   // 
-    
+    private float curSpeed;
+
+    public bool lockPlayerControls = false;
+
     [Range(0.1f, 5.0f)]
     public float timeBetweenShots = 1.0f;
     private float timeSinceShot;
@@ -99,9 +101,7 @@ public class PlayerControl : MonoBehaviour {
 
             crossResult = Vector3.Cross(-turret.transform.forward, body.transform.forward);
         }
-
-        Debug.Log(crossResult);
-
+        
         if (crossResult.y < -0.02f) {
             //turn left
             body.transform.Rotate(body.transform.up, 1);
@@ -205,13 +205,22 @@ public class PlayerControl : MonoBehaviour {
                 bulletSpawnLoc.SpawnObject();
             }
         }
+
+
+        if (Input.GetKeyDown("j")) {
+
+            EnemySpawnMgr.This.GameStartSpawns();
+        }
     }
 
     // Update is called once per frame
     void Update () {
 
-        HeroMovementUpdate();
-        HeroCannonRotationUpdate();
-        BulletSpawnUpdate();
+        if (lockPlayerControls == false) {
+
+            HeroMovementUpdate();
+            HeroCannonRotationUpdate();
+            BulletSpawnUpdate();
+        }
 	}
 }

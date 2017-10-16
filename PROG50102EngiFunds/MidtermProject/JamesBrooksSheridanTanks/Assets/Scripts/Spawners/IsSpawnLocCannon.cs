@@ -15,7 +15,7 @@ public class IsSpawnLocCannon : IsSpawnLoc {
         if (objToSpawn != null) {
 
             Instantiate(objToSpawn,
-                myTransform.position + Vector3.forward,
+                myTransform.position + this.gameObject.transform.forward,
                 myTransform.rotation);
 
             SoundMgr.This.PlayRandomFireSound();

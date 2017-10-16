@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: dd515892cd49cf34cba6004a7a0dd848
-timeCreated: 1507758004
+timeCreated: 1508193294
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - objToSpawn: {fileID: 1917859204561874, guid: e15311691555a4345a608674c2b5a729,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

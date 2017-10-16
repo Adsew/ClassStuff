@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<SplineSave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Splines>
+    <Spline Name="New Spline 3" Debug="true" Loop="false" Mode="PingPong" Type="Constant_Speed" Speed="1">
+      <Points>
+        <Point Name="Point 0" PosX="415" PosY="72.47" PosZ="398" />
+        <Point Name="Point 1" PosX="372.8" PosY="72.47" PosZ="398" />
+        <Point Name="Point 2" PosX="336.9" PosY="72.47" PosZ="398" />
+      </Points>
+    </Spline>
+  </Splines>
+</SplineSave>

@@ -89,7 +89,7 @@ public class SoundMgr : MonoBehaviour {
     // Each class can determine if this is needed when playing a sound
     public bool InEarshotOfPlayer(Vector3 soundPos) {
 
-        if (Vector3.Magnitude(soundPos - PlayerStats.This.player.transform.position) <= playerEarshot) {
+        if (Vector3.Magnitude(soundPos - Player.This.pGameObject.transform.position) <= playerEarshot) {
 
             return true;
         }

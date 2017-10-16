@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour {
+public class Player : MonoBehaviour {
 
-    public static PlayerStats This;
+    public static Player This;
 
-    public GameObject player { get; private set; }
+    public GameObject pGameObject { get; private set; }
+    public PlayerControl pControl { get; private set; }
 
-    public int maxHealth;
-    public int maxAmmo;
+    public int maxHealth = 100;
+    public int maxAmmo = 10;
     
     private int currentHealth;
     private int currentAmmo;
@@ -22,12 +23,24 @@ public class PlayerStats : MonoBehaviour {
             This = this;
         }
 
-        if (this.gameObject != null) {
+        if (this.gameObject != null && pGameObject == null) {
 
-            player = this.gameObject;
+            pGameObject = this.gameObject;
+            pControl = pGameObject.GetComponent<PlayerControl>();
         }
+
+        currentHealth = maxHealth;
+        currentAmmo = maxAmmo;
 	}
 	
+    public void LockControls(bool setting) {
+
+        if (pControl != null) {
+
+            pControl.lockPlayerControls = setting;
+        }
+    }
+
     public void takeDamage(int damage) {
 
         currentHealth -= damage;

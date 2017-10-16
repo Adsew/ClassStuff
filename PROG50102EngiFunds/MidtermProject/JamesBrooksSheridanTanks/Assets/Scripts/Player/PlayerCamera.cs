@@ -22,6 +22,11 @@ public class PlayerCamera : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		
+        if (trackList == null) {
+
+            trackList = new List<GameObject>();
+        }
+
         if (cameraObj == null) {
 
             Camera temp = GetComponentInChildren<Camera>();
@@ -36,7 +41,7 @@ public class PlayerCamera : MonoBehaviour {
     // Camera Hysteresis to position behind player turret
     void CameraPositionUpdate() {
         
-        if (playerTrackObj != null) {
+        if (playerTrackObj != null && cameraObj != null) {
 
             Transform myTrans = this.gameObject.transform;
             Transform playerTrans = playerTrackObj.transform;
