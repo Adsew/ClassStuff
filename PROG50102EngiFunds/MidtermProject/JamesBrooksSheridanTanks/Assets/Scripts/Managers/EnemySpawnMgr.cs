@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemySpawnMgr : MonoBehaviour {
 
-    private List<GameObject> activeEnemies;
-
+    private List<Enemy> activeEnemies;
+    
     private int difficult = 1;
     private int lastSpawnTime = 0;
 
@@ -15,7 +15,10 @@ public class EnemySpawnMgr : MonoBehaviour {
     public double difficultyIncTimer = 30.0;    // Seconds
 
     [Range(2, 60)]
-    public int spawnInterval = 10;         // Seconds
+    public int spawnInterval = 10;              // Seconds
+
+    [Range(0, 100)]
+    public int airTankSpawnChance = 40;         // Chance for air tank to spawn over ground
 
     public GameObject groundTank;
     public GameObject airTank;
@@ -30,7 +33,7 @@ public class EnemySpawnMgr : MonoBehaviour {
 
             This = this;
         }
-
+        
         if (groundPaths == null) {
 
             groundPaths = new List<GameObject>();
@@ -39,6 +42,11 @@ public class EnemySpawnMgr : MonoBehaviour {
         if (airPaths == null) {
 
             airPaths = new List<GameObject>();
+        }
+
+        if (activeEnemies == null) {
+
+            activeEnemies = new List<Enemy>();
         }
     }
 	
@@ -55,8 +63,12 @@ public class EnemySpawnMgr : MonoBehaviour {
                     if (spline != null) {
 
                         GameObject tank = Instantiate(groundTank, groundTank.transform.position, groundTank.transform.rotation);
-                        spline.AddHead(tank);
-                        activeEnemies.Add(tank);
+
+                        if (tank != null) {
+
+                            spline.AddHead(tank);
+                            activeEnemies.Add(tank.GetComponent<Enemy>());
+                        }
                     }
                 }
             }
@@ -73,8 +85,12 @@ public class EnemySpawnMgr : MonoBehaviour {
                     if (spline != null) {
 
                         GameObject tank = Instantiate(airTank, path.transform.position, airTank.transform.rotation);
-                        spline.AddHead(tank);
-                        activeEnemies.Add(tank);
+
+                        if (tank != null) {
+
+                            spline.AddHead(tank);
+                            activeEnemies.Add(tank.GetComponent<Enemy>());
+                        }
                     }
                 }
             }
@@ -87,7 +103,50 @@ public class EnemySpawnMgr : MonoBehaviour {
 
         if (GameStateMgr.This.gameIsPlaying && ((int)GameStateMgr.This.gameTime - lastSpawnTime) >= spawnInterval) {
 
-            // Spawn object
+            if (groundTank != null && airTank != null) {
+
+                GameObject tankToSpawn = null;
+                List<GameObject> splinesForTankSpawn = null;
+
+                int chance = Random.Range(1, 101);
+                
+                // Spawn ground tank
+                if (chance > airTankSpawnChance) {
+
+                    tankToSpawn = groundTank;
+                    splinesForTankSpawn = groundPaths;
+                }
+                // Spawn air tank
+                else {
+
+                    tankToSpawn = airTank;
+                    splinesForTankSpawn = airPaths;
+                }
+
+                if (tankToSpawn != null && splinesForTankSpawn != null) {
+                    if (splinesForTankSpawn.Count > 0) {
+
+                        chance = Random.Range(0, splinesForTankSpawn.Count);
+
+                        Spline spline = splinesForTankSpawn[chance].GetComponent<Spline>();
+
+                        if (spline != null) {
+
+                            GameObject tank = Instantiate(
+                            tankToSpawn,
+                            splinesForTankSpawn[chance].transform.position,
+                            tankToSpawn.transform.rotation
+                            );
+
+                            if (tank != null) {
+
+                                spline.AddHead(tank);
+                                activeEnemies.Add(tank.GetComponent<Enemy>());
+                            }
+                        }
+                    }
+                }
+            }
 
             lastSpawnTime = (int)GameStateMgr.This.gameTime;
         }
@@ -96,7 +155,15 @@ public class EnemySpawnMgr : MonoBehaviour {
     // Every x time increases the difficulty
     public int DetermineDifficulty() {
 
-        return (int)(GameStateMgr.This.gameTime / difficultyIncTimer);
+        int d = (int)(GameStateMgr.This.gameTime / difficultyIncTimer) + 1;
+
+        // Max 10 (rotation aim speed maxes at 10)
+        if (d > 10) {
+
+            d = 10;
+        }
+
+        return d;
     }
 
 	// Update is called once per frame
