@@ -75,6 +75,17 @@ public class Spline : MonoBehaviour {
         }
     }
 
+    public void RemoveHead(GameObject oldHead) {
+
+        int index = heads.IndexOf(oldHead);
+        
+        if (index >= 0) {
+
+            heads.RemoveAt(index);
+            t.RemoveAt(index);
+        }
+    }
+
     Vector3 CatmullRomSpline(float tVal) {
         
         // Ensure enough points for spline given position t

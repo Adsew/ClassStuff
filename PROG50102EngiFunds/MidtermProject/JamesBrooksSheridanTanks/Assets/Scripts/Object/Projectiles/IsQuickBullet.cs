@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsCannonBall : IsProjectile {
+public class IsQuickBullet : IsProjectile {
 
-    public int cannonBallVelocity = 20;
+    public int bulletVelocity = 60;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
 
         Rigidbody temp = null;
 
@@ -15,15 +15,15 @@ public class IsCannonBall : IsProjectile {
 
         // Give cannon ball initial velocity specific to a cannon ball
         temp = this.gameObject.GetComponent<Rigidbody>();
-        
+
         if (temp == null) {
 
             temp = this.gameObject.AddComponent<Rigidbody>();
         }
 
-        temp.velocity = cannonBallVelocity * this.gameObject.transform.forward;
+        temp.velocity = bulletVelocity * this.gameObject.transform.forward;
 
-        damage = 5;
+        damage = 1;
 
         timeTilDeath = 0.0f;    // Instant removal on collision
     }
@@ -34,8 +34,8 @@ public class IsCannonBall : IsProjectile {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
         determineDeath();
-	}
+    }
 }

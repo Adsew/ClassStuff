@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsSpawnLocCannon : IsSpawnLoc {
+public class IsSpawnLocMachinegun : IsSpawnLoc {
 
-    // Use this for initialization
-    void Start() {
+	// Use this for initialization
+	void Start () {
 
         InitSpawnLoc();
-    }
+	}
 
     public new void SpawnObject() {
 
         if (objToSpawn != null) {
-
+            
             Instantiate(objToSpawn,
                 myTransform.position + this.gameObject.transform.forward,
                 myTransform.rotation);
@@ -23,7 +23,7 @@ public class IsSpawnLocCannon : IsSpawnLoc {
     }
 
     // Update is called once per frame
-    void Update() {
-
-    }
+    void Update () {
+		
+	}
 }

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class EnemySpawnMgr : MonoBehaviour {
 
-    private List<Enemy> activeEnemies;
-    
-    private int difficult = 1;
     private int lastSpawnTime = 0;
+
+    public List<Enemy> activeEnemies { get; private set; }
 
     public static EnemySpawnMgr This;
 
@@ -66,8 +65,18 @@ public class EnemySpawnMgr : MonoBehaviour {
 
                         if (tank != null) {
 
-                            spline.AddHead(tank);
-                            activeEnemies.Add(tank.GetComponent<Enemy>());
+                            Enemy tankProperties = tank.GetComponent<Enemy>();
+
+                            if (tankProperties != null) {
+
+                                spline.AddHead(tank);
+                                activeEnemies.Add(tankProperties);
+                                tankProperties.myPath = spline;
+                            }
+                            else {
+
+                                Destroy(tank);
+                            }
                         }
                     }
                 }
@@ -88,8 +97,18 @@ public class EnemySpawnMgr : MonoBehaviour {
 
                         if (tank != null) {
 
-                            spline.AddHead(tank);
-                            activeEnemies.Add(tank.GetComponent<Enemy>());
+                            Enemy tankProperties = tank.GetComponent<Enemy>();
+
+                            if (tankProperties != null) {
+
+                                spline.AddHead(tank);
+                                activeEnemies.Add(tankProperties);
+                                tankProperties.myPath = spline;
+                            }
+                            else {
+
+                                Destroy(tank);
+                            }
                         }
                     }
                 }
@@ -140,8 +159,18 @@ public class EnemySpawnMgr : MonoBehaviour {
 
                             if (tank != null) {
 
-                                spline.AddHead(tank);
-                                activeEnemies.Add(tank.GetComponent<Enemy>());
+                                Enemy tankProperties = tank.GetComponent<Enemy>();
+
+                                if (tankProperties != null) {
+
+                                    spline.AddHead(tank);
+                                    activeEnemies.Add(tankProperties);
+                                    tankProperties.myPath = spline;
+                                }
+                                else {
+
+                                    Destroy(tank);
+                                }
                             }
                         }
                     }
@@ -149,6 +178,14 @@ public class EnemySpawnMgr : MonoBehaviour {
             }
 
             lastSpawnTime = (int)GameStateMgr.This.gameTime;
+        }
+    }
+
+    public void RemoveDeadEnemy(Enemy deadEnemy) {
+
+        if (activeEnemies != null) {
+
+            activeEnemies.Remove(deadEnemy);
         }
     }
 

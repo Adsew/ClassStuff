@@ -81,35 +81,60 @@ public class PlayerControl : MonoBehaviour {
         yMove = Input.GetAxis("Move Vertical");
 
         Quaternion turretRotation = turret.transform.rotation;
-        Vector3 crossResult = new Vector3();
+        Vector3 crossDirection = new Vector3();
+        Vector3 crossRotation = new Vector3();
         
         // Rotate towards movement direction based on turret position
         if (xMove > deadZone) {
 
-            crossResult = Vector3.Cross(turret.transform.right, body.transform.forward);
+            crossRotation = Vector3.Cross(turret.transform.right, body.transform.forward);
+            crossDirection = Vector3.Cross(turret.transform.right, body.transform.right);
         }
         else if (xMove < -deadZone) {
 
-            crossResult = Vector3.Cross(-turret.transform.right, body.transform.forward);
+            crossRotation = Vector3.Cross(-turret.transform.right, body.transform.forward);
+            crossDirection = Vector3.Cross(-turret.transform.right, body.transform.right);
         }
 
         if (yMove > deadZone) {
 
-            crossResult = Vector3.Cross(turret.transform.forward, body.transform.forward);
+            crossRotation = Vector3.Cross(turret.transform.forward, body.transform.forward);
+            crossDirection = Vector3.Cross(turret.transform.forward, body.transform.right);
+
         }
         else if (yMove < -deadZone) {
 
-            crossResult = Vector3.Cross(-turret.transform.forward, body.transform.forward);
+            crossRotation = Vector3.Cross(-turret.transform.forward, body.transform.forward);
+            crossDirection = Vector3.Cross(-turret.transform.forward, body.transform.right);
+
         }
-        
-        if (crossResult.y < -0.02f) {
+
+
+        // SAYING SAME THING TOP AND BOTTOM LEFT TURN ISDOMINENT
+
+        if ((crossRotation.y < -0.02f && crossDirection.y >= -0.1f)
+            || (crossRotation.y > 0.02f && crossDirection.y < -0.1f)
+            ) {
             //turn left
             body.transform.Rotate(body.transform.up, 1);
         }
-        else if (crossResult.y > 0.02f) {
+        else if ((crossRotation.y > 0.02f && crossDirection.y >= -0.1f)
+            || (crossRotation.y < -0.02f && crossDirection.y < -0.1f)
+            ) {
             // turn right
             body.transform.Rotate(body.transform.up, -1);
         }
+
+
+
+        //if (crossRotation.y < -0.02f) {
+        //    //turn left
+        //    body.transform.Rotate(body.transform.up, 1);
+        //}
+        //else if (crossRotation.y > 0.02f) {
+        //    // turn right
+        //    body.transform.Rotate(body.transform.up, -1);
+        //}
 
         // Based on speedup/slowdown movement rather than direct movement
 
@@ -118,9 +143,16 @@ public class PlayerControl : MonoBehaviour {
         if (Mathf.Abs(yMove) > deadZone
             || Mathf.Abs(xMove) > deadZone) {
             if (Mathf.Abs(curSpeed) < maxSpeed) {
-                if (crossResult.y < 0.4f && crossResult.y > -0.4f) {
 
+                // Going forward
+                if (crossDirection.y >= -0.2f) {
+                    
                     curSpeed = curSpeed + acceleration;
+                }
+                // Going backward
+                else {
+
+                    curSpeed = curSpeed - acceleration;
                 }
             }
         }
@@ -204,12 +236,6 @@ public class PlayerControl : MonoBehaviour {
 
                 bulletSpawnLoc.SpawnObject();
             }
-        }
-
-
-        if (Input.GetKeyDown("j")) {
-
-            EnemySpawnMgr.This.GameStartSpawns();
         }
     }
 

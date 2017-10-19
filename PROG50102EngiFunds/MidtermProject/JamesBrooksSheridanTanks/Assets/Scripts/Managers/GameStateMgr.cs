@@ -6,7 +6,7 @@ public class GameStateMgr : MonoBehaviour {
 
     public static GameStateMgr This;
 
-    public double gameTime { get; private set; }
+    public float gameTime { get; private set; }
 
     public bool gameIsPlaying { get; private set; }
 
@@ -20,13 +20,19 @@ public class GameStateMgr : MonoBehaviour {
 
         gameTime = 0.0f;
         gameIsPlaying = false;
+
+        Player.This.LockControls(true);
 	}
 	
-    public void startTiming() {
-
+    public void StartGame() {
+        
         gameIsPlaying = true;
-    }
 
+        EnemySpawnMgr.This.GameStartSpawns();
+        Player.This.pCamera.MoveToPlayer();
+        Player.This.LockControls(false);
+    }
+    
     private void timerUpdate() {
 
         if (gameIsPlaying) {

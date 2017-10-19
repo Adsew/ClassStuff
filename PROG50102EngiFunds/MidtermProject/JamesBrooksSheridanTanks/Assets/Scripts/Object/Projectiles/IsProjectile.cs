@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class IsProjectile : MonoBehaviour {
 
-    public const float timeTilDeath = 5.0f;    // Seconds
-
     private float deathTimer;
     private bool needsToDie;
 
-	// Use this for initialization
-	void Start () {
+    protected float timeTilDeath = 5.0f;    // Seconds
+
+    public int damage { get; protected set; }
+
+    // Use this for initialization
+    void Start () {
 
         InitProjectile();
+
+        damage = 1;
 	}
 
     protected void InitProjectile() {
@@ -21,19 +25,15 @@ public class IsProjectile : MonoBehaviour {
         needsToDie = false;
     }
 
-    protected void collisionOccurred(Collision col) {
+    protected void CollisionOccurred(Collision col) {
 
-        // As long as we hit something, destroy object soon
-        if (col.gameObject != null) {
-
-            needsToDie = true;
-        }
+        needsToDie = true;
     }
 
     // Default
     public void OnCollisionEnter(Collision col) {
 
-        collisionOccurred(col);
+        CollisionOccurred(col);
     }
     
     // Destroy bullet if it has hit something
@@ -43,7 +43,7 @@ public class IsProjectile : MonoBehaviour {
 
             deathTimer = deathTimer + Time.deltaTime;
 
-            if (deathTimer > IsProjectile.timeTilDeath) {
+            if (deathTimer > timeTilDeath) {
 
                 Destroy(this.gameObject);
             }

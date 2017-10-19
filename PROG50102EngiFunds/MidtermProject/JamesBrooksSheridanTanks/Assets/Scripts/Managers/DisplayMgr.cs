@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class DisplayMgr : MonoBehaviour {
 
+    private GameObject currentScreen;
+
     private Text onScreenMsgLog;
     private Text onScreenScoreText;
 
     private bool playerWon;
 
     public static DisplayMgr This;
+    
+    public GameObject titleScreen;
 
+    public GameObject hudScreen;
     public GameObject onScreenMsgLogDisplay;
     public GameObject onScreenScoreDisplay;
 
@@ -23,16 +28,28 @@ public class DisplayMgr : MonoBehaviour {
             This = this;
         }
 
-        if (onScreenMsgLogDisplay != null && onScreenScoreDisplay != null) {
+        if (onScreenMsgLogDisplay != null || onScreenScoreDisplay != null) {
 
             onScreenMsgLog = onScreenMsgLogDisplay.GetComponent<Text>();
             onScreenScoreText = onScreenScoreDisplay.GetComponent<Text>();
         }
         else {
 
-            Debug.Log("DisplayMgr: Error on startup, no displays attached.");
+            Debug.Log("DisplayMgr: Error on startup, no text displays attached.");
         }
 
+
+        if (titleScreen != null && hudScreen != null) {
+
+            currentScreen = titleScreen;    // Start of game at title screen
+            hudScreen.SetActive(false);
+            currentScreen.SetActive(true);
+        }
+        else {
+
+            Debug.Log("DisplayMgr: Error on startup, missing title screen or HUD screen.");
+        }
+        
         playerWon = false;
     }
 
@@ -41,7 +58,7 @@ public class DisplayMgr : MonoBehaviour {
         playerWon = w;
     }
 
-    public void UpdateText(string msg) {
+    public void UpdateMessage(string msg) {
         
         if (onScreenMsgLog != null) {
 
@@ -65,8 +82,21 @@ public class DisplayMgr : MonoBehaviour {
         }
     }
 
+    // Code can be made more complex with pause menus and such
+    // But in this game it only needs to be simple
+    private void ScreenSwapUpdate() {
+
+        if (GameStateMgr.This.gameIsPlaying && currentScreen != hudScreen) {
+
+            currentScreen.SetActive(false);
+            currentScreen = hudScreen;
+            currentScreen.SetActive(true);
+        }
+    }
+
     // Update is called once per frame
     void Update () {
-		
+
+        ScreenSwapUpdate();
 	}
 }

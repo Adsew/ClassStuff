@@ -98,11 +98,13 @@
     <Compile Include="Assets\Scripts\Object\IsTurretHead.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsCannonBall.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsProjectile.cs" />
+    <Compile Include="Assets\Scripts\Object\Projectiles\IsQuickBullet.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLoc.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLocCannon.cs" />
+    <Compile Include="Assets\Scripts\Spawners\IsSpawnLocMachinegun.cs" />
     <Compile Include="Assets\Tools\Spline.cs" />
     <Compile Include="Assets\Tools\SplineTool.cs" />
   </ItemGroup>

@@ -44,7 +44,7 @@ public class Predator : Enemy {
 
         if (bulletSpawnLoc == null) {
 
-            bulletSpawnLoc = this.gameObject.GetComponentInChildren<IsSpawnLocCannon>();
+            bulletSpawnLoc = this.gameObject.GetComponentInChildren<IsSpawnLocMachinegun>();
         }
 
         if (baseHealth <= 0) {
@@ -52,22 +52,33 @@ public class Predator : Enemy {
             baseHealth = 10;
         }
 
+        needsToDie = false;
+
         difficulty = EnemySpawnMgr.This.DetermineDifficulty();
         maxHealth = baseHealth * difficulty;
         currentHealth = maxHealth;
 
         damage = baseDamage * difficulty;
+        timeBetweenShots = 0.4f;
+
+        score = 5;
     }
 
-    override protected void RotateTurretUpdate() {
+    protected override void RotateTurretUpdate() {
 
-        if (turret != null && body != null) {
+        if (turret != null && body != null && needsToDie == false) {
 
             if (PlayerInLineOfSight()) {
-
+                
                 Vector3 playerDirection = DirectionToPlayer();
                 
+                // Rotate turret head
                 turret.transform.forward += rotationKH * (float)difficulty * (playerDirection.normalized - turret.transform.forward);
+                
+                if (PlayerInFiringRadius()) {
+
+                    Fire();
+                }
             }
             // Return to natural position
             else {
@@ -80,6 +91,32 @@ public class Predator : Enemy {
         }
     }
 
+    protected override void Fire() {
+
+        if (bulletSpawnLoc != null) {
+
+            if ((GameStateMgr.This.gameTime - timeLastShot) >= timeBetweenShots) {
+                
+                ((IsSpawnLocMachinegun)bulletSpawnLoc).SpawnObject();
+
+                timeLastShot = GameStateMgr.This.gameTime;
+            }
+        }
+        else {
+
+            Debug.Log("Predator: Has no bullet spawn location to fire.");
+        }
+    }
+
+    protected override void OnDeath() {
+
+        // Make it fall apart on death
+        Destroy(this.gameObject.GetComponent<Rigidbody>());
+        body.AddComponent<Rigidbody>();
+        turret.AddComponent<Rigidbody>();
+        propeller.AddComponent<Rigidbody>();
+    }
+
     private void propellerSpinUpdate() {
 
         if (propeller != null) {
@@ -87,10 +124,11 @@ public class Predator : Enemy {
             propeller.gameObject.transform.Rotate(Vector3.up, 10);
         }
     }
+    
+    // Update is called once per frame
+    void Update () {
 
-	// Update is called once per frame
-	void Update () {
-
+        DetermineDeath();
         propellerSpinUpdate();
         RotateTurretUpdate();
 	}

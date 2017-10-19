@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 
+    private List<GameObject> trackList;
     private GameObject cameraObj;
-    
+
+    private bool focusOnPlayer;
+
+    public GameObject titleSpline;
     public GameObject playerTrackObj;
-    public List<GameObject> trackList;
     
-    [Range(1.0f, 5.0f)]
+    [Range(1.0f, 20.0f)]
     public float playerWeight = 1.0f;
 
     [Range(1.0f, 10.0f)]
@@ -36,12 +39,14 @@ public class PlayerCamera : MonoBehaviour {
                 cameraObj = temp.gameObject;
             }
         }
+
+        focusOnPlayer = false;
 	}
 
     // Camera Hysteresis to position behind player turret
     void CameraPositionUpdate() {
         
-        if (playerTrackObj != null && cameraObj != null) {
+        if (playerTrackObj != null && cameraObj != null && focusOnPlayer) {
 
             Transform myTrans = this.gameObject.transform;
             Transform playerTrans = playerTrackObj.transform;
@@ -76,6 +81,30 @@ public class PlayerCamera : MonoBehaviour {
 
             camTrans.localPosition += kh * (offset - camTrans.localPosition);
             camTrans.rotation = newRot;
+        }
+    }
+
+    private void TrackListUpdate() {
+
+        trackList.Clear();
+
+        foreach(Enemy e in EnemySpawnMgr.This.activeEnemies) {
+
+            if (e != null) {
+
+                Vector3 directional = e.gameObject.transform.position - playerTrackObj.transform.position;
+                
+                if (Vector3.Magnitude(directional) < Player.This.sightRange
+                    && Mathf.Abs(Vector3.Angle(playerTrackObj.gameObject.transform.forward, directional)) < (Player.This.sightAngle / 2.0f)
+                    ) {
+
+                    trackList.Add(e.gameObject);
+                }
+                else {
+                    
+                    trackList.Remove(e.gameObject);
+                }
+            }
         }
     }
 
@@ -140,9 +169,25 @@ public class PlayerCamera : MonoBehaviour {
         return offset;
     }
 
+    public void MoveToPlayer() {
+
+        if (titleSpline != null) {
+
+            Spline spline = titleSpline.GetComponent<Spline>();
+
+            if (spline != null) {
+
+                spline.RemoveHead(this.gameObject);
+            }
+        }
+
+        focusOnPlayer = true;
+    }
+    
     // Update is called once per frame
     void Update () {
 
+        TrackListUpdate();
         CameraPositionUpdate();
 	}
 }

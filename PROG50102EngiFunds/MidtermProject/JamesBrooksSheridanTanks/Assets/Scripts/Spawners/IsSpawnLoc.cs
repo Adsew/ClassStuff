@@ -23,7 +23,7 @@ public abstract class IsSpawnLoc : MonoBehaviour {
         }
     }
 
-    public void SpawnObject() {
+    public virtual void SpawnObject() {
 
         if (objToSpawn != null) {
             

@@ -52,37 +52,104 @@ public class Prowler : Enemy {
             baseHealth = 15;
         }
 
+        needsToDie = false;
+
         difficulty = EnemySpawnMgr.This.DetermineDifficulty();
         maxHealth = baseHealth * difficulty;
         currentHealth = maxHealth;
 
         damage = baseDamage * difficulty;
+        timeBetweenShots = 2.0f;
+
+        firingDegrees = 30.0f;
+
+        score = 1;
     }
 
-    override protected void RotateTurretUpdate() {
+    protected override void RotateTurretUpdate() {
 
-        if (turret != null && body != null && cannon != null) {
+        if (turret != null && body != null && cannon != null && needsToDie == false) {
 
             if (PlayerInLineOfSight()) {
 
+                Quaternion cannonRot = cannon.transform.localRotation;
                 Vector3 playerDirection = DirectionToPlayer();
+                float xRotation = cannonRot.x;
+
+                // Idea is to base rotation off distance and height difference between player and enemy
+                float xDesiredRotation = ( Vector3.Magnitude(playerDirection) - (turret.transform.position.y - playerDirection.y) ) / 2.0f;
+                
                 playerDirection.y = 0;  // This tank turret head only rotates left-right
 
+                // Turret rotation
                 turret.transform.forward += rotationKH * (float)difficulty * (playerDirection.normalized - turret.transform.forward);
+
+                // Cannon rotation
+                xRotation += rotationKH * (float)difficulty * (xDesiredRotation - xRotation);
+
+                if (xRotation > 60.0f) {
+
+                    xRotation = 60.0f;
+                }
+                else if (xRotation < -10.0f) {
+
+                    xRotation = -10.0f;
+                }
+
+                cannonRot.x = -xRotation;   // Negative angles upward
+                cannon.transform.localRotation = cannonRot;
+
+                if (PlayerInFiringRadius()) {
+
+                    Fire();
+                }
             }
             // Return to natural position
             else {
 
                 Vector3 restingVec = body.transform.forward;
+                Quaternion restingQuat = cannon.transform.localRotation;
+                float xRotation = restingQuat.x;
 
                 turret.transform.forward += rotationKH * (float)difficulty * (restingVec - turret.transform.forward);
+                xRotation += rotationKH * (float)difficulty * (0.0f - xRotation);
+                restingQuat.x = -xRotation;
+                restingQuat.z = 0.0f;
+                cannon.transform.localRotation = restingQuat;
             }
         }
+    }
+
+    protected override void Fire() {
+
+        if (bulletSpawnLoc != null) {
+
+            if ((GameStateMgr.This.gameTime - timeLastShot) >= timeBetweenShots) {
+
+                ((IsSpawnLocCannon)bulletSpawnLoc).SpawnObject();
+
+                timeLastShot = GameStateMgr.This.gameTime;
+            }
+        }
+        else {
+
+            Debug.Log("Prowler: Has no bullet spawn location to fire.");
+        }
+    }
+
+    protected override void OnDeath() {
+
+        // Make it fall apart on death
+        Destroy(this.gameObject.GetComponent<Rigidbody>());
+        body.AddComponent<Rigidbody>();
+        turret.AddComponent<Rigidbody>();
+        cannon.AddComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update () {
 
+        DetermineDeath();
         RotateTurretUpdate();
 	}
 }

@@ -8,6 +8,11 @@ public class Player : MonoBehaviour {
 
     public GameObject pGameObject { get; private set; }
     public PlayerControl pControl { get; private set; }
+    public GameObject pCameraGameObject;
+    public PlayerCamera pCamera { get; private set; }
+
+    public float sightRange = 100.0f;
+    public float sightAngle = 90.0f;
 
     public int maxHealth = 100;
     public int maxAmmo = 10;
@@ -27,6 +32,11 @@ public class Player : MonoBehaviour {
 
             pGameObject = this.gameObject;
             pControl = pGameObject.GetComponent<PlayerControl>();
+        }
+
+        if (pCameraGameObject != null) {
+
+            pCamera = pCameraGameObject.GetComponent<PlayerCamera>();
         }
 
         currentHealth = maxHealth;
