@@ -93,12 +93,20 @@ public class PlayerCamera : MonoBehaviour {
             if (e != null) {
 
                 Vector3 directional = e.gameObject.transform.position - playerTrackObj.transform.position;
+
+                RaycastHit losFinder;
+
+                // Had to raise origin to avoid colliding with terrain when reycast draws along above the terrain in parallel
+                bool hitSomething = Physics.Raycast(playerTrackObj.transform.position, directional.normalized, out losFinder, Vector3.Magnitude(directional));
                 
                 if (Vector3.Magnitude(directional) < Player.This.sightRange
                     && Mathf.Abs(Vector3.Angle(playerTrackObj.gameObject.transform.forward, directional)) < (Player.This.sightAngle / 2.0f)
                     ) {
+                    if (!hitSomething
+                        || (hitSomething && losFinder.collider.gameObject.name != "Terrain")) { // Dont track if hidden behind terain
 
-                    trackList.Add(e.gameObject);
+                        trackList.Add(e.gameObject);
+                    }
                 }
                 else {
                     

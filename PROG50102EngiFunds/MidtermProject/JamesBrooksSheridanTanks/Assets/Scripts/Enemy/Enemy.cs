@@ -47,7 +47,7 @@ public abstract class Enemy : MonoBehaviour {
 
         if (turret != null) {
 
-            newVec = Player.This.pGameObject.transform.position - turret.transform.position;
+            newVec = Player.This.pBodyGameObject.transform.position - turret.transform.position;
         }
 
         return newVec;
@@ -59,10 +59,18 @@ public abstract class Enemy : MonoBehaviour {
 
             Vector3 playerVector = DirectionToPlayer();
 
+            RaycastHit losFinder;
+
+            // Had to raise origin to avoid colliding with terrain when reycast draws along above the terrain in parallel
+            bool hitSomething = Physics.Raycast(this.transform.position + Vector3.up * 5.0f, playerVector.normalized , out losFinder, Vector3.Magnitude(playerVector));
+            
             if (Vector3.Magnitude(playerVector) <= sightDistance) {
                 if (Mathf.Abs(Vector3.Angle(turret.transform.forward, playerVector)) < (sightDegrees / 2.0f)) {
+                    if (!hitSomething
+                        || (hitSomething && losFinder.collider.gameObject == Player.This.pGameObject)) {
 
-                    return true;
+                        return true;
+                    }
                 }
             }
         }

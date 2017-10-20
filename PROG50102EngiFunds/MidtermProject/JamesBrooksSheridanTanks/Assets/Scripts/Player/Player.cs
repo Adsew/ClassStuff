@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
     public static Player This;
 
     public GameObject pGameObject { get; private set; }
+    public GameObject pBodyGameObject { get; private set; }
     public PlayerControl pControl { get; private set; }
     public GameObject pCameraGameObject;
     public PlayerCamera pCamera { get; private set; }
@@ -36,8 +37,14 @@ public class Player : MonoBehaviour {
 
             pGameObject = this.gameObject;
             pControl = pGameObject.GetComponent<PlayerControl>();
-        }
 
+            IsTankBody pTankBodyScript = pGameObject.GetComponentInChildren<IsTankBody>();
+
+            if (pTankBodyScript != null && pBodyGameObject == null) {
+
+                pBodyGameObject = pTankBodyScript.gameObject;
+            }
+        }
         if (pCameraGameObject != null) {
 
             pCamera = pCameraGameObject.GetComponent<PlayerCamera>();

@@ -109,48 +109,48 @@ public class PlayerControl : MonoBehaviour {
 
         }
 
+        // Rotation
+        // Rotate towards the current movement
+        // unless far enough in the other direction thus rotate towards that
+        if (curSpeed >= 0.0f && crossDirection.y > -0.6f
+            || crossDirection.y >= 0.58f) {
 
-        // SAYING SAME THING TOP AND BOTTOM LEFT TURN ISDOMINENT
-
-        if ((crossRotation.y < -0.02f && crossDirection.y >= -0.1f)
-            || (crossRotation.y > 0.02f && crossDirection.y < -0.1f)
-            ) {
-            //turn left
-            body.transform.Rotate(body.transform.up, 1);
+            if (crossRotation.y < -0.02f) {
+                //turn left
+                body.transform.Rotate(body.transform.up, 1);
+            }
+            else if (crossRotation.y > 0.02f) {
+                // turn right
+                body.transform.Rotate(body.transform.up, -1);
+            }
         }
-        else if ((crossRotation.y > 0.02f && crossDirection.y >= -0.1f)
-            || (crossRotation.y < -0.02f && crossDirection.y < -0.1f)
-            ) {
-            // turn right
-            body.transform.Rotate(body.transform.up, -1);
+        else if (curSpeed < 0.0f && crossDirection.y < 0.6f
+            || crossDirection.y >= -0.58f) {
+
+            if (crossRotation.y < -0.02f) {
+                //turn left
+                body.transform.Rotate(body.transform.up, -1);
+            }
+            else if (crossRotation.y > 0.02f) {
+                // turn right
+                body.transform.Rotate(body.transform.up, 1);
+            }
         }
-
-
-
-        //if (crossRotation.y < -0.02f) {
-        //    //turn left
-        //    body.transform.Rotate(body.transform.up, 1);
-        //}
-        //else if (crossRotation.y > 0.02f) {
-        //    // turn right
-        //    body.transform.Rotate(body.transform.up, -1);
-        //}
-
+        
         // Based on speedup/slowdown movement rather than direct movement
 
         // Forward-back movement
         // Only accelerate if not turning hard turning
-        if (Mathf.Abs(yMove) > deadZone
-            || Mathf.Abs(xMove) > deadZone) {
+        if (Mathf.Abs(yMove) > deadZone || Mathf.Abs(xMove) > deadZone) {
             if (Mathf.Abs(curSpeed) < maxSpeed) {
 
                 // Going forward
-                if (crossDirection.y >= -0.2f) {
+                if (crossDirection.y >= 0.0f) {
                     
                     curSpeed = curSpeed + acceleration;
                 }
                 // Going backward
-                else {
+                else if (crossDirection.y < 0.0f) {
 
                     curSpeed = curSpeed - acceleration;
                 }
