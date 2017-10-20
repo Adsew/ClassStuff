@@ -22,9 +22,7 @@ public class IsQuickBullet : IsProjectile {
         }
 
         temp.velocity = bulletVelocity * this.gameObject.transform.forward;
-
-        damage = 1;
-
+        
         timeTilDeath = 0.0f;    // Instant removal on collision
     }
 

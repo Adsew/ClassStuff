@@ -234,11 +234,12 @@ public class PlayerControl : MonoBehaviour {
 
             if (bulletSpawnLoc != null) {
 
-                bulletSpawnLoc.SpawnObject();
+                IsProjectile temp = bulletSpawnLoc.SpawnObject();
+                temp.damage = Player.This.damage;
             }
         }
     }
-
+    
     // Update is called once per frame
     void Update () {
 

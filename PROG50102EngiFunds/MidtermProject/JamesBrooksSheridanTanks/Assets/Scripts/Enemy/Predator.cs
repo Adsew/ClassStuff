@@ -47,6 +47,11 @@ public class Predator : Enemy {
             bulletSpawnLoc = this.gameObject.GetComponentInChildren<IsSpawnLocMachinegun>();
         }
 
+        if (healthBar == null) {
+
+            healthBar = this.gameObject.GetComponentInChildren<IsHealthbar>();
+        }
+
         if (baseHealth <= 0) {
 
             baseHealth = 10;
@@ -91,14 +96,20 @@ public class Predator : Enemy {
         }
     }
 
+    protected override void HealthBarUpdate() {
+
+        healthBar.SetHealthPercent((float)currentHealth / (float)maxHealth);
+    }
+
     protected override void Fire() {
 
         if (bulletSpawnLoc != null) {
 
             if ((GameStateMgr.This.gameTime - timeLastShot) >= timeBetweenShots) {
                 
-                ((IsSpawnLocMachinegun)bulletSpawnLoc).SpawnObject();
-
+                IsProjectile temp = ((IsSpawnLocMachinegun)bulletSpawnLoc).SpawnObject();
+                temp.damage = damage;
+                
                 timeLastShot = GameStateMgr.This.gameTime;
             }
         }
@@ -131,5 +142,7 @@ public class Predator : Enemy {
         DetermineDeath();
         propellerSpinUpdate();
         RotateTurretUpdate();
+
+        HealthBarUpdate();
 	}
 }

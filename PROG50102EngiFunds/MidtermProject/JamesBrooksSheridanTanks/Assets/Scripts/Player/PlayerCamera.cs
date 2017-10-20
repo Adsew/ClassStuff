@@ -120,8 +120,8 @@ public class PlayerCamera : MonoBehaviour {
 
             xmin = playPos.x - playerWeight;
             xmax = playPos.x + playerWeight;
-            ymin = playPos.y - playerWeight;
-            ymax = playPos.y + playerWeight;
+            ymin = playPos.y - playerWeight*3;
+            ymax = playPos.y + playerWeight*3;
             zmin = playPos.z - playerWeight;
             zmax = playPos.z + playerWeight;
         }
@@ -169,7 +169,7 @@ public class PlayerCamera : MonoBehaviour {
         return offset;
     }
 
-    public void MoveToPlayer() {
+    public void SetFocusPlayer() {
 
         if (titleSpline != null) {
 
@@ -182,6 +182,11 @@ public class PlayerCamera : MonoBehaviour {
         }
 
         focusOnPlayer = true;
+    }
+
+    public void SetFocusNothing() {
+
+        focusOnPlayer = false;
     }
     
     // Update is called once per frame

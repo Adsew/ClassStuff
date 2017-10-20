@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour {
     
     protected IsSpawnLoc bulletSpawnLoc;
+    protected IsHealthbar healthBar;
     protected GameObject body;
     protected GameObject turret;
 
@@ -33,6 +34,8 @@ public abstract class Enemy : MonoBehaviour {
     public float firingDegrees = 20.0f;        // Degrees
 
     protected abstract void RotateTurretUpdate();
+
+    protected abstract void HealthBarUpdate();
 
     protected abstract void Fire();
 
@@ -106,19 +109,24 @@ public abstract class Enemy : MonoBehaviour {
 
             currentHealth -= proj.damage;
 
-            if (currentHealth <= 0 && needsToDie == false) {
+            if (currentHealth <= 0) {
 
-                needsToDie = true;
-                
-                if (myPath != null) {
+                currentHealth = 0;
 
-                    myPath.RemoveHead(this.gameObject);
+                if (needsToDie == false) {
+
+                    needsToDie = true;
+
+                    if (myPath != null) {
+
+                        myPath.RemoveHead(this.gameObject);
+                    }
+
+                    EnemySpawnMgr.This.RemoveDeadEnemy(this);
+                    ScoreMgr.This.IncScore(score);
+
+                    OnDeath();
                 }
-
-                EnemySpawnMgr.This.RemoveDeadEnemy(this);
-                ScoreMgr.This.IncScore(score);
-
-                OnDeath();
             }
         }
     }

@@ -23,12 +23,14 @@ public abstract class IsSpawnLoc : MonoBehaviour {
         }
     }
 
-    public virtual void SpawnObject() {
+    public virtual GameObject SpawnObject() {
 
         if (objToSpawn != null) {
             
-            Instantiate(objToSpawn, myTransform.position, myTransform.rotation);
+            return Instantiate(objToSpawn, myTransform.position, myTransform.rotation);
         }
+
+        return null;
     }
 
 	// Update is called once per frame

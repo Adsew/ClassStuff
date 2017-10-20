@@ -29,7 +29,7 @@ public class GameStateMgr : MonoBehaviour {
         gameIsPlaying = true;
 
         EnemySpawnMgr.This.GameStartSpawns();
-        Player.This.pCamera.MoveToPlayer();
+        Player.This.pCamera.SetFocusPlayer();
         Player.This.LockControls(false);
     }
     

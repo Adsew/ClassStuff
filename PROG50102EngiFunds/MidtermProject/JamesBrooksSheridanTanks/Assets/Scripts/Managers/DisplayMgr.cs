@@ -9,9 +9,8 @@ public class DisplayMgr : MonoBehaviour {
 
     private Text onScreenMsgLog;
     private Text onScreenScoreText;
-
-    private bool playerWon;
-
+    private Text onScreenHealthText;
+    
     public static DisplayMgr This;
     
     public GameObject titleScreen;
@@ -19,6 +18,7 @@ public class DisplayMgr : MonoBehaviour {
     public GameObject hudScreen;
     public GameObject onScreenMsgLogDisplay;
     public GameObject onScreenScoreDisplay;
+    public GameObject onScreenHealthDisplay;
 
 	// Use this for initialization
 	void Start () {
@@ -28,14 +28,17 @@ public class DisplayMgr : MonoBehaviour {
             This = this;
         }
 
-        if (onScreenMsgLogDisplay != null || onScreenScoreDisplay != null) {
+        if (onScreenMsgLogDisplay != null 
+            || onScreenScoreDisplay != null
+            || onScreenHealthDisplay != null) {
 
             onScreenMsgLog = onScreenMsgLogDisplay.GetComponent<Text>();
             onScreenScoreText = onScreenScoreDisplay.GetComponent<Text>();
+            onScreenHealthText = onScreenHealthDisplay.GetComponent<Text>();
         }
         else {
 
-            Debug.Log("DisplayMgr: Error on startup, no text displays attached.");
+            Debug.Log("DisplayMgr: Error on startup, one or more text displays not attached.");
         }
 
 
@@ -49,15 +52,8 @@ public class DisplayMgr : MonoBehaviour {
 
             Debug.Log("DisplayMgr: Error on startup, missing title screen or HUD screen.");
         }
-        
-        playerWon = false;
     }
-
-    public void SetPlayerWon(bool w) {
-
-        playerWon = w;
-    }
-
+    
     public void UpdateMessage(string msg) {
         
         if (onScreenMsgLog != null) {
@@ -79,6 +75,18 @@ public class DisplayMgr : MonoBehaviour {
         else {
 
             Debug.Log("DisplayMgr: Can't update text component, on screen score reference missing");
+        }
+    }
+
+    public void UpdatePlayerHealth(int num) {
+
+        if (onScreenHealthText != null) {
+
+            onScreenHealthText.text = "Hull Integrity: " + num;
+        }
+        else {
+
+            Debug.Log("DisplayMgr: Can't update player health, on screen health reference missing");
         }
     }
 

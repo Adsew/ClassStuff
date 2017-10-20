@@ -22,9 +22,7 @@ public class IsCannonBall : IsProjectile {
         }
 
         temp.velocity = cannonBallVelocity * this.gameObject.transform.forward;
-
-        damage = 5;
-
+        
         timeTilDeath = 0.0f;    // Instant removal on collision
     }
 

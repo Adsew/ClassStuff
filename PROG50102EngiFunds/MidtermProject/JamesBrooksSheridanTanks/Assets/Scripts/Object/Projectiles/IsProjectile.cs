@@ -9,14 +9,12 @@ public class IsProjectile : MonoBehaviour {
 
     protected float timeTilDeath = 5.0f;    // Seconds
 
-    public int damage { get; protected set; }
+    public int damage = 1;
 
     // Use this for initialization
     void Start () {
 
         InitProjectile();
-
-        damage = 1;
 	}
 
     protected void InitProjectile() {

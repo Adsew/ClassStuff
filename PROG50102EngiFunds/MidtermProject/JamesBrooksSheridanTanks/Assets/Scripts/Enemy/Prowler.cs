@@ -47,6 +47,11 @@ public class Prowler : Enemy {
             bulletSpawnLoc = this.gameObject.GetComponentInChildren<IsSpawnLocCannon>();
         }
 
+        if (healthBar == null) {
+
+            healthBar = this.gameObject.GetComponentInChildren<IsHealthbar>();
+        }
+
         if (baseHealth <= 0) {
 
             baseHealth = 15;
@@ -77,7 +82,7 @@ public class Prowler : Enemy {
                 float xRotation = cannonRot.x;
 
                 // Idea is to base rotation off distance and height difference between player and enemy
-                float xDesiredRotation = ( Vector3.Magnitude(playerDirection) - (turret.transform.position.y - playerDirection.y) ) / 2.0f;
+                float xDesiredRotation = ( Vector3.Magnitude(playerDirection) / 2.0f - (turret.transform.position.y - playerDirection.y + 20.0f) ) / 2.0f;
                 
                 playerDirection.y = 0;  // This tank turret head only rotates left-right
 
@@ -85,15 +90,15 @@ public class Prowler : Enemy {
                 turret.transform.forward += rotationKH * (float)difficulty * (playerDirection.normalized - turret.transform.forward);
 
                 // Cannon rotation
-                xRotation += rotationKH * (float)difficulty * (xDesiredRotation - xRotation);
+                xRotation += rotationKH * (xDesiredRotation - xRotation);
 
                 if (xRotation > 60.0f) {
 
                     xRotation = 60.0f;
                 }
-                else if (xRotation < -10.0f) {
+                else if (xRotation < -30.0f) {
 
-                    xRotation = -10.0f;
+                    xRotation = -30.0f;
                 }
 
                 cannonRot.x = -xRotation;   // Negative angles upward
@@ -120,13 +125,19 @@ public class Prowler : Enemy {
         }
     }
 
+    protected override void HealthBarUpdate() {
+
+        healthBar.SetHealthPercent((float)currentHealth / (float)maxHealth);
+    }
+
     protected override void Fire() {
 
         if (bulletSpawnLoc != null) {
 
             if ((GameStateMgr.This.gameTime - timeLastShot) >= timeBetweenShots) {
 
-                ((IsSpawnLocCannon)bulletSpawnLoc).SpawnObject();
+                IsProjectile temp = ((IsSpawnLocCannon)bulletSpawnLoc).SpawnObject();
+                temp.damage = damage;
 
                 timeLastShot = GameStateMgr.This.gameTime;
             }
@@ -151,5 +162,7 @@ public class Prowler : Enemy {
 
         DetermineDeath();
         RotateTurretUpdate();
+
+        HealthBarUpdate();
 	}
 }

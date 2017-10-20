@@ -6,6 +6,8 @@ public class EnemySpawnMgr : MonoBehaviour {
 
     private int lastSpawnTime = 0;
 
+    private int difficulty = 1;
+
     public List<Enemy> activeEnemies { get; private set; }
 
     public static EnemySpawnMgr This;
@@ -118,7 +120,7 @@ public class EnemySpawnMgr : MonoBehaviour {
         lastSpawnTime = (int)GameStateMgr.This.gameTime;
     }
 
-    private void randomSpawnOnInterval() {
+    private void RandomSpawnOnInterval() {
 
         if (GameStateMgr.This.gameIsPlaying && ((int)GameStateMgr.This.gameTime - lastSpawnTime) >= spawnInterval) {
 
@@ -195,17 +197,31 @@ public class EnemySpawnMgr : MonoBehaviour {
         int d = (int)(GameStateMgr.This.gameTime / difficultyIncTimer) + 1;
 
         // Max 10 (rotation aim speed maxes at 10)
-        if (d > 10) {
+        if (d > 9) {
 
-            d = 10;
+            d = 9;
         }
 
         return d;
     }
 
+    // Let the player know if the difficulty changes
+    private void DifficultyUpdate() {
+
+        int curDif = DetermineDifficulty();
+
+        if (difficulty != curDif) {
+
+            difficulty = curDif;
+
+            DisplayMgr.This.UpdateMessage("Difficulty has changed to " + difficulty + "!");
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
 
-        randomSpawnOnInterval();
+        RandomSpawnOnInterval();
+        DifficultyUpdate();
 	}
 }

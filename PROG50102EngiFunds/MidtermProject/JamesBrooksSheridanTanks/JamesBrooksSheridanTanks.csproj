@@ -93,12 +93,14 @@
     <Compile Include="Assets\Scripts\Managers\ScoreMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\SoundMgr.cs" />
     <Compile Include="Assets\Scripts\Object\IsCannon.cs" />
+    <Compile Include="Assets\Scripts\Object\IsHealthbar.cs" />
     <Compile Include="Assets\Scripts\Object\IsPropeller.cs" />
     <Compile Include="Assets\Scripts\Object\IsTankBody.cs" />
     <Compile Include="Assets\Scripts\Object\IsTurretHead.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsCannonBall.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsProjectile.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsQuickBullet.cs" />
+    <Compile Include="Assets\Scripts\Player\DamagablePart.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCamera.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerControl.cs" />

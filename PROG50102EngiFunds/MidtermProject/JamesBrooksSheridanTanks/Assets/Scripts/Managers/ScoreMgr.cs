@@ -5,10 +5,7 @@ using UnityEngine;
 public class ScoreMgr : MonoBehaviour {
 
     public static ScoreMgr This;
-
-    [Range(1,100)]
-    public int scoreToWin = 20;
-
+    
     private int score;
 
 
@@ -24,12 +21,7 @@ public class ScoreMgr : MonoBehaviour {
     public void IncScore(int n)
     {
         score = score + n;
-
-        if (score >= scoreToWin) {
-
-            DisplayMgr.This.SetPlayerWon(true);
-        }
-
+        
         if (DisplayMgr.This != null) {
 
             DisplayMgr.This.UpdateScore(score);

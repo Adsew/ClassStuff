@@ -15,10 +15,14 @@ public class Player : MonoBehaviour {
     public float sightAngle = 90.0f;
 
     public int maxHealth = 100;
-    public int maxAmmo = 10;
+
+    public int damage = 5;
     
     private int currentHealth;
-    private int currentAmmo;
+
+    private bool needsToDie = false;
+    private float timeTilDeath = 5.0f;
+    private float deathTimer = 0.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -40,7 +44,6 @@ public class Player : MonoBehaviour {
         }
 
         currentHealth = maxHealth;
-        currentAmmo = maxAmmo;
 	}
 	
     public void LockControls(bool setting) {
@@ -54,11 +57,20 @@ public class Player : MonoBehaviour {
     public void takeDamage(int damage) {
 
         currentHealth -= damage;
-
-        if (currentHealth < 0) {
+        
+        if (currentHealth <= 0) {
 
             currentHealth = 0;
+
+            if (needsToDie == false) {
+
+                needsToDie = true;
+
+                OnDeath();
+            }
         }
+
+        DisplayMgr.This.UpdatePlayerHealth(currentHealth);
     }
 
     public void heal(int hp) {
@@ -71,8 +83,52 @@ public class Player : MonoBehaviour {
         }
     }
 
-	// Update is called once per frame
-	void Update () {
+    private void OnDeath() {
+
+        LockControls(true);
+        DisplayMgr.This.UpdateMessage("Ouch... You died.");
+
+        // Make players turret pop off for fun
+        IsTankBody pTankBodyScript = pGameObject.GetComponentInChildren<IsTankBody>();
+
+        if (pTankBodyScript != null) {
+
+            GameObject pTankBody = pTankBodyScript.gameObject;
+            IsTurretHead pTurretScript = pGameObject.GetComponentInChildren<IsTurretHead>();
+
+            if (pTurretScript != null) {
+
+                GameObject pTurret = pTurretScript.gameObject;
+                Rigidbody turretRB = pTurret.GetComponent<Rigidbody>();
+                HingeJoint joint = pTankBody.GetComponent<HingeJoint>();
+
+                if (joint != null && turretRB != null) {
+
+                    pCamera.SetFocusNothing();
+
+                    Destroy(joint);
+
+                    turretRB.velocity = 20.0f * pTurret.transform.up;
+                }
+            }
+        }
+    }
+
+    protected void DetermineDeath() {
+
+        if (needsToDie) {
+
+            deathTimer = deathTimer + Time.deltaTime;
+
+            if (deathTimer > timeTilDeath) {
+
+                
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

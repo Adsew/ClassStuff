@@ -10,16 +10,20 @@ public class IsSpawnLocCannon : IsSpawnLoc {
         InitSpawnLoc();
     }
 
-    public new void SpawnObject() {
+    public new IsProjectile SpawnObject() {
 
         if (objToSpawn != null) {
 
-            Instantiate(objToSpawn,
+            GameObject temp = Instantiate(objToSpawn,
                 myTransform.position + this.gameObject.transform.forward,
                 myTransform.rotation);
 
             SoundMgr.This.PlayRandomFireSound();
+
+            return temp.GetComponent<IsProjectile>();
         }
+
+        return null;
     }
 
     // Update is called once per frame
