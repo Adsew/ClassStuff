@@ -18,6 +18,20 @@ public class ScoreMgr : MonoBehaviour {
         }
 	}
 
+    public void ResetScore() {
+
+        score = 0;
+
+        if (DisplayMgr.This != null) {
+
+            DisplayMgr.This.UpdateScore(score);
+        }
+        else {
+
+            Debug.Log("ScoreMgr: Cant update score. DisplayMgr does not exist.");
+        }
+    }
+
     public void IncScore(int n)
     {
         score = score + n;

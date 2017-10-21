@@ -10,18 +10,24 @@ public class DisplayMgr : MonoBehaviour {
     private Text onScreenMsgLog;
     private Text onScreenScoreText;
     private Text onScreenHealthText;
+
+    private Text onScreenFinalScoreText;
     
     public static DisplayMgr This;
     
     public GameObject titleScreen;
+
+    public GameObject deathScreen;
 
     public GameObject hudScreen;
     public GameObject onScreenMsgLogDisplay;
     public GameObject onScreenScoreDisplay;
     public GameObject onScreenHealthDisplay;
 
-	// Use this for initialization
-	void Start () {
+    public GameObject onScreenFinalScoreDisplay;
+
+    // Use this for initialization
+    void Start () {
 		
         if (This == null) {
 
@@ -30,11 +36,13 @@ public class DisplayMgr : MonoBehaviour {
 
         if (onScreenMsgLogDisplay != null 
             || onScreenScoreDisplay != null
-            || onScreenHealthDisplay != null) {
+            || onScreenHealthDisplay != null
+            || onScreenFinalScoreDisplay != null) {
 
             onScreenMsgLog = onScreenMsgLogDisplay.GetComponent<Text>();
             onScreenScoreText = onScreenScoreDisplay.GetComponent<Text>();
             onScreenHealthText = onScreenHealthDisplay.GetComponent<Text>();
+            onScreenFinalScoreText = onScreenFinalScoreDisplay.GetComponent<Text>();
         }
         else {
 
@@ -42,10 +50,11 @@ public class DisplayMgr : MonoBehaviour {
         }
 
 
-        if (titleScreen != null && hudScreen != null) {
+        if (titleScreen != null && hudScreen != null && deathScreen != null) {
 
             currentScreen = titleScreen;    // Start of game at title screen
             hudScreen.SetActive(false);
+            deathScreen.SetActive(false);
             currentScreen.SetActive(true);
         }
         else {
@@ -90,14 +99,24 @@ public class DisplayMgr : MonoBehaviour {
         }
     }
 
-    // Code can be made more complex with pause menus and such
-    // But in this game it only needs to be simple
+    public void UpdateFinalScore() {
+
+        onScreenFinalScoreText.text = onScreenScoreText.text;
+    }
+
+    // Swap between screens depending on game state
     private void ScreenSwapUpdate() {
 
         if (GameStateMgr.This.gameIsPlaying && currentScreen != hudScreen) {
 
             currentScreen.SetActive(false);
             currentScreen = hudScreen;
+            currentScreen.SetActive(true);
+        }
+        else if (GameStateMgr.This.gameIsOver && currentScreen != deathScreen) {
+
+            currentScreen.SetActive(false);
+            currentScreen = deathScreen;
             currentScreen.SetActive(true);
         }
     }

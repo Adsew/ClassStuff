@@ -8,7 +8,10 @@ public class Player : MonoBehaviour {
 
     public GameObject pGameObject { get; private set; }
     public GameObject pBodyGameObject { get; private set; }
+    public GameObject pTurretGameObject { get; private set; }
+
     public PlayerControl pControl { get; private set; }
+
     public GameObject pCameraGameObject;
     public PlayerCamera pCamera { get; private set; }
 
@@ -39,10 +42,15 @@ public class Player : MonoBehaviour {
             pControl = pGameObject.GetComponent<PlayerControl>();
 
             IsTankBody pTankBodyScript = pGameObject.GetComponentInChildren<IsTankBody>();
+            IsTurretHead pTankTurretScript = pGameObject.GetComponentInChildren<IsTurretHead>();
 
             if (pTankBodyScript != null && pBodyGameObject == null) {
 
                 pBodyGameObject = pTankBodyScript.gameObject;
+            }
+            if (pTankTurretScript != null && pTurretGameObject == null) {
+
+                pTurretGameObject = pTankTurretScript.gameObject;
             }
         }
         if (pCameraGameObject != null) {
@@ -51,8 +59,32 @@ public class Player : MonoBehaviour {
         }
 
         currentHealth = maxHealth;
-	}
-	
+    }
+
+    public void RespawnPlayer(Vector3 spawnLoc) {
+
+        pGameObject.transform.position = spawnLoc;
+        pGameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        pBodyGameObject.transform.localPosition = new Vector3(0, 0, 0);
+        pBodyGameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        pTurretGameObject.transform.localPosition = new Vector3(0, 0.94f, 0);
+        pTurretGameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+        HingeJoint turretFixture = pBodyGameObject.GetComponent<HingeJoint>();
+
+        if (turretFixture != null) {
+
+            turretFixture.connectedBody = pTurretGameObject.GetComponent<Rigidbody>();
+        }
+
+        currentHealth = maxHealth;
+
+        deathTimer = 0.0f;
+        needsToDie = false;
+
+        DisplayMgr.This.UpdatePlayerHealth(currentHealth);
+    }
+
     public void LockControls(bool setting) {
 
         if (pControl != null) {
@@ -88,11 +120,15 @@ public class Player : MonoBehaviour {
 
             currentHealth = maxHealth;
         }
+
+        DisplayMgr.This.UpdatePlayerHealth(currentHealth);
     }
 
     private void OnDeath() {
 
         LockControls(true);
+        pCamera.SetFocusNothing();
+
         DisplayMgr.This.UpdateMessage("Ouch... You died.");
 
         // Make players turret pop off for fun
@@ -110,10 +146,8 @@ public class Player : MonoBehaviour {
                 HingeJoint joint = pTankBody.GetComponent<HingeJoint>();
 
                 if (joint != null && turretRB != null) {
-
-                    pCamera.SetFocusNothing();
-
-                    Destroy(joint);
+                    
+                    joint.connectedBody = null;
 
                     turretRB.velocity = 20.0f * pTurret.transform.up;
                 }
@@ -127,15 +161,16 @@ public class Player : MonoBehaviour {
 
             deathTimer = deathTimer + Time.deltaTime;
 
-            if (deathTimer > timeTilDeath) {
+            if (deathTimer > timeTilDeath && !GameStateMgr.This.gameIsOver) {
 
-                
+                GameStateMgr.This.EndGame();
             }
         }
     }
 
     // Update is called once per frame
     void Update () {
-		
+
+        DetermineDeath();
 	}
 }

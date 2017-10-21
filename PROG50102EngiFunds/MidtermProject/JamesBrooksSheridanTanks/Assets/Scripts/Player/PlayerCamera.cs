@@ -7,9 +7,11 @@ public class PlayerCamera : MonoBehaviour {
     private List<GameObject> trackList;
     private GameObject cameraObj;
 
+    private Spline titleSpline;
+
     private bool focusOnPlayer;
 
-    public GameObject titleSpline;
+    public GameObject titleSplineGO;
     public GameObject playerTrackObj;
     
     [Range(1.0f, 20.0f)]
@@ -38,6 +40,11 @@ public class PlayerCamera : MonoBehaviour {
 
                 cameraObj = temp.gameObject;
             }
+        }
+        
+        if (titleSpline == null && titleSplineGO != null) {
+
+            titleSpline = titleSplineGO.GetComponent<Spline>();
         }
 
         focusOnPlayer = false;
@@ -178,18 +185,23 @@ public class PlayerCamera : MonoBehaviour {
     }
 
     public void SetFocusPlayer() {
-
+        
         if (titleSpline != null) {
-
-            Spline spline = titleSpline.GetComponent<Spline>();
-
-            if (spline != null) {
-
-                spline.RemoveHead(this.gameObject);
-            }
+            
+            titleSpline.RemoveHead(this.gameObject);
         }
 
         focusOnPlayer = true;
+    }
+
+    public void SetFocusSpline() {
+
+        if (titleSpline != null) {
+
+            titleSpline.AddHead(this.gameObject);
+        }
+
+        focusOnPlayer = false;
     }
 
     public void SetFocusNothing() {

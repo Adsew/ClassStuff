@@ -86,6 +86,12 @@ public class Spline : MonoBehaviour {
         }
     }
 
+    public void RemoveAllHeads() {
+
+        heads.Clear();
+        t.Clear();
+    }
+
     Vector3 CatmullRomSpline(float tVal) {
         
         // Ensure enough points for spline given position t

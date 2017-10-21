@@ -51,6 +51,38 @@ public class EnemySpawnMgr : MonoBehaviour {
         }
     }
 	
+    public void ResetToBase() {
+
+        foreach (Enemy e in activeEnemies) {
+
+            Destroy(e.gameObject);
+        }
+
+        activeEnemies.Clear();
+
+        foreach (GameObject path in groundPaths) {
+
+            Spline s = path.GetComponent<Spline>();
+
+            if (s != null) {
+
+                s.RemoveAllHeads();
+            }
+        }
+
+        foreach (GameObject path in airPaths) {
+
+            Spline s = path.GetComponent<Spline>();
+
+            if (s != null) {
+
+                s.RemoveAllHeads();
+            }
+        }
+
+        lastSpawnTime = 0;
+    }
+
     public void GameStartSpawns() {
 
         if (groundTank != null) {
