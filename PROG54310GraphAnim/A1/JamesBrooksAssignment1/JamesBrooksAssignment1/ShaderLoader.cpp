@@ -6,7 +6,7 @@ Assignment: Graphics and Animation Exercise 2
 
 Class: ShaderLoader
 
-Description: Class responsible for loadinga shader file and
+Description: Class responsible for loading a shader file and
     converting it into a usable string.
 */
 

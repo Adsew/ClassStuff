@@ -7,7 +7,9 @@ Student: James Brooks
 
 Class: Model
 
-Description: A model which contains vertices and colour and can be rendered.
+Description: This class can later be converted to true models which will hold 
+    the vertex and colour data for the model. For now it holds my premade
+    arrays for that data and renders when called.
 */
 
 
@@ -22,19 +24,18 @@ private:
 
     /***** Variables *****/
 
-    GLuint vaoID;
-
-    float *vertices;
-    float *colours;
+    GLuint vertexBuff;
+    GLuint colourBuff;
 
 public:
 
     /***** Functions *****/
 
     Model();
-
+    
     ~Model();
 
-
+    /* Render the stored buffer using draw arrays */
+    void render(GLuint &vertexPos_modelSpaceID, GLuint &colourPos_vec4ID);
 };
 

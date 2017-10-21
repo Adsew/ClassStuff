@@ -4,7 +4,6 @@
 File: Window.h
 
 Student: James Brooks
-Assignment: Assignment 1
 
 Class: Window
 
@@ -20,6 +19,8 @@ a given list of vectors and draw them to an OpenGL window.
 #include <GLFW/glfw3.h>
 
 #include "Shader.h"
+#include "Camera.h"
+#include "Model.h"
 
 
 class Window {
@@ -37,22 +38,22 @@ private:
 
     GLFWwindow *window = NULL;
 
-    /***** Vertex / Shader *****/
+    /***** Vertex / Shader / Camera *****/
 
     Shader shader;
 
+    GLuint cameraPos_mat4ID;
     GLuint vertexPos_modelSpaceID;
-    GLuint vertexBuff;
     GLuint colourPos_vec4ID;
-    GLuint colourBuff;
 
+    Camera *camera;
+
+    Model *myScene;
+
+public:
 
     /***** Functions *****/
 
-    /* Load buffer data from vectors */
-    void loadBufferData();
-
-public:
 
     /* Constructor */
     Window();
