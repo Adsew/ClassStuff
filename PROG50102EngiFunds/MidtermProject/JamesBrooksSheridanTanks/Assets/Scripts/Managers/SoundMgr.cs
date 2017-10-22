@@ -6,16 +6,20 @@ public class SoundMgr : MonoBehaviour {
 
     public static SoundMgr This;
 
-    [Range(10.0f, 100.0f)]
-    public float playerEarshot = 30.0f;
+    [Range(10.0f, 200.0f)]
+    public float playerEarshot = 100.0f;
 
-    public List<AudioClip> fireSounds;
+    public AudioClip backgroundSound;
+    public AudioClip startSound;
+    public AudioClip endSound;
+
+    public List<AudioClip> cannonFireSounds;
+    public List<AudioClip> gunFireSounds;
     public List<AudioClip> collisionSounds;
-    public List<AudioClip> targetSounds;
+    public List<AudioClip> explosionSounds;
 
-    private AudioSource fireSrc;
-    private AudioSource collisionSrc;
-    private AudioSource targetSrc;
+    private AudioSource backgroundSoundSrc;
+    private AudioSource notificationSoundSrc;
 
     // Use this for initialization
     void Start() {
@@ -26,38 +30,83 @@ public class SoundMgr : MonoBehaviour {
         }
 
         // Set sources
-        if (fireSrc == null) {
+        if (notificationSoundSrc == null) {
 
-            fireSrc = this.gameObject.AddComponent<AudioSource>();
-            fireSrc.playOnAwake = false;
+            notificationSoundSrc = this.gameObject.AddComponent<AudioSource>();
+            notificationSoundSrc.playOnAwake = false;
         }
-        if (collisionSrc == null) {
+        if (backgroundSoundSrc == null) {
 
-            collisionSrc = this.gameObject.AddComponent<AudioSource>();
-            collisionSrc.playOnAwake = false;
-        }
-        if (targetSrc == null) {
-
-            targetSrc = this.gameObject.AddComponent<AudioSource>();
-            targetSrc.playOnAwake = false;
+            backgroundSoundSrc = this.gameObject.AddComponent<AudioSource>();
+            backgroundSoundSrc.playOnAwake = false;
         }
     }
 
-    public void PlayRandomFireSound() {
-        
-        if (fireSounds.Count > 0) {
-            
-            int index = Random.Range(0, fireSounds.Count);
+    public void PlayBackgroundSound() {
 
-            if (fireSounds[index] != null) {
+        if (backgroundSound != null) {
+
+            backgroundSoundSrc.clip = backgroundSound;
+            backgroundSoundSrc.loop = true;
+            backgroundSoundSrc.Play(0);
+        }
+    }
+
+    public void StopBackgroundSound() {
+
+        if (backgroundSoundSrc.isPlaying) {
+
+            backgroundSoundSrc.Stop();
+        }
+    }
+
+    public void PlayStartGameSound() {
+
+        if (backgroundSound != null) {
+
+            notificationSoundSrc.clip = startSound;
+            notificationSoundSrc.Play(0);
+        }
+    }
+
+    public void PlayEndGameSound() {
+
+        if (backgroundSound != null) {
+
+            notificationSoundSrc.clip = endSound;
+            notificationSoundSrc.Play(0);
+        }
+    }
+
+    public void PlayRandomCannonFireSound(AudioSource src) {
+        
+        if (cannonFireSounds.Count > 0) {
+            
+            int index = Random.Range(0, cannonFireSounds.Count);
+
+            if (cannonFireSounds[index] != null) {
                 
-                fireSrc.clip = fireSounds[index];
-                fireSrc.PlayOneShot(fireSrc.clip);
+                src.clip = cannonFireSounds[index];
+                src.PlayOneShot(src.clip);
             }
         }
     }
 
-    public void PlayRandomCollisionSound() {
+    public void PlayRandomGunFireSound(AudioSource src) {
+
+        if (gunFireSounds.Count > 0) {
+
+            int index = Random.Range(0, gunFireSounds.Count);
+
+            if (gunFireSounds[index] != null) {
+
+                src.clip = gunFireSounds[index];
+                src.PlayOneShot(src.clip);
+            }
+        }
+    }
+
+    public void PlayRandomCollisionSound(AudioSource src) {
         
         if (collisionSounds.Count > 0 ) {
             
@@ -65,22 +114,22 @@ public class SoundMgr : MonoBehaviour {
             
             if (collisionSounds[index] != null) {
 
-                collisionSrc.clip = collisionSounds[index];
-                collisionSrc.PlayOneShot(collisionSrc.clip);
+                src.clip = collisionSounds[index];
+                src.PlayOneShot(src.clip);
             }
         }
     }
 
-    public void PlayRandomTargetSound() {
+    public void PlayRandomExplosionSound(AudioSource src) {
 
-        if (targetSounds.Count > 0) {
+        if (explosionSounds.Count > 0) {
 
-            int index = Random.Range(0, targetSounds.Count);
+            int index = Random.Range(0, explosionSounds.Count);
 
-            if (targetSounds[index] != null) {
+            if (explosionSounds[index] != null) {
 
-                targetSrc.clip = targetSounds[index];
-                targetSrc.PlayOneShot(targetSrc.clip);
+                src.clip = explosionSounds[index];
+                src.PlayOneShot(src.clip);
             }
         }
     }

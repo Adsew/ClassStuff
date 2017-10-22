@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class IsSpawnLocCannon : IsSpawnLoc {
 
+    protected AudioSource audSrc;
+
     // Use this for initialization
     void Start() {
 
         InitSpawnLoc();
+
+        if (audSrc == null) {
+
+            audSrc = this.gameObject.AddComponent<AudioSource>();
+            audSrc.playOnAwake = false;
+        }
     }
 
     public new IsProjectile SpawnObject() {
@@ -18,7 +26,10 @@ public class IsSpawnLocCannon : IsSpawnLoc {
                 myTransform.position + this.gameObject.transform.forward,
                 myTransform.rotation);
 
-            SoundMgr.This.PlayRandomFireSound();
+            if (SoundMgr.This.InEarshotOfPlayer(this.gameObject.transform.position)) {
+
+                SoundMgr.This.PlayRandomCannonFireSound(audSrc);
+            }
 
             return temp.GetComponent<IsProjectile>();
         }

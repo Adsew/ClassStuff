@@ -37,8 +37,13 @@ public class GameStateMgr : MonoBehaviour {
 
         gameTime = 0.0f;
 
+        SoundMgr.This.PlayBackgroundSound();
+        SoundMgr.This.PlayStartGameSound();
+
         ScoreMgr.This.ResetScore();
+
         EnemySpawnMgr.This.GameStartSpawns();
+
         Player.This.RespawnPlayer(playerRespawnPos);
         Player.This.pCamera.SetFocusPlayer();
         Player.This.LockControls(false);
@@ -48,6 +53,9 @@ public class GameStateMgr : MonoBehaviour {
 
         gameIsOver = true;
         gameIsPlaying = false;
+
+        SoundMgr.This.StopBackgroundSound();
+        SoundMgr.This.PlayEndGameSound();
 
         EnemySpawnMgr.This.ResetToBase();
         

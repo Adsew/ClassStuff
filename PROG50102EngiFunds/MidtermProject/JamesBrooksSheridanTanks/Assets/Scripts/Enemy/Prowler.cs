@@ -57,6 +57,12 @@ public class Prowler : Enemy {
             baseHealth = 15;
         }
 
+        if (audSrc == null) {
+
+            audSrc = this.gameObject.AddComponent<AudioSource>();
+            audSrc.playOnAwake = false;
+        }
+
         needsToDie = false;
 
         difficulty = EnemySpawnMgr.This.DetermineDifficulty();
@@ -155,6 +161,11 @@ public class Prowler : Enemy {
         body.AddComponent<Rigidbody>();
         turret.AddComponent<Rigidbody>();
         cannon.AddComponent<Rigidbody>();
+
+        if (SoundMgr.This.InEarshotOfPlayer(this.gameObject.transform.position)) {
+
+            SoundMgr.This.PlayRandomExplosionSound(audSrc);
+        }
     }
 
     // Update is called once per frame

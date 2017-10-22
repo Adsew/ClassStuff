@@ -21,7 +21,9 @@ public class Player : MonoBehaviour {
     public int maxHealth = 100;
 
     public int damage = 5;
-    
+
+    private AudioSource audSrc;
+
     private int currentHealth;
 
     private bool needsToDie = false;
@@ -56,6 +58,12 @@ public class Player : MonoBehaviour {
         if (pCameraGameObject != null) {
 
             pCamera = pCameraGameObject.GetComponent<PlayerCamera>();
+        }
+
+        if (audSrc == null) {
+
+            audSrc = this.gameObject.AddComponent<AudioSource>();
+            audSrc.playOnAwake = false;
         }
 
         currentHealth = maxHealth;
@@ -110,6 +118,8 @@ public class Player : MonoBehaviour {
         }
 
         DisplayMgr.This.UpdatePlayerHealth(currentHealth);
+
+        SoundMgr.This.PlayRandomCollisionSound(audSrc);
     }
 
     public void heal(int hp) {
@@ -150,6 +160,8 @@ public class Player : MonoBehaviour {
                     joint.connectedBody = null;
 
                     turretRB.velocity = 20.0f * pTurret.transform.up;
+
+                    SoundMgr.This.PlayRandomExplosionSound(audSrc);
                 }
             }
         }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
-    
+
+    protected AudioSource audSrc;
+
     protected IsSpawnLoc bulletSpawnLoc;
     protected IsHealthbar healthBar;
     protected GameObject body;
@@ -117,6 +119,11 @@ public abstract class Enemy : MonoBehaviour {
 
             currentHealth -= proj.damage;
 
+            if (SoundMgr.This.InEarshotOfPlayer(this.gameObject.transform.position)) {
+
+                SoundMgr.This.PlayRandomCollisionSound(audSrc);
+            }
+            
             if (currentHealth <= 0) {
 
                 currentHealth = 0;

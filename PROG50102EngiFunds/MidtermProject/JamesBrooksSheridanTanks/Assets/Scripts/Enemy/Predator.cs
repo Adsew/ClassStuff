@@ -57,6 +57,12 @@ public class Predator : Enemy {
             baseHealth = 10;
         }
 
+        if (audSrc == null) {
+
+            audSrc = this.gameObject.AddComponent<AudioSource>();
+            audSrc.playOnAwake = false;
+        }
+
         needsToDie = false;
 
         difficulty = EnemySpawnMgr.This.DetermineDifficulty();
@@ -126,6 +132,11 @@ public class Predator : Enemy {
         body.AddComponent<Rigidbody>();
         turret.AddComponent<Rigidbody>();
         propeller.AddComponent<Rigidbody>();
+
+        if (SoundMgr.This.InEarshotOfPlayer(this.gameObject.transform.position)) {
+
+            SoundMgr.This.PlayRandomExplosionSound(audSrc);
+        }
     }
 
     private void propellerSpinUpdate() {
