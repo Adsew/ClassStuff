@@ -5,7 +5,7 @@ using UnityEngine;
 public class Predator : Enemy {
     
     private GameObject propeller;
-
+    
     public int baseHealth = 10;
     public int baseDamage = 1;
 
@@ -79,7 +79,7 @@ public class Predator : Enemy {
 
         if (turret != null && body != null && needsToDie == false) {
 
-            if (PlayerInLineOfSight()) {
+            if (PlayerInLineOfSight() || recentlyHit) {
                 
                 Vector3 playerDirection = DirectionToPlayer();
                 
@@ -151,6 +151,8 @@ public class Predator : Enemy {
     void Update () {
 
         DetermineDeath();
+        DeterminePursuit();
+
         propellerSpinUpdate();
         RotateTurretUpdate();
 

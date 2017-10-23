@@ -107,8 +107,9 @@
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLoc.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLocCannon.cs" />
     <Compile Include="Assets\Scripts\Spawners\IsSpawnLocMachinegun.cs" />
-    <Compile Include="Assets\Tools\Spline.cs" />
-    <Compile Include="Assets\Tools\SplineTool.cs" />
+    <Compile Include="Assets\Tools\Events\JoystickButtonSubmit.cs" />
+    <Compile Include="Assets\Tools\Spline\Spline.cs" />
+    <Compile Include="Assets\Tools\Spline\SplineTool.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

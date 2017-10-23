@@ -262,9 +262,13 @@ public class Spline : MonoBehaviour {
                 }
 
                 Vector3 newPos = CatmullRomSpline(t[i]);
-                heads[i].transform.forward = newPos - heads[i].transform.position;
+                Vector3 newForward = newPos - heads[i].transform.position;
 
+                if (newForward != Vector3.zero) {
 
+                    heads[i].transform.forward = newForward.normalized;
+                }
+                
                 if (heads[i] != null) {
 
                     heads[i].transform.SetPositionAndRotation(newPos, heads[i].transform.rotation);

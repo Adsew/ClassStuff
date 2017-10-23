@@ -81,7 +81,7 @@ public class Prowler : Enemy {
 
         if (turret != null && body != null && cannon != null && needsToDie == false) {
 
-            if (PlayerInLineOfSight()) {
+            if (PlayerInLineOfSight() || recentlyHit) {
 
                 Quaternion cannonRot = cannon.transform.localRotation;
                 Vector3 playerDirection = DirectionToPlayer();
@@ -172,6 +172,8 @@ public class Prowler : Enemy {
     void Update () {
 
         DetermineDeath();
+        DeterminePursuit();
+
         RotateTurretUpdate();
 
         HealthBarUpdate();

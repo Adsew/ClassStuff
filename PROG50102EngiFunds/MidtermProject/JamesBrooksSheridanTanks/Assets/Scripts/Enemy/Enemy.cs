@@ -28,13 +28,19 @@ public abstract class Enemy : MonoBehaviour {
     protected float timeTilDeath = 5.0f;    // Seconds
 
     protected bool needsToDie = false;
-    
+
+    protected bool recentlyHit = false;
+
+    protected float pursuitTime = -1.0f;
+
     public Spline myPath = null;
 
     public float sightDegrees = 100.0f;        // Degrees
     public float sightDistance = 100.0f;       // Units
     public float firingDegrees = 20.0f;        // Degrees
 
+    public float timeToPursue = 5.0f;          // Seconds
+    
     protected abstract void RotateTurretUpdate();
 
     protected abstract void HealthBarUpdate();
@@ -110,6 +116,24 @@ public abstract class Enemy : MonoBehaviour {
             }
         }
     }
+
+    protected void DeterminePursuit() {
+        
+        if (recentlyHit) {
+
+            // Havent set time yet
+            if (pursuitTime < 0.0f) {
+
+                pursuitTime = GameStateMgr.This.gameTime + timeToPursue;
+            }
+            // Stop looking for player
+            if (pursuitTime <= GameStateMgr.This.gameTime) {
+                
+                recentlyHit = false;
+                pursuitTime = -1.0f;
+            }
+        }
+    }
     
     public void OnCollisionEnter(Collision c) {
 
@@ -118,6 +142,8 @@ public abstract class Enemy : MonoBehaviour {
         if (proj != null) {
 
             currentHealth -= proj.damage;
+
+            recentlyHit = true;
 
             if (SoundMgr.This.InEarshotOfPlayer(this.gameObject.transform.position)) {
 
