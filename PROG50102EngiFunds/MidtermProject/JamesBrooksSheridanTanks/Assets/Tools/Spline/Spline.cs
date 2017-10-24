@@ -60,6 +60,18 @@ public class Spline : MonoBehaviour {
         }
     }
 
+    public float GetTofHead(GameObject h) {
+
+        int index = heads.IndexOf(h);
+
+        if (index >= 0) {
+
+            return t[index];
+        }
+
+        return -1;
+    }
+
     public void AddHead(GameObject newHead) {
 
         heads.Add(newHead);
@@ -90,6 +102,54 @@ public class Spline : MonoBehaviour {
 
         heads.Clear();
         t.Clear();
+    }
+
+    public GameObject GetNextPointForHead(GameObject h) {
+
+        int index = heads.IndexOf(h);
+
+        if (index >= 0) {
+
+            int nextPIndex = 0;
+
+            if (gameMode == GameModes.Forward 
+                || (gameMode == GameModes.PingPong && pingpongSign > 0.0f)) {
+
+                nextPIndex = ((int)t[index] + 2) % contPoints.Count;
+            }
+            else {
+
+                nextPIndex = ((int)t[index] + 1) % contPoints.Count;
+            }
+
+            return contPoints[nextPIndex];
+        }
+
+        return null;
+    }
+
+    public GameObject GetPrevPointForHead(GameObject h) {
+
+        int index = heads.IndexOf(h);
+
+        if (index >= 0) {
+
+            int nextPIndex = 0;
+
+            if (gameMode == GameModes.Forward
+                || (gameMode == GameModes.PingPong && pingpongSign > 0.0f)) {
+
+                nextPIndex = ((int)t[index] + 1) % contPoints.Count;
+            }
+            else {
+
+                nextPIndex = ((int)t[index] + 2) % contPoints.Count;
+            }
+
+            return contPoints[nextPIndex];
+        }
+
+        return null;
     }
 
     Vector3 CatmullRomSpline(float tVal) {

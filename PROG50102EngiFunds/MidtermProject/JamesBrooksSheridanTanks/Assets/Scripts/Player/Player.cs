@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    private AudioSource audSrc;
+
+    private int currentHealth;
+
+    private bool needsToDie = false;
+    private float timeTilDeath = 5.0f;
+    private float deathTimer = 0.0f;
+
     public static Player This;
 
     public GameObject pGameObject { get; private set; }
@@ -22,14 +30,8 @@ public class Player : MonoBehaviour {
 
     public int damage = 5;
 
-    private AudioSource audSrc;
-
-    private int currentHealth;
-
-    private bool needsToDie = false;
-    private float timeTilDeath = 5.0f;
-    private float deathTimer = 0.0f;
-
+    public bool invincible = false;
+    
 	// Use this for initialization
 	void Start () {
 		
@@ -103,7 +105,10 @@ public class Player : MonoBehaviour {
 
     public void takeDamage(int damage) {
 
-        currentHealth -= damage;
+        if (!invincible) {
+
+            currentHealth -= damage;
+        }
         
         if (currentHealth <= 0) {
 

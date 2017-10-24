@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Enemy\Predator.cs" />
     <Compile Include="Assets\Scripts\Enemy\Prowler.cs" />
     <Compile Include="Assets\Scripts\Managers\DisplayMgr.cs" />
+    <Compile Include="Assets\Scripts\Managers\EnemyMovementMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemySpawnMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\GameStateMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\ScoreMgr.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\Object\IsHealthbar.cs" />
     <Compile Include="Assets\Scripts\Object\IsPropeller.cs" />
     <Compile Include="Assets\Scripts\Object\IsTankBody.cs" />
+    <Compile Include="Assets\Scripts\Object\IsTransferPoint.cs" />
     <Compile Include="Assets\Scripts\Object\IsTurretHead.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsCannonBall.cs" />
     <Compile Include="Assets\Scripts\Object\Projectiles\IsProjectile.cs" />

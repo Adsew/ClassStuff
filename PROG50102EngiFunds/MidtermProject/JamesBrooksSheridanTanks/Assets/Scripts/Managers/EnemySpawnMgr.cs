@@ -8,10 +8,10 @@ public class EnemySpawnMgr : MonoBehaviour {
 
     private int difficulty = 1;
 
-    public List<Enemy> activeEnemies { get; private set; }
-
     public static EnemySpawnMgr This;
 
+    public List<Enemy> activeEnemies { get; private set; }
+    
     [Range(10, 60)]
     public double difficultyIncTimer = 30.0;    // Seconds
 
