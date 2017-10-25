@@ -198,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887607525078216}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.033315018, y: 0.016667046, z: 2.5767007}
+  m_LocalPosition: {x: 0.033315018, y: 0.016667245, z: 2.5767007}
   m_LocalScale: {x: 1, y: 1, z: 5}
   m_Children:
   - {fileID: 4568777117295736}
@@ -238,7 +238,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516841085604508}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.069992065, y: 0.13799953, z: 0.47799683}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
@@ -559,7 +559,8 @@ MonoBehaviour:
   sightDegrees: 100
   sightDistance: 100
   firingDegrees: 10
-  baseHealth: 10
+  timeToPursue: 5
+  baseHealth: 6
   baseDamage: 5
 --- !u!114 &114520540832775462
 MonoBehaviour:

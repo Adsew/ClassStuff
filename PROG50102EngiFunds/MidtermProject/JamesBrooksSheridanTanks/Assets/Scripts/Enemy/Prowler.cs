@@ -61,6 +61,7 @@ public class Prowler : Enemy {
 
             audSrc = this.gameObject.AddComponent<AudioSource>();
             audSrc.playOnAwake = false;
+            audSrc.volume = 0.7f;
         }
 
         needsToDie = false;
@@ -83,32 +84,42 @@ public class Prowler : Enemy {
 
             if (PlayerInLineOfSight() || recentlyHit) {
 
-                Quaternion cannonRot = cannon.transform.localRotation;
+                Vector3 cannonRot = cannon.transform.localEulerAngles;
                 Vector3 playerDirection = DirectionToPlayer();
                 float xRotation = cannonRot.x;
-
-                // Idea is to base rotation off distance and height difference between player and enemy
-                float xDesiredRotation = ( Vector3.Magnitude(playerDirection) / 2.0f - (turret.transform.position.y - playerDirection.y + 20.0f) ) / 2.0f;
                 
-                playerDirection.y = 0;  // This tank turret head only rotates left-right
+                // Cannon needs to be in the perspective above and below 0
+                if (xRotation > 180) {
 
-                // Turret rotation
-                turret.transform.forward += rotationKH * (float)difficulty * (playerDirection.normalized - turret.transform.forward);
+                    xRotation -= 360.0f;
+                }
 
                 // Cannon rotation
+                // Idea is to base rotation off distance and height difference between player and enemy
+                float xDesiredRotation = -( Vector3.Magnitude(playerDirection) / 2.0f - (26.0f - playerDirection.y) ) / 2.0f;
+                
+                if (xDesiredRotation > 60.0f) {
+
+                    xDesiredRotation = 60.0f;
+                }
+                else if (xDesiredRotation < -40.0f) {
+
+                    xDesiredRotation = -30.0f;
+                }
+                
                 xRotation += rotationKH * (xDesiredRotation - xRotation);
+                
+                // Put back into expected angles
+                if (xRotation < 0.0f) {
 
-                if (xRotation > 60.0f) {
-
-                    xRotation = 60.0f;
+                    xRotation += 360.0f;
                 }
-                else if (xRotation < -30.0f) {
+                
+                cannon.transform.localEulerAngles = new Vector3(xRotation, 0.0f, 0.0f);
 
-                    xRotation = -30.0f;
-                }
-
-                cannonRot.x = -xRotation;   // Negative angles upward
-                cannon.transform.localRotation = cannonRot;
+                // Turret rotation
+                playerDirection.y = 0;  // This tank turret head only rotates left-right
+                turret.transform.forward += rotationKH * (float)difficulty * (playerDirection.normalized - turret.transform.forward);
 
                 if (PlayerInFiringRadius()) {
 
@@ -119,14 +130,14 @@ public class Prowler : Enemy {
             else {
 
                 Vector3 restingVec = body.transform.forward;
-                Quaternion restingQuat = cannon.transform.localRotation;
-                float xRotation = restingQuat.x;
+                Vector3 restingCanRot = cannon.transform.localEulerAngles;
+                float xRotation = restingCanRot.x;
 
                 turret.transform.forward += rotationKH * (float)difficulty * (restingVec - turret.transform.forward);
-                xRotation += rotationKH * (float)difficulty * (0.0f - xRotation);
-                restingQuat.x = -xRotation;
-                restingQuat.z = 0.0f;
-                cannon.transform.localRotation = restingQuat;
+
+                xRotation += rotationKH * (0.0f - xRotation);
+                
+                cannon.transform.localEulerAngles = new Vector3(xRotation, 0.0f, 0.0f);
             }
         }
     }

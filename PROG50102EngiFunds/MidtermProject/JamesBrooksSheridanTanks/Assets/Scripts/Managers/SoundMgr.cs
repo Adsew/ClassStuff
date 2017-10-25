@@ -180,5 +180,5 @@ public class SoundMgr : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 		
-	}
+    }
 }

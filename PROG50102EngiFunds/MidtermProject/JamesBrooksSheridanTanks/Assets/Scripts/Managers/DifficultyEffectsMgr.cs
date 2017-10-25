@@ -51,6 +51,22 @@ public class DifficultyEffectsMgr : MonoBehaviour {
                     myLight.color = color;
                 }
             }
+
+            if (SoundMgr.This.backgroundSound2 != null) {
+                
+                if (EnemySpawnMgr.This.difficulty > (EnemySpawnMgr.This.maxDifficulty / 2.0f)) {
+                    
+                    // Scale to the dark backgroiund music in the second half of difficulty
+                    float fade = (((float)EnemySpawnMgr.This.difficulty / (float)EnemySpawnMgr.This.maxDifficulty) - 0.5f )  * 2.0f;
+
+                    if (EnemySpawnMgr.This.difficulty == EnemySpawnMgr.This.maxDifficulty){
+
+                        fade = 1.0f;
+                    }
+                    
+                    SoundMgr.This.CrossFadeBackgroundSound(fade);
+                }
+            }
         }
     }
 
@@ -60,6 +76,10 @@ public class DifficultyEffectsMgr : MonoBehaviour {
 
             myLight.color = originalCol;
             dirLighting.transform.rotation = originalRot;
+        }
+        if (SoundMgr.This.backgroundSound2 != null) {
+
+            SoundMgr.This.CrossFadeBackgroundSound(0.0f);
         }
     }
 

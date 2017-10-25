@@ -25,7 +25,7 @@ public class IsHealthbar : MonoBehaviour {
     // Keep HealthBar facing the player
     private void RotationUpdate() {
 
-        canvasTrans.forward = (Player.This.pGameObject.transform.position - canvasTrans.position).normalized;
+        canvasTrans.forward = (Player.This.pCamera.gameObject.transform.position - canvasTrans.position).normalized;
     }
 
     // Uses decimal percent from 0 to 1

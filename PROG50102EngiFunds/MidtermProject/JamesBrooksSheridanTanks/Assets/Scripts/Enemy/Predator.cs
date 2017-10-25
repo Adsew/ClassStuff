@@ -61,6 +61,7 @@ public class Predator : Enemy {
 
             audSrc = this.gameObject.AddComponent<AudioSource>();
             audSrc.playOnAwake = false;
+            audSrc.volume = 0.5f;
         }
 
         needsToDie = false;
