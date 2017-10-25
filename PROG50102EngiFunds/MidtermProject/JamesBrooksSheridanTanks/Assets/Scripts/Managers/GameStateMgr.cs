@@ -6,8 +6,6 @@ public class GameStateMgr : MonoBehaviour {
 
     public static GameStateMgr This;
 
-    public GameObject playerPrefab;
-
     public Vector3 playerRespawnPos = new Vector3(158, 1, 134);
 
     public float gameTime { get; private set; }
@@ -36,6 +34,8 @@ public class GameStateMgr : MonoBehaviour {
         gameIsOver = false;
 
         gameTime = 0.0f;
+
+        DifficultyEffectsMgr.This.ResetEffects();
 
         SoundMgr.This.PlayBackgroundSound();
         SoundMgr.This.PlayStartGameSound();

@@ -62,7 +62,7 @@ public class EnemyMovementMgr : MonoBehaviour {
                     // or not already on spline closest to player
                     if (!transferingEnemies.Contains(tank)
                         && (tank.myPath != gClosestSplineToPlayer.GetComponent<Spline>()
-                            || tank.myPath != aClosestSplineToPlayer.GetComponent<Spline>())
+                            && tank.myPath != aClosestSplineToPlayer.GetComponent<Spline>())
                         && (tank.myPath != aTransferSpline
                             && tank.myPath != gTransferSpline)
                         ) {

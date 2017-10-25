@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\Predator.cs" />
     <Compile Include="Assets\Scripts\Enemy\Prowler.cs" />
+    <Compile Include="Assets\Scripts\Managers\DifficultyEffectsMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\DisplayMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemyMovementMgr.cs" />
     <Compile Include="Assets\Scripts\Managers\EnemySpawnMgr.cs" />

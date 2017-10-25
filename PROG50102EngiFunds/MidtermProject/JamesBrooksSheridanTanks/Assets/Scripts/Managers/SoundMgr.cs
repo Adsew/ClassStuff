@@ -9,7 +9,8 @@ public class SoundMgr : MonoBehaviour {
     [Range(10.0f, 200.0f)]
     public float playerEarshot = 100.0f;
 
-    public AudioClip backgroundSound;
+    public AudioClip backgroundSound1;
+    public AudioClip backgroundSound2;
     public AudioClip startSound;
     public AudioClip endSound;
 
@@ -18,7 +19,8 @@ public class SoundMgr : MonoBehaviour {
     public List<AudioClip> collisionSounds;
     public List<AudioClip> explosionSounds;
 
-    private AudioSource backgroundSoundSrc;
+    private AudioSource backgroundSound1Src;
+    private AudioSource backgroundSound2Src;
     private AudioSource notificationSoundSrc;
 
     // Use this for initialization
@@ -35,34 +37,63 @@ public class SoundMgr : MonoBehaviour {
             notificationSoundSrc = this.gameObject.AddComponent<AudioSource>();
             notificationSoundSrc.playOnAwake = false;
         }
-        if (backgroundSoundSrc == null) {
+        if (backgroundSound1Src == null) {
 
-            backgroundSoundSrc = this.gameObject.AddComponent<AudioSource>();
-            backgroundSoundSrc.playOnAwake = false;
+            backgroundSound1Src = this.gameObject.AddComponent<AudioSource>();
+            backgroundSound1Src.playOnAwake = false;
+        }
+        if (backgroundSound2Src == null) {
+
+            backgroundSound2Src = this.gameObject.AddComponent<AudioSource>();
+            backgroundSound2Src.playOnAwake = false;
         }
     }
 
     public void PlayBackgroundSound() {
 
-        if (backgroundSound != null) {
+        if (backgroundSound1 != null) {
 
-            backgroundSoundSrc.clip = backgroundSound;
-            backgroundSoundSrc.loop = true;
-            backgroundSoundSrc.Play(0);
+            backgroundSound1Src.clip = backgroundSound1;
+            backgroundSound1Src.loop = true;
+            backgroundSound1Src.Play(0);
+        }
+
+        if (backgroundSound2 != null) {
+
+            backgroundSound2Src.clip = backgroundSound2;
+            backgroundSound2Src.loop = true;
+            backgroundSound2Src.Play(0);
+            backgroundSound2Src.volume = 0.0f;
         }
     }
 
     public void StopBackgroundSound() {
 
-        if (backgroundSoundSrc.isPlaying) {
+        if (backgroundSound1Src.isPlaying) {
 
-            backgroundSoundSrc.Stop();
+            backgroundSound1Src.Stop();
+        }
+
+        if (backgroundSound2Src.isPlaying) {
+
+            backgroundSound2Src.Stop();
+        }
+    }
+
+    public void CrossFadeBackgroundSound(float cf) {
+
+        if (cf >= 0.0f && cf <= 1.0f) {
+            if (backgroundSound1Src != null && backgroundSound2Src != null) {
+
+                backgroundSound1Src.volume = 1.0f - cf;
+                backgroundSound2Src.volume = cf;
+            }
         }
     }
 
     public void PlayStartGameSound() {
 
-        if (backgroundSound != null) {
+        if (startSound != null) {
 
             notificationSoundSrc.clip = startSound;
             notificationSoundSrc.Play(0);
@@ -71,7 +102,7 @@ public class SoundMgr : MonoBehaviour {
 
     public void PlayEndGameSound() {
 
-        if (backgroundSound != null) {
+        if (endSound != null) {
 
             notificationSoundSrc.clip = endSound;
             notificationSoundSrc.Play(0);

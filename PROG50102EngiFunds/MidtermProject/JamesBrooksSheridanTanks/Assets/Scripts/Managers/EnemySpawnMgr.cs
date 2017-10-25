@@ -5,15 +5,16 @@ using UnityEngine;
 public class EnemySpawnMgr : MonoBehaviour {
 
     private int lastSpawnTime = 0;
-
-    private int difficulty = 1;
-
+    
     public static EnemySpawnMgr This;
 
     public List<Enemy> activeEnemies { get; private set; }
-    
-    [Range(10, 60)]
-    public double difficultyIncTimer = 30.0;    // Seconds
+
+    public int difficulty { get; private set; }
+    public int maxDifficulty { get; private set; }
+
+    [Range(1.0f, 60.0f)]
+    public float difficultyIncTimer = 30.0f;    // Seconds
 
     [Range(2, 60)]
     public int spawnInterval = 10;              // Seconds
@@ -49,12 +50,16 @@ public class EnemySpawnMgr : MonoBehaviour {
 
             activeEnemies = new List<Enemy>();
         }
+
+        difficulty = 1;
+        maxDifficulty = 9;
     }
 	
     public void ResetToBase() {
 
         foreach (Enemy e in activeEnemies) {
 
+            e.myPath.RemoveHead(e.gameObject);
             Destroy(e.gameObject);
         }
 
@@ -81,6 +86,7 @@ public class EnemySpawnMgr : MonoBehaviour {
         }
 
         lastSpawnTime = 0;
+        difficulty = 1;
     }
 
     public void GameStartSpawns() {
@@ -229,9 +235,9 @@ public class EnemySpawnMgr : MonoBehaviour {
         int d = (int)(GameStateMgr.This.gameTime / difficultyIncTimer) + 1;
 
         // Max 10 (rotation aim speed maxes at 10)
-        if (d > 9) {
+        if (d > maxDifficulty) {
 
-            d = 9;
+            d = maxDifficulty;
         }
 
         return d;
@@ -245,7 +251,7 @@ public class EnemySpawnMgr : MonoBehaviour {
         if (difficulty != curDif) {
 
             difficulty = curDif;
-
+            
             DisplayMgr.This.UpdateMessage("Difficulty has changed to " + difficulty + "!");
         }
     }
