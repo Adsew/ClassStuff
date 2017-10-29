@@ -1,6 +1,23 @@
 Notes for game
-WEapons have a level and can kill monsters based on being a certain level or higher
+WEapons have a level and can kill monsters based on being a certain level or higher. Maybe allow the weapons to have you lose less health when ifhgitng the enemies.
 
 Multiple endings:
 Need to get sacred water to defeat final boss, die ending
 If you have congealed blood when you kill final boss you get userper ending
+
+
+IMplementation:
+Parser using a map where each key would be a use word and returns actions that can be performed?
+
+input->parsed->some kind of determiner checks with zone-> zone implements changes and sets outputs->render.renderall()->zone.render
+Nothing else really needs to render
+
+Map moving have the map dynamically load zones. A zone is loaded from the xml file and deloaded when moving to another zone in the xml file. Have a list of directions you can go in. like with the parser maybe a hashmap of directions can be used each with the name of a zone they transfer to associated and that zone name is the loading name in the xml file to laod that zone. This way we can  expand the locaions to move to using new names as keys given by the zone data
+
+For saving, save an xml with zone changes. If something changed in that zone store the changes in an xml that when that zone is loaded, check the save and implement the changes. The save file will also have the players inventory and location at the time as the first elemsnt.
+
+Game engine wil be stand alone. THe map will control everyhting. The engine will simply handle the flow of informaiton.
+
+a locked bool can be used to determine if a direction or box etc requires an item, then an if statement can check agains a string or int ID stored in the xml of what is needed to open or pass the locked thing. Allows for abstracting data from the engine.
+
+For dying: corpse object derived from player object allows it to have an inventory which can be reclaimed.

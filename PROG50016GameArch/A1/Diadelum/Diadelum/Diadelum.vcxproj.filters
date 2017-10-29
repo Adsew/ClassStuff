@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\File">
+      <UniqueIdentifier>{14404efd-81c1-4226-9558-4e57446e5932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object">
+      <UniqueIdentifier>{5daa4801-4a29-42bb-b1f5-bfc6f232a440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\GameObject">
+      <UniqueIdentifier>{f1ef6f11-cc39-457b-9950-7b088b0b9e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Zone">
+      <UniqueIdentifier>{2792c58e-893f-4dd0-830d-1d1f00e0aefa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IO">
+      <UniqueIdentifier>{83a3a808-6d2c-4d92-aa05-7d8346b54f11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IO\Input">
+      <UniqueIdentifier>{d2847edf-22a5-4f4a-a8e8-8e9b2a094be1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IO\Output">
+      <UniqueIdentifier>{05d70ed7-8427-40ef-9d4b-ae0b21543180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\File">
+      <UniqueIdentifier>{ed6a68bf-e009-4965-89ba-265642663e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO">
+      <UniqueIdentifier>{ae8e9f10-d45c-4b02-8898-dc2e5c4d8aff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO\Output">
+      <UniqueIdentifier>{e4088919-2237-4234-9452-d01f6dff9816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO\Input">
+      <UniqueIdentifier>{abfeea42-0170-4112-bc11-84fdca3cddf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object">
+      <UniqueIdentifier>{208b6250-a92b-43e3-8c84-ed219524bfdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\GameObject">
+      <UniqueIdentifier>{c7246cd9-6ad9-4ea0-8d78-fd08c1e1d3c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Zone">
+      <UniqueIdentifier>{fd511402-eb05-46a0-976a-00b5fbb65024}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem.h">
+      <Filter>Header Files\File</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files\File</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>Header Files\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\IO\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>Header Files\IO\Output</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderSystem.h">
+      <Filter>Header Files\IO\Output</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem.cpp">
+      <Filter>Source Files\File</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files\File</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>Source Files\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>Source Files\IO\Output</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>Source Files\IO\Output</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\IO\Input</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
