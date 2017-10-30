@@ -107,9 +107,6 @@
     <ClCompile Include="Object.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderable.cpp">
-      <Filter>Source Files\IO\Output</Filter>
-    </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
       <Filter>Source Files\IO\Output</Filter>
     </ClCompile>

@@ -15,13 +15,12 @@ Description: Renders data to the screen given by other classes
 
 #include <list>
 
-#include "ISystem.h"
-
 
 class IRenderable;
 
 
-class RenderSystem : public ISystem {
+class RenderSystem {
+    friend class GameEngine;
 
 private:
 

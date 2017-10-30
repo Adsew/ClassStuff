@@ -6,7 +6,8 @@ File: InputManager.cpp
 
 Class: InputManager
 
-Description:
+Description: Handles input from the user and converts it into something
+    usable by the engine.
 */
 
 
@@ -32,7 +33,9 @@ void InputManager::intialize() {
 // Cycle update for input manager
 void InputManager::update() {
 
+    input.clear();
 
+    // Get input here and set it to the list
 }
 
 // Display relavent metrics to screen

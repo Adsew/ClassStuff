@@ -38,7 +38,12 @@ int RenderSystem::priority() {
 // Cycle update for render system
 void RenderSystem::update() {
 
-    
+    std::list<IRenderable *>::iterator iter;
+
+    for (iter = renderComponents.begin(); iter != renderComponents.end(); iter++) {
+
+        (*iter)->render();
+    }
 }
 
 
@@ -60,7 +65,6 @@ void RenderSystem::removeIRenderable(IRenderable *component) {
 
         if (component == (*iter)) {
 
-            delete (*iter);
             iter = renderComponents.erase(iter);
             
             break;

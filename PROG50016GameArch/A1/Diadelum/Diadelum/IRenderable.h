@@ -9,12 +9,13 @@ File: IRenderable.h
 
 Class: IRenderable
 
-Description:
+Description: An interface to be added to game objects allowing them to be rendered to the screen
+    by the RenderSystem class.
 */
 
 
 class IRenderable {
-
+    friend class RenderSystem;
 
 protected:
 

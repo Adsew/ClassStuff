@@ -27,7 +27,6 @@ private:
 
     /***** Variables *****/
 
-    RenderSystem rendSys;
     FileSystem fileSys;
     InputManager inSys;
     GameObjectManager goMgr;

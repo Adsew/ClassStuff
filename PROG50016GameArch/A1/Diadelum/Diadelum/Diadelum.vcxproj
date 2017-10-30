@@ -35,7 +35,6 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
