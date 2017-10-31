@@ -1,5 +1,12 @@
+/*
+Student: James Brooks
+Class: Game Architecture
 
-#include <iostream>
+File: main.cpp
+
+Description: main code file to begine the engine running.
+*/
+
 
 #include "GameEngine.h"
 

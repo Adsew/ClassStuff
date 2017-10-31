@@ -19,7 +19,7 @@ Description: A game object to be used to represent objects within the game world
 #include "Object.h"
 
 
-class Component;
+//class Component;
 
 
 class GameObject : public Object {
@@ -28,7 +28,7 @@ private:
 
     /***** Variables *****/
 
-    std::map<std::string, Component *> components;
+    //std::map<std::string, Component *> components;
 
 public:
 
@@ -41,13 +41,16 @@ public:
     ~GameObject();
 
     // Add component to this game object
-    void addComponent(Component *comp);
+    //void addComponent(Component *comp);
 
     // Remove a component, if exists, from game object
-   void removeComponent(Component *comp);
+   //void removeComponent(Component *comp);
 
    // Cycle update for game object
    virtual void update();
+
+   // Displayer function for game object
+   void display();
 };
 
 #endif

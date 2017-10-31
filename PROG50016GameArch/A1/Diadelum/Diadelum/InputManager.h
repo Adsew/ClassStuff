@@ -15,6 +15,7 @@ Description: Handles input from the user and converts it into something
 
 
 #include <list>
+#include <map>
 #include <string>
 
 
@@ -22,7 +23,9 @@ class InputManager {
 
 private:
 
-    std::list<std::string> input;
+    std::map<std::string, int> keyWordMap;
+
+    std::list<std::pair<int, std::string>> input;
 
 public:
 
@@ -36,7 +39,7 @@ public:
     void intialize();
 
     // Get the text-based input's current status
-    void getInput();
+    std::list<std::pair<int, std::string>> getInput();
 
     // Cycle update for input manager
     void update();

@@ -27,9 +27,9 @@ private:
 
     /***** Variables *****/
 
-    FileSystem fileSys;
+    //FileSystem fileSys;
     InputManager inSys;
-    GameObjectManager goMgr;
+    //GameObjectManager goMgr;
 
 
 public:

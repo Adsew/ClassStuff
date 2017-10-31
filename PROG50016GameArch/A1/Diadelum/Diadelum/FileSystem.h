@@ -24,7 +24,7 @@ public:
     ~FileSystem();
 
     // Initialize the file system to a usable state
-    void initialize();
+    void initialize(std::string &settingsFile);
 
     // Cycle update for file system
     void update();

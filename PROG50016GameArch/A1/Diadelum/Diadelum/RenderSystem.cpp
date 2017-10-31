@@ -28,11 +28,11 @@ RenderSystem::~RenderSystem() {
 
 }
 
-RenderSystem &RenderSystem::operator=(RenderSystem &rs) {}
+RenderSystem &RenderSystem::operator=(RenderSystem &rs) { return rs; }
 
 int RenderSystem::priority() {
 
-    
+    return 0;
 }
 
 // Cycle update for render system
