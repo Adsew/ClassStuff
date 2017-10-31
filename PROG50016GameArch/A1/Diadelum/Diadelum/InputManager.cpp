@@ -18,7 +18,7 @@ Description: Handles input from the user and converts it into something
 
 InputManager::InputManager() {
 
-    keyWordMap["tester"] = 10;
+    
 }
 
 InputManager::~InputManager() {
@@ -29,7 +29,23 @@ InputManager::~InputManager() {
 // Initialize input manager to a usable state
 void InputManager::intialize() {
 
+    keyWordMap["moveto"] = 1;
+    keyWordMap["go"] = 1;
+    keyWordMap["walk"] = 1;
 
+    keyWordMap["use"] = 2;
+
+    keyWordMap["search"] = 3;
+    keyWordMap["lookat"] = 3;
+    keyWordMap["examine"] = 3;
+
+    keyWordMap["attack"] = 4;
+
+    keyWordMap["push"] = 5;
+    keyWordMap["interactwith"] = 5;
+    keyWordMap["open"] = 5;
+
+    keyWordMap["help"] = 6;
 }
 
 // Get the text-based input's current status
@@ -42,7 +58,7 @@ std::list<std::pair<int, std::string>> InputManager::getInput() {
 void InputManager::update() {
 
     std::list<std::string> tokenizedPlayerIn;
-    std::string playerIn;
+    std::string playerIn = "";
     unsigned int wordStartPos = 0;
 
     input.clear();
@@ -75,56 +91,62 @@ void InputManager::update() {
 
     // Generate a formated version of the input
     // for the engine to understand and use
-    std::string commandWord = "";
+    std::string multiWord = "";
 
-    for (std::list<std::string>::iterator majorPos = tokenizedPlayerIn.begin(); majorPos != tokenizedPlayerIn.end(); majorPos++) {
+    for (std::list<std::string>::iterator word = tokenizedPlayerIn.begin(); word != tokenizedPlayerIn.end(); word++) {
 
-        for (std::list<std::string>::iterator subPos = majorPos; subPos != tokenizedPlayerIn.end(); subPos++) {
+        // Found solo keyword
+        try {
 
-            // Found solo keyword
+            int code = keyWordMap.at(*word);
+
+            // Before pushing, push any non-keywords. Could be content like items, enviro, etc
+            if (multiWord != "") {
+
+                input.push_back(std::pair<int, std::string>(0, multiWord));
+
+                multiWord = "";
+            }
+
+            input.push_back(std::pair<int, std::string>(code, *word));
+        }
+        // Failed, so try multiword keyword
+        catch (const std::out_of_range &ex) {
+
+            multiWord += *word;
+
             try {
 
-                int code = keyWordMap.at(*subPos);
+                int code = keyWordMap.at(multiWord);
 
-                // Before pushing, push any non-keywords. Could be content like items, enviro, etc
-                if (commandWord != "") {
+                input.push_back(std::pair<int, std::string>(code, multiWord));
 
-                    input.push_back(std::pair<int, std::string>(0, commandWord));
-                }
-
-                input.push_back(std::pair<int, std::string>(code, *subPos));
-
-                majorPos = subPos;
-
-                break;
+                multiWord = "";
             }
-            // Failed, so try multiword keyword
-            catch (const std::out_of_range &ex) {
-
-                commandWord += *subPos;
-
-                try {
-
-                    int code = keyWordMap.at(commandWord);
-
-                    input.push_back(std::pair<int, std::string>(code, commandWord));
-
-                    commandWord = "";
-
-                    majorPos = subPos;
-
-                    break;
-                }
-                // Wasnt either, so just keep it
-                catch (const std::out_of_range &ex) {}
-            }
+            // Wasnt that either, so just keep it for now
+            catch (const std::out_of_range &ex) {}
         }
     }
 
     // Push any left over words as potential in scene content
-    if (commandWord != "") {
+    if (multiWord != "") {
 
-        input.push_back(std::pair<int, std::string>(0, commandWord));
+        try {
+
+            int code = keyWordMap.at(multiWord);
+
+            input.push_back(std::pair<int, std::string>(code, multiWord));
+        }
+        catch (const std::out_of_range &ex) {
+            
+            input.push_back(std::pair<int, std::string>(0, multiWord));
+        }
+    }
+
+    // Final error case, didnt enter anything
+    if (input.size() == 0) {
+
+        input.push_back(std::pair<int, std::string>(10, std::string("nothing")));
     }
 }
 

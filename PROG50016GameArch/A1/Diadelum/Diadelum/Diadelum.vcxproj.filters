@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\File">
-      <UniqueIdentifier>{14404efd-81c1-4226-9558-4e57446e5932}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Object">
       <UniqueIdentifier>{5daa4801-4a29-42bb-b1f5-bfc6f232a440}</UniqueIdentifier>
     </Filter>
@@ -25,26 +22,8 @@
     <Filter Include="Header Files\Object\Zone">
       <UniqueIdentifier>{2792c58e-893f-4dd0-830d-1d1f00e0aefa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\IO">
-      <UniqueIdentifier>{83a3a808-6d2c-4d92-aa05-7d8346b54f11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\IO\Input">
-      <UniqueIdentifier>{d2847edf-22a5-4f4a-a8e8-8e9b2a094be1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\IO\Output">
-      <UniqueIdentifier>{05d70ed7-8427-40ef-9d4b-ae0b21543180}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\File">
       <UniqueIdentifier>{ed6a68bf-e009-4965-89ba-265642663e6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\IO">
-      <UniqueIdentifier>{ae8e9f10-d45c-4b02-8898-dc2e5c4d8aff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\IO\Output">
-      <UniqueIdentifier>{e4088919-2237-4234-9452-d01f6dff9816}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\IO\Input">
-      <UniqueIdentifier>{abfeea42-0170-4112-bc11-84fdca3cddf1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Object">
       <UniqueIdentifier>{208b6250-a92b-43e3-8c84-ed219524bfdc}</UniqueIdentifier>
@@ -55,16 +34,46 @@
     <Filter Include="Source Files\Object\Zone">
       <UniqueIdentifier>{fd511402-eb05-46a0-976a-00b5fbb65024}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System">
+      <UniqueIdentifier>{d7530627-c2b1-4088-89bd-6506d6a708dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{f4cf1e27-fd58-45b8-b58e-4e1e86eba7b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\IO">
+      <UniqueIdentifier>{83a3a808-6d2c-4d92-aa05-7d8346b54f11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\IO\Input">
+      <UniqueIdentifier>{d2847edf-22a5-4f4a-a8e8-8e9b2a094be1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\IO\Output">
+      <UniqueIdentifier>{05d70ed7-8427-40ef-9d4b-ae0b21543180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\System\File">
+      <UniqueIdentifier>{14404efd-81c1-4226-9558-4e57446e5932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\IO">
+      <UniqueIdentifier>{ae8e9f10-d45c-4b02-8898-dc2e5c4d8aff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\IO\Output">
+      <UniqueIdentifier>{e4088919-2237-4234-9452-d01f6dff9816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System\IO\Input">
+      <UniqueIdentifier>{abfeea42-0170-4112-bc11-84fdca3cddf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Player">
+      <UniqueIdentifier>{be40e732-04a0-4309-94b2-8957f63b162a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Player">
+      <UniqueIdentifier>{91aec426-9902-4100-831f-d8c7eddc7470}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FileSystem.h">
-      <Filter>Header Files\File</Filter>
+      <Filter>Header Files\System\File</Filter>
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
-      <Filter>Header Files\File</Filter>
+      <Filter>Header Files\System\File</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>Header Files\Object\GameObject</Filter>
@@ -76,19 +85,28 @@
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
-      <Filter>Header Files\IO\Input</Filter>
+      <Filter>Header Files\System\IO\Input</Filter>
     </ClInclude>
     <ClInclude Include="IRenderable.h">
-      <Filter>Header Files\IO\Output</Filter>
+      <Filter>Header Files\System\IO\Output</Filter>
     </ClInclude>
     <ClInclude Include="RenderSystem.h">
-      <Filter>Header Files\IO\Output</Filter>
+      <Filter>Header Files\System\IO\Output</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone.h">
+      <Filter>Header Files\Object\Zone</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Object\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -108,10 +126,22 @@
       <Filter>Source Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
-      <Filter>Source Files\IO\Output</Filter>
+      <Filter>Source Files\System\IO\Output</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\IO\Input</Filter>
+      <Filter>Source Files\System\IO\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone.cpp">
+      <Filter>Source Files\Object\Zone</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

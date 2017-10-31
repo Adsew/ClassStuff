@@ -28,3 +28,5 @@ INPUT: have a map where we enter first word into the map and that will return so
 Inpout -> gameloop -> handler thing -> zone -> sets up render stuff -> loop -> renderer renders stuff that was set up -> repeat
 
 For zone, when calling the function with the data, in the data file levels could have loaded response for each key item in the scene. For example, a game object rock in the scene that can be interacted with using the commands could have responses to specific commands, else default to a general startement. EG. Use rock, search file for rock->use response which gives a string, why would you try to use a rock? What are you thinking? But if its dumb, and doesnt need a special response like that default to a Cannot use [rock].
+
+Consider later creating a header or singleton where a file with codes is loaded for the game if data security in this area is neccessary. Eg what codes mean what i dunno

@@ -26,8 +26,11 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="Zone.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileSystem.cpp" />
@@ -37,8 +40,11 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="Zone.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

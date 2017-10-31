@@ -25,7 +25,7 @@ GameEngine::~GameEngine() {
 // Initialize the game engine to be available for start
 void GameEngine::initialize(std::string &settingsFile) {
 
-    
+    inSys.intialize();
 }
 
 // main game loop for running through updates
