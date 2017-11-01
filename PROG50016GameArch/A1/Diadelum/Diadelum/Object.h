@@ -23,10 +23,11 @@ private:
 
     /***** Variables *****/
 
-    std::string name;
-
     bool initialized;
 
+protected:
+
+    std::string name;
 
 public:
 

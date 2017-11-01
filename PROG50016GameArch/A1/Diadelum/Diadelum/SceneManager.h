@@ -15,6 +15,10 @@ Description: Acts and the data controller between the active game scene
 */
 
 
+#include <vector>
+#include <list>
+
+
 class Player;
 class Zone;
 
@@ -23,9 +27,35 @@ class SceneManager {
 
 private:
 
+    /***** Variables *****/
+
+    std::vector<void (SceneManager::*)(std::list<std::pair<int, std::string>> &)> actions;
+
     Player *player;
+    
     Zone *activeZone;
     
+    bool exitFlag;
+
+
+    /***** Functions *****/
+
+    void noAction(std::list<std::pair<int, std::string>> &action);
+
+    void move(std::list<std::pair<int, std::string>> &action);
+
+    void use(std::list<std::pair<int, std::string>> &action);
+
+    void search(std::list<std::pair<int, std::string>> &action);
+
+    void attack(std::list<std::pair<int, std::string>> &action);
+
+    void help(std::list<std::pair<int, std::string>> &action);
+
+    void save(std::list<std::pair<int, std::string>> &action);
+
+    void exit(std::list<std::pair<int, std::string>> &action);
+
 public:
 
     SceneManager();
@@ -36,10 +66,7 @@ public:
     void intialize();
 
     // Cycle update for input manager
-    void update();
-
-    // Display relavent metrics to screen
-    void display();
+    bool update();
 };
 
 #endif

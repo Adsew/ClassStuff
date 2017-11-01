@@ -19,6 +19,10 @@ Description: Holds all the information related to the
 
 class Player : public Object, public IRenderable {
 
+protected:
+
+    std::string render();
+
 public:
 
     Player();

@@ -47,6 +47,9 @@ protected:
     // Get item proirity to render
     int priority();
 
+    // Initialize the system to a usable state
+    void initialize();
+
     // Cycle update for render system
     void update();
 
@@ -61,10 +64,10 @@ public:
     }
 
     // Add renderable component to the list
-    void addIRenderable(IRenderable *component);
+    void addIRenderable(IRenderable *renderable);
 
     // Remove renderable component to the list
-    void removeIRenderable(IRenderable *component);
+    void removeIRenderable(IRenderable *renderable);
 };
 
 #endif

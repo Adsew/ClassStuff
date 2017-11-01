@@ -10,22 +10,22 @@ Description: main game engine runs everything else
 */
 
 
+#include "FileSystem.h"
+#include "InputSystem.h"
+#include "RenderSystem.h"
 #include "GameEngine.h"
 
 
-GameEngine::GameEngine() {
+GameEngine::GameEngine() {}
 
-}
-
-GameEngine::~GameEngine() {
-
-
-}
+GameEngine::~GameEngine() {}
 
 // Initialize the game engine to be available for start
 void GameEngine::initialize(std::string &settingsFile) {
 
-    inSys.intialize();
+    InputSystem::Instance().initialize();
+    RenderSystem::Instance().initialize();
+    scene.intialize();
 }
 
 // main game loop for running through updates
@@ -35,13 +35,10 @@ void GameEngine::gameLoop() {
     
     while (isRunning) {
 
-        inSys.update();
+        InputSystem::Instance().update();
+
+        isRunning = scene.update();
 
         RenderSystem::Instance().update();
     }
-}
-
-// Display everything to the renderer
-void GameEngine::display() {
-
 }

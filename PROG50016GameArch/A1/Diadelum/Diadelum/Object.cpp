@@ -10,9 +10,6 @@ Description: Base class for all objects in the game engine
 */
 
 
-#define DEBUG true
-
-
 #include <iostream>
 
 #include "Object.h"
@@ -22,27 +19,17 @@ Object::Object() {
 
     name = "";
     initialized = false;
-
-#ifdef DEBUG
-    std::cout << "Object created\n";
-#endif // DEBUG
 }
 
 Object::Object(std::string &n) {
 
     name = n;
     initialized = false;
-
-#ifdef DEBUG
-    std::cout << "Object created\n";
-#endif // DEBUG
 }
 
 Object::~Object() {
 
-#ifdef DEBUG
-    std::cout << "Object destroyed\n";
-#endif // DEBUG
+
 }
 
 // Check object initialized correctly and ise usable
@@ -61,8 +48,4 @@ std::string &Object::getName() {
 void Object::initialize() {
 
     initialized = true;
-
-#ifdef DEBUG
-    std::cout << "Object initialized\n";
-#endif // DEBUG
 }

@@ -15,21 +15,68 @@ Description: Holds all information and can be interacted with for
 */
 
 
+#include <list>
+#include <map>
+
 #include "IRenderable.h"
 #include "Object.h"
 
 
+class Player;
+
+
 class Zone : public Object, public IRenderable {
+
+private:
+
+    /***** Variables *****/
+
+    Player *player;
+
+    std::map<std::string, bool> connectedZones; // bool determines if accessable or not
+    std::map<std::string, std::string> interactables;        // Environment interactables
+    std::map<std::string, std::string> items;                // Pickupable items in the zone
+    std::map<std::string, std::string> monsters;             // Monsters in the area
+
+    std::string messageToP;
+    std::string zoneDescription;
+
+    std::string zoneToMoveTo;
+    bool movingFlag;
+
+    bool modified;
+
+protected:
+
+    /***** Functions *****/
+
+    virtual std::string render();
 
 public:
 
-    Zone();
+    Zone(std::string n, Player *p);
 
     ~Zone();
 
-    // POut use move etc functions here and a general determine function
-    // that will use the array t o determine which pointer function to use
-    // Initialize will set up the function pointers
+    // Actions
+
+    void noAction(std::list<std::pair<int, std::string>> &action);
+
+    void move(std::list<std::pair<int, std::string>> &action);
+
+    void use(std::list<std::pair<int, std::string>> &action);
+
+    void search(std::list<std::pair<int, std::string>> &action);
+
+    void attack(std::list<std::pair<int, std::string>> &action);
+
+    void help();
+
+    // Accessors
+
+    bool movingFlagStatus();
+
+    std::string &getZoneToMoveTo();
 };
 
 #endif

@@ -15,9 +15,7 @@ Description: main game engine runs everything else
 
 #include <string>
 
-#include "RenderSystem.h"
-#include "FileSystem.h"
-#include "InputManager.h"
+#include "SceneManager.h"
 #include "GameObjectManager.h"
 
 
@@ -27,10 +25,8 @@ private:
 
     /***** Variables *****/
 
-    //FileSystem fileSys;
-    InputManager inSys;
     //GameObjectManager goMgr;
-
+    SceneManager scene;
 
 public:
 
@@ -45,9 +41,6 @@ public:
 
     // main game loop for running through updates
     void gameLoop();
-
-    // Display everything to the renderer
-    void display();
 };
 
 #endif

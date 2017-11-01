@@ -1,5 +1,5 @@
-#ifndef IRENDERABLE_H
-#define IRENDERABLE_H
+#ifndef I_RENDERABLE_H
+#define I_RENDERABLE_H
 
 /*
 Student: James Brooks
@@ -21,7 +21,7 @@ protected:
 
     /***** Functions *****/
 
-    virtual void render() = 0;
+    virtual std::string render() = 0;
 };
 
 #endif

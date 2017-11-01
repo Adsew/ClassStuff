@@ -13,6 +13,9 @@ Description: Manages the input and output of files used by the game
 */
 
 
+#include <string>
+
+
 class FileSystem {
 
 public:

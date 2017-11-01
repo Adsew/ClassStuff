@@ -31,8 +31,7 @@ void Player::intialize() {
 
 }
 
-// Display relavent metrics to screen
-void Player::display() {
+std::string Player::render() {
 
-
+    return "I'm a player!";
 }
