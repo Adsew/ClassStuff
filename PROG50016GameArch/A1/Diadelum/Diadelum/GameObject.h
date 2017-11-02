@@ -18,16 +18,25 @@ Description: A game object to be used to represent objects within the game world
 #include "Object.h"
 
 
-//class Component;
-
-
 class GameObject : public Object {
 
-private:
+protected:
 
     /***** Variables *****/
 
-    //std::map<std::string, Component *> components;
+    int id;
+
+    bool needsDeletion;
+
+    std::string description;
+
+    bool inUse;
+    int numUses;
+
+    int worksWithID;    // A game object that can be used with this
+    int createsID;      // If another game object is produced when this is used
+    std::string locationToUnlock;   // If unlocks a new direction to go
+    std::string onUseMsg;
 
 public:
 
@@ -35,29 +44,56 @@ public:
 
     GameObject();
 
-    GameObject(std::string &n);
+    GameObject(int idNum, std::string &n);
 
     virtual ~GameObject();
-
-    // Add component to this game object
-    //void addComponent(Component *comp);
-
-    // Remove a component, if exists, from game object
-    //void removeComponent(Component *comp);
 
     // Cycle update for game object
     virtual void update();
 
-    // Displayer function for game object
-    void display();
-
         // Interactivity functions
 
-    virtual void use() = 0;
+    virtual std::string use() = 0;
 
-    virtual void useWith(GameObject *go) = 0;
+    virtual std::string useWith(GameObject *go) = 0;
 
     virtual std::string lookat() = 0;
+
+    int dropItem();
+
+    std::string unlockLocation();
+
+        // Accessors
+
+    int getID();
+
+    void setNeedsDeletion(bool b);
+
+    bool getNeedsDeletion();
+
+    void setDescription(std::string &desc);
+
+    void setDescription(const char *desc);
+
+    void setInUse(bool b);
+
+    bool getInUse();
+
+    void setNumUses(int n);
+
+    int getNumUses();
+
+    void setWorksWithID(int otherItemID);
+
+    void setCreatesID(int itemToCreate);
+
+    void setLocationToUnlock(std::string &loc);
+
+    void setLocationToUnlock(const char *loc);
+
+    void setOnUseMsg(std::string &msgWhenUsed);
+
+    void setOnUseMsg(const char *msgWhenUsed);
 };
 
 #endif

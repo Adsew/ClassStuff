@@ -14,12 +14,23 @@ Description: Holds all the information related to the
 */
 
 
+#include <map>
+
+#include "Item.h"
 #include "Object.h"
 #include "IRenderable.h"
 
 class Player : public Object, public IRenderable {
 
+public:
+
+    /***** Variables *****/
+
+    std::map<std::string, Item *> inventory;
+
 protected:
+
+    /***** Functions *****/
 
     std::string render();
 
@@ -32,8 +43,8 @@ public:
     // Initialize input manager to a usable state
     void intialize();
 
-    // Display relavent metrics to screen
-    void display();
+    // Cycle update for player
+    void update();
 };
 
 #endif

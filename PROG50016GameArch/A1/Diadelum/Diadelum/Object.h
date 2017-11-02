@@ -14,7 +14,6 @@ Description: Base class for all objects in the game engine
 
 
 #include <string>
-#include <list>
 
 
 class Object {
@@ -39,14 +38,17 @@ public:
     
     virtual ~Object();
 
+    // Initialize object to a usable state
+    virtual void initialize();
+
     // Check object initialized correctly and ise usable
     bool isInitialized();
 
+    // Cycle update for object
+    virtual void update() = 0;
+
     // Get name of object
     std::string &getName();
-
-    // Initialize object to a usable state
-    virtual void initialize();
 };
 
 #endif

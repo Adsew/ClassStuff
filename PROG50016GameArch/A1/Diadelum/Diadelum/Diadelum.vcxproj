@@ -24,7 +24,10 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="Interactable.h" />
     <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderSystem.h" />
@@ -38,7 +41,10 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="Interactable.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderSystem.cpp" />

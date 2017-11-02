@@ -89,6 +89,6 @@ void GameObjectManager::display() {
 
     for (iter = gameObjects.begin(); iter != gameObjects.end(); iter++) {
 
-        (*iter)->display();
+        //(*iter)->display();
     }
 }

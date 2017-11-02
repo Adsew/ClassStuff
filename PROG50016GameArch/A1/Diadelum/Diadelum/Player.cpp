@@ -31,6 +31,26 @@ void Player::intialize() {
 
 }
 
+// Cycle update for player
+void Player::update() {
+
+    std::map<std::string, Item *>::iterator iter = inventory.begin();
+
+    while (iter != inventory.end()) {
+
+        if (iter->second->getNeedsDeletion()) {
+
+            delete iter->second;
+            iter->second = NULL;
+            iter = inventory.erase(iter);
+        }
+        else {
+
+            iter++;
+        }
+    }
+}
+
 std::string Player::render() {
 
     return "I'm a player!";

@@ -13,6 +13,9 @@ on the zone's specific details.
 
 
 #include "Player.h"
+#include "Interactable.h"
+#include "Item.h"
+#include "Monster.h"
 #include "Zone.h"
 
 
@@ -30,17 +33,82 @@ Zone::Zone(std::string n, Player *p)
         " You see a rock, a potion of awesome, and an enemy called scary guy. Bitch town is in the distance and your future is blocked."
         "What do you do?";
 
-    monsters["scary guy"] = "It looks like he hates nerds.";
+    monsters["scary guy"] = new Monster(100, "scary guy");
+    monsters["scary guy"]->setDescription("It looks like he hates nerds.");
     connectedZones["bitch town"] = true;
     connectedZones["my future"] = false;
-    items["potion of awesome"] = "A magical potion that eats people.";
-    interactables["rock"] = "An ordinary rock.";
+    items["potion of awesome"] = new Item(200, "potion of awesome");
+    items["potion of awesome"]->setDescription("A magical potion that eats people.");
+    items["potion of awesome"]->setNumUses(1);
+    items["potion of awesome"]->setLocationToUnlock("my future");
+    items["potion of awesome"]->setWorksWithID(300);
+    items["potion of awesome"]->setOnUseMsg("The potion desolves the rock.");
+    interactables["rock"] = new Interactable(300, "rock");
+    interactables["rock"]->setDescription("An ordinary rock.");
+    interactables["rock"]->setNumUses(1);
+    interactables["rock"]->setLocationToUnlock("my future");
+    interactables["rock"]->setWorksWithID(200);
+    interactables["rock"]->setOnUseMsg("You smash the potion with the rock, also moving the rock out of the way...");
 }
 
 
 Zone::~Zone() {
 
+    delete monsters["scary guy"];
+    delete items["potion of awesome"];
+    delete interactables["rock"];
+}
 
+void Zone::update() {
+
+    // Check for anything that needs to be deleted from the scene
+
+    std::map<std::string, Interactable *>::iterator interIter = interactables.begin();
+
+    while (interIter != interactables.end()) {
+
+        if (interIter->second->getNeedsDeletion()) {
+
+            delete interIter->second;
+            interIter->second = NULL;
+            interIter = interactables.erase(interIter);
+        }
+        else {
+
+            interIter++;
+        }
+    }
+
+    std::map<std::string, Item *>::iterator itemIter = items.begin();
+
+    while (itemIter != items.end()) {
+
+        if (itemIter->second->getNeedsDeletion()) {
+
+            delete itemIter->second;
+            itemIter->second = NULL;
+            itemIter = items.erase(itemIter);
+        }
+        else {
+            itemIter++;
+        }
+    }
+
+    std::map<std::string, Monster *>::iterator monIter = monsters.begin();
+
+    while (monIter != monsters.end()) {
+
+        if (monIter->second->getNeedsDeletion()) {
+
+            delete monIter->second;
+            monIter->second = NULL;
+            monIter = monsters.erase(monIter);
+        }
+        else {
+
+            monIter++;
+        }
+    }
 }
 
 
@@ -113,29 +181,32 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
 
         if (actionItem != action.end()) {
 
+            GameObject *useItem1 = NULL;
+            GameObject *useItem2 = NULL;
+
             // Find what the player is trying to use
             try {
-                messageToP = interactables.at((*actionItem).second);
+                useItem1 = interactables.at((*actionItem).second);
             }
             catch (const std::out_of_range &ex) {
 
                 try {
-                    messageToP = items.at((*actionItem).second);
+                    useItem1 = items.at((*actionItem).second);
                 }
                 catch (const std::out_of_range &ex) {
 
                     try {
-                        messageToP = monsters.at((*actionItem).second);
+                        useItem1 = monsters.at((*actionItem).second);
                     }
                     catch (const std::out_of_range &ex) {
 
-                        /*try {
-                            messageToP = (*player).inventory.at((*actionItem).second);
+                        try {
+                            useItem1 = (*player).inventory.at((*actionItem).second);
                         }
-                        catch (const std::out_of_range &ex) {*/
+                        catch (const std::out_of_range &ex) {
 
                             messageToP = "I can't find what you want me to use.";
-                        //}
+                        }
                     }
                 }
             }
@@ -143,33 +214,33 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
             // Check for second use with item if size was = 4
             actionItem++;
 
-            if (actionItem != action.end() && messageToP != "I can't find what you want me to use.") {
-                if ((*actionItem).first == 8) {
+            if (actionItem != action.end() && useItem1 != NULL) {
+                if ((*actionItem).first == 9) {
 
                     actionItem++;
 
                     try {
-                        messageToP += interactables.at((*actionItem).second);
+                        useItem2 = interactables.at((*actionItem).second);
                     }
                     catch (const std::out_of_range &ex) {
 
                         try {
-                            messageToP += items.at((*actionItem).second);
+                            useItem2 = items.at((*actionItem).second);
                         }
                         catch (const std::out_of_range &ex) {
 
                             try {
-                                messageToP += monsters.at((*actionItem).second);
+                                useItem2 = monsters.at((*actionItem).second);
                             }
                             catch (const std::out_of_range &ex) {
 
-                                /*try {
-                                messageToP += (*player).inventory.at((*actionItem).second);
+                                try {
+                                    useItem2 = (*player).inventory.at((*actionItem).second);
                                 }
-                                catch (const std::out_of_range &ex) {*/
+                                catch (const std::out_of_range &ex) {
 
-                                messageToP = "I can't find what you want me to use " + messageToP + " with.";
-                                //}
+                                    messageToP = "I can't find what you want me to use " + messageToP + " with.";
+                                }
                             }
                         }
                     }
@@ -181,12 +252,46 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                 }
             }
 
-            // When game objects implemented and loaded, check if use 1 and 2 
-            // are there and call use function or use with function on the items here
-            // Remember to change if statement whether message was set for first item
-            // when checking if we should even look for a second item
+            // Single use item
+            if (useItem1 != NULL && action.size() == 2) {
 
+                messageToP = useItem1->use();
 
+                // If either of the following work, the item was used correctly
+                try {
+
+                    connectedZones.at(useItem1->unlockLocation()) = true;
+                }
+                catch (const std::out_of_range &ex) {}
+
+                try {
+
+                    useItem1->dropItem();           // CREATE ITEM TO ADD TO PLAYER INVENTORY HERE
+                }
+                catch (const std::out_of_range &ex) {}
+
+                useItem1->setInUse(false);
+            }
+            // Use item with another item
+            else if (useItem1 != NULL && useItem2 != NULL && action.size() == 4) {
+
+                messageToP = useItem1->useWith(useItem2);
+
+                // If either of the following work, the item was used correctly
+                try {
+                    connectedZones.at(useItem2->unlockLocation()) = true;
+                }
+                catch (const std::out_of_range &ex) {}
+
+                try {
+
+                    useItem2->dropItem();           // CREATE ITEM TO ADD TO PLAYER INVENTORY HERE
+                }
+                catch (const std::out_of_range &ex) {}
+
+                useItem1->setInUse(false);
+                useItem2->setInUse(false);
+            }
         }
         // Use without an item to use
         else {
@@ -215,17 +320,17 @@ void Zone::search(std::list<std::pair<int, std::string>> &action) {
 
             // Find what is being looked at through everything in the zone
             try {
-                messageToP = interactables.at((*actionItem).second);
+                messageToP = interactables.at((*actionItem).second)->lookat();
             }
             catch (const std::out_of_range &ex) {
 
                 try {
-                    messageToP = items.at((*actionItem).second);
+                    messageToP = items.at((*actionItem).second)->lookat();
                 }
                 catch (const std::out_of_range &ex) {
 
                     try {
-                        messageToP = monsters.at((*actionItem).second);
+                        messageToP = monsters.at((*actionItem).second)->lookat();
                     }
                     catch (const std::out_of_range &ex) {
 
@@ -254,9 +359,71 @@ void Zone::search(std::list<std::pair<int, std::string>> &action) {
     }
 }
 
+void Zone::pickup(std::list<std::pair<int, std::string>> &action) {
+
+    std::list<std::pair<int, std::string>>::iterator actionItem = action.begin();
+
+    messageToP = "";
+
+    actionItem++;
+
+    if (action.size() <= 2) {
+
+        if (actionItem != action.end()) {
+
+            try {
+                // Transfering to inventory
+                Item *itemInScene = items.at((*actionItem).second);
+                items.erase((*actionItem).second);
+                player->inventory[(*actionItem).second] = itemInScene;
+
+                messageToP = "Obtained " + itemInScene->getName() + ".";
+            }
+            catch (const std::out_of_range &ex) {
+
+                messageToP = "I dont see any " + (*actionItem).second + "s anywhere.";
+            }
+        }
+        else {
+
+            messageToP = "What am I supposed to pick up?";
+        }
+    }
+    else {
+
+        messageToP = "I can only do so many things at once!.";
+    }
+}
+
 void Zone::attack(std::list<std::pair<int, std::string>> &action) {
 
-    messageToP = "CHAARGE!!!!!";
+    std::list<std::pair<int, std::string>>::iterator actionItem = action.begin();
+
+    messageToP = "";
+
+    actionItem++;
+
+    if (action.size() <= 2) {
+
+        if (actionItem != action.end()) {
+
+            try {
+                messageToP = monsters.at((*actionItem).second)->attack(player);
+            }
+            catch (const std::out_of_range &ex) {
+
+                messageToP = "I can't attack what isn't there.";
+            }
+        }
+        else {
+
+            messageToP = "I swing my arms around with wreckless abandon.";
+        }
+    }
+    else {
+
+        messageToP = "I can only do so many things at once!.";
+    }
 }
 
 void Zone::help() {

@@ -25,3 +25,11 @@ Consider later creating a header or singleton where a file with codes is loaded 
 In the file for zone data, items can hold a list for location directions or boxzes they effect and while loading we can check if the locations in the list exist (which they should otherwise dont write them) and check in the map and set it to false if it exists. Allows us to lock of zones until interactables are moved. As a game object, we can set what moves them and remember what location they effect. This will also naturally help saving, as not saving the interactable when gone will stop it from falsing an opened direction
 
 3 types of game objects, monsters, interactables, and items. Items have an extra pickup function, interactables can lock other items in the scene off, and monsters can be attacked but cant  be used or searched until dead.
+
+Have items file as well to load and produce items by ID
+
+at end of zone update delete all items that need to be deleted
+
+items and stuff might need a render message to play wit hthe zone description to help say what is and isnt there anymore
+
+when performing use with the with item (2nd arg) is what determines what happens

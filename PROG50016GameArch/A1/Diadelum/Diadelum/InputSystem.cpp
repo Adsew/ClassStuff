@@ -41,16 +41,18 @@ void InputSystem::initialize() {
     keyWordMap["look at"] = 3;
     keyWordMap["examine"] = 3;
 
-    keyWordMap["attack"] = 4;
+    keyWordMap["pickup"] = 4;
 
-    keyWordMap["help"] = 5;
+    keyWordMap["attack"] = 5;
 
-    keyWordMap["save"] = 6;
+    keyWordMap["help"] = 6;
 
-    keyWordMap["exit"] = 7;
+    keyWordMap["save"] = 7;
 
-    keyWordMap["with"] = 8;
-    keyWordMap["on"] = 8;
+    keyWordMap["exit"] = 8;
+
+    keyWordMap["with"] = 9;
+    keyWordMap["on"] = 9;
 }
 
 // Get the text-based input's current status

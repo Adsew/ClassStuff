@@ -20,17 +20,18 @@ game world.
 
 
 SceneManager::SceneManager()
-    : actions(9) {
+    : actions(10) {
 
     actions[0] = &SceneManager::noAction;
     actions[1] = &SceneManager::move;
     actions[2] = &SceneManager::use;
     actions[3] = &SceneManager::search;
-    actions[4] = &SceneManager::attack;
-    actions[5] = &SceneManager::help;
-    actions[6] = &SceneManager::save;
-    actions[7] = &SceneManager::exit;
-    actions[8] = &SceneManager::noAction;   // For starting with "with", a connector keyword
+    actions[4] = &SceneManager::pickup;
+    actions[5] = &SceneManager::attack;
+    actions[6] = &SceneManager::help;
+    actions[7] = &SceneManager::save;
+    actions[8] = &SceneManager::exit;
+    actions[9] = &SceneManager::noAction;   // For starting with a connector keyword
 
     exitFlag = false;
 }
@@ -55,9 +56,12 @@ bool SceneManager::update() {
 
     std::list<std::pair<int, std::string>> action = InputSystem::Instance().getInput();
 
-    if (action.size() > 0) {
+    if (action.size() > 0 && player != NULL && activeZone != NULL) {
 
         (this->*actions[(*action.begin()).first])(action);
+
+        player->update();
+        activeZone->update();
     }
 
     if (exitFlag == true) {
@@ -95,6 +99,11 @@ void SceneManager::use(std::list<std::pair<int, std::string>> &action) {
 void SceneManager::search(std::list<std::pair<int, std::string>> &action) {
 
     activeZone->search(action);
+}
+
+void SceneManager::pickup(std::list<std::pair<int, std::string>> &action) {
+
+    activeZone->pickup(action);
 }
 
 void SceneManager::attack(std::list<std::pair<int, std::string>> &action) {

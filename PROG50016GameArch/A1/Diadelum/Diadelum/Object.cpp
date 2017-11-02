@@ -32,6 +32,12 @@ Object::~Object() {
 
 }
 
+// Initialize object to a usable state
+void Object::initialize() {
+
+    initialized = true;
+}
+
 // Check object initialized correctly and ise usable
 bool Object::isInitialized() {
 
@@ -42,10 +48,4 @@ bool Object::isInitialized() {
 std::string &Object::getName() {
 
     return name;
-}
-
-// Initialize object to a usable state
-void Object::initialize() {
-
-    initialized = true;
 }
