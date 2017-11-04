@@ -22,6 +22,7 @@
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectMaker.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="InputSystem.h" />
     <ClInclude Include="Interactable.h" />
@@ -39,6 +40,7 @@
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectMaker.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="Interactable.cpp" />

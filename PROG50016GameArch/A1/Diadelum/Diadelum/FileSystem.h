@@ -18,13 +18,24 @@ Description: Manages the input and output of files used by the game
 
 class FileSystem {
 
-public:
-
-    /***** Functions *****/
+private:
 
     FileSystem();
 
+    FileSystem(FileSystem &fs);
+
     ~FileSystem();
+
+    FileSystem &operator=(FileSystem &fs);
+
+public:
+
+    inline static FileSystem &Instance() {
+
+        static FileSystem instance;
+
+        return instance;
+    }
 
     // Initialize the file system to a usable state
     void initialize(std::string &settingsFile);

@@ -19,15 +19,13 @@ Description: Manages the input and output of files used by the game
 using namespace tinyxml2;
 
 
-FileSystem::FileSystem() {
+FileSystem::FileSystem() {}
 
+FileSystem::FileSystem(FileSystem &fs) {}
 
-}
+FileSystem::~FileSystem() {}
 
-FileSystem::~FileSystem() {
-
-
-}
+FileSystem &FileSystem::operator=(FileSystem &fs) { return fs; }
 
 // Initialize the file system to a usable state
 void FileSystem::initialize(std::string &settingsFile) {
