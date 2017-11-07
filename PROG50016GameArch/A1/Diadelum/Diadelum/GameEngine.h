@@ -16,7 +16,6 @@ Description: main game engine runs everything else
 #include <string>
 
 #include "SceneManager.h"
-#include "GameObjectManager.h"
 
 
 class GameEngine {
@@ -25,8 +24,9 @@ private:
 
     /***** Variables *****/
 
-    //GameObjectManager goMgr;
     SceneManager scene;
+
+    bool isRunning;
 
 public:
 
@@ -37,7 +37,7 @@ public:
     ~GameEngine();
 
     // Initialize the game engine to be available for start
-    void initialize(std::string &settingsFile);
+    bool initialize(std::string &settingsFile);
 
     // main game loop for running through updates
     void gameLoop();

@@ -33,3 +33,7 @@ at end of zone update delete all items that need to be deleted
 items and stuff might need a render message to play wit hthe zone description to help say what is and isnt there anymore
 
 when performing use with the with item (2nd arg) is what determines what happens
+
+make a settings file load first with the other file locations inside it
+
+initializers for systems return bool for verification

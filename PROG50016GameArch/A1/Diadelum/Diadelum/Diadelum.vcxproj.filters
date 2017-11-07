@@ -75,9 +75,6 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\System\File</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
-      <Filter>Header Files\Object\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\Object\GameObject</Filter>
     </ClInclude>
@@ -129,9 +126,6 @@
       <Filter>Source Files\File</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Object\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
       <Filter>Source Files\Object\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">

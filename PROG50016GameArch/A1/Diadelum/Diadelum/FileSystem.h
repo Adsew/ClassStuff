@@ -15,10 +15,22 @@ Description: Manages the input and output of files used by the game
 
 #include <string>
 
+#include "tinyxml2.h"
+
 
 class FileSystem {
 
 private:
+
+    /***** Variables *****/
+ 
+    tinyxml2::XMLDocument assetsFile; // Note: Could not forward declare. Unsure why.
+    tinyxml2::XMLDocument mapFile;
+
+    bool initialized;
+
+
+    /****** Functions *****/
 
     FileSystem();
 
@@ -38,13 +50,13 @@ public:
     }
 
     // Initialize the file system to a usable state
-    void initialize(std::string &settingsFile);
+    bool initialize(const char *assets, const char *map);
 
-    // Cycle update for file system
-    void update();
+    // Initialize the file system to a usable state
+    void initialize(std::string &assets, std::string &map);
 
-    // Display relavent information from the file system to the screen
-    void display();
+    // Load a zone from the map file
+    void loadZone(const char *zone);
 };
 
 #endif
