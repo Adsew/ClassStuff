@@ -34,6 +34,6 @@ items and stuff might need a render message to play wit hthe zone description to
 
 when performing use with the with item (2nd arg) is what determines what happens
 
-make a settings file load first with the other file locations inside it
+make a settings file load first with the other file locations inside it. Keep map of asset files and make filesystem completely modular by saying functions like get next attribute with string name etc.
 
 initializers for systems return bool for verification
