@@ -14,9 +14,9 @@ Description: A singleton class that produces the desired game object
 */
 
 
-#include "Interactable.h"
-#include "Item.h"
-#include "Monster.h"
+class Item;
+class Interactable;
+class Monster;
 
 
 class GameObjectMaker {

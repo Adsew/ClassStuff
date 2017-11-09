@@ -61,9 +61,6 @@ public:
 
     // Get the text-based input's current status
     std::list<std::pair<int, std::string>> getInput();
-
-    // Display relavent metrics to screen
-    void display();
 };
 
 #endif

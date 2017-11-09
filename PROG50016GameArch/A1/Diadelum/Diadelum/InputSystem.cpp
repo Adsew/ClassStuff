@@ -162,9 +162,3 @@ void InputSystem::update() {
         input.push_back(std::pair<int, std::string>(0, std::string("nothing")));
     }
 }
-
-// Display relavent metrics to screen
-void InputSystem::display() {
-
-
-}

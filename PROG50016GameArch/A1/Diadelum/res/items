@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Items>
+    <I1001 name="super thing" uses thing="1" worksID="0002" creates="0" unlockLoc="town">
+        <Description>This is a description I do a thing yay me!</Description>
+        <UseText>Things happen and you really arent surprised.</UseText>
+    </I1001>
+</Items>

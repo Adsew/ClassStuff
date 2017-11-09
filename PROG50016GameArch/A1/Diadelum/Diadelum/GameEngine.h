@@ -37,6 +37,9 @@ public:
     ~GameEngine();
 
     // Initialize the game engine to be available for start
+    bool initialize(const char *settingsFile);
+
+    // Initialize the game engine to be available for start
     bool initialize(std::string &settingsFile);
 
     // main game loop for running through updates

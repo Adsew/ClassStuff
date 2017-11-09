@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Settings>
+    <AssetFiles>
+        <Asset name="items" file="../res/items" />
+        <Asset name="monsters" file="../res/monsters" />
+        <Asset name="interactables" file="../res/interactables" />
+        <Asset name="map" file="../res/map" />
+    </AssetFiles>
+</Settings>

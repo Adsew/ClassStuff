@@ -14,9 +14,8 @@ Description: main code file to begine the engine running.
 int main(int argc, const char *argv[]) {
 
     GameEngine engine;
-    std::string s = "";
 
-    engine.initialize(s);
+    engine.initialize("../res/settings");
     engine.gameLoop();
 
     return -1;

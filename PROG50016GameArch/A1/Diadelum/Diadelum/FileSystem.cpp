@@ -10,6 +10,7 @@ Description: Manages the input and output of files used by the game
 */
 
 
+#include "tinyxml2.h"
 #include "FileSystem.h"
 
 
@@ -18,6 +19,9 @@ using namespace tinyxml2;
 
 FileSystem::FileSystem() {
 
+    activeAsset = NULL;
+    activeElem = NULL;
+
     initialized = false;
 }
 
@@ -25,18 +29,64 @@ FileSystem::FileSystem(FileSystem &fs) {}
 
 FileSystem::~FileSystem() {
 
-    
+    for (std::map<std::string, XMLDocument *>::iterator iter = assets.begin();
+        iter != assets.end();
+        iter++) {
+
+        delete (*iter).second;
+        (*iter).second = NULL;
+    }
+
+    activeAsset = NULL;
+    activeElem = NULL;
 }
 
 FileSystem &FileSystem::operator=(FileSystem &fs) { return fs; }
 
 // Initialize the file system to a usable state
-bool FileSystem::initialize(const char *assets, const char *map) {
+bool FileSystem::initialize(const char *settingsLoc) {
 
-    assetsFile.LoadFile(assets);
-    mapFile.LoadFile(map);
+    XMLDocument settingsFile;
+    settingsFile.LoadFile(settingsLoc);
 
-    if (assetsFile.Error() == false && mapFile.Error() == false) {
+    if (settingsFile.Error() == false) {
+
+        XMLNode *settings = settingsFile.FirstChildElement("Settings");
+
+        if (settings != NULL) {
+
+            // Get game engine settings
+            XMLElement *assetsNode = settings->FirstChildElement("AssetFiles");
+
+            if (assetsNode != NULL) {
+
+                XMLDocument *asset = NULL;
+
+                for (XMLElement *assetFile = assetsNode->FirstChildElement();
+                    assetFile != NULL;
+                    assetFile = assetFile->NextSiblingElement()) {
+
+                    if (assetFile->Attribute("file") != NULL && assetFile->Attribute("name") != NULL) {
+
+                        asset = new XMLDocument();
+
+                        asset->LoadFile(assetFile->Attribute("file"));
+
+                        if (asset->Error() == false) {
+
+                            assets[assetFile->Attribute("name")] = asset;
+                        }
+                        else {
+
+                            delete asset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (assets.size() > 0) {
 
         initialized = true;
 
@@ -47,124 +97,196 @@ bool FileSystem::initialize(const char *assets, const char *map) {
 }
 
 // Initialize the file system to a usable state
-void FileSystem::initialize(std::string &assets, std::string &map) {
+void FileSystem::initialize(std::string &settingsLoc) {
 
-    FileSystem::Instance().initialize(assets.c_str(), map.c_str());
+    this->initialize(settingsLoc.c_str());
 }
 
-void FileSystem::loadZone(const char *zone) {
+// Set the file to be used for loading
+bool FileSystem::useFile(const char *fileRef) {
 
-    if (initialized) {
+    try {
 
-        XMLNode *settings = docSettings.FirstChildElement("GameSettings");
+        activeAsset = assets.at(fileRef);
+        activeElem = NULL;
 
-        if (settings != NULL) {
+        return true;
+    }
+    catch (const std::out_of_range &ex) {
+    
+        activeAsset = NULL;
+        activeElem = NULL;
+    }
 
-            // Get game engine settings
-            XMLElement *gameEngiSettings = settings->FirstChildElement("GameEngine");
+    return false;
+}
 
-            if (gameEngiSettings != NULL) {
+// Set the file to be used for loading
+bool FileSystem::useFile(std::string &fileRef) {
 
-                XMLElement *levelDefaultNode = gameEngiSettings->FirstChildElement("DefaultFile");
+    return this->useFile(fileRef.c_str());
+}
 
-                if (levelDefaultNode != NULL) {
+// Changes from current node to a contained element
+bool FileSystem::traverseToElement(const char *elem) {
 
-                    levelFileStr = levelDefaultNode->GetText();
-                }
+    if (activeAsset != NULL) {
+
+        XMLElement *temp = activeElem;
+
+        if (activeElem == NULL) {
+
+            activeElem = activeAsset->FirstChildElement(elem);
+        }
+        else {
+
+            activeElem = activeElem->FirstChildElement(elem);
+        }
+
+        if (activeElem != NULL) {
+
+            return true;
+        }
+        else {
+
+            activeElem = temp;
+        }
+    }
+
+    return false;
+}
+
+// Changes from current node to a contained element
+bool FileSystem::traverseToElement(std::string &elem) {
+
+    return this->traverseToElement(elem.c_str());
+}
+
+// Changes from current element to the next element of same parent
+bool FileSystem::traverseToSyblingElement() {
+
+    if (activeAsset != NULL) {
+        if (activeElem != NULL) {
+
+            XMLElement *temp = activeElem;
+
+            activeElem = activeElem->NextSiblingElement();
+
+            if (activeElem != NULL) {
+
+                return true;
             }
+            else {
 
-            // Get game renderer settings
-            XMLElement *rendererSettings = settings->FirstChildElement("RenderSystem");
-
-            if (rendererSettings != NULL) {
-
-                std::string sysName = "";
-                int width = 0, height = 0;
-                bool fullscreenMode = true;
-
-                XMLElement *curElement = rendererSettings->FirstChildElement("Name");
-
-                if (curElement != NULL) {
-
-                    sysName = curElement->GetText();
-                }
-
-                curElement = rendererSettings->FirstChildElement("WindowSize");
-
-                if (curElement != NULL) {
-
-                    fullscreenMode = curElement->BoolAttribute("fullscreen");
-                    width = curElement->IntAttribute("width");
-                    height = curElement->IntAttribute("height");
-                }
-
-                rendSys.initialize(sysName, width, height, fullscreenMode);
+                activeElem = temp;
             }
         }
     }
-    else {
 
-        std::cerr << "Could not open file: " << settingsFile;
-    }
+    return false;
+}
 
-    docLevel.LoadFile(levelFileStr.c_str());
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(const char *name, std::string &val) {
 
-    if (docLevel.Error() == false) {
+    if (activeElem != NULL) {
+        if (activeElem->Attribute(name) != 0) {
 
-        XMLNode *managerNode = docLevel.FirstChildElement("GameObjectManager");
+            val = activeElem->Attribute(name);
 
-        if (managerNode != NULL) {
-
-            XMLElement *gameObjs = managerNode->FirstChildElement("GameObjects");
-
-            if (gameObjs != NULL) {
-
-                // Loop and load all game objects into manager
-                for (XMLElement *go = gameObjs->FirstChildElement("GameObject");
-                    go != NULL;
-                    go = go->NextSiblingElement("GameObject")) {
-
-                    GameObject *newGameObj = NULL;
-                    std::string name = "";
-
-                    XMLElement *goElem = go->FirstChildElement("name");
-
-                    if (goElem != NULL) {
-
-                        name = goElem->GetText();
-                    }
-
-                    newGameObj = new GameObject(name);
-
-                    goElem = go->FirstChildElement("Components");
-
-                    // Load all components for this game object
-                    for (XMLElement *comp = goElem->FirstChildElement("Component");
-                        comp != NULL;
-                        comp = comp->NextSiblingElement("Component")) {
-
-                        Component *newCompObj = NULL;
-                        int id = 0;
-
-                        XMLElement *idElem = comp->FirstChildElement("id");
-
-                        if (idElem != NULL) {
-
-                            id = atoi(idElem->GetText());
-                        }
-
-                        newCompObj = new Component(id);
-
-                        newGameObj->addComponent(newCompObj);
-                    }
-
-                    goMgr.addGameObject(newGameObj);
-                }
-            }
+            return true;
         }
     }
-    else {
 
-        std::cerr << "Could not open file: " << levelFileStr;
+    return false;
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(std::string &name, std::string &val) {
+
+    return this->getAttribute(name.c_str(), val);
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(const char *name, int &val) {
+
+    if (activeElem != NULL) {
+        if (activeElem->Attribute(name) != 0) {
+
+            val = activeElem->IntAttribute(name);
+
+            return true;
+        }
     }
+
+    return false;
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(std::string &name, int &val) {
+
+    return this->getAttribute(name.c_str(), val);
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(const char *name, float &val) {
+
+    if (activeElem != NULL) {
+        if (activeElem->Attribute(name) != 0) {
+
+            val = activeElem->FloatAttribute(name);
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(std::string &name, float &val) {
+
+    return this->getAttribute(name.c_str(), val);
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(const char *name, double &val) {
+
+    if (activeElem != NULL) {
+        if (activeElem->Attribute(name) != 0) {
+
+            val = activeElem->DoubleAttribute(name);
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(std::string &name, double &val) {
+
+    return this->getAttribute(name.c_str(), val);
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(const char *name, bool &val) {
+
+    if (activeElem != NULL) {
+        if (activeElem->Attribute(name) != 0) {
+
+            val = activeElem->BoolAttribute(name);
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(std::string &name, bool &val) {
+
+    return this->getAttribute(name.c_str(), val);
 }

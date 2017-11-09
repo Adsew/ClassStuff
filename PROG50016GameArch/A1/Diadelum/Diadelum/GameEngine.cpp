@@ -24,9 +24,9 @@ GameEngine::GameEngine() {
 GameEngine::~GameEngine() {}
 
 // Initialize the game engine to be available for start
-bool GameEngine::initialize(std::string &settingsFile) {
+bool GameEngine::initialize(const char *settingsFile) {
 
-    FileSystem::Instance().initialize("game/assets", "game/map");
+    FileSystem::Instance().initialize(settingsFile);
     InputSystem::Instance().initialize();
     RenderSystem::Instance().initialize();
     scene.intialize();
@@ -34,6 +34,12 @@ bool GameEngine::initialize(std::string &settingsFile) {
     isRunning = true;
 
     return isRunning;
+}
+
+// Initialize the game engine to be available for start
+bool GameEngine::initialize(std::string &settingsFile) {
+
+    return this->initialize(settingsFile.c_str());
 }
 
 // main game loop for running through updates

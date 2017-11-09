@@ -11,6 +11,10 @@ with the helpf of the file system for loading the information.
 */
 
 
+#include "FileSystem.h"
+#include "Interactable.h"
+#include "Item.h"
+#include "Monster.h"
 #include "GameObjectMaker.h"
 
 
@@ -26,7 +30,6 @@ Item *GameObjectMaker::newItem(int id) {
 
     Item *item = NULL;
 
-    //FileSystem::Instance().(load details)(id);
     item = new Item(id, "");
 
     return item;
@@ -36,7 +39,6 @@ Interactable *GameObjectMaker::newInteractable(int id) {
 
     Interactable *inter = NULL;
 
-    //FileSystem::Instance().(load details)(id);
     inter = new Interactable(id, "");
 
     return inter;
@@ -46,7 +48,6 @@ Monster *GameObjectMaker::newMonster(int id) {
 
     Monster *mon = NULL;
 
-    //FileSystem::Instance().(load details)(id);
     mon = new Monster(id, "");
 
     return mon;

@@ -14,8 +14,13 @@ Description: Manages the input and output of files used by the game
 
 
 #include <string>
+#include <map>
 
-#include "tinyxml2.h"
+
+namespace tinyxml2 {
+    class XMLDocument;
+    class XMLElement;
+}
 
 
 class FileSystem {
@@ -23,9 +28,11 @@ class FileSystem {
 private:
 
     /***** Variables *****/
- 
-    tinyxml2::XMLDocument assetsFile; // Note: Could not forward declare. Unsure why.
-    tinyxml2::XMLDocument mapFile;
+
+    std::map<std::string, tinyxml2::XMLDocument *> assets;
+
+    tinyxml2::XMLDocument *activeAsset;
+    tinyxml2::XMLElement *activeElem;
 
     bool initialized;
 
@@ -50,13 +57,55 @@ public:
     }
 
     // Initialize the file system to a usable state
-    bool initialize(const char *assets, const char *map);
+    bool initialize(const char *settingsLoc);
 
     // Initialize the file system to a usable state
-    void initialize(std::string &assets, std::string &map);
+    void initialize(std::string &settingsLoc);
 
-    // Load a zone from the map file
-    void loadZone(const char *zone);
+    // Set the file to be used for loading
+    bool useFile(const char *fileRef);
+
+    // Set the file to be used for loading
+    bool useFile(std::string &fileRef);
+
+    // Changes from current node to a contained element
+    bool traverseToElement(const char *elem);
+
+    // Changes from current node to a contained element
+    bool traverseToElement(std::string &elem);
+
+    // Changes from current element to the next element of same parent
+    bool traverseToSyblingElement();
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(const char *name, std::string &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(std::string &name, std::string &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(const char *name, int &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(std::string &name, int &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(const char *name, float &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(std::string &name, float &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(const char *name, double &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(std::string &name, double &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(const char *name, bool &val);
+
+    // Get an attribute from the current element, if exists
+    bool getAttribute(std::string &name, bool &val);
 };
 
 #endif
