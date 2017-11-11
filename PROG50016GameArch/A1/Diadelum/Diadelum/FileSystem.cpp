@@ -186,6 +186,49 @@ bool FileSystem::traverseToSyblingElement() {
     return false;
 }
 
+// Changes from current element to the next element of same parent by name
+bool FileSystem::traverseToSyblingElement(const char *syb) {
+
+    if (activeAsset != NULL) {
+        if (activeElem != NULL) {
+
+            XMLElement *temp = activeElem;
+
+            activeElem = activeElem->NextSiblingElement(syb);
+
+            if (activeElem != NULL) {
+
+                return true;
+            }
+            else {
+
+                activeElem = temp;
+            }
+        }
+    }
+
+    return false;
+}
+
+// Changes from current element to the next element of same parent by name
+bool FileSystem::traverseToSyblingElement(std::string &syb) {
+
+    return this->traverseToSyblingElement(syb.c_str());
+}
+
+// Get the text contained in the tags of the current element
+bool FileSystem::getElementText(std::string &val) {
+
+    if (activeElem != NULL) {
+        
+        val = activeElem->GetText();
+
+        return true;
+    }
+
+    return false;
+}
+
 // Get an attribute from the current element, if exists
 bool FileSystem::getAttribute(const char *name, std::string &val) {
 

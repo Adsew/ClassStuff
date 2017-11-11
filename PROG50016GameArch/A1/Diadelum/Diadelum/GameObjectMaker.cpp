@@ -15,6 +15,7 @@ with the helpf of the file system for loading the information.
 #include "Interactable.h"
 #include "Item.h"
 #include "Monster.h"
+#include "Zone.h"
 #include "GameObjectMaker.h"
 
 
@@ -29,6 +30,10 @@ GameObjectMaker &GameObjectMaker::operator=(GameObjectMaker &gom) { return gom; 
 Item *GameObjectMaker::newItem(int id) {
 
     Item *item = NULL;
+
+    FileSystem::Instance().useFile("items");
+    FileSystem::Instance().traverseToElement("items");
+    FileSystem::Instance().traverseToElement("I" + id);
 
     item = new Item(id, "");
 
@@ -51,4 +56,14 @@ Monster *GameObjectMaker::newMonster(int id) {
     mon = new Monster(id, "");
 
     return mon;
+}
+
+Zone *GameObjectMaker::newZone(const char *name) {
+
+
+}
+
+Zone *GameObjectMaker::newZone(std::string &name) {
+
+    return this->newZone(name.c_str());
 }

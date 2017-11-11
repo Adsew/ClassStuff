@@ -14,6 +14,10 @@ Description: A singleton class that produces the desired game object
 */
 
 
+#include <string>
+
+
+class Zone;
 class Item;
 class Interactable;
 class Monster;
@@ -45,6 +49,10 @@ public:
     Interactable *newInteractable(int id);
 
     Monster *newMonster(int id);
+
+    Zone *newZone(const char *name);
+
+    Zone *newZone(std::string &name);
 };
 
 #endif

@@ -77,6 +77,15 @@ public:
     // Changes from current element to the next element of same parent
     bool traverseToSyblingElement();
 
+    // Changes from current element to the next element of same parent by name
+    bool traverseToSyblingElement(const char *syb);
+
+    // Changes from current element to the next element of same parent by name
+    bool traverseToSyblingElement(std::string &syb);
+
+    // Get the text contained in the tags of the current element
+    bool getElementText(std::string &val);
+
     // Get an attribute from the current element, if exists
     bool getAttribute(const char *name, std::string &val);
 
