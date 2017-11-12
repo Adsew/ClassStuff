@@ -81,6 +81,18 @@ public:
 
     // Accessors
 
+    bool setDescription(const char *desc);
+
+    bool setDescription(std::string &desc);
+
+    bool addInteractable(Interactable *inter);
+
+    bool addItem(Item *item);
+
+    bool addMonster(Monster *mon);
+
+    bool addZoneConnection(std::string &zoneName, bool accessable);
+
     bool movingFlagStatus();
 
     std::string &getZoneToMoveTo();

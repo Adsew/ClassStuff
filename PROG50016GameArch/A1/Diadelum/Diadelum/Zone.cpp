@@ -439,6 +439,64 @@ std::string Zone::render() {
 
     // Accessors
 
+bool Zone::setDescription(const char *desc) {
+
+    zoneDescription = desc;
+}
+
+bool Zone::setDescription(std::string &desc) {
+
+    return this->setDescription(desc.c_str());
+}
+
+bool Zone::addInteractable(Interactable *inter) {
+
+    if (inter != NULL) {
+
+        interactables[inter->getName()] = inter;
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Zone::addItem(Item *item) {
+
+    if (item != NULL) {
+
+        items[item->getName()] = item;
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Zone::addMonster(Monster *mon) {
+
+    if (mon != NULL) {
+
+        monsters[mon->getName()] = mon;
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Zone::addZoneConnection(std::string &zoneName, bool accessable) {
+
+    if (zoneName.length() > 0) {
+
+        connectedZones[zoneName] = accessable;
+
+        return true;
+    }
+
+    return false;
+}
+
 bool Zone::movingFlagStatus() {
 
     return movingFlag;
