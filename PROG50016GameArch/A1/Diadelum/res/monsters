@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
-<assets>
-    <monsters>
-    </monsters>
-    <items>
-    </items>
-    <interactables>
-    </interactables>
-</assets>
+<Monsters>
+    <M3000 name="bad guy" uses="1" worksID="1000" creates="0" unlockLoc="gaurded door">
+        <Description>This is a description yay me!</Description>
+        <UseText>He rawrs at you. Oh no!</UseText>
+    </M3000>
+</Monsters>

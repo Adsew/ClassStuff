@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Interactables>
+    <E2000 name="example rock" uses="-1" worksID="0" creates="0" unlockLoc="">
+        <Description>This is a description yay me!</Description>
+        <UseText>Things happen and you really arent surprised.</UseText>
+    </E2000>
+</Interactables>

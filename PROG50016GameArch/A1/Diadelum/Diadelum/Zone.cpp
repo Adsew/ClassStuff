@@ -22,39 +22,46 @@ on the zone's specific details.
 Zone::Zone(std::string n)
     : Object(n) {
 
+    player = NULL;
+
     zoneToMoveTo = "";
 
     movingFlag = false;
     modified = false;
 
-    zoneDescription = "You are alone in a dark field with nothing around you but the feint smell of rotting corpses and burning buildings."
-        " You see a rock, a potion of awesome, and an enemy called scary guy. Bitch town is in the distance and your future is blocked."
-        "What do you do?";
-
-    monsters["scary guy"] = new Monster(100, "scary guy");
-    monsters["scary guy"]->setDescription("It looks like he hates nerds.");
-    connectedZones["bitch town"] = true;
-    connectedZones["my future"] = false;
-    items["potion of awesome"] = new Item(200, "potion of awesome");
-    items["potion of awesome"]->setDescription("A magical potion that eats people.");
-    items["potion of awesome"]->setNumUses(1);
-    items["potion of awesome"]->setLocationToUnlock("my future");
-    items["potion of awesome"]->setWorksWithID(300);
-    items["potion of awesome"]->setOnUseMsg("The potion desolves the rock.");
-    interactables["rock"] = new Interactable(300, "rock");
-    interactables["rock"]->setDescription("An ordinary rock.");
-    interactables["rock"]->setNumUses(1);
-    interactables["rock"]->setLocationToUnlock("my future");
-    interactables["rock"]->setWorksWithID(200);
-    interactables["rock"]->setOnUseMsg("You smash the potion with the rock, also moving the rock out of the way...");
+    zoneDescription = "";
+    messageToP = "";
 }
 
 
 Zone::~Zone() {
 
-    delete monsters["scary guy"];
-    delete items["potion of awesome"];
-    delete interactables["rock"];
+    std::map<std::string, Interactable *>::iterator interIter = interactables.begin();
+
+    while (interIter != interactables.end()) {
+
+        delete interIter->second;
+        interIter->second = NULL;
+        interIter = interactables.erase(interIter);
+    }
+
+    std::map<std::string, Item *>::iterator itemIter = items.begin();
+
+    while (itemIter != items.end()) {
+
+        delete itemIter->second;
+        itemIter->second = NULL;
+        itemIter = items.erase(itemIter);
+    }
+
+    std::map<std::string, Monster *>::iterator monIter = monsters.begin();
+
+    while (monIter != monsters.end()) {
+
+        delete monIter->second;
+        monIter->second = NULL;
+        monIter = monsters.erase(monIter);
+    }
 }
 
 void Zone::update() {
@@ -431,7 +438,33 @@ void Zone::help() {
 
 std::string Zone::render() {
 
-    return "\n" + zoneDescription + "\n\n" + messageToP;
+    // Zone description first
+    std::string output = "\n" + zoneDescription;
+
+    // Then any identifiers for things in the zone
+    std::map<std::string, Interactable *>::iterator interIter = interactables.begin();
+
+    while (interIter != interactables.end()) {
+
+        output += " " + interIter->second->getInZoneMsg();
+    }
+
+    std::map<std::string, Item *>::iterator itemIter = items.begin();
+
+    while (itemIter != items.end()) {
+
+        output += " " + itemIter->second->getInZoneMsg();
+    }
+
+    std::map<std::string, Monster *>::iterator monIter = monsters.begin();
+
+    while (monIter != monsters.end()) {
+
+        output += " " + monIter->second->getInZoneMsg();
+    }
+
+    // Finally message to player based on previous action
+    return output + "\n\n" + messageToP;
 }
 
 

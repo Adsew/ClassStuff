@@ -16,6 +16,7 @@ game world.
 #include "Zone.h"
 #include "InputSystem.h"
 #include "RenderSystem.h"
+#include "GameObjectMaker.h"
 #include "SceneManager.h"
 
 
@@ -46,9 +47,18 @@ SceneManager::~SceneManager() {
 void SceneManager::intialize() {
 
     player = new Player();
-    activeZone = new Zone("test", player);
+    activeZone = GameObjectMaker::Instance().newZone("meeting_zone");
+    
+    if (activeZone != NULL) {
 
-    RenderSystem::Instance().addIRenderable(activeZone);
+        activeZone->setPlayer(player);
+
+        RenderSystem::Instance().addIRenderable(activeZone);
+    }
+    else {
+
+        exitFlag = true;
+    }
 }
 
 // Cycle update for input manager
@@ -87,7 +97,19 @@ void SceneManager::move(std::list<std::pair<int, std::string>> &action) {
 
     if (activeZone->movingFlagStatus() == true) {
 
-        // get zone to move to and load from file and swap
+        Zone *tempZone = GameObjectMaker::Instance().newZone(activeZone->getZoneToMoveTo());
+
+        if (tempZone != NULL) {
+
+            RenderSystem::Instance().removeIRenderable(activeZone);
+
+            delete activeZone;
+
+            activeZone = tempZone;
+            activeZone->setPlayer(player);
+
+            RenderSystem::Instance().addIRenderable(activeZone);
+        }
     }
 }
 

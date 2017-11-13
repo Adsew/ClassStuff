@@ -33,10 +33,13 @@ protected:
     bool inUse;
     int numUses;
 
-    int worksWithID;    // A game object that can be used with this
-    int createsID;      // If another game object is produced when this is used
+    int worksWithID;                // A game object that can be used with this
+    int createsID;                  // If another game object is produced when this is used
     std::string locationToUnlock;   // If unlocks a new direction to go
+
     std::string onUseMsg;
+    std::string inZoneMsg;          // Can be optionally used to render in zone information.
+                                    // Eg. A hint the item exists in the current zone.
 
 public:
 
@@ -94,6 +97,12 @@ public:
     void setOnUseMsg(std::string &msgWhenUsed);
 
     void setOnUseMsg(const char *msgWhenUsed);
+
+    void setInZoneMsg(std::string &msgInZone);
+
+    void setInZoneMsg(const char *msgInZone);
+
+    std::string &getInZoneMsg();
 };
 
 #endif

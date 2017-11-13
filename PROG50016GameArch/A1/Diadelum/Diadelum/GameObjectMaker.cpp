@@ -79,6 +79,14 @@ Item *GameObjectMaker::newItem(int id) {
                     item->setOnUseMsg(tempStr);
                 }
             }
+
+            if (fs->traverseToSyblingElement("ZoneText")) {
+
+                if (fs->getElementText(tempStr)) {
+
+                    item->setInZoneMsg(tempStr);
+                }
+            }
         }
     }
 
@@ -135,6 +143,14 @@ Interactable *GameObjectMaker::newInteractable(int id) {
                 if (fs->getElementText(tempStr)) {
 
                     inter->setOnUseMsg(tempStr);
+                }
+            }
+
+            if (fs->traverseToSyblingElement("ZoneText")) {
+
+                if (fs->getElementText(tempStr)) {
+
+                    inter->setInZoneMsg(tempStr);
                 }
             }
         }
@@ -195,6 +211,14 @@ Monster *GameObjectMaker::newMonster(int id) {
                     mon->setOnUseMsg(tempStr);
                 }
             }
+
+            if (fs->traverseToSyblingElement("ZoneText")) {
+
+                if (fs->getElementText(tempStr)) {
+
+                    mon->setInZoneMsg(tempStr);
+                }
+            }
         }
     }
 
@@ -205,6 +229,17 @@ Zone *GameObjectMaker::newZone(const char *name) {
 
     FileSystem *fs = &FileSystem::Instance();
     Zone *zone = NULL;
+    std::string tempName = name;
+
+    for (int i = 0; i < tempName.length(); i++) {
+
+        if (tempName[i] == ' ') {
+
+            tempName[i] = '_';
+        }
+    }
+
+    name = tempName.c_str();
 
     fs->useFile("map");
     fs->traverseToElement("Zones");

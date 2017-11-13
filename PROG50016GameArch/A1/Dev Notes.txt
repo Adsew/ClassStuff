@@ -8,13 +8,10 @@ If you have congealed blood when you kill final boss you get userper ending
 
 IMplementation:
 
-Map moving have the map dynamically load zones. A zone is loaded from the xml file and deloaded when moving to another zone in the xml file. Have a list of directions you can go in. like with the parser maybe a hashmap of directions can be used each with the name of a zone they transfer to associated and that zone name is the loading name in the xml file to laod that zone. This way we can  expand the locaions to move to using new names as keys given by the zone data
 
 For saving, save an xml with zone changes. If something changed in that zone store the changes in an xml that when that zone is loaded, check the save and implement the changes. The save file will also have the players inventory and location at the time as the first elemsnt.
 
-Game engine wil be stand alone. THe map will control everyhting. The engine will simply handle the flow of informaiton.
-
-a locked bool can be used to determine if a direction or box etc requires an item, then an if statement can check agains a string or int ID stored in the xml of what is needed to open or pass the locked thing. Allows for abstracting data from the engine.
+have a special start that asked for name of player to see if a save exists, if not just go into the starting zone as a new playter and make the save for that name
 
 For dying: corpse object derived from player object allows it to have an inventory which can be reclaimed.
 
@@ -24,18 +21,8 @@ Consider later creating a header or singleton where a file with codes is loaded 
 
 In the file for zone data, items can hold a list for location directions or boxzes they effect and while loading we can check if the locations in the list exist (which they should otherwise dont write them) and check in the map and set it to false if it exists. Allows us to lock of zones until interactables are moved. As a game object, we can set what moves them and remember what location they effect. This will also naturally help saving, as not saving the interactable when gone will stop it from falsing an opened direction
 
-3 types of game objects, monsters, interactables, and items. Items have an extra pickup function, interactables can lock other items in the scene off, and monsters can be attacked but cant  be used or searched until dead.
-
-Have items file as well to load and produce items by ID
-
-at end of zone update delete all items that need to be deleted
-
 items and stuff might need a render message to play wit hthe zone description to help say what is and isnt there anymore
 
-when performing use with the with item (2nd arg) is what determines what happens
-
-make a settings file load first with the other file locations inside it. Keep map of asset files and make filesystem completely modular by saying functions like get next attribute with string name etc.
-
-initializers for systems return bool for verification
+create map items etc in the file - load and encode using another program after
 
 ask if loading all files at start is a good option

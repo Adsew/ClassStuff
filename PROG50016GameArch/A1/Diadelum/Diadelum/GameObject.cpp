@@ -28,6 +28,7 @@ GameObject::GameObject()
     createsID = -1;
     locationToUnlock = "";
     onUseMsg = "";
+    inZoneMsg = "";
 }
 
 GameObject::GameObject(int idNum, std::string &n) 
@@ -153,4 +154,19 @@ void GameObject::setOnUseMsg(std::string &msgWhenUsed) {
 void GameObject::setOnUseMsg(const char *msgWhenUsed) {
 
     onUseMsg = msgWhenUsed;
+}
+
+void GameObject::setInZoneMsg(std::string &msgInZone) {
+
+    inZoneMsg = msgInZone;
+}
+
+void GameObject::setInZoneMsg(const char *msgInZone) {
+
+    inZoneMsg = msgInZone;
+}
+
+std::string &GameObject::getInZoneMsg() {
+
+    return inZoneMsg;
 }
