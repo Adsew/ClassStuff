@@ -74,6 +74,9 @@ public:
     // Changes from current node to a contained element
     bool traverseToElement(std::string &elem);
 
+    // Chamges from current node to the first child
+    bool traverseToChildElement();
+
     // Changes from current element to the next element of same parent
     bool traverseToSyblingElement();
 
@@ -82,6 +85,9 @@ public:
 
     // Changes from current element to the next element of same parent by name
     bool traverseToSyblingElement(std::string &syb);
+
+    // Return from current tag to parent tag
+    bool traverseToParentElement();
 
     // Get the text contained in the tags of the current element
     bool getElementText(std::string &val);

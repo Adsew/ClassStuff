@@ -19,10 +19,8 @@ on the zone's specific details.
 #include "Zone.h"
 
 
-Zone::Zone(std::string n, Player *p)
+Zone::Zone(std::string n)
     : Object(n) {
-
-    player = p;
 
     zoneToMoveTo = "";
 
@@ -495,6 +493,11 @@ bool Zone::addZoneConnection(std::string &zoneName, bool accessable) {
     }
 
     return false;
+}
+
+bool Zone::setPlayer(Player *p) {
+
+    player = p;
 }
 
 bool Zone::movingFlagStatus() {

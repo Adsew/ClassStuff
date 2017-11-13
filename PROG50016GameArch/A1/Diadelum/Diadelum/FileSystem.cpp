@@ -162,6 +162,35 @@ bool FileSystem::traverseToElement(std::string &elem) {
     return this->traverseToElement(elem.c_str());
 }
 
+// Chamges from current node to the first child
+bool FileSystem::traverseToChildElement() {
+
+    if (activeAsset != NULL) {
+
+        XMLElement *temp = activeElem;
+
+        if (activeElem == NULL) {
+
+            activeElem = activeAsset->FirstChildElement();
+        }
+        else {
+
+            activeElem = activeElem->FirstChildElement();
+        }
+
+        if (activeElem != NULL) {
+
+            return true;
+        }
+        else {
+
+            activeElem = temp;
+        }
+    }
+
+    return false;
+}
+
 // Changes from current element to the next element of same parent
 bool FileSystem::traverseToSyblingElement() {
 
@@ -214,6 +243,30 @@ bool FileSystem::traverseToSyblingElement(const char *syb) {
 bool FileSystem::traverseToSyblingElement(std::string &syb) {
 
     return this->traverseToSyblingElement(syb.c_str());
+}
+
+// Return from current tag to parent tag
+bool FileSystem::traverseToParentElement() {
+
+    if (activeElem != NULL) {
+
+        XMLElement *temp = activeElem;
+
+        XMLNode *parent = activeElem->Parent();
+
+        activeElem = parent->ToElement();
+
+        if (activeElem != NULL) {
+
+            return true;
+        }
+        else {
+
+            activeElem = temp;
+        }
+    }
+
+    return false;
 }
 
 // Get the text contained in the tags of the current element

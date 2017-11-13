@@ -206,7 +206,72 @@ Zone *GameObjectMaker::newZone(const char *name) {
     FileSystem *fs = &FileSystem::Instance();
     Zone *zone = NULL;
 
+    fs->useFile("map");
+    fs->traverseToElement("Zones");
 
+    if (fs->traverseToElement(name)) {
+
+        std::string tempStr;
+        int tempInt = 0;
+
+        zone = new Zone(name);
+
+        if (fs->traverseToElement("Description")) {
+
+            if (fs->getElementText(tempStr)) {
+
+                zone->setDescription(tempStr);
+            }
+        }
+
+        if (fs->traverseToSyblingElement("Items")) {
+            if (fs->traverseToChildElement()) {
+
+                do {
+
+                    if (fs->getAttribute("id", tempInt)) {
+
+                        zone->addItem(this->newItem(tempInt));
+                    }
+
+                } while (fs->traverseToSyblingElement());
+            }
+        }
+
+        fs->traverseToParentElement();
+        fs->traverseToParentElement();
+
+        if (fs->traverseToElement("Interactables")) {
+            if (fs->traverseToChildElement()) {
+
+                do {
+
+                    if (fs->getAttribute("id", tempInt)) {
+
+                        zone->addInteractable(this->newInteractable(tempInt));
+                    }
+
+                } while (fs->traverseToSyblingElement());
+            }
+        }
+
+        fs->traverseToParentElement();
+        fs->traverseToParentElement();
+
+        if (fs->traverseToElement("Monsters")) {
+            if (fs->traverseToChildElement()) {
+
+                do {
+
+                    if (fs->getAttribute("id", tempInt)) {
+
+                        zone->addMonster(this->newMonster(tempInt));
+                    }
+
+                } while (fs->traverseToSyblingElement());
+            }
+        }
+    }
 
     return zone;
 }

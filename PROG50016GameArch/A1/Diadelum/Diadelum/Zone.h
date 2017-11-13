@@ -36,10 +36,10 @@ private:
 
     Player *player;
 
-    std::map<std::string, bool> connectedZones; // bool determines if accessable or not
-    std::map<std::string, Interactable *> interactables;        // Environment interactables
-    std::map<std::string, Item *> items;                // Pickupable items in the zone
-    std::map<std::string, Monster *> monsters;             // Monsters in the area
+    std::map<std::string, bool> connectedZones;             // bool determines if accessable or not
+    std::map<std::string, Interactable *> interactables;    // Environment interactables
+    std::map<std::string, Item *> items;                    // Pickupable items in the zone
+    std::map<std::string, Monster *> monsters;              // Monsters in the area
 
     std::string messageToP;
     std::string zoneDescription;
@@ -57,7 +57,7 @@ protected:
 
 public:
 
-    Zone(std::string n, Player *p);
+    Zone(std::string n);
 
     ~Zone();
 
@@ -92,6 +92,8 @@ public:
     bool addMonster(Monster *mon);
 
     bool addZoneConnection(std::string &zoneName, bool accessable);
+
+    bool setPlayer(Player *p);
 
     bool movingFlagStatus();
 

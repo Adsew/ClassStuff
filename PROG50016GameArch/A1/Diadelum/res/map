@@ -1,3 +1,17 @@
 <?xml version="1.0"?>
-<zone>
-</zone>
+<Zones>
+    <Desolate_House>
+        <Description>
+            A dark and evil looking house with scary things around it.
+        </Description>
+        <Items>
+            <Item id="1001" />
+            <Item id="1002" />
+            <Item id="1003" />
+        </Items>
+        <Interactables>
+        </Interactables>
+        <Monsters>
+        </Monsters>
+    </Desolate_House>
+</Zones>
