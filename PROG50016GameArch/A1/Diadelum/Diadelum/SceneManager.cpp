@@ -47,7 +47,7 @@ SceneManager::~SceneManager() {
 void SceneManager::intialize() {
 
     player = new Player();
-    activeZone = GameObjectMaker::Instance().newZone("meeting_zone");
+    activeZone = GameObjectMaker::Instance().newZone("meeting quarter");
     
     if (activeZone != NULL) {
 

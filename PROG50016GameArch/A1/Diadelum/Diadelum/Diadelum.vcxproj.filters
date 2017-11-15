@@ -22,9 +22,6 @@
     <Filter Include="Header Files\Object\Zone">
       <UniqueIdentifier>{2792c58e-893f-4dd0-830d-1d1f00e0aefa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\File">
-      <UniqueIdentifier>{ed6a68bf-e009-4965-89ba-265642663e6d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Object">
       <UniqueIdentifier>{208b6250-a92b-43e3-8c84-ed219524bfdc}</UniqueIdentifier>
     </Filter>
@@ -67,6 +64,9 @@
     <Filter Include="Source Files\Object\Player">
       <UniqueIdentifier>{91aec426-9902-4100-831f-d8c7eddc7470}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\System\File">
+      <UniqueIdentifier>{ed6a68bf-e009-4965-89ba-265642663e6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileSystem.h">
@@ -102,17 +102,17 @@
     <ClInclude Include="InputSystem.h">
       <Filter>Header Files\System\IO\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Monster.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Object\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Interactable.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Object\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameObjectMaker.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\System\File</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -120,10 +120,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FileSystem.cpp">
-      <Filter>Source Files\File</Filter>
+      <Filter>Source Files\System\File</Filter>
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
-      <Filter>Source Files\File</Filter>
+      <Filter>Source Files\System\File</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files\Object\GameObject</Filter>
@@ -149,17 +149,17 @@
     <ClCompile Include="InputSystem.cpp">
       <Filter>Source Files\System\IO\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Monster.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Object\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Interactable.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Object\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectMaker.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\System\File</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

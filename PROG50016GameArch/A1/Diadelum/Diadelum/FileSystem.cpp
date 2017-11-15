@@ -254,7 +254,7 @@ bool FileSystem::traverseToParentElement() {
 
         XMLNode *parent = activeElem->Parent();
 
-        activeElem = parent->ToElement();
+        activeElem = (XMLElement *)parent;
 
         if (activeElem != NULL) {
 

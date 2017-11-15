@@ -45,12 +45,13 @@ bool GameEngine::initialize(std::string &settingsFile) {
 // main game loop for running through updates
 void GameEngine::gameLoop() {
 
+    // Main loop
     while (isRunning) {
+
+        RenderSystem::Instance().update();
 
         InputSystem::Instance().update();
 
         isRunning = scene.update();
-
-        RenderSystem::Instance().update();
     }
 }

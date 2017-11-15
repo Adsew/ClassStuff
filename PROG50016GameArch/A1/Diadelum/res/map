@@ -1,17 +1,96 @@
 <?xml version="1.0"?>
 <Zones>
-    <desolate_house>
+    <example_zone>
         <Description>
             A dark and evil looking house with scary things around it.
         </Description>
         <Items>
             <Item id="1001" />
-            <Item id="1002" />
-            <Item id="1003" />
         </Items>
         <Interactables>
+            <Interactable id="2001" />
         </Interactables>
         <Monsters>
+            <Monster id="3001" />
         </Monsters>
-    </Desolate_House>
+        <Connections>
+            <Zone name="town" access="true" />
+        </Connections>
+    </example_zone>
+    <meeting_quarter>
+        <Description>The noise of people gathering fills your ears. People frequently gather here for information on current events and updates regarding the safe zone. A crier stands out shouting the latest on ration distribution and monster attacks. Signs point to the desolate quarter, market quarter, and living quarter, as well as the south gate and east gate.</Description>
+        <Items>
+            <Item id="1001" />
+        </Items>
+        <Interactables>
+            <Interactable id="2001" />
+        </Interactables>
+        <Monsters>
+            <Monster id="3001" />
+        </Monsters>
+        <Connections>
+            <Zone name="living quarter" access="true" />
+            <Zone name="desolate quarter" access="true" />
+            <Zone name="market quarter" access="true" />
+            <Zone name="south gate" access="true" />
+            <Zone name="east gate" access="true" />
+        </Connections>
+    </meeting_quarter>
+    <market_quarter>
+        <Description>People frantically run amok in the large open space. Merchents own the area, selling whatever they scroung up. Signs point to the living quarter, desolate quarter, and meeting quarter, as well as the north gate and west gate.</Description>
+        <Items>
+            <Item id="1001" />
+        </Items>
+        <Interactables>
+            <Interactable id="2001" />
+        </Interactables>
+        <Monsters>
+            <Monster id="3001" />
+        </Monsters>
+        <Connections>
+            <Zone name="living quarter" access="true" />
+            <Zone name="desolate quarter" access="true" />
+            <Zone name="meeting quarter" access="true" />
+            <Zone name="west gate" access="true" />
+            <Zone name="north gate" access="true" />
+        </Connections>
+    </market_quarter>
+    <living_quarter>
+        <Description>The houses here are always a mystery. Sometimes filled with joyous families, othertimes sad new faces. People do their best to make this quarter feel welcoming with flowers and brightly coloured paint. Signs point towards the market quarter, desolate quarter, and meeting quarter, as well as the north gate and east gate.</Description>
+        <Items>
+            <Item id="1001" />
+        </Items>
+        <Interactables>
+            <Interactable id="2001" />
+        </Interactables>
+        <Monsters>
+            <Monster id="3001" />
+        </Monsters>
+        <Connections>
+            <Zone name="market quarter" access="true" />
+            <Zone name="desolate quarter" access="true" />
+            <Zone name="meeting quarter" access="true" />
+            <Zone name="east gate" access="true" />
+            <Zone name="north gate" access="true" />
+        </Connections>
+    </living_quarter>
+    <desolate_quarter>
+        <Description>Some stay here by choice, others shunned by the survivors. Regardless, this quarter feels the most real these days. Disrepair smuthers the streets and the slightest noise would send chills down your spine. Broken signs once pointed to the market quarter, living quarter, and meeting quarter, as well as the south gate and west gate.</Description>
+        <Items>
+            <Item id="1001" />
+        </Items>
+        <Interactables>
+            <Interactable id="2001" />
+        </Interactables>
+        <Monsters>
+            <Monster id="3001" />
+        </Monsters>
+        <Connections>
+            <Zone name="living quarter" access="true" />
+            <Zone name="market quarter" access="true" />
+            <Zone name="meeting quarter" access="true" />
+            <Zone name="west gate" access="true" />
+            <Zone name="south gate" access="true" />
+        </Connections>
+    </desolate_quarter>
 </Zones>

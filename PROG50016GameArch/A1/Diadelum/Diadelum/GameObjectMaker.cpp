@@ -11,6 +11,8 @@ with the helpf of the file system for loading the information.
 */
 
 
+#include <list>
+
 #include "FileSystem.h"
 #include "Interactable.h"
 #include "Item.h"
@@ -231,7 +233,7 @@ Zone *GameObjectMaker::newZone(const char *name) {
     Zone *zone = NULL;
     std::string tempName = name;
 
-    for (int i = 0; i < tempName.length(); i++) {
+    for (unsigned int i = 0; i < tempName.length(); i++) {
 
         if (tempName[i] == ' ') {
 
@@ -244,10 +246,15 @@ Zone *GameObjectMaker::newZone(const char *name) {
     fs->useFile("map");
     fs->traverseToElement("Zones");
 
+    // Zone exists, begin to load details
     if (fs->traverseToElement(name)) {
 
+        std::list<int> items;
+        std::list<int> interactables;
+        std::list<int> monsters;
         std::string tempStr;
         int tempInt = 0;
+        bool tempBool = true;
 
         zone = new Zone(name);
 
@@ -257,24 +264,27 @@ Zone *GameObjectMaker::newZone(const char *name) {
 
                 zone->setDescription(tempStr);
             }
+
+            fs->traverseToParentElement();
         }
 
-        if (fs->traverseToSyblingElement("Items")) {
+        if (fs->traverseToElement("Items")) {
             if (fs->traverseToChildElement()) {
 
                 do {
 
                     if (fs->getAttribute("id", tempInt)) {
 
-                        zone->addItem(this->newItem(tempInt));
+                        items.push_back(tempInt);
                     }
 
                 } while (fs->traverseToSyblingElement());
-            }
-        }
 
-        fs->traverseToParentElement();
-        fs->traverseToParentElement();
+                fs->traverseToParentElement();
+            }
+
+            fs->traverseToParentElement();
+        }
 
         if (fs->traverseToElement("Interactables")) {
             if (fs->traverseToChildElement()) {
@@ -283,15 +293,16 @@ Zone *GameObjectMaker::newZone(const char *name) {
 
                     if (fs->getAttribute("id", tempInt)) {
 
-                        zone->addInteractable(this->newInteractable(tempInt));
+                        interactables.push_back(tempInt);
                     }
 
                 } while (fs->traverseToSyblingElement());
-            }
-        }
 
-        fs->traverseToParentElement();
-        fs->traverseToParentElement();
+                fs->traverseToParentElement();
+            }
+
+            fs->traverseToParentElement();
+        }
 
         if (fs->traverseToElement("Monsters")) {
             if (fs->traverseToChildElement()) {
@@ -300,10 +311,49 @@ Zone *GameObjectMaker::newZone(const char *name) {
 
                     if (fs->getAttribute("id", tempInt)) {
 
-                        zone->addMonster(this->newMonster(tempInt));
+                        monsters.push_back(tempInt);
                     }
 
                 } while (fs->traverseToSyblingElement());
+
+                fs->traverseToParentElement();
+            }
+
+            fs->traverseToParentElement();
+        }
+
+        if (fs->traverseToElement("Connections")) {
+            if (fs->traverseToChildElement()) {
+
+                do {
+
+                    if (fs->getAttribute("name", tempStr) && fs->getAttribute("access", tempBool)) {
+
+                        zone->addZoneConnection(tempStr, tempBool);
+                    }
+
+                } while (fs->traverseToSyblingElement());
+            }
+        }
+
+        // Now create all the ids that were loaded
+        if (items.size() > 0 || interactables.size() > 0 || monsters.size() > 0) {
+
+            std::list<int>::iterator iter;
+
+            for (iter = items.begin(); iter != items.end(); iter++) {
+
+                zone->addItem(this->newItem(*iter));
+            }
+
+            for (iter = interactables.begin(); iter != interactables.end(); iter++) {
+
+                zone->addInteractable(this->newInteractable(*iter));
+            }
+
+            for (iter = monsters.begin(); iter != monsters.end(); iter++) {
+
+                zone->addMonster(this->newMonster(*iter));
             }
         }
     }

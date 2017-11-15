@@ -473,6 +473,8 @@ std::string Zone::render() {
 bool Zone::setDescription(const char *desc) {
 
     zoneDescription = desc;
+
+    return true;
 }
 
 bool Zone::setDescription(std::string &desc) {
@@ -530,7 +532,14 @@ bool Zone::addZoneConnection(std::string &zoneName, bool accessable) {
 
 bool Zone::setPlayer(Player *p) {
 
-    player = p;
+    if (p != NULL) {
+
+        player = p;
+
+        return true;
+    }
+    
+    return false;
 }
 
 bool Zone::movingFlagStatus() {

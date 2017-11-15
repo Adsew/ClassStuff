@@ -43,6 +43,8 @@ void RenderSystem::initialize() {
 // Cycle update for render system
 void RenderSystem::update() {
 
+    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+
     for (std::list<IRenderable *>::iterator iter = renderComponents.begin(); iter != renderComponents.end(); iter++) {
 
         std::cout << (*iter)->render() << "\n";
