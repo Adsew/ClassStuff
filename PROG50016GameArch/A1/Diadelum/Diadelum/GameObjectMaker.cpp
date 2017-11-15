@@ -66,6 +66,11 @@ Item *GameObjectMaker::newItem(int id) {
 
             item->setLocationToUnlock(tempStr);
         }
+        
+        if (fs->getAttribute("damage", tempInt)) {
+
+            item->setDamage(tempInt);
+        }
 
         if (fs->traverseToElement("Description")) {
 
@@ -197,6 +202,16 @@ Monster *GameObjectMaker::newMonster(int id) {
         if (fs->getAttribute("unlockLoc", tempStr)) {
 
             mon->setLocationToUnlock(tempStr);
+        }
+
+        if (fs->getAttribute("drops", tempInt)) {
+
+            mon->setDropsID(tempInt);
+        }
+
+        if (fs->getAttribute("damage", tempInt)) {
+
+            mon->setDamage(tempInt);
         }
 
         if (fs->traverseToElement("Description")) {

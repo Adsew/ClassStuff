@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Items>
-    <I1000 name="super thing" uses="1" worksID="1002" creates="1003" unlockLoc="town">
+    <I1000 name="super thing" uses="1" worksID="1002" creates="1003" unlockLoc="town" damage="0">
         <Description>This is a description I do a thing yay me!</Description>
         <UseText>Things happen and you really arent surprised.</UseText>
         <ZoneText>A super thing sparkles in the distance</ZoneText>

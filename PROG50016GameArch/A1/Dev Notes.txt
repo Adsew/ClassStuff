@@ -26,3 +26,15 @@ items and stuff might need a render message to play wit hthe zone description to
 create map items etc in the file - load and encode using another program after
 
 ask if loading all files at start is a good option
+
+make interactable subclass possibly for talking text? or impleemt another text for talking to intereactables.
+
+fix action types to have a defionition for erreach number so its not hard coeded
+
+add investiaget to search keywords
+
+add alt names for items so I can say a glimmer in the corner of your eye, and use search glimmer to identify the key and pick it up using eitehr glimmer or key. pickup glimmer -> obtained key or i cant pick that up->look at glimmer->a shiny switch->use switch
+
+might need to reverse use with ensure first item determines text. use shards with monster, should play shard message not monster message which doesnt have a use cause you cant use the mosnter with something else
+
+have player when adding inventory item check if damage is higher than current weapon then set as new weapon

@@ -20,6 +20,10 @@ Description: Items that can be carried by the player.
 
 class Item : public GameObject {
 
+private:
+
+    int damage;
+
 public:
 
     /***** Functions *****/
@@ -37,6 +41,8 @@ public:
     std::string useWith(Item *item);
 
     std::string lookat();
+
+    void setDamage(int damage);
 };
 
 #endif

@@ -16,7 +16,7 @@ Description: Items that can be carried by the player.
 Item::Item(int idNum, std::string n)
     : GameObject(idNum, n) {
 
-    
+    damage = 0;
 }
 
 Item::~Item() {
@@ -87,3 +87,14 @@ std::string Item::lookat() {
     return description;
 }
 
+void Item::setDamage(int dmg) {
+
+    if (dmg < 0) {
+
+        damage = 0;
+    }
+    else {
+
+        damage = dmg;
+    }
+}

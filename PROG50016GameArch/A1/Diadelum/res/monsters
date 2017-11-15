@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Monsters>
-    <M3000 name="bad guy" uses="1" worksID="1000" creates="0" unlockLoc="gaurded door">
+    <M3000 name="bad guy" uses="1" worksID="1000" creates="0" unlockLoc="gaurded door" damage="1" drops="1000">
         <Description>This is a description yay me!</Description>
         <UseText>He rawrs at you. Oh no!</UseText>
     </M3000>

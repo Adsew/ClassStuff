@@ -21,6 +21,11 @@ class Player;
 
 class Monster : public Interactable {
 
+private:
+
+    int dropsID;    // As opposed to createsID, occurs when monster is killed, not used
+    int damage;
+
 public:
 
     Monster(int idNum, std::string n);
@@ -30,6 +35,10 @@ public:
         // Interactivity functions
 
     std::string attack(Player *p);
+
+    void setDropsID(int id);
+
+    void setDamage(int dmg);
 };
 
 #endif

@@ -1,0 +1,50 @@
+
+
+
+1001 small stones 	- use with MONSTER fledgling to scare away (removes).
+
+1002 glass shards	- use with MONSTER bat knight to blind and kill (removes).
+
+
+
+
+
+1003 thorned branch
+
+1004 coin		- use with INTER merchant - creates crude medicine
+1005 crude medicine	- use with INTER sick women - no effect
+
+1004 coin		- use with INTER merchant - creates fireaxe
+1006 fireaxe
+
+1007 bag of seeds	- use with INTER large red flower - creates torch
+1008 torch		- unlocks small ally
+1009 crowbar		- use with INTER boarded window
+1010 sharpened silver bar
+
+
+1011 palace key	- use with INTER palace door
+
+
+1012 medicine	- use with INTTER sick woman - creates strange vial
+1013 strange vial	- use with INTER strange old woman - creates sacred vial
+1014 sacred vial	- use with holy water - creates sacred water
+1015 sacred water	- use with MONSTER the old king - ending 2
+
+
+
+1016 wood club
+1017 small ration	- use with INTER begging child - creates map
+1018 map		- use with compass - creates nav tools
+
+1019 valuable salvage- use with INTER salvagers - creates compass
+1020 compass		- use with map creates nav tools
+
+1021 nav tools	- unlocks location unknown reaches
+
+1022 city gate key	- unlocks unknown reaches
+1023 large sheers	- use with INTER fence - unlocks cage area
+1024 prayer beads	- use with INTER ghost - creates note to friend
+1025 note to a friend- use with INTER oddly dressed mand - creates write of ownership
+1026 writ of ownership 	- use with MONSTER succubus - creates coingealed blood
+1027 congealed blood	- ending 3
