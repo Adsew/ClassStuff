@@ -5,4 +5,118 @@
         <UseText>Things happen and you really arent surprised.</UseText>
         <ZoneText>A super thing sparkles in the distance</ZoneText>
     </I1000>
+    <I1001 name="small stones" uses="1" worksID="3001" creates="1009">
+        <Description>Small rocks. Nothing special, but could be thrown.</Description>
+        <UseText>You throw the rocks, scaring the fledgling away. He reveals a crowbar.</UseText>
+        <ZoneText>There are some small stones laying across the ground here.</ZoneText>
+    </I1001>
+    <I1002 name="glass shard" uses="1" worksID="3003" unlockLoc="blocked street">
+        <Description>A small shard of very sharp glass.</Description>
+        <UseText>Stabbing the sharp glass in the eyes of the beast cause it to release you. It falls to the ground, allowing progression to the blocked street.</UseText>
+        <ZoneText>A crunch beneath your feet notifies you of a glass shard on the ground.</ZoneText>
+    </I1002>
+    <I1003 name="thorned branch" uses="-1" damage="2">
+        <Description>A branch covered in thorns. Can be used as a weapon.</Description>
+        <ZoneText>A thorney bush with one particular thorned branch catches your eye.</ZoneText>
+    </I1003>
+    <I1004 name="coin" uses="1" worksID="2002" creates="1005">
+        <Description>A decorated circle of metal from an age passed. Merchants seem to find value in these for some reason.</Description>
+        <UseText>The merchant thanks you for your patronage and hands you some ill-kept medicine.</UseText>
+        <ZoneText>A glimmering coin sparkles in the fountain.</ZoneText>
+    </I1004>
+    <I1005 name="crude medicine" uses="1" worksID="2002">
+        <Description>It doesn't really look good, but it is still medicine. Right?</Description>
+        <UseText>The woman gladly takes the medicine, but to her dismay she continues to cough. She thanks you for the kindness, but it seems to have little effect.</UseText>
+        <ZoneText>A super thing sparkles in the distance</ZoneText>
+    </I1005>
+    <I1007 name="bag of seeds" uses="1" worksID="2002" creates="1008">
+        <Description>A bag of very large seeds.</Description>
+        <UseText>The flower stands tall, sreading its pedals. It almost seems joyed like a mother whos children have returned.</UseText>
+        <ZoneText>A large bag of seeds sits on the ground.</ZoneText>
+    </I1007>
+    <I1008 name="torch" uses="-1" unlockLoc="small alley">
+        <Description>A plank of wood wrapped in linen at the end.</Description>
+        <UseText>You light the torch, brightening the path before you.</UseText>
+    </I1008>
+    <I1009 name="crowbar" uses="-1" worksID="2002">
+        <Description>A metal bar designed to pry apart attached objects.</Description>
+        <UseText>You ply the boards, clearing the way forward.</UseText>
+    </I1009>
+    <I1010 name="silver bar" uses="-1" damage="4">
+        <Description>A sharpened silver bar effective against hellish creatures.</Description>
+        <ZoneText>A silver bar lays against one of the boxes.</ZoneText>
+    </I1010>
+    <I1011 name="palace key" uses="1" worksID="1002" unlockLoc="palace">
+        <Description>An large ornate key. It must be pretty important.</Description>
+        <UseText>The key rotates and clicks. After a chain reaction of what sounds like gears locking into place, the door slowly swings wide open.</UseText>
+    </I1011>
+    <I1012 name="medicine" uses="1" worksID="2002" creates="1013">
+        <Description>Well preserved medical supplies. There appears to be a number of uses.</Description>
+        <UseText>The woman takes the medicine and applies it. A shocked look falls on her face as she notices it take effect. She doesn't have much to give you, but presents you with a strange vial as thanks.</UseText>
+    </I1012>
+    <I1013 name="strange vial" uses="1" worksID="2002" creates="1014">
+        <Description>An odd vial with strange symbols on it.</Description>
+        <UseText>The woman takes the vial and whispers something in an ancient tongue. She returns the vial to me, changed. I don't know what she did, but the vial feels... holy.</UseText>
+    </I1013>
+    <I1014 name="sacred vial" uses="1" worksID="2002" creates="1015">
+        <Description>A vial with symbols scralled on all sides. It may not be glowing, but a holy aura emmenates from it.</Description>
+        <UseText>The vial is capable of holding the water from the basin.</UseText>
+    </I1014>
+    <I1015 name="sacred water" uses="1" worksID="3002" creates="1028">
+        <Description>The vial filled with water from the church. It feels capable of cleansing the greatest of evils.</Description>
+        <UseText>You toss the vial at the once-king demon. He screems as his flesh burns and bones melt. In but a few seconds nothing more remains. It's over.</UseText>
+    </I1015>
+    <I1016 name="wood club" uses="-1" damage="2">
+        <Description>A solid piece of wood for fighting.</Description>
+        <ZoneText>A wood club lies in a pile of junk.</ZoneText>
+    </I1016>
+    <I1017 name="small ration" uses="1" worksID="2002" creates="1018">
+        <Description>Some meat. Could work as food for a day.</Description>
+        <UseText>The boy happily takes the food and gives you a map of outside the city in return.</UseText>
+    </I1017>
+    <I1018 name="map" uses="1" worksID="1020" creates="1021">
+        <Description>A map of the area outside the city.</Description>
+        <UseText>These would pair well together.</UseText>
+    </I1018>
+    <I1019 name="valuable salvage" uses="1" worksID="2002" creates="1020">
+        <Description>This stuff could be useful to the right people. One human's junk is another's treasure. Not sure where that saying comes from...</Description>
+        <UseText>The salvagers happily take it off your hands. They hand out a compass, stating they picked it up in the city one day.</UseText>
+        <ZoneText>Amongst the papers and garbage, some items look like valuable salvage.</ZoneText>
+    </I1019>
+    <I1020 name="compass" uses="1" worksID="1018" creates="1021">
+        <Description>A device for telling direction. Not much use on its own though.</Description>
+        <UseText>These would pair well together.</UseText>
+    </I1020>
+    <I1021 name="nav tools" uses="-1" unlockLoc="unknown west">
+        <Description>The map and compass can help me navigate outside the city.</Description>
+        <UseText>You identify the way west and can now move to the unknown west.</UseText>
+    </I1021>
+    <I1022 name="city gate key" uses="1" worksID="2002" unlockLoc="unknown reaches">
+        <Description>A fairly standard looking key. Luckily, the tag says city gate.</Description>
+        <UseText>The door opens and you see the endless expanse ahead of you.</UseText>
+        <ZoneText>The city gate key hangs on the wall next to the gaurds' booth.</ZoneText>
+    </I1022>
+    <I1023 name="large sheers" uses="1" worksID="2002" unlockLoc="cage">
+        <Description>The blades on these sheers look like they could cut through metal.</Description>
+        <UseText>The sheers cut through the fence with ease.</UseText>
+        <ZoneText>A pair of large sheers lay on the ground as if dropped in mid use.</ZoneText>
+    </I1023>
+    <I1024 name="prayer beads" uses="1" worksID="2002" creates="1025">
+        <Description>A string of beads typically found in the old churches.</Description>
+        <UseText>Holding the prayer beads to the ghost causes it to slowly dissipate. As it leaves, a thought enters your mind. Thank you. A small page falls to the ground.</UseText>
+        <ZoneText>Some prayer beads are hanging from a stray branch.</ZoneText>
+    </I1024>
+    <I1025 name="note to a friend" uses="1" worksID="2002" creates="1026">
+        <Description>An apology note written to someone of stature. A name is not given.</Description>
+        <UseText>Surprised, you think you see a tear behind the man's glasses. Here, he says. You've done me a service. He hands me a paper, though I'm unsure of its significance.</UseText>
+    </I1025>
+    <I1026 name="writ of ownership" uses="1" worksID="3002" creates="1027">
+        <Description>A piece of parchment claiming ownership to one of the buildings in the city. How anyone could own a piece of land is beyond you.</Description>
+        <UseText>The creature seems pleased by your offering. Without a word, a red liquid pours from its finger into your hand. It instantly solidifies on contact.</UseText>
+    </I1026>
+    <I1027 name="congealed blood" uses="-1">
+        <Description>A solidified, almost gelatinous substance akin to dried blood.</Description>
+    </I1027>
+    <I1028 name="super thing" uses="-1">
+    </I1028>
 </Items>

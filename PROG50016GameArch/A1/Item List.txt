@@ -1,7 +1,7 @@
 
 
 
-1001 small stones 	- use with MONSTER fledgling to scare away (removes).
+1001 small stones 	- use with MONSTER fledgling to scare away (removes) (creates crowbar).
 
 1002 glass shards	- use with MONSTER bat knight to blind and kill (removes).
 
@@ -14,9 +14,6 @@
 1004 coin		- use with INTER merchant - creates crude medicine
 1005 crude medicine	- use with INTER sick women - no effect
 
-1004 coin		- use with INTER merchant - creates fireaxe
-1006 fireaxe
-
 1007 bag of seeds	- use with INTER large red flower - creates torch
 1008 torch		- unlocks small ally
 1009 crowbar		- use with INTER boarded window
@@ -26,11 +23,10 @@
 1011 palace key	- use with INTER palace door
 
 
-1012 medicine	- use with INTTER sick woman - creates strange vial
+1012 medicine	- comes from INTER cabinate,  use with INTTER sick woman - creates strange vial
 1013 strange vial	- use with INTER strange old woman - creates sacred vial
 1014 sacred vial	- use with holy water - creates sacred water
-1015 sacred water	- use with MONSTER the old king - ending 2
-
+1015 sacred water	- use with MONSTER the old king - creatres ID ITEM THINK
 
 
 1016 wood club
@@ -48,3 +44,4 @@
 1025 note to a friend- use with INTER oddly dressed mand - creates write of ownership
 1026 writ of ownership 	- use with MONSTER succubus - creates coingealed blood
 1027 congealed blood	- ending 3
+1028 ID ITEM THINK OF NAME - gotten when using sacred water - ending 2

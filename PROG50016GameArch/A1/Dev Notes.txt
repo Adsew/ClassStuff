@@ -38,3 +38,5 @@ add alt names for items so I can say a glimmer in the corner of your eye, and us
 might need to reverse use with ensure first item determines text. use shards with monster, should play shard message not monster message which doesnt have a use cause you cant use the mosnter with something else
 
 have player when adding inventory item check if damage is higher than current weapon then set as new weapon
+
+needs to make monsters attack if you stay in an area each turn. Add a zone update that can be used to determine if its the ending state etc
