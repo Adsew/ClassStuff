@@ -17,22 +17,24 @@ game world.
 #include "InputSystem.h"
 #include "RenderSystem.h"
 #include "GameObjectMaker.h"
+#include "InputCodes.h"
 #include "SceneManager.h"
 
 
 SceneManager::SceneManager()
-    : actions(10) {
+    : actions(IN_CODE_COUNT) {
 
-    actions[0] = &SceneManager::noAction;
-    actions[1] = &SceneManager::move;
-    actions[2] = &SceneManager::use;
-    actions[3] = &SceneManager::search;
-    actions[4] = &SceneManager::pickup;
-    actions[5] = &SceneManager::attack;
-    actions[6] = &SceneManager::help;
-    actions[7] = &SceneManager::save;
-    actions[8] = &SceneManager::exit;
-    actions[9] = &SceneManager::noAction;   // For starting with a connector keyword
+    actions[IN_CODE_NOTHING] = &SceneManager::noAction;
+    actions[IN_CODE_MOVE] = &SceneManager::move;
+    actions[IN_CODE_USE] = &SceneManager::use;
+    actions[IN_CODE_SEARCH] = &SceneManager::search;
+    actions[IN_CODE_PICKUP] = &SceneManager::pickup;
+    actions[IN_CODE_TALK] = &SceneManager::talk;
+    actions[IN_CODE_ATTACK] = &SceneManager::attack;
+    actions[IN_CODE_HELP] = &SceneManager::help;
+    actions[IN_CODE_SAVE] = &SceneManager::save;
+    actions[IN_CODE_EXIT] = &SceneManager::exit;
+    actions[IN_CODE_CONNECT] = &SceneManager::noAction;   // For starting with a connector keyword
 
     exitFlag = false;
 }
@@ -127,6 +129,11 @@ void SceneManager::search(std::list<std::pair<int, std::string>> &action) {
 void SceneManager::pickup(std::list<std::pair<int, std::string>> &action) {
 
     activeZone->pickup(action);
+}
+
+void SceneManager::talk(std::list<std::pair<int, std::string>> &action) {
+
+    activeZone->talk(action);
 }
 
 void SceneManager::attack(std::list<std::pair<int, std::string>> &action) {

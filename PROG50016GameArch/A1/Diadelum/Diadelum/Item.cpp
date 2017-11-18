@@ -45,41 +45,31 @@ std::string Item::use() {
 
 std::string Item::useWith(GameObject *go) {
 
-    // Items always used on something else to produce effect if not another item
-    go->useWith(this);
-
-    if (inUse) {
-
-        return onUseMsg;
-    }
-    
-    return "The " + name + " does not work with the " + go->getName() + ".";
-}
-
-std::string Item::useWith(Item *item) {
-
-    if (item->getID() == worksWithID) {
+    if (go->getID() == worksWithID) {
 
         inUse = true;
-        item->setInUse(true);
 
         numUses--;
-        item->setNumUses(item->getNumUses() - 1);
+        go->setNumUses(go->getNumUses() - 1);
 
         // If less than 0 means unlimted uses
         if (numUses == 0) {
 
             needsDeletion = true;
         }
-        if (item->getNumUses() == 0) {
+        if (go->getNumUses() == 0) {
 
-            item->setNeedsDeletion(true);
+            go->setNeedsDeletion(true);
         }
 
         return onUseMsg;
     }
+    else if (go->getWorksWithID() == id) {
 
-    return "The " + name + " does not work with the " + item->getName() + ".";
+        return go->useWith(this);
+    }
+
+    return "The " + go->getName() + " has no affect on the " + name + ".";
 }
 
 std::string Item::lookat() {

@@ -17,6 +17,7 @@ with the helpf of the file system for loading the information.
 #include "Interactable.h"
 #include "Item.h"
 #include "Monster.h"
+#include "NPC.h"
 #include "Zone.h"
 #include "GameObjectMaker.h"
 
@@ -247,6 +248,80 @@ Monster *GameObjectMaker::newMonster(int id) {
     return mon;
 }
 
+NPC *GameObjectMaker::newNPC(int id) {
+
+    FileSystem *fs = &FileSystem::Instance();
+    NPC *npc = NULL;
+
+    fs->useFile("npcs");
+    fs->traverseToElement("NPCs");
+
+    // Traverse to the desired item, load all attributes as available
+    if (fs->traverseToElement("N" + id)) {
+
+        std::string tempStr;
+        int tempInt = 0;
+
+        fs->getAttribute("name", tempStr);       // All required to have name
+
+        npc = new NPC(id, tempStr);
+
+        if (fs->getAttribute("uses", tempInt)) {
+
+            npc->setNumUses(tempInt);
+        }
+
+        if (fs->getAttribute("worksID", tempInt)) {
+
+            npc->setWorksWithID(tempInt);
+        }
+
+        if (fs->getAttribute("creates", tempInt)) {
+
+            npc->setCreatesID(tempInt);
+        }
+
+        if (fs->getAttribute("unlockLoc", tempStr)) {
+
+            npc->setLocationToUnlock(tempStr);
+        }
+
+        if (fs->traverseToElement("Description")) {
+
+            if (fs->getElementText(tempStr)) {
+
+                npc->setDescription(tempStr);
+            }
+
+            if (fs->traverseToSyblingElement("UseText")) {
+
+                if (fs->getElementText(tempStr)) {
+
+                    npc->setOnUseMsg(tempStr);
+                }
+            }
+
+            if (fs->traverseToSyblingElement("ZoneText")) {
+
+                if (fs->getElementText(tempStr)) {
+
+                    npc->setInZoneMsg(tempStr);
+                }
+            }
+
+            if (fs->traverseToSyblingElement("TalkText")) {
+
+                if (fs->getElementText(tempStr)) {
+
+                    npc->setTalkText(tempStr);
+                }
+            }
+        }
+    }
+
+    return npc;
+}
+
 Zone *GameObjectMaker::newZone(const char *name) {
 
     FileSystem *fs = &FileSystem::Instance();
@@ -272,6 +347,7 @@ Zone *GameObjectMaker::newZone(const char *name) {
         std::list<int> items;
         std::list<int> interactables;
         std::list<int> monsters;
+        std::list<int> npcs;
         std::string tempStr;
         int tempInt = 0;
         bool tempBool = true;
@@ -342,6 +418,24 @@ Zone *GameObjectMaker::newZone(const char *name) {
             fs->traverseToParentElement();
         }
 
+        if (fs->traverseToElement("NPCs")) {
+            if (fs->traverseToChildElement()) {
+
+                do {
+
+                    if (fs->getAttribute("id", tempInt)) {
+
+                        npcs.push_back(tempInt);
+                    }
+
+                } while (fs->traverseToSyblingElement());
+
+                fs->traverseToParentElement();
+            }
+
+            fs->traverseToParentElement();
+        }
+
         if (fs->traverseToElement("Connections")) {
             if (fs->traverseToChildElement()) {
 
@@ -374,6 +468,11 @@ Zone *GameObjectMaker::newZone(const char *name) {
             for (iter = monsters.begin(); iter != monsters.end(); iter++) {
 
                 zone->addMonster(this->newMonster(*iter));
+            }
+
+            for (iter = npcs.begin(); iter != npcs.end(); iter++) {
+
+                zone->addNPC(this->newNPC(*iter));
             }
         }
     }

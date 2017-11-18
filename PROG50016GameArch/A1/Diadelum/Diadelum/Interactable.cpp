@@ -51,7 +51,6 @@ std::string Interactable::useWith(GameObject *go) {
     if (go->getID() == worksWithID) {
 
         inUse = true;
-        go->setInUse(true);
 
         numUses--;
         go->setNumUses(go->getNumUses() - 1);
@@ -67,6 +66,10 @@ std::string Interactable::useWith(GameObject *go) {
         }
 
         return onUseMsg;
+    }
+    else if (go->getWorksWithID() == id) {
+
+        return go->useWith(this);
     }
 
     return "The " + go->getName() + " has no affect on the " + name + ".";

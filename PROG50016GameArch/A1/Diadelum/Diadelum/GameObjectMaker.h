@@ -21,6 +21,7 @@ class Zone;
 class Item;
 class Interactable;
 class Monster;
+class NPC;
 
 
 class GameObjectMaker {
@@ -49,6 +50,8 @@ public:
     Interactable *newInteractable(int id);
 
     Monster *newMonster(int id);
+
+    NPC *newNPC(int id);
 
     Zone *newZone(const char *name);
 

@@ -50,6 +50,8 @@ private:
 
     void pickup(std::list<std::pair<int, std::string>> &action);
 
+    void talk(std::list<std::pair<int, std::string>> &action);
+
     void attack(std::list<std::pair<int, std::string>> &action);
 
     void help(std::list<std::pair<int, std::string>> &action);

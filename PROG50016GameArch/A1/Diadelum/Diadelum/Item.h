@@ -38,8 +38,6 @@ public:
 
     std::string useWith(GameObject *go);
 
-    std::string useWith(Item *item);
-
     std::string lookat();
 
     void setDamage(int damage);

@@ -14,6 +14,7 @@ Description: Handles input from the user and converts it into something
 
 #include <iostream>
 
+#include "InputCodes.h"
 #include "InputSystem.h"
 
 
@@ -28,33 +29,35 @@ InputSystem &InputSystem::operator=(InputSystem &is) { return is; }
 // Initialize input manager to a usable state
 void InputSystem::initialize() {
 
-    keyWordMap["move to"] = 1;
-    keyWordMap["go"] = 1;
-    keyWordMap["walk"] = 1;
-    keyWordMap["enter"] = 1;
+    keyWordMap["move to"] = IN_CODE_MOVE;
+    keyWordMap["go"] = IN_CODE_MOVE;
+    keyWordMap["walk"] = IN_CODE_MOVE;
+    keyWordMap["enter"] = IN_CODE_MOVE;
 
-    keyWordMap["use"] = 2;
-    keyWordMap["push"] = 2;
-    keyWordMap["interact with"] = 2;
-    keyWordMap["open"] = 2;
+    keyWordMap["use"] = IN_CODE_USE;
+    keyWordMap["push"] = IN_CODE_USE;
+    keyWordMap["interact with"] = IN_CODE_USE;
+    keyWordMap["open"] = IN_CODE_USE;
 
-    keyWordMap["search"] = 3;
-    keyWordMap["look at"] = 3;
-    keyWordMap["examine"] = 3;
+    keyWordMap["search"] = IN_CODE_SEARCH;
+    keyWordMap["look at"] = IN_CODE_SEARCH;
+    keyWordMap["examine"] = IN_CODE_SEARCH;
 
-    keyWordMap["pickup"] = 4;
-    keyWordMap["get"] = 4;
+    keyWordMap["pickup"] = IN_CODE_PICKUP;
+    keyWordMap["get"] = IN_CODE_PICKUP;
 
-    keyWordMap["attack"] = 5;
+    keyWordMap["talk to"] = IN_CODE_TALK;
 
-    keyWordMap["help"] = 6;
+    keyWordMap["attack"] = IN_CODE_ATTACK;
 
-    keyWordMap["save"] = 7;
+    keyWordMap["help"] = IN_CODE_HELP;
 
-    keyWordMap["exit"] = 8;
+    keyWordMap["save"] = IN_CODE_SAVE;
 
-    keyWordMap["with"] = 9;
-    keyWordMap["on"] = 9;
+    keyWordMap["exit"] = IN_CODE_EXIT;
+
+    keyWordMap["with"] = IN_CODE_CONNECT;
+    keyWordMap["on"] = IN_CODE_CONNECT;
 }
 
 // Get the text-based input's current status
@@ -111,7 +114,7 @@ void InputSystem::update() {
             // Before pushing, push any non-keywords. Could be content like items, enviro, etc
             if (multiWord != "") {
 
-                input.push_back(std::pair<int, std::string>(0, std::string(multiWord)));
+                input.push_back(std::pair<int, std::string>(IN_CODE_WORDS, std::string(multiWord)));
 
                 multiWord = "";
             }
@@ -154,13 +157,13 @@ void InputSystem::update() {
         }
         catch (const std::out_of_range &ex) {
             
-            input.push_back(std::pair<int, std::string>(0, std::string(multiWord)));
+            input.push_back(std::pair<int, std::string>(IN_CODE_WORDS, std::string(multiWord)));
         }
     }
 
     // Final error case, didnt enter anything
     if (input.size() == 0) {
 
-        input.push_back(std::pair<int, std::string>(0, std::string("nothing")));
+        input.push_back(std::pair<int, std::string>(IN_CODE_NOTHING, std::string("nothing")));
     }
 }

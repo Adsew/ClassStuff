@@ -88,6 +88,8 @@ public:
 
     void setWorksWithID(int otherItemID);
 
+    int getWorksWithID();
+
     void setCreatesID(int itemToCreate);
 
     void setLocationToUnlock(std::string &loc);

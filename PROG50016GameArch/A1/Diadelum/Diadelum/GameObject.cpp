@@ -131,6 +131,11 @@ void GameObject::setWorksWithID(int otherItemID) {
     worksWithID = otherItemID;
 }
 
+int GameObject::getWorksWithID() {
+
+    return worksWithID;
+}
+
 void GameObject::setCreatesID(int itemToCreate) {
 
     createsID = itemToCreate;

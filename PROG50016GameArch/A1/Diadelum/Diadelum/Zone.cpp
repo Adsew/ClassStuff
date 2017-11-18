@@ -16,6 +16,9 @@ on the zone's specific details.
 #include "Interactable.h"
 #include "Item.h"
 #include "Monster.h"
+#include "NPC.h"
+#include "InputCodes.h"
+#include "GameObjectMaker.h"
 #include "Zone.h"
 
 
@@ -61,6 +64,15 @@ Zone::~Zone() {
         delete monIter->second;
         monIter->second = NULL;
         monIter = monsters.erase(monIter);
+    }
+
+    std::map<std::string, NPC *>::iterator npcIter = npcs.begin();
+
+    while (npcIter != npcs.end()) {
+
+        delete npcIter->second;
+        npcIter->second = NULL;
+        npcIter = npcs.erase(npcIter);
     }
 }
 
@@ -114,6 +126,22 @@ void Zone::update() {
             monIter++;
         }
     }
+
+    std::map<std::string, NPC *>::iterator npcIter = npcs.begin();
+
+    while (npcIter != npcs.end()) {
+
+        if (npcIter->second->getNeedsDeletion()) {
+
+            delete npcIter->second;
+            npcIter->second = NULL;
+            npcIter = npcs.erase(npcIter);
+        }
+        else {
+
+            npcIter++;
+        }
+    }
 }
 
 
@@ -141,6 +169,7 @@ void Zone::move(std::list<std::pair<int, std::string>> &action) {
 
     actionItem++;
 
+    // Move code only requires "move" and "where" in the action
     if (action.size() <= 2) {
 
         if (actionItem != action.end()) {
@@ -182,6 +211,7 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
 
     actionItem++;
 
+    // Action could be "use itemname" or "use itemname with itemname"
     if (action.size() == 2 || action.size() == 4) {
 
         if (actionItem != action.end()) {
@@ -206,21 +236,27 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                     catch (const std::out_of_range &ex) {
 
                         try {
-                            useItem1 = (*player).inventory.at((*actionItem).second);
+                            useItem1 = npcs.at((*actionItem).second);
                         }
                         catch (const std::out_of_range &ex) {
 
-                            messageToP = "I can't find what you want me to use.";
+                            try {
+                                useItem1 = player->hasItem((*actionItem).second);
+                            }
+                            catch (const std::out_of_range &ex) {
+
+                                messageToP = "I can't find what you want me to use.";
+                            }
                         }
                     }
                 }
             }
 
-            // Check for second use with item if size was = 4
+            // Check for second use with item if size was = 4 and ensure 3rd word was a connector
             actionItem++;
 
             if (actionItem != action.end() && useItem1 != NULL) {
-                if ((*actionItem).first == 9) {
+                if ((*actionItem).first == IN_CODE_CONNECT) {
 
                     actionItem++;
 
@@ -240,11 +276,17 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                             catch (const std::out_of_range &ex) {
 
                                 try {
-                                    useItem2 = (*player).inventory.at((*actionItem).second);
+                                    useItem2 = npcs.at((*actionItem).second);
                                 }
                                 catch (const std::out_of_range &ex) {
 
-                                    messageToP = "I can't find what you want me to use " + messageToP + " with.";
+                                    try {
+                                        useItem2 = player->hasItem((*actionItem).second);
+                                    }
+                                    catch (const std::out_of_range &ex) {
+
+                                        messageToP = "I can't find what you want me to use " + messageToP + " with.";
+                                    }
                                 }
                             }
                         }
@@ -263,19 +305,24 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                 messageToP = useItem1->use();
 
                 // If either of the following work, the item was used correctly
+                // GameObjects only unlock a location or drop item if used in the correct way
                 try {
 
                     connectedZones.at(useItem1->unlockLocation()) = true;
                 }
                 catch (const std::out_of_range &ex) {}
 
-                try {
+                if (useItem1->dropItem() > 0) {
 
-                    useItem1->dropItem();           // CREATE ITEM TO ADD TO PLAYER INVENTORY HERE
+                    Item *drop = GameObjectMaker::Instance().newItem(useItem1->dropItem());
+
+                    if (drop != NULL) {
+
+                        player->addItemToInventory(drop);
+                    }
                 }
-                catch (const std::out_of_range &ex) {}
 
-                useItem1->setInUse(false);
+                useItem1->setInUse(false);  // End poroducing item results if was use was successful
             }
             // Use item with another item
             else if (useItem1 != NULL && useItem2 != NULL && action.size() == 4) {
@@ -283,16 +330,31 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                 messageToP = useItem1->useWith(useItem2);
 
                 // If either of the following work, the item was used correctly
+                // GameObjects only unlock a location or drop item if used in the correct way
+
+                // When using two things together, only ONE OBJECT will produce the results, 
+                // determined by the items' useWith function
+                try {
+                    connectedZones.at(useItem1->unlockLocation()) = true;
+                }
+                catch (const std::out_of_range &ex) {}
                 try {
                     connectedZones.at(useItem2->unlockLocation()) = true;
                 }
                 catch (const std::out_of_range &ex) {}
 
-                try {
+                if (useItem1->dropItem() > 0) {
 
-                    useItem2->dropItem();           // CREATE ITEM TO ADD TO PLAYER INVENTORY HERE
+                    Item *drop = GameObjectMaker::Instance().newItem(useItem1->dropItem());
+
+                    player->addItemToInventory(drop);
                 }
-                catch (const std::out_of_range &ex) {}
+                else if (useItem2->dropItem() > 0) {
+
+                    Item *drop = GameObjectMaker::Instance().newItem(useItem2->dropItem());
+
+                    player->addItemToInventory(drop);
+                }
 
                 useItem1->setInUse(false);
                 useItem2->setInUse(false);
@@ -319,6 +381,7 @@ void Zone::search(std::list<std::pair<int, std::string>> &action) {
 
     actionItem++;
 
+    // Action should only be "search whattosearchfor"
     if (action.size() <= 2) {
 
         if (actionItem != action.end()) {
@@ -339,7 +402,19 @@ void Zone::search(std::list<std::pair<int, std::string>> &action) {
                     }
                     catch (const std::out_of_range &ex) {
 
-                        messageToP = "I dont see that anywhere.";
+                        try {
+                            messageToP = npcs.at((*actionItem).second)->lookat();
+                        }
+                        catch (const std::out_of_range &ex) {
+
+                            try {
+                                messageToP = player->hasItem((*actionItem).second)->lookat();
+                            }
+                            catch (const std::out_of_range &ex) {
+
+                                messageToP = "I dont see that anywhere.";
+                            }
+                        }
                     }
                 }
             }
@@ -347,7 +422,7 @@ void Zone::search(std::list<std::pair<int, std::string>> &action) {
         // Just said search non-specifically
         else {
 
-            if (interactables.size() > 0 || items.size() > 0 || monsters.size() > 0){
+            if (interactables.size() > 0 || items.size() > 0 || monsters.size() > 0 || npcs.size() > 0){
                 
                 messageToP = "There are definitly things around here.";
             }
@@ -372,6 +447,7 @@ void Zone::pickup(std::list<std::pair<int, std::string>> &action) {
 
     actionItem++;
 
+    // Action should be "pickup whattopickup"
     if (action.size() <= 2) {
 
         if (actionItem != action.end()) {
@@ -381,7 +457,7 @@ void Zone::pickup(std::list<std::pair<int, std::string>> &action) {
                 Item *itemInScene = items.at((*actionItem).second);
                 items[(*actionItem).second] = NULL;
                 items.erase((*actionItem).second);
-                player->inventory[(*actionItem).second] = itemInScene;
+                player->addItemToInventory(itemInScene);
 
                 messageToP = "Obtained " + itemInScene->getName() + ".";
             }
@@ -393,6 +469,38 @@ void Zone::pickup(std::list<std::pair<int, std::string>> &action) {
         else {
 
             messageToP = "What am I supposed to pick up?";
+        }
+    }
+    else {
+
+        messageToP = "I can only do so many things at once!.";
+    }
+}
+
+void Zone::talk(std::list<std::pair<int, std::string>> &action) {
+
+    std::list<std::pair<int, std::string>>::iterator actionItem = action.begin();
+
+    messageToP = "";
+
+    actionItem++;
+
+    if (action.size() <= 2) {
+
+        if (actionItem != action.end()) {
+
+            try {
+                
+                messageToP = npcs.at((*actionItem).second)->talk();
+            }
+            catch (const std::out_of_range &ex) {
+
+                messageToP = "I dont see any " + (*actionItem).second + "s to talk to.";
+            }
+        }
+        else {
+
+            messageToP = "Talking to myself isn't really helping right now.";
         }
     }
     else {
@@ -434,7 +542,7 @@ void Zone::attack(std::list<std::pair<int, std::string>> &action) {
 
 void Zone::help() {
 
-    messageToP = "You can: 'go', 'use', 'use __ with __', 'look at', 'attack', 'save', and 'exit'.";
+    messageToP = "You can: 'go', 'use', 'use __ with __', 'look at', 'attack', 'talk to', 'save', and 'exit'.";
 }
 
 std::string Zone::render() {
@@ -462,6 +570,13 @@ std::string Zone::render() {
     while (monIter != monsters.end()) {
 
         output += " " + monIter->second->getInZoneMsg();
+    }
+
+    std::map<std::string, NPC *>::iterator npcIter = npcs.begin();
+
+    while (npcIter != npcs.end()) {
+
+        output += " " + npcIter->second->getInZoneMsg();
     }
 
     // Finally message to player based on previous action
@@ -512,6 +627,18 @@ bool Zone::addMonster(Monster *mon) {
     if (mon != NULL) {
 
         monsters[mon->getName()] = mon;
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Zone::addNPC(NPC *npc) {
+
+    if (npc != NULL) {
+
+        npcs[npc->getName()] = npc;
 
         return true;
     }

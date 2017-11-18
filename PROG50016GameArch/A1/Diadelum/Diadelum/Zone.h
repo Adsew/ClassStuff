@@ -26,6 +26,7 @@ class Player;
 class Interactable;
 class Items;
 class Monster;
+class NPC;
 
 
 class Zone : public Object, public IRenderable {
@@ -40,6 +41,7 @@ private:
     std::map<std::string, Interactable *> interactables;    // Environment interactables
     std::map<std::string, Item *> items;                    // Pickupable items in the zone
     std::map<std::string, Monster *> monsters;              // Monsters in the area
+    std::map<std::string, NPC *> npcs;                      // NPCs in the area available for talk and interaction
 
     std::string messageToP;
     std::string zoneDescription;
@@ -75,6 +77,8 @@ public:
 
     void pickup(std::list<std::pair<int, std::string>> &action);
 
+    void talk(std::list<std::pair<int, std::string>> &action);
+
     void attack(std::list<std::pair<int, std::string>> &action);
 
     void help();
@@ -90,6 +94,8 @@ public:
     bool addItem(Item *item);
 
     bool addMonster(Monster *mon);
+
+    bool addNPC(NPC *npc);
 
     bool addZoneConnection(std::string &zoneName, bool accessable);
 

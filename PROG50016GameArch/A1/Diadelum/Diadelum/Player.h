@@ -16,22 +16,28 @@ Description: Holds all the information related to the
 
 #include <map>
 
-#include "Item.h"
 #include "Object.h"
 #include "IRenderable.h"
 
+
+class Item;
+
+
 class Player : public Object, public IRenderable {
 
-public:
+private:
 
     /***** Variables *****/
 
-    std::map<std::string, Item *> inventory;
+    std::map<std::string, Item *> *inventory;
+
+    int health;
 
 protected:
 
     /***** Functions *****/
 
+    // Return what to render to screen
     std::string render();
 
 public:
@@ -45,6 +51,15 @@ public:
 
     // Cycle update for player
     void update();
+
+    // If item is good, add it to player's inventory
+    bool addItemToInventory(Item *item);
+
+    // Check if player has item, if yes, return it (doesn't remove)
+    Item *hasItem(std::string &name);
+
+    // Set health to a positive number
+    void setHealth(int hp);
 };
 
 #endif
