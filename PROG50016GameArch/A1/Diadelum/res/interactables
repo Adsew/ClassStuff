@@ -3,5 +3,48 @@
     <E2000 name="example rock" uses="-1" worksID="0" creates="0" unlockLoc="">
         <Description>This is a description yay me!</Description>
         <UseText>Things happen and you really arent surprised.</UseText>
+        <ZoneText>Theres a thing here to interacte with.</ZoneText>
     </E2000>
+    <E2001 name="fountain" uses="-1">
+        <Description>A crumbling fountain with no water. A reflection of what once was beautiful.</Description>
+        <ZoneText>A fountain sits as the focus of the area.</ZoneText>
+    </E2001>
+    <E2002 name="fountain" uses="-1">
+        <Description>A fountain surprisingly still containing water. Theres some coins in the pool.</Description>
+        <ZoneText>A fountain is in the center of the circle. Something glimmers within.</ZoneText>
+    </E2002>
+    <E2003 name="fence" uses="1" worksID="1023" unlockLoc="small cage">
+        <Description>A metal wire fence locks off the cage.</Description>
+        <UseText>The sheers cut through the fence with ease.</UseText>
+        <ZoneText>A fence blocks the way into the small cage.</ZoneText>
+    </E2003>
+    <E2004 name="planks" uses="1" worksID="1009" unlockLoc="ruined appartment">
+        <Description>Some wood planks nailed to block access.</Description>
+        <UseText>You pry off the planks granting access to the building.</UseText>
+        <ZoneText>There are planks on the door blocking the ruined building.</ZoneText>
+    </E2004>
+    <E2005 name="planks" uses="1" worksID="1009" unlockLoc="destroyed office">
+        <Description>Some wood planks nailed to block access.</Description>
+        <UseText>You pry off the planks granting access to the building.</UseText>
+        <ZoneText>There are planks on the door blocking the destroyed office.</ZoneText>
+    </E2005>
+    <E2006 name="water basin" uses="-1" worksID="1014" creates="1015">
+        <Description>A basin of water. It looks special somehow. My hand slips right through it.</Description>
+        <UseText>You fill the vial with the liquid.</UseText>
+        <ZoneText>A water basin sits at the end of the room.</ZoneText>
+    </E2006>
+    <E2007 name="palace door" uses="1" worksID="1011" unlockLoc="palace hall">
+        <Description>A large spectacular door. The key to such an entrence must be well gaurded.</Description>
+        <UseText>The key rotates and clicks. After a chain reaction of what sounds like gears locking into place, the door slowly swings wide open.</UseText>
+        <ZoneText>The door to the palace is clearly visible and almost makes everything else feel insignificant.</ZoneText>
+    </E2007>
+    <E2008 name="cage" uses="-1">
+        <Description>You see a cage on the other side of the gardens bounds. It's outside the city limits.</Description>
+        <ZoneText>Theres a cage beyond the fence.</ZoneText>
+    </E2008>
+    <E2009 name="city gate" uses="1" worksID="1022" unlockLoc="unknown reaches">
+        <Description>A large, no, massive, gate made of thick wood fixed by metal bars.</Description>
+        <UseText>The door opens and you see the endless expanse ahead of you.</UseText>
+        <ZoneText>The city gate out of the city remains shut and locked.</ZoneText>
+    </E2009>
 </Interactables>

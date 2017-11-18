@@ -49,10 +49,11 @@ void SceneManager::intialize() {
     player = new Player();
     activeZone = GameObjectMaker::Instance().newZone("meeting quarter");
     
-    if (activeZone != NULL) {
+    if (activeZone != NULL && player != NULL) {
 
         activeZone->setPlayer(player);
-
+        
+        RenderSystem::Instance().addIRenderable(player);
         RenderSystem::Instance().addIRenderable(activeZone);
     }
     else {

@@ -40,3 +40,7 @@ might need to reverse use with ensure first item determines text. use shards wit
 have player when adding inventory item check if damage is higher than current weapon then set as new weapon
 
 needs to make monsters attack if you stay in an area each turn. Add a zone update that can be used to determine if its the ending state etc
+
+make a npc diriviate of interactable. create a talking text return.
+
+implement talk command

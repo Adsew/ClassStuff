@@ -25,6 +25,7 @@ private:
 
     int dropsID;    // As opposed to createsID, occurs when monster is killed, not used
     int damage;
+    int health;
 
 public:
 
@@ -36,9 +37,13 @@ public:
 
     std::string attack(Player *p);
 
+    std::string getAttackedBy(Player *p);
+
     void setDropsID(int id);
 
     void setDamage(int dmg);
+
+    void setHealth(int hp);
 };
 
 #endif

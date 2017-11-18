@@ -20,6 +20,7 @@ Monster::Monster(int idNum, std::string n)
     numUses = -1;
     dropsID = 0;
     damage = 1;
+    health = 1;
 }
 
 Monster::~Monster() {
@@ -30,6 +31,11 @@ Monster::~Monster() {
 std::string Monster::attack(Player *p) {
 
     return "I ATTACK YOU RAWR!";
+}
+
+std::string Monster::getAttackedBy(Player *p) {
+
+    return "";
 }
 
 void Monster::setDropsID(int id) {
@@ -46,5 +52,17 @@ void Monster::setDamage(int dmg) {
     else {
 
         damage = dmg;
+    }
+}
+
+void Monster::setHealth(int hp) {
+
+    if (hp < 0) {
+
+        health = 0;
+    }
+    else {
+
+        health = hp;
     }
 }

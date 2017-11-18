@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<NPCs>
+    <N4000 name="example rock" uses="-1" worksID="0" creates="0" unlockLoc="">
+        <Description>This is a description yay me!</Description>
+        <UseText>Things happen and you really arent surprised.</UseText>
+        <ZoneText>Theres a thing here to interacte with.</ZoneText>
+        <TalkText>Hello my name is rock!</TalkText>
+    </N4000>
+    <N4001 name="begging child" uses="1" worksID="1017" creates="1018">
+        <Description>This poor child probably scours the desolate quarter for food. Many tend to live here away from judgement.</Description>
+        <UseText>The boy happily takes the food and gives you a map of outside the city in return.</UseText>
+        <ZoneText>A begging child sits against the wall.</ZoneText>
+        <TalkText>"Oh, hello." He doesn't say much, but his stomach growls.</TalkText>
+    </N4001>
+    <N4002 name="strange old woman" uses="1" worksID="1013" creates="1014">
+        <Description>The old woman kneels in front of a box, garbed in a black robe, speaking what you understand as gibberish.</Description>
+        <UseText>The woman takes the vial and whispers something in an ancient tongue. She returns the vial to me, changed. I don't know what she did, but the vial feels... holy.</UseText>
+        <ZoneText>A strange old woman is huddled in a dank corner.</ZoneText>
+        <TalkText>She ignores you and continues to mutter. Is she praying?</TalkText>
+    </N4002>
+    <N4003 name="oddly dressed man" uses="1" worksID="1025" creates="1026">
+        <Description>The man is dressed in an odd black attire topped with a fancy hat. He looks upset.</Description>
+        <UseText>Surprised, you think you see a tear behind the man's glasses. Here, he says. You've done me a service. He hands me a paper, though I'm unsure of its significance.</UseText>
+        <ZoneText>One oddly dressed man in particular stands out.</ZoneText>
+        <TalkText>"Hmm? Oh, sorry, I'm busy listening to the news."</TalkText>
+    </N4003>
+    <N4004 name="salvagers" uses="1" worksID="1019" creates="1020">
+        <Description>A group of people dressed in tougher clothing. They are seasoned at finding valuable items.</Description>
+        <UseText>The salvagers happily take it off your hands. They hand out a compass, stating they picked it up in the city one day.</UseText>
+        <ZoneText>A group of salvagers stand in a circle talking.</ZoneText>
+        <TalkText>"Hey, if you find anything valuable, let us know. Maybe we can trade."</TalkText>
+    </N4004>
+    <N4005 name="sick woman" uses="-1" creates="1013">
+        <Description>She's coughing profusely. The front of her black robe is stained with some red swipes.</Description>
+        <ZoneText>To the side, a sick woman seems ill.</ZoneText>
+        <TalkText>She coughs. "Sorry, I don't have time to talk right now. I feel unwell."</TalkText>
+    </N4005>
+    <N4006 name="shady merchant" uses="1" worksID="1004" creates="1005">
+        <Description>This merchent is like so many others. Selling the junk around them for peoples' hard found goods.</Description>
+        <UseText>The merchant thanks you for your patronage and hands you some ill-kept medicine.</UseText>
+        <ZoneText>You hear the constant howling of a shady merchant.</ZoneText>
+        <TalkText>"Looking to buy and trade? I've got some great medicine right now!"</TalkText>
+    </N4006>
+    <N4007 name="large red flower" uses="1" worksID="1007" creates="1008">
+        <Description>A giant flower is one thing, an giant red moving flower is another.</Description>
+        <UseText>The flower stands tall, sreading its pedals. It almost seems joyed like a mother whos children have returned.</UseText>
+        <ZoneText>Amongst the many flowers, a large red flower stands out over the others.</ZoneText>
+        <TalkText>Didn't know what to expect talking to a flower, but it slowly bent over as if sad. Did it react to me?</TalkText>
+    </N4007>
+    <N4008 name="ghostly figure" uses="1" worksID="1024" creates="1025">
+        <Description>Ghosts aren't uncommon. No one knows where they come from, but they've always been there.</Description>
+        <UseText>Holding the prayer beads to the ghost causes it to slowly dissipate. As it leaves, a thought enters your mind. Thank you. A small page falls to the ground.</UseText>
+        <ZoneText>Patrolling the circle is a ghostly figure.</ZoneText>
+        <TalkText>It moans in response to your attempt at communication.</TalkText>
+    </N4008>
+</NPCs>

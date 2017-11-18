@@ -31,6 +31,7 @@ void InputSystem::initialize() {
     keyWordMap["move to"] = 1;
     keyWordMap["go"] = 1;
     keyWordMap["walk"] = 1;
+    keyWordMap["enter"] = 1;
 
     keyWordMap["use"] = 2;
     keyWordMap["push"] = 2;
@@ -42,6 +43,7 @@ void InputSystem::initialize() {
     keyWordMap["examine"] = 3;
 
     keyWordMap["pickup"] = 4;
+    keyWordMap["get"] = 4;
 
     keyWordMap["attack"] = 5;
 

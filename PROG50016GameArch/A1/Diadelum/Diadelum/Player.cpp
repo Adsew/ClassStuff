@@ -53,5 +53,13 @@ void Player::update() {
 
 std::string Player::render() {
 
-    return "I'm a player!";
+    std::string renderText = "Inventory:";
+    std::map<std::string, Item *>::iterator iter;
+
+    for (iter = inventory.begin(); iter != inventory.end(); iter++) {
+
+        renderText += " " + iter->second->getName();
+    }
+
+    return renderText;
 }

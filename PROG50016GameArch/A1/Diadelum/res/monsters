@@ -1,7 +1,41 @@
 <?xml version="1.0"?>
 <Monsters>
-    <M3000 name="bad guy" uses="1" worksID="1000" creates="0" unlockLoc="gaurded door" damage="1" drops="1000">
+    <M3000 name="bad guy" uses="1" worksID="1000" creates="0" unlockLoc="gaurded door" damage="1" hp="1" drops="1000">
         <Description>This is a description yay me!</Description>
         <UseText>He rawrs at you. Oh no!</UseText>
+        <ZoneText>Theres a big bad guy on the other side of the room.</ZoneText>
     </M3000>
+    <M3001 name="rat"  damage="1" hp="1" drops="1017">
+        <Description>A small animal that scavenges for food in the ruins.</Description>
+        <ZoneText>The small squeek of a rat comes from a dark corner.</ZoneText>
+    </M3001>
+    <M3002 name="fledgling" uses="1" worksID="1001" creates="1009" damage="1" hp="2" drops="1009">
+        <Description>A lesser creature that typically runs in small packs. Its almost human, just... demented, skinny, and crawls on all fours.</Description>
+        <UseText>The fledgling snarles and flees the area. He knocks a crowbar he was standing over.</UseText>
+        <ZoneText>A fledgling is rummaging through the debris.</ZoneText>
+    </M3002>
+    <M3003 name="fledgling" uses="1" worksID="1001" damage="1" hp="2">
+        <Description>A lesser creature that typically runs in small packs. Its almost human, just... demented, skinny, and crawls on all fours.</Description>
+        <UseText>The fledgling snarles and flees the area.</UseText>
+        <ZoneText>You see a fledgling running around the streets.</ZoneText>
+    </M3003>
+    <M3004 name="burning fledgling" unlockLoc="bathroom" damage="2" hp="3">
+        <Description>A fledgling on fire. It seems the fires are originating from its skin.</Description>
+        <ZoneText>A bruning fledgling illuminates the room.</ZoneText>
+    </M3004>
+    <M3005 name="bat knight" uses="1" worksID="1002" unlockLoc="blocked street" damage="3" hp="3">
+        <Description>A tall thin human-like creature with pale skin. Its large bat wings allow it to attack from the skies.</Description>
+        <UseText>The bat knight grabs you as you approach. Fortunately prepared, you stab the glass into its eyes. Blinded, it flies off and crashes in the distance. The way forward is cleared.</UseText>
+        <ZoneText>The beating of wings is heard in the sky. Looking up, you see a bat knight.</ZoneText>
+    </M3005>
+    <M3006 name="succubus" uses="-1" worksID="1026" creates="1027" damage="4" hp="5">
+        <Description>A faceless, pale-skinned creature. It stands tall, still, and doesn't react to your movements.</Description>
+        <UseText>Reaching out an extended limb, it gently takes the rolled paper. In your empty palm, it pours a red liquid from its finger. It solidifies instantly.</UseText>
+        <ZoneText>Something ominous stands in the back of the room. A succubus.</ZoneText>
+    </M3006>
+    <M3007 name="king slayer" uses="1" worksID="1015" creates="1028" unlockLoc="throne room" damage="5" hp="6">
+        <Description>Its hard to tell if its human or creature. Its large and muscular, weilding a massive sword and wearing a hood covering its head like a prisoner sack.</Description>
+        <UseText>You toss the vial at the once-king demon. He screems as his flesh burns and bones melt. In but a few seconds nothing more remains. It's over.</UseText>
+        <ZoneText>The king slayer stands before you.</ZoneText>
+    </M3007>
 </Monsters>

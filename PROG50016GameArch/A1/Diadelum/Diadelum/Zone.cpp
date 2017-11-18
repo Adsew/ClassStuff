@@ -379,6 +379,7 @@ void Zone::pickup(std::list<std::pair<int, std::string>> &action) {
             try {
                 // Transfering to inventory
                 Item *itemInScene = items.at((*actionItem).second);
+                items[(*actionItem).second] = NULL;
                 items.erase((*actionItem).second);
                 player->inventory[(*actionItem).second] = itemInScene;
 

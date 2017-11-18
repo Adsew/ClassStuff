@@ -214,6 +214,11 @@ Monster *GameObjectMaker::newMonster(int id) {
             mon->setDamage(tempInt);
         }
 
+        if (fs->getAttribute("hp", tempInt)) {
+
+            mon->setHealth(tempInt);
+        }
+
         if (fs->traverseToElement("Description")) {
 
             if (fs->getElementText(tempStr)) {

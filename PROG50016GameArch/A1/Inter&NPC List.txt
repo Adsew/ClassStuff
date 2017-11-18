@@ -1,0 +1,18 @@
+
+2001 fountain
+2002 fountain with coins
+2003 fence
+2004 planks1
+2005 planks2
+2006 water basin
+2007 palace door
+2008 cage (visible from gardens, gives hint)
+
+4001 Begging child
+4002 strange old woman
+4003 oddly dressed man
+4004 salvagers
+4005 sick woman
+4006 shady merchant
+4007 large red flower
+4008 ghostly figure
