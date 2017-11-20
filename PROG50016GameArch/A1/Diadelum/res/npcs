@@ -43,7 +43,7 @@
     </N4006>
     <N4007 name="large red flower" uses="1" worksID="1007" creates="1008">
         <Description>A giant flower is one thing, an giant red moving flower is another.</Description>
-        <UseText>The flower stands tall, sreading its pedals. It almost seems joyed like a mother whos children have returned.</UseText>
+        <UseText>The flower stands tall, sreading its pedals. It almost seems joyed like a mother whos children have returned. It drops a dry branch.</UseText>
         <ZoneText>Amongst the many flowers, a large red flower stands out over the others.</ZoneText>
         <TalkText>Didn't know what to expect talking to a flower, but it slowly bent over as if sad. Did it react to me?</TalkText>
     </N4007>

@@ -36,7 +36,7 @@
     <E2007 name="palace door" uses="1" worksID="1011" unlockLoc="palace hall">
         <Description>A large spectacular door. The key to such an entrence must be well gaurded.</Description>
         <UseText>The key rotates and clicks. After a chain reaction of what sounds like gears locking into place, the door slowly swings wide open.</UseText>
-        <ZoneText>The door to the palace is clearly visible and almost makes everything else feel insignificant.</ZoneText>
+        <ZoneText>The door to the palace is clearly visible and almost makes everything else feel insignificant. It's been locked for years.</ZoneText>
     </E2007>
     <E2008 name="cage" uses="-1">
         <Description>You see a cage on the other side of the gardens bounds. It's outside the city limits.</Description>
@@ -47,4 +47,12 @@
         <UseText>The door opens and you see the endless expanse ahead of you.</UseText>
         <ZoneText>The city gate out of the city remains shut and locked.</ZoneText>
     </E2009>
+    <E2010 name="cabinate" uses="-1">
+        <Description>A fairly common looking cabinate. It's filled with some medicine and other charred goods.</Description>
+        <ZoneText>There is a cabinate in the room away from the flames.</ZoneText>
+    </E2010>
+    <E2011 name="door mat" uses="-1" worksID="0">
+        <Description>The palace hall has a very large fancy door mat in front of the door.</Description>
+        <UseText>You move the door mat, revealing the palace key hidden underneath. I can't believe it was actually left there.</UseText>
+    </E2011>
 </Interactables>

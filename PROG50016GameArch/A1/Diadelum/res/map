@@ -1,33 +1,28 @@
 <?xml version="1.0"?>
 <Zones>
     <example_zone>
-        <Description>
-            A dark and evil looking house with scary things around it.
-        </Description>
+        <Description>A dark and evil looking house with scary things around it.</Description>
         <Items>
-            <Item id="1001" />
+            <Item id="1000" />
         </Items>
         <Interactables>
-            <Interactable id="2001" />
+            <Interactable id="2000" />
         </Interactables>
         <Monsters>
-            <Monster id="3001" />
+            <Monster id="3000" />
         </Monsters>
+        <NPCs>
+            <NPC id="4000" />
+        </NPCs>
         <Connections>
             <Zone name="town" access="true" />
         </Connections>
     </example_zone>
     <meeting_quarter>
         <Description>The noise of people gathering fills your ears. People frequently gather here for information on current events and updates regarding the safe zone. A crier stands out shouting the latest on ration distribution and monster attacks. Signs point to the desolate quarter, market quarter, and living quarter, as well as the south gate and east gate.</Description>
-        <Items>
-            <Item id="1001" />
-        </Items>
-        <Interactables>
-            <Interactable id="2001" />
-        </Interactables>
-        <Monsters>
-            <Monster id="3001" />
-        </Monsters>
+        <NPCs>
+            <NPC id="4003" />
+        </NPCs>
         <Connections>
             <Zone name="living quarter" access="true" />
             <Zone name="desolate quarter" access="true" />
@@ -38,15 +33,9 @@
     </meeting_quarter>
     <market_quarter>
         <Description>People frantically run amok in the large open space. Merchents own the area, selling whatever they scroung up. Signs point to the living quarter, desolate quarter, and meeting quarter, as well as the north gate and west gate.</Description>
-        <Items>
-            <Item id="1001" />
-        </Items>
-        <Interactables>
-            <Interactable id="2001" />
-        </Interactables>
-        <Monsters>
-            <Monster id="3001" />
-        </Monsters>
+        <NPCs>
+            <NPC id="4006" />
+        </NPCs>
         <Connections>
             <Zone name="living quarter" access="true" />
             <Zone name="desolate quarter" access="true" />
@@ -57,15 +46,10 @@
     </market_quarter>
     <living_quarter>
         <Description>The houses here are always a mystery. Sometimes filled with joyous families, othertimes sad new faces. People do their best to make this quarter feel welcoming with flowers and brightly coloured paint. Signs point towards the market quarter, desolate quarter, and meeting quarter, as well as the north gate and east gate.</Description>
-        <Items>
-            <Item id="1001" />
-        </Items>
-        <Interactables>
-            <Interactable id="2001" />
-        </Interactables>
-        <Monsters>
-            <Monster id="3001" />
-        </Monsters>
+        <NPCs>
+            <NPC id="4004" />
+            <NPC id="4005" />
+        </NPCs>
         <Connections>
             <Zone name="market quarter" access="true" />
             <Zone name="desolate quarter" access="true" />
@@ -77,14 +61,15 @@
     <desolate_quarter>
         <Description>Some stay here by choice, others shunned by the survivors. Regardless, this quarter feels the most real these days. Disrepair smuthers the streets and the slightest noise would send chills down your spine. Broken signs once pointed to the market quarter, living quarter, and meeting quarter, as well as the south gate and west gate.</Description>
         <Items>
-            <Item id="1001" />
+            <Item id="1016" />
         </Items>
-        <Interactables>
-            <Interactable id="2001" />
-        </Interactables>
         <Monsters>
             <Monster id="3001" />
         </Monsters>
+        <NPCs>
+            <NPC id="4001" />
+            <NPC id="4002" />
+        </NPCs>
         <Connections>
             <Zone name="living quarter" access="true" />
             <Zone name="market quarter" access="true" />
@@ -93,4 +78,291 @@
             <Zone name="south gate" access="true" />
         </Connections>
     </desolate_quarter>
+    <north_gate>
+        <Description>The north gate is a short open road leading to the old town square. The way is blocked by impassable rubble though. The area is lit red by the burning building on this street. You can also return to the market quarter or living quarter from here.</Description>
+        <Connections>
+            <Zone name="burning building" access="true" />
+            <Zone name="market quarter" access="true" />
+            <Zone name="living quarter" access="true" />
+        </Connections>
+    </north_gate>
+    <burning_building>
+        <Description>The air is thin. It's hard to breath in a building engulfed by flame, but the rewards might be greater. You memorize your exit is the north gate.</Description>
+        <Items>
+            <Item id="1012" />
+        </Items>
+        <Interactables>
+            <Interactable id="2010" />
+        </Interactables>
+        <Monsters>
+            <Monster id="3004" />
+        </Monsters>
+        <Connections>
+            <Zone name="north gate" access="true" />
+        </Connections>
+    </burning_building>
+    <west_gate>
+        <Description>West gate to the secured area. This area connects to the park. Scavangers have mapped it into four sections: park NW, park NE, park SW, and park SE. The market quarter and desolate quarter are also accessable from here.</Description>
+        <Connections>
+            <Zone name="market quarter" access="true" />
+            <Zone name="desolate quarter" access="true" />
+            <Zone name="park nw" access="true" />
+            <Zone name="park ne" access="true" />
+            <Zone name="park sw" access="true" />
+            <Zone name="park se" access="true" />
+        </Connections>
+    </west_gate>
+    <park_ne>
+        <Description>Park NE is less floral than the rest of the park. This area houses a gaurd shed still. Floral street is to the north and the west gate is visible as well.</Description>
+        <Items>
+            <Item id="1022" />
+        </Items>
+        <Connections>
+            <Zone name="park nw" access="true" />
+            <Zone name="park sw" access="true" />
+            <Zone name="park se" access="true" />
+            <Zone name="west gate" access="true" />
+            <Zone name="floral street" access="true" />
+        </Connections>
+    </park_ne>
+    <park_se>
+        <Description>The park district is largely untouched by the creatures. They may have an aversion to plant life, but no one knows for sure. The west gate is visible from here.</Description>
+        <Interactables>
+            <Interactable id="2001" />
+        </Interactables>
+        <Connections>
+            <Zone name="park nw" access="true" />
+            <Zone name="park ne" access="true" />
+            <Zone name="park sw" access="true" />
+            <Zone name="west gate" access="true" />
+        </Connections>
+    </park_se>
+    <park_sw>
+        <Description>Deeper in the park, plant life over grows even the concrete and metal constructs remaining.</Description>
+        <Interactables>
+            <Interactable id="2008" />
+        </Interactables>
+        <NPCs>
+            <NPC id="4007" />
+        </NPCs>
+        <Connections>
+            <Zone name="park nw" access="true" />
+            <Zone name="park ne" access="true" />
+            <Zone name="park se" access="true" />
+        </Connections>
+    </park_sw>
+    <park_nw>
+        <Description>It looks as though this area of the park held most of the tools people would use to maintain it.</Description>
+        <Items>
+            <Item id="1003" />
+            <Item id="1007" />
+        </Items>
+        <Connections>
+            <Zone name="park sw" access="true" />
+            <Zone name="park ne" access="true" />
+            <Zone name="park se" access="true" />
+        </Connections>
+    </park_nw>
+    <floral_street>
+        <Description>Floral street is aptly named. Boxes of flowers line the houses here. Its almost surreal concidering the rest of the city. The park are to the south has been divided by salvagers into park NW, park NE, park SW, park SE. Side street is also connected here.</Description>
+        <Connections>
+            <Zone name="park nw" access="true" />
+            <Zone name="park ne" access="true" />
+            <Zone name="park sw" access="true" />
+            <Zone name="park se" access="true" />
+            <Zone name="side street" access="true" />
+        </Connections>
+    </floral_street>
+    <side_street>
+        <Description>It may be a typical street, but it almost depicts time itself. At one end of the street, floral street, beauty and life exist, at the other leading to town square, smoke and ash.</Description>
+        <Connections>
+            <Zone name="town square" access="true" />
+            <Zone name="floral street" access="true" />
+        </Connections>
+    </side_street>
+    <town_square>
+        <Description>This place reminds me of the meeting quarter back in the secured zone. It seems like the ideal place for people to gather and talk. Side street lies to the west and condo street to the east. Side gardens line the large building front and center. The once greate building is the palace hall.</Description>
+        <Items>
+            <Item id="1004" />
+            <Item id="1011" />
+        </Items>
+        <Interactables>
+            <Interactable id="2011" />
+            <Interactable id="2002" />
+        </Interactables>
+        <NPCs>
+            <NPC id="4008" />
+        </NPCs>
+        <Connections>
+            <Zone name="side street" access="true" />
+            <Zone name="side gardens" access="true" />
+            <Zone name="condo street" access="true" />
+            <Zone name="palace hall" access="false" />
+        </Connections>
+    </town_square>
+    <side_gardens>
+        <Description>Mis-shapen shrubs and small plants line the side of the palace hall. They look like they were once organized. Town square is the only place connected to here.</Description>
+        <Items>
+            <Item id="1023" />
+        </Items>
+        <Connections>
+            <Zone name="town square" access="true" />
+        </Connections>
+    </side_gardens>
+    <condo_street>
+        <Description>The street is lined with multiple houses. It sounds of creatures can be heard in the distance. Town square is nearby and pilgrim street heads into the residential sector.</Description>
+        <Connections>
+            <Zone name="town square" access="true" />
+            <Zone name="pilgrim street" access="true" />
+        </Connections>
+    </condo_street>
+    <south_gate>
+        <Description>This is the place that stands between the unknown and us. The unknown reaches lies outside. The desolate quarter and the meeting quarter are back north.</Description>
+        <Interactables>
+            <Interactable id="2009" />
+        </Interactables>
+        <Connections>
+            <Zone name="unknown reaches" access="false" />
+            <Zone name="meeting quarter" access="true" />
+            <Zone name="desolate quarter" access="true" />
+        </Connections>
+    </south_gate>
+    <unknown_reaches>
+        <Description>A vast desert is before you. No one knows how far it stretches. You can't even see more than a few meters away. All we do know, is no one who has left this way has ever returned. With help, we could go to the city perimeter or just return to the south gate.</Description>
+        <Connections>
+            <Zone name="city perimeter" access="false" />
+            <Zone name="south gate" access="true" />
+        </Connections>
+    </unknown_reaches>
+    <city_perimeter>
+        <Description>You reach the wall of the city, near a fenced off area. The desert is calmer here, and you can see a thick wall of green encasing most of the fence. A small cage stands out from the green. With the nav tools, we can return to the unknown reaches infront of the city entrence.</Description>
+        <Interactables>
+            <Interactable id="2003" />
+        </Interactables>
+        <Connections>
+            <Zone name="unknown reaches" access="true" />
+            <Zone name="small cage" access="false" />
+        </Connections>
+    </city_perimeter>
+    <small_cage>
+        <Description>This small area is tucked away from both the desert and park district. It would make a great place to get away from the world. If I'm careful, I can get to the park SW from this side. Otherwise I can return to the city perimeter.</Description>
+        <Items>
+            <Item id="1024" />
+        </Items>
+        <Connections>
+            <Zone name="city perimeter" access="true" />
+            <Zone name="park sw" access="true" />
+        </Connections>
+    </small_cage>
+    <east_gate>
+        <Description>Eastern entrence to the secured zone. There is an exit out of the city at the end of the street, but it has long been blocked off by rubbel. Probably for the best. A tall building appears to be open and the decrepate street lies ahead. Though, this is where the creatures tend to stay. I can return to the living quarter and meeting quarter as well.</Description>
+        <Items>
+            <Item id="1001" />
+        </Items>
+        <Connections>
+            <Zone name="living quarter" access="true" />
+            <Zone name="meeting quarter" access="true" />
+            <Zone name="decrepate street" access="true" />
+            <Zone name="tall building" access="true" />
+        </Connections>
+    </east_gate>
+    <tall_building>
+        <Description>The floors in this building appear to be falling apart. Years without upkeep can do that. While wondering the building you find an exit to decrepate street and the east gate.</Description>
+        <Monsters>
+            <Monster id="3001" />
+            <Monster id="3002" />
+        </Monsters>
+        <Connections>
+            <Zone name="east gate" access="true" />
+            <Zone name="decrepate street" access="true" />
+        </Connections>
+    </tall_building>
+    <decrepate_street>
+        <Description>The streets here are typically burning, falling apart, and ridden with soot. Thats the case for the tall building to the west, but across the street is a well kept house. It's particularly odd. Pilgrim street is connected as well as the east gate. A ruined appartment looks like it may lead somewhere.</Description>
+        <Interactables>
+            <Interactable id="2004" />
+        </Interactables>
+        <Monsters>
+            <Monster id="3003" />
+        </Monsters>
+        <Connections>
+            <Zone name="east gate" access="true" />
+            <Zone name="tall building" access="true" />
+            <Zone name="well kept house" access="true" />
+            <Zone name="pilgrim street" access="true" />
+            <Zone name="ruined appartment" access="false" />
+        </Connections>
+    </decrepate_street>
+    <well_kept_house>
+        <Description>Unbelievable. The house is near spottless. Some of the vanity I don't even recognize. Could this be an image of how the world once was? The decrepate street is just outside.</Description>
+        <Monsters>
+            <Monster id="3006" />
+        </Monsters>
+        <Connections>
+            <Zone name="decrepate street" access="true" />
+        </Connections>
+    </well_kept_house>
+    <ruined_appartment>
+        <Description>The appartment is tattered. Everything looks as though it has been thrown around. Windows broken and furniture knocked over. The house gets too dark to see in the direction of a small alley, but the decrepate street emmits enough light to find my way back in that direction.</Description>
+        <Items>
+            <Item id="1002" />
+        </Items>
+        <Connections>
+            <Zone name="small alley" access="false" />
+            <Zone name="decrepate street" access="true" />
+        </Connections>
+    </ruined_appartment>
+    <small_alley>
+        <Description>A small alley behind the majority of houses. Nothing but a few boxes lay around the area. A moment of calm washes over you. The ruined appartment has an open window to go through and there is a destroyed office as well around.</Description>
+        <Items>
+            <Item id="1010" />
+        </Items>
+        <Interactables>
+            <Interactable id="2005" />
+        </Interactables>
+        <Connections>
+            <Zone name="ruined appartment" access="true" />
+            <Zone name="destroyed office" access="false" />
+        </Connections>
+    </small_alley>
+    <destroyed_office>
+        <Description>The building is covered in papers. Desks and old technology are scattered throughout the rooms. The building leads out to pilgrim street and a small alley out back.</Description>
+        <Items>
+            <Item id="1019" />
+        </Items>
+        <Connections>
+            <Zone name="small alley" access="true" />
+            <Zone name="pilgrim street" access="true" />
+        </Connections>
+    </destroyed_office>
+    <pilgrim_street>
+        <Description>Definitly the worst street in the city. Monsters tend to flock here in large quantities, and the landscape shows it. Decrepate street lies to the south and condo street to the north. The old church is here and a destroyed office as well.</Description>
+        <Monsters>
+            <Monster id="3005" />
+        </Monsters>
+        <Connections>
+            <Zone name="condo street" access="false" />
+            <Zone name="decrepate street" access="true" />
+            <Zone name="old church" access="true" />
+            <Zone name="destroyed office" access="true" />
+        </Connections>
+    </pilgrim_street>
+    <old_church>
+        <Description>The old church lays dormant. While it's not a mess, there is a layer of dust on just about everything. The door leads to pilgrim street.</Description>
+        <Interactables>
+            <Interactable id="2006" />
+        </Interactables>
+        <Connections>
+            <Zone name="pilgrim street" access="true" />
+        </Connections>
+    </old_church>
+    <palace_hall>
+        <Description>The hall is grand. Red silk tapestries hang from the ceiling. As you follow the cloth road forward you reach the throne.</Description>
+        <Monsters>
+            <Monster id="3007" />
+        </Monsters>
+        <Connections>
+            <Zone name="town square" access="true" />
+        </Connections>
+    </palace_hall>
 </Zones>
