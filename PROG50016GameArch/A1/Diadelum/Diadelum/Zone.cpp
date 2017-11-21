@@ -142,6 +142,17 @@ void Zone::update() {
             npcIter++;
         }
     }
+
+    // If player died, move him to the dream zone
+    if (player->isDead()) {
+
+        messageToP += " You have died.";
+
+        player->restoreFromDeath();
+
+        movingFlag = true;
+        zoneToMoveTo = "inbetween";
+    }
 }
 
 
@@ -240,10 +251,9 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                         }
                         catch (const std::out_of_range &ex) {
 
-                            try {
-                                useItem1 = player->hasItem((*actionItem).second);
-                            }
-                            catch (const std::out_of_range &ex) {
+                            useItem1 = player->hasItem((*actionItem).second);   // Returns null if doesnt exist
+
+                            if (useItem1 == NULL) {
 
                                 messageToP = "I can't find what you want me to use.";
                             }
@@ -280,10 +290,9 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                                 }
                                 catch (const std::out_of_range &ex) {
 
-                                    try {
-                                        useItem2 = player->hasItem((*actionItem).second);
-                                    }
-                                    catch (const std::out_of_range &ex) {
+                                    useItem2 = player->hasItem((*actionItem).second);
+
+                                    if (useItem2 == NULL) {
 
                                         messageToP = "I can't find what you want me to use " + messageToP + " with.";
                                     }
@@ -407,10 +416,14 @@ void Zone::search(std::list<std::pair<int, std::string>> &action) {
                         }
                         catch (const std::out_of_range &ex) {
 
-                            try {
-                                messageToP = player->hasItem((*actionItem).second)->lookat();
+                            // Same thing, just different check for items in inventory
+                            Item *tempItem = player->hasItem((*actionItem).second);
+
+                            if (tempItem != NULL) {
+
+                                messageToP = tempItem->lookat();
                             }
-                            catch (const std::out_of_range &ex) {
+                            else {
 
                                 messageToP = "I dont see that anywhere.";
                             }
@@ -522,7 +535,28 @@ void Zone::attack(std::list<std::pair<int, std::string>> &action) {
         if (actionItem != action.end()) {
 
             try {
-                messageToP = monsters.at((*actionItem).second)->attack(player);
+                Monster *atkMon = monsters.at((*actionItem).second);
+                
+                messageToP = atkMon->attack(player);
+
+                try {
+                    connectedZones.at(atkMon->unlockLocation()) = true;
+                }
+                catch (const std::out_of_range &ex) {}
+
+                if (atkMon->dropItem() > 0) {
+
+                    Item *drop = GameObjectMaker::Instance().newItem(atkMon->dropItem());
+
+                    if (drop != NULL) {
+
+                        messageToP += " Obtained " + drop->getName() + ".";
+                    }
+
+                    player->addItemToInventory(drop);
+                }
+
+                atkMon->setInUse(false);
             }
             catch (const std::out_of_range &ex) {
 
@@ -556,6 +590,8 @@ std::string Zone::render() {
     while (interIter != interactables.end()) {
 
         output += " " + interIter->second->getInZoneMsg();
+
+        interIter++;
     }
 
     std::map<std::string, Item *>::iterator itemIter = items.begin();
@@ -563,6 +599,8 @@ std::string Zone::render() {
     while (itemIter != items.end()) {
 
         output += " " + itemIter->second->getInZoneMsg();
+
+        itemIter++;
     }
 
     std::map<std::string, Monster *>::iterator monIter = monsters.begin();
@@ -570,6 +608,8 @@ std::string Zone::render() {
     while (monIter != monsters.end()) {
 
         output += " " + monIter->second->getInZoneMsg();
+
+        monIter++;
     }
 
     std::map<std::string, NPC *>::iterator npcIter = npcs.begin();
@@ -577,6 +617,8 @@ std::string Zone::render() {
     while (npcIter != npcs.end()) {
 
         output += " " + npcIter->second->getInZoneMsg();
+
+        npcIter++;
     }
 
     // Finally message to player based on previous action

@@ -43,4 +43,6 @@ needs to make monsters attack if you stay in an area each turn. Add a zone updat
 
 make a npc diriviate of interactable. create a talking text return.
 
-implement talk command
+to lower case not implemented
+
+implement corpse have restore player return corpse that will be added to zone and zone will be saved before move. Corpses will have unique id for special save/load and zone will need to special delete them by type cast then delete so it called the bottom destructor. Thus implement with save load

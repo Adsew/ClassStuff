@@ -15,11 +15,16 @@ player at any given time.
 #include "Player.h"
 
 
+#define PLAYER_MAX_HEALTH 10
+
+
 Player::Player() {
 
     inventory = new std::map<std::string, Item *>();
 
-    health = 10;    // 10 health default
+    weapon = NULL;
+
+    health = PLAYER_MAX_HEALTH;
 }
 
 
@@ -65,8 +70,19 @@ void Player::update() {
 // Return what to render to screen
 std::string Player::render() {
 
-    std::string renderText = "HP: " + std::to_string(health) + "Inventory:";
+    std::string renderText = "HP: " + std::to_string(health) + " Weapon:";
     std::map<std::string, Item *>::iterator iter;
+
+    if (weapon == NULL) {
+
+        renderText += " none";
+    }
+    else {
+
+        renderText += " " + weapon->getName();
+    }
+
+    renderText += " Inventory:";
 
     for (iter = inventory->begin(); iter != inventory->end(); iter++) {
 
@@ -82,6 +98,23 @@ bool Player::addItemToInventory(Item *item) {
     if (item != NULL) {
 
         (*inventory)[item->getName()] = item;
+
+        // Set new weapon if better than current
+        if (item->getDamage() > 0) {
+
+            // Note, reference is held twice, hence weapon is not explicitly deleted
+            if (weapon == NULL) {
+
+                weapon = item;
+            }
+            else {
+
+                if (item->getDamage() > weapon->getDamage()) {
+
+                    weapon = item;
+                }
+            }
+        }
 
         return true;
     }
@@ -101,6 +134,38 @@ Item *Player::hasItem(std::string &name) {
     return NULL;
 }
 
+// Deal damage to the player
+void Player::takeDamage(int dmg) {
+
+    health = health - dmg;
+
+    if (health < 0) {
+
+        health = 0;
+    }
+}
+
+// Get current damage value from player based on current weapon
+int Player::dealDamage() {
+
+    if (weapon != NULL) {
+
+        return weapon->getDamage();
+    }
+
+    return 0;
+}
+
+// Restore player to max health and remove inventory as corpse
+void Player::restoreFromDeath() {
+
+    health = PLAYER_MAX_HEALTH;
+
+    //weapon = NULL;
+
+    // return inventory, inventory = new inventory;
+}
+
 // Set health to a positive number
 void Player::setHealth(int hp) {
 
@@ -108,4 +173,15 @@ void Player::setHealth(int hp) {
 
         health = hp;
     }
+}
+
+// Return true if player hp < 0
+bool Player::isDead() {
+
+    if (health <= 0) {
+
+        return true;
+    }
+
+    return false;
 }

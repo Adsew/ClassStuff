@@ -88,3 +88,8 @@ void Item::setDamage(int dmg) {
         damage = dmg;
     }
 }
+
+int Item::getDamage() {
+
+    return damage;
+}

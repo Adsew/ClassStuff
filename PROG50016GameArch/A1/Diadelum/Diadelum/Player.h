@@ -31,6 +31,8 @@ private:
 
     std::map<std::string, Item *> *inventory;
 
+    Item *weapon;
+
     int health;
 
 protected:
@@ -58,8 +60,20 @@ public:
     // Check if player has item, if yes, return it (doesn't remove)
     Item *hasItem(std::string &name);
 
+    // Deal damage to the player
+    void takeDamage(int dmg);
+
+    // Get current damage value from player based on current weapon
+    int dealDamage();
+
+    // Restore player to max health and remove inventory as corpse
+    void restoreFromDeath();
+
     // Set health to a positive number
     void setHealth(int hp);
+
+    // Return true if player hp < 0
+    bool isDead();
 };
 
 #endif

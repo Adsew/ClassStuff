@@ -30,7 +30,27 @@ Monster::~Monster() {
 
 std::string Monster::attack(Player *p) {
 
-    return "I ATTACK YOU RAWR!";
+    int pDmg = p->dealDamage();
+    std::string msg = "You dealt " + std::to_string(pDmg) + " to " + name + ".";
+
+    health = health - pDmg;
+
+    // Can't retaliate if dead
+    if (health > 0) {
+
+        p->takeDamage(damage);
+
+        msg += " The " + name + " dealt " + std::to_string(damage) + " to you.";
+    }
+    else {
+
+        msg += " You kill the " + name + ".";
+
+        needsDeletion = true;
+        inUse = true;   // Allow drops and unlocks to be performed since dead
+    }
+
+    return msg;
 }
 
 std::string Monster::getAttackedBy(Player *p) {

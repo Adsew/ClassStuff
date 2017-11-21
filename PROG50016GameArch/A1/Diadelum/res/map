@@ -181,7 +181,7 @@
         </Connections>
     </side_street>
     <town_square>
-        <Description>This place reminds me of the meeting quarter back in the secured zone. It seems like the ideal place for people to gather and talk. Side street lies to the west and condo street to the east. Side gardens line the large building front and center. The once greate building is the palace hall.</Description>
+        <Description>This place reminds me of the meeting quarter back in the secured zone. It seems like the ideal place for people to gather and talk. Side street lies to the west and condo street to the east. Side gardens line the large building front and center. The once great building is the palace hall.</Description>
         <Items>
             <Item id="1004" />
             <Item id="1011" />
@@ -189,6 +189,7 @@
         <Interactables>
             <Interactable id="2011" />
             <Interactable id="2002" />
+            <Interactable id="2007" />
         </Interactables>
         <NPCs>
             <NPC id="4008" />
@@ -326,12 +327,12 @@
         </Connections>
     </small_alley>
     <destroyed_office>
-        <Description>The building is covered in papers. Desks and old technology are scattered throughout the rooms. The building leads out to pilgrim street and a small alley out back.</Description>
+        <Description>The building is covered in papers. Desks and old technology are scattered throughout the rooms. The building leads out to pilgrim street and a small alley out back. The small alley is too dark to enter without light.</Description>
         <Items>
             <Item id="1019" />
         </Items>
         <Connections>
-            <Zone name="small alley" access="true" />
+            <Zone name="small alley" access="false" />
             <Zone name="pilgrim street" access="true" />
         </Connections>
     </destroyed_office>
@@ -365,4 +366,10 @@
             <Zone name="town square" access="true" />
         </Connections>
     </palace_hall>
+    <inbetween>
+        <Description>You have died. You feel your presence slipping away. The plane around you is grey and ever shifting. You see something familiar. It looks like the desolate quarter. A thought rushes your mind. "Move on. Awaken again."</Description>
+        <Connections>
+            <Zone name="desolate quarter" access="true" />
+        </Connections>
+    </inbetween>
 </Zones>

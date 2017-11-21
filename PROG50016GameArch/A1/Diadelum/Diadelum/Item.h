@@ -41,6 +41,8 @@ public:
     std::string lookat();
 
     void setDamage(int damage);
+
+    int getDamage();
 };
 
 #endif

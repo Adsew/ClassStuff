@@ -4,6 +4,7 @@
         <Asset name="items" file="../res/items" />
         <Asset name="monsters" file="../res/monsters" />
         <Asset name="interactables" file="../res/interactables" />
+        <Asset name="npcs" file="../res/npcs" />
         <Asset name="map" file="../res/map" />
     </AssetFiles>
 </Settings>

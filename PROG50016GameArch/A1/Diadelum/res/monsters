@@ -23,7 +23,7 @@
         <Description>A fledgling on fire. It seems the fires are originating from its skin.</Description>
         <ZoneText>A bruning fledgling illuminates the room.</ZoneText>
     </M3004>
-    <M3005 name="bat knight" uses="1" worksID="1002" unlockLoc="blocked street" damage="3" hp="3">
+    <M3005 name="bat knight" uses="1" worksID="1002" unlockLoc="condo street" damage="3" hp="3">
         <Description>A tall thin human-like creature with pale skin. Its large bat wings allow it to attack from the skies.</Description>
         <UseText>The bat knight grabs you as you approach. Fortunately prepared, you stab the glass into its eyes. Blinded, it flies off and crashes in the distance. The way forward is cleared.</UseText>
         <ZoneText>The beating of wings is heard in the sky. Looking up, you see a bat knight.</ZoneText>

@@ -77,6 +77,23 @@ bool SceneManager::update() {
         activeZone->update();
     }
 
+    if (activeZone->movingFlagStatus() == true) {
+
+        Zone *tempZone = GameObjectMaker::Instance().newZone(activeZone->getZoneToMoveTo());
+
+        if (tempZone != NULL) {
+
+            RenderSystem::Instance().removeIRenderable(activeZone);
+
+            delete activeZone;
+
+            activeZone = tempZone;
+            activeZone->setPlayer(player);
+
+            RenderSystem::Instance().addIRenderable(activeZone);
+        }
+    }
+
     if (exitFlag == true) {
 
         return false;   // Set isRunning false in engine
@@ -97,23 +114,6 @@ void SceneManager::noAction(std::list<std::pair<int, std::string>> &action) {
 void SceneManager::move(std::list<std::pair<int, std::string>> &action) {
 
     activeZone->move(action);
-
-    if (activeZone->movingFlagStatus() == true) {
-
-        Zone *tempZone = GameObjectMaker::Instance().newZone(activeZone->getZoneToMoveTo());
-
-        if (tempZone != NULL) {
-
-            RenderSystem::Instance().removeIRenderable(activeZone);
-
-            delete activeZone;
-
-            activeZone = tempZone;
-            activeZone->setPlayer(player);
-
-            RenderSystem::Instance().addIRenderable(activeZone);
-        }
-    }
 }
 
 void SceneManager::use(std::list<std::pair<int, std::string>> &action) {

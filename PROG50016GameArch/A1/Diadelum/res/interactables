@@ -39,7 +39,7 @@
         <ZoneText>The door to the palace is clearly visible and almost makes everything else feel insignificant. It's been locked for years.</ZoneText>
     </E2007>
     <E2008 name="cage" uses="-1">
-        <Description>You see a cage on the other side of the gardens bounds. It's outside the city limits.</Description>
+        <Description>You see a cage on the other side of the garden's bounds. It's outside the city limits.</Description>
         <ZoneText>Theres a cage beyond the fence.</ZoneText>
     </E2008>
     <E2009 name="city gate" uses="1" worksID="1022" unlockLoc="unknown reaches">

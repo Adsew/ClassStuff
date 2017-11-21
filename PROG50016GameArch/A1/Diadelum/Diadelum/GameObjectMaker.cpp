@@ -33,13 +33,14 @@ GameObjectMaker &GameObjectMaker::operator=(GameObjectMaker &gom) { return gom; 
 Item *GameObjectMaker::newItem(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
+    std::string searchID = "I" + std::to_string(id);
     Item *item = NULL;
 
     fs->useFile("items");
     fs->traverseToElement("Items");
     
     // Traverse to the desired item, load all attributes as available
-    if (fs->traverseToElement("I" + id)) {
+    if (fs->traverseToElement(searchID)) {
 
         std::string tempStr;
         int tempInt = 0;
@@ -104,13 +105,14 @@ Item *GameObjectMaker::newItem(int id) {
 Interactable *GameObjectMaker::newInteractable(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
+    std::string searchID = "E" + std::to_string(id);
     Interactable *inter = NULL;
 
     fs->useFile("interactables");
     fs->traverseToElement("Interactables");
 
     // Traverse to the desired item, load all attributes as available
-    if (fs->traverseToElement("E" + id)) {
+    if (fs->traverseToElement(searchID)) {
 
         std::string tempStr;
         int tempInt = 0;
@@ -170,13 +172,14 @@ Interactable *GameObjectMaker::newInteractable(int id) {
 Monster *GameObjectMaker::newMonster(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
+    std::string searchID = "M" + std::to_string(id);
     Monster *mon = NULL;
 
     fs->useFile("monsters");
     fs->traverseToElement("Monsters");
 
     // Traverse to the desired item, load all attributes as available
-    if (fs->traverseToElement("M" + id)) {
+    if (fs->traverseToElement(searchID)) {
 
         std::string tempStr;
         int tempInt = 0;
@@ -251,13 +254,14 @@ Monster *GameObjectMaker::newMonster(int id) {
 NPC *GameObjectMaker::newNPC(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
+    std::string searchID = "N" + std::to_string(id);
     NPC *npc = NULL;
 
     fs->useFile("npcs");
     fs->traverseToElement("NPCs");
 
     // Traverse to the desired item, load all attributes as available
-    if (fs->traverseToElement("N" + id)) {
+    if (fs->traverseToElement(searchID)) {
 
         std::string tempStr;
         int tempInt = 0;
@@ -451,7 +455,7 @@ Zone *GameObjectMaker::newZone(const char *name) {
         }
 
         // Now create all the ids that were loaded
-        if (items.size() > 0 || interactables.size() > 0 || monsters.size() > 0) {
+        if (items.size() > 0 || interactables.size() > 0 || monsters.size() > 0 || npcs.size() > 0) {
 
             std::list<int>::iterator iter;
 
