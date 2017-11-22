@@ -21,6 +21,7 @@ Description: Holds all the information related to the
 
 
 class Item;
+class Corpse;
 
 
 class Player : public Object, public IRenderable {
@@ -29,7 +30,7 @@ private:
 
     /***** Variables *****/
 
-    std::map<std::string, Item *> *inventory;
+    std::map<std::string, Item *> inventory;
 
     Item *weapon;
 
@@ -67,7 +68,7 @@ public:
     int dealDamage();
 
     // Restore player to max health and remove inventory as corpse
-    void restoreFromDeath();
+    Corpse *restoreFromDeath();
 
     // Set health to a positive number
     void setHealth(int hp);

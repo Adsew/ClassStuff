@@ -34,7 +34,7 @@ std::string Item::use() {
 
         if (numUses == 0) {
 
-            needsDeletion = true;
+            destroy();
         }
         
         return onUseMsg;
@@ -55,11 +55,11 @@ std::string Item::useWith(GameObject *go) {
         // If less than 0 means unlimted uses
         if (numUses == 0) {
 
-            needsDeletion = true;
+            destroy();
         }
         if (go->getNumUses() == 0) {
 
-            go->setNeedsDeletion(true);
+            go->destroy();
         }
 
         return onUseMsg;

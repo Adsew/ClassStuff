@@ -17,8 +17,7 @@ GameObject::GameObject()
     : Object() {
 
     id = -1;
-    needsDeletion = false;
-
+    
     description = "";
 
     inUse = false;
@@ -35,8 +34,7 @@ GameObject::GameObject(int idNum, std::string &n)
     : Object(n){
 
     id = idNum;
-    needsDeletion = false;
-
+    
     description = "";
 
     inUse = false;
@@ -84,16 +82,6 @@ std::string GameObject::unlockLocation() {
 int GameObject::getID() {
 
     return id;
-}
-
-void GameObject::setNeedsDeletion(bool b) {
-
-    needsDeletion = b;
-}
-
-bool GameObject::getNeedsDeletion() {
-
-    return needsDeletion;
 }
 
 void GameObject::setDescription(std::string &desc) {

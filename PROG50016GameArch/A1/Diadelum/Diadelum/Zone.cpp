@@ -15,6 +15,7 @@ on the zone's specific details.
 #include "Player.h"
 #include "Interactable.h"
 #include "Item.h"
+#include "Corpse.h"
 #include "Monster.h"
 #include "NPC.h"
 #include "InputCodes.h"
@@ -148,7 +149,7 @@ void Zone::update() {
 
         messageToP += " You have died.";
 
-        player->restoreFromDeath();
+        addItem((Item *)player->restoreFromDeath());
 
         movingFlag = true;
         zoneToMoveTo = "inbetween";

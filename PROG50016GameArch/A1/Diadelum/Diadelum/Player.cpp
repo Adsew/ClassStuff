@@ -11,6 +11,7 @@ player at any given time.
 */
 
 
+#include "Corpse.h"
 #include "Item.h"
 #include "Player.h"
 
@@ -20,8 +21,6 @@ player at any given time.
 
 Player::Player() {
 
-    inventory = new std::map<std::string, Item *>();
-
     weapon = NULL;
 
     health = PLAYER_MAX_HEALTH;
@@ -30,15 +29,13 @@ Player::Player() {
 
 Player::~Player() {
 
-    for (std::map<std::string, Item *>::iterator iter = inventory->begin();
-        iter != inventory->end();
+    for (std::map<std::string, Item *>::iterator iter = inventory.begin();
+        iter != inventory.end();
         iter++) {
 
         delete iter->second;
         iter->second = NULL;
     }
-
-    delete inventory;
 }
 
 // Initialize input manager to a usable state
@@ -50,15 +47,15 @@ void Player::intialize() {
 // Cycle update for player
 void Player::update() {
 
-    std::map<std::string, Item *>::iterator iter = inventory->begin();
+    std::map<std::string, Item *>::iterator iter = inventory.begin();
 
-    while (iter != inventory->end()) {
+    while (iter != inventory.end()) {
 
         if (iter->second->getNeedsDeletion()) {
 
             delete iter->second;
             iter->second = NULL;
-            iter = inventory->erase(iter);
+            iter = inventory.erase(iter);
         }
         else {
 
@@ -84,7 +81,7 @@ std::string Player::render() {
 
     renderText += " Inventory:";
 
-    for (iter = inventory->begin(); iter != inventory->end(); iter++) {
+    for (iter = inventory.begin(); iter != inventory.end(); iter++) {
 
         renderText += " " + iter->second->getName();
     }
@@ -97,25 +94,45 @@ bool Player::addItemToInventory(Item *item) {
 
     if (item != NULL) {
 
-        (*inventory)[item->getName()] = item;
+        // Special case of picking up a corpse, need to collect all items on it
+        if (item->getID() == CORPSE_ID) {
 
-        // Set new weapon if better than current
-        if (item->getDamage() > 0) {
+            Corpse *corpse = (Corpse *)item;    // Reinterpret corpse for inventory
+            Item *itemRetrieved = corpse->getNextItem();
+            
+            while (itemRetrieved != NULL) {
 
-            // Note, reference is held twice, hence weapon is not explicitly deleted
-            if (weapon == NULL) {
+                inventory[itemRetrieved->getName()] = itemRetrieved;
 
-                weapon = item;
+                itemRetrieved = corpse->getNextItem();
             }
-            else {
 
-                if (item->getDamage() > weapon->getDamage()) {
+            delete corpse;  // No longer needed, items are taken
+        }
+
+        // Else regular item pickup
+        else {
+
+            inventory[item->getName()] = item;
+
+            // Set new weapon if better than current
+            if (item->getDamage() > 0) {
+
+                // Note, reference is held twice, hence weapon is not explicitly deleted
+                if (weapon == NULL) {
 
                     weapon = item;
                 }
+                else {
+
+                    if (item->getDamage() > weapon->getDamage()) {
+
+                        weapon = item;
+                    }
+                }
             }
         }
-
+        
         return true;
     }
 
@@ -127,7 +144,7 @@ Item *Player::hasItem(std::string &name) {
 
     try {
 
-        return inventory->at(name);
+        return inventory.at(name);
     }
     catch (const std::out_of_range &ex) {}
 
@@ -157,13 +174,32 @@ int Player::dealDamage() {
 }
 
 // Restore player to max health and remove inventory as corpse
-void Player::restoreFromDeath() {
+Corpse *Player::restoreFromDeath() {
+
+    Corpse *corpse = NULL;
 
     health = PLAYER_MAX_HEALTH;
 
-    //weapon = NULL;
+    weapon = NULL;
 
-    // return inventory, inventory = new inventory;
+    if (inventory.size() > 0) {
+
+        corpse = new Corpse();
+
+        for (std::map<std::string, Item *>::iterator iter = inventory.begin();
+            iter != inventory.end();
+            iter++) {
+
+            corpse->addItemID(iter->second->getID());
+
+            delete iter->second;
+            iter->second = NULL;
+        }
+
+        inventory.clear();
+    }
+    
+    return corpse;
 }
 
 // Set health to a positive number

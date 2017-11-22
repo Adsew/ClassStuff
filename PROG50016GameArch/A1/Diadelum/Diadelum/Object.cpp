@@ -18,13 +18,16 @@ Description: Base class for all objects in the game engine
 Object::Object() {
 
     name = "";
+    
     initialized = false;
+    needsDeletion = false;
 }
 
-Object::Object(std::string &n) {
+Object::Object(std::string &n) 
+    : name(n.c_str()) {
 
-    name = n;
     initialized = false;
+    needsDeletion = false;
 }
 
 Object::~Object() {
@@ -42,6 +45,18 @@ void Object::initialize() {
 bool Object::isInitialized() {
 
     return initialized;
+}
+
+// Set object for deletion at a later time by manager
+void Object::destroy() {
+
+    needsDeletion = true;
+}
+
+// Returns the status of the object if it is to be destroyed
+bool Object::getNeedsDeletion() {
+
+    return needsDeletion;
 }
 
 // Get name of object

@@ -61,7 +61,7 @@ public:
 
     Zone(std::string n);
 
-    ~Zone();
+    virtual ~Zone();
 
     void update();
 

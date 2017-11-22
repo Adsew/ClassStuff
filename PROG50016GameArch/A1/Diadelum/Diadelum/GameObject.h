@@ -26,8 +26,6 @@ protected:
 
     int id;
 
-    bool needsDeletion;
-
     std::string description;
 
     bool inUse;
@@ -69,10 +67,6 @@ public:
         // Accessors
 
     int getID();
-
-    void setNeedsDeletion(bool b);
-
-    bool getNeedsDeletion();
 
     void setDescription(std::string &desc);
 

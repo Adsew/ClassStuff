@@ -23,6 +23,7 @@ private:
     /***** Variables *****/
 
     bool initialized;
+    bool needsDeletion;
 
 protected:
 
@@ -46,6 +47,12 @@ public:
 
     // Cycle update for object
     virtual void update() = 0;
+
+    // Set object for deletion at a later time by manager
+    void destroy();
+
+    // Returns the status of the object if it is to be destroyed
+    bool getNeedsDeletion();
 
     // Get name of object
     std::string &getName();

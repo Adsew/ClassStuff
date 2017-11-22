@@ -120,6 +120,9 @@
     <ClInclude Include="InputCodes.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="Corpse.h">
+      <Filter>Header Files\Object\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -168,6 +171,9 @@
       <Filter>Source Files\System\File</Filter>
     </ClCompile>
     <ClCompile Include="NPC.cpp">
+      <Filter>Source Files\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Corpse.cpp">
       <Filter>Source Files\Object\GameObject</Filter>
     </ClCompile>
   </ItemGroup>

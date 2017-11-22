@@ -46,8 +46,9 @@ std::string Monster::attack(Player *p) {
 
         msg += " You kill the " + name + ".";
 
-        needsDeletion = true;
         inUse = true;   // Allow drops and unlocks to be performed since dead
+
+        destroy();
     }
 
     return msg;

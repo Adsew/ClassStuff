@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Corpse.h" />
     <ClInclude Include="FileSystem.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="Zone.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Corpse.cpp" />
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
