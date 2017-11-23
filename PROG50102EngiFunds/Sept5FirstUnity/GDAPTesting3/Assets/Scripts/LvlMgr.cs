@@ -36,7 +36,7 @@ public class LvlMgr : MonoBehaviour {
     }
 
     public void LoadLevel(string name) {
-
+        
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
 
         // when done wait for on scene load event
@@ -50,7 +50,7 @@ public class LvlMgr : MonoBehaviour {
     public void OnSceneLoad(Scene scene, LoadSceneMode mode) {
 
         Debug.Log("LvlMgr::SceneLoaded - " + scene.ToString());
-
+        
         // Update reference to currently loaded scene now  that is finished loading.
         CurrentScene = scene;
 
@@ -65,7 +65,7 @@ public class LvlMgr : MonoBehaviour {
 
         Debug.Log("LvlMgr::SceneUnloaded - " + scene.ToString());
 
-        // when gamplay scene is unloded make a gloabal current
+        // when gamplay scene is unloded make gloabal current
         SceneManager.SetActiveScene(GlobalScene);
 
         UIMgr.Instance.SetPanelID(2);

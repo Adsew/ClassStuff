@@ -115,14 +115,15 @@ Window::Window() {
                 camera.updateTarget(glm::vec3(0.0f, 0.0f, 1.0f));
 
                 // Load the models
+                // Render order must be in order of opaque -> translucent
                 models.addModel(new Model(shader, terrainVertData, terrainColData, sizeof(terrainVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, sunVertData, sunColData, sizeof(sunVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, "Monster.model"));
                 models.addModel(new Model(shader, stickmanVertData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, wizhatVertData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3));
                 models.addModel(new Model(shader, staffVertData, staffColData, sizeof(staffVertData) / sizeof(GLfloat) / 3));
                 models.addModel(new Model(shader, "Raylight.model"));
-                models.addModel(new Model(shader, wizhatVertData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, "Monster.model"));
-
+                models.addModel(new Model(shader, sunVertData, sunColData, sizeof(sunVertData) / sizeof(GLfloat) / 3));
+                
                 initSuccess = true;
                 running = true;
             }
@@ -244,7 +245,7 @@ void Window::update() {
 void Window::draw() {
 
     // Clear buffer for further drawing
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glUseProgram(shader.getProgramID());
 

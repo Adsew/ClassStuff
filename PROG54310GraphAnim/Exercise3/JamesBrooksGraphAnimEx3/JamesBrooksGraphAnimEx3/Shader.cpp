@@ -74,6 +74,13 @@ GLuint Shader::getProgramID() {
 
         // Enable alpha values
         glEnable(GL_BLEND);
+
+        glEnable(GL_DEPTH_TEST);
+        glDepthMask(GL_TRUE);
+        glDepthFunc(GL_LEQUAL);
+        glDepthRange(0.0f, 1.0f);
+        glClearDepth(1.0f);
+        
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         modified = false;
