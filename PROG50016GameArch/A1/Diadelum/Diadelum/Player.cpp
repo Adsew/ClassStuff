@@ -67,7 +67,7 @@ void Player::update() {
 // Return what to render to screen
 std::string Player::render() {
 
-    std::string renderText = "HP: " + std::to_string(health) + " Weapon:";
+    std::string renderText = "HP: " + std::to_string(health) + " | Weapon:";
     std::map<std::string, Item *>::iterator iter;
 
     if (weapon == NULL) {
@@ -79,7 +79,7 @@ std::string Player::render() {
         renderText += " " + weapon->getName();
     }
 
-    renderText += " Inventory:";
+    renderText += " | Inventory:";
 
     for (iter = inventory.begin(); iter != inventory.end(); iter++) {
 

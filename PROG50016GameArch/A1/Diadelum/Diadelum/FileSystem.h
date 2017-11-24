@@ -49,6 +49,8 @@ private:
 
 public:
 
+        // Class Functions
+
     inline static FileSystem &Instance() {
 
         static FileSystem instance;
@@ -67,6 +69,9 @@ public:
 
     // Set the file to be used for loading
     bool useFile(std::string &fileRef);
+
+
+        // Loading Functions
 
     // Changes from current node to a contained element
     bool traverseToElement(const char *elem);
@@ -121,6 +126,35 @@ public:
 
     // Get an attribute from the current element, if exists
     bool getAttribute(std::string &name, bool &val);
+
+
+        // Saving Functions
+
+    // Create a new asset file at the given location
+    bool createFile(const char *refName, const char *fileLoc);
+
+    // Create a new asset file at the given location
+    bool createFile(std::string &refName, std::string &fileLoc);
+
+    // Create a new element as a child of the current element
+    bool newElement(const char *name);
+    
+    // Create a new element as a child of the current element
+    bool newElement(std::string &name);
+
+    // Add text to the current element
+    bool setElementText(const char *text);
+
+    // Add text to the current element
+    bool setElementText(std::string &text);
+
+    // Add an attribute to the current element
+    template <typename T>
+    bool setElementAttribute(const char *attribute, T val);
+
+    // Add an attribute to the current element
+    template <typename T>
+    bool setElementAttribute(std::string &attribute, T val);
 };
 
 #endif

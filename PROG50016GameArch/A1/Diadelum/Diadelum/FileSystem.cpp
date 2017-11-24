@@ -17,6 +17,8 @@ Description: Manages the input and output of files used by the game
 using namespace tinyxml2;
 
 
+    // Class Functions
+
 FileSystem::FileSystem() {
 
     activeAsset = NULL;
@@ -126,6 +128,9 @@ bool FileSystem::useFile(std::string &fileRef) {
 
     return this->useFile(fileRef.c_str());
 }
+
+
+    // Loading Functions
 
 // Changes from current node to a contained element
 bool FileSystem::traverseToElement(const char *elem) {
@@ -385,4 +390,101 @@ bool FileSystem::getAttribute(const char *name, bool &val) {
 bool FileSystem::getAttribute(std::string &name, bool &val) {
 
     return this->getAttribute(name.c_str(), val);
+}
+
+
+    // Saving Functions
+
+    // Create a new asset file at the given location
+bool FileSystem::createFile(const char *refName, const char *fileLoc) {
+
+    if (assets.find(refName) == assets.end()) {
+
+        XMLDocument *asset = new XMLDocument();
+
+        if (asset->Error() == false) {
+
+            assets[refName] = asset;
+
+            activeAsset = asset;
+            activeElem = NULL;
+
+            return true;
+        }
+        else {
+
+            delete asset;
+        }
+    }
+
+    return false;
+}
+
+// Create a new asset file at the given location
+bool FileSystem::createFile(std::string &refName, std::string &fileLoc) {
+
+    return this->createFile(refName.c_str(), fileLoc.c_str());
+}
+
+// Create a new element as a child of the current element
+bool FileSystem::newElement(const char *name) {
+
+    if (activeAsset != NULL) {
+
+        XMLElement *newElem = activeAsset->NewElement(name);
+
+        if (newElem != NULL) {
+
+            if (activeElem != NULL) {
+
+                activeElem->InsertEndChild(newElem);
+            }
+            else {
+
+                activeAsset->InsertEndChild(newElem);
+            }
+            
+            activeElem = newElem;
+        }
+    }
+
+    return false;
+}
+
+// Create a new element as a child of the current element
+bool FileSystem::newElement(std::string &name) {
+
+    return this->newElement(name.c_str());
+}
+
+// Add text to the current element
+bool FileSystem::setElementText(const char *text) {
+
+    if (activeElem != NULL) {
+
+        activeElem->SetText(text);
+    }
+}
+
+// Add text to the current element
+bool FileSystem::setElementText(std::string &text) {
+
+    return this->setElementText(text.c_str());
+}
+
+// Add an attribute to the current element
+template <typename T>
+bool FileSystem::setElementAttribute(const char *attribute, T val) {
+
+    if (activeElem != NULL) {
+
+        activeElem->SetAttribute(attribute, val);
+    }
+}
+
+// Add an attribute to the current element
+template <typename T>
+bool FileSystem::setElementAttribute(std::string &attribute, T val) {
+
+    return this->setElementAttribute(attribute.c_str(), val);
 }
