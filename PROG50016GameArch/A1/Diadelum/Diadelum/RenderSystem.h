@@ -63,6 +63,9 @@ public:
         return instance;
     }
 
+    // Display and special message directly to output
+    void directToOut(const char *output);
+
     // Add renderable component to the list
     void addIRenderable(IRenderable *renderable);
 

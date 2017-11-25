@@ -395,8 +395,8 @@ bool FileSystem::getAttribute(std::string &name, bool &val) {
 
     // Saving Functions
 
-    // Create a new asset file at the given location
-bool FileSystem::createFile(const char *refName, const char *fileLoc) {
+    // Create a new asset file. Is not automatically saved
+bool FileSystem::createTempFile(const char *refName) {
 
     if (assets.find(refName) == assets.end()) {
 
@@ -420,10 +420,44 @@ bool FileSystem::createFile(const char *refName, const char *fileLoc) {
     return false;
 }
 
-// Create a new asset file at the given location
-bool FileSystem::createFile(std::string &refName, std::string &fileLoc) {
+// Create a new asset file. Is not automatically saved
+bool FileSystem::createTempFile(std::string &refName) {
 
-    return this->createFile(refName.c_str(), fileLoc.c_str());
+    return this->createTempFile(refName.c_str());
+}
+
+// Load an existing file from location, returns false if doesn't exist
+bool FileSystem::loadFile(const char *refName, const char *fileLoc) {
+
+    // Ensure doesn't already exist
+    if (assets.find(refName) == assets.end()) {
+
+        XMLDocument *asset = new XMLDocument();
+
+        asset->LoadFile(fileLoc);
+
+        if (asset->Error() == false) {
+
+            assets[refName] = asset;
+
+            activeAsset = asset;
+            activeElem = NULL;
+
+            return true;
+        }
+        else {
+
+            delete asset;
+        }
+    }
+
+    return false;
+}
+
+// Load an existing file from location, returns false if doesn't exist
+bool FileSystem::loadFile(std::string &refName, std::string &fileLoc) {
+
+    return this->loadFile(refName.c_str(), fileLoc.c_str());
 }
 
 // Create a new element as a child of the current element
@@ -445,6 +479,8 @@ bool FileSystem::newElement(const char *name) {
             }
             
             activeElem = newElem;
+
+            return true;
         }
     }
 
@@ -463,7 +499,11 @@ bool FileSystem::setElementText(const char *text) {
     if (activeElem != NULL) {
 
         activeElem->SetText(text);
+
+        return true;
     }
+
+    return false;
 }
 
 // Add text to the current element
@@ -479,7 +519,11 @@ bool FileSystem::setElementAttribute(const char *attribute, T val) {
     if (activeElem != NULL) {
 
         activeElem->SetAttribute(attribute, val);
+
+        return true;
     }
+
+    return false;
 }
 
 // Add an attribute to the current element

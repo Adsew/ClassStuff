@@ -29,6 +29,7 @@ bool GameEngine::initialize(const char *settingsFile) {
     FileSystem::Instance().initialize(settingsFile);
     InputSystem::Instance().initialize();
     RenderSystem::Instance().initialize();
+
     scene.intialize();
 
     isRunning = true;

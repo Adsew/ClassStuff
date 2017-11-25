@@ -51,6 +51,12 @@ void RenderSystem::update() {
     }
 }
 
+// Display and special message directly to output
+void RenderSystem::directToOut(const char *output) {
+
+    std::cout << output << "\n";
+}
+
 // Add renderable component to the list
 void RenderSystem::addIRenderable(IRenderable *renderable) {
 

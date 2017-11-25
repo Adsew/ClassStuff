@@ -130,11 +130,17 @@ public:
 
         // Saving Functions
 
-    // Create a new asset file at the given location
-    bool createFile(const char *refName, const char *fileLoc);
+    // Create a new asset file. Is not automatically saved
+    bool createTempFile(const char *refName);
 
-    // Create a new asset file at the given location
-    bool createFile(std::string &refName, std::string &fileLoc);
+    // Create a new asset file. Is not automatically saved
+    bool createTempFile(std::string &refName);
+
+    // Load an existing file from location, returns false if doesn't exist
+    bool loadFile(const char *refName, const char *fileLoc);
+
+    // Load an existing file from location, returns false if doesn't exist
+    bool loadFile(std::string &refName, std::string &fileLoc);
 
     // Create a new element as a child of the current element
     bool newElement(const char *name);

@@ -167,3 +167,13 @@ void InputSystem::update() {
         input.push_back(std::pair<int, std::string>(IN_CODE_NOTHING, std::string("nothing")));
     }
 }
+
+// Get raw input directly from console
+std::string InputSystem::directFromInput() {
+
+    std::string playerIn;
+
+    std::getline(std::cin, playerIn);
+
+    return playerIn;
+}

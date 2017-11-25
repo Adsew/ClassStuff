@@ -16,6 +16,7 @@ game world.
 #include "Zone.h"
 #include "InputSystem.h"
 #include "RenderSystem.h"
+#include "FileSystem.h"
 #include "GameObjectMaker.h"
 #include "InputCodes.h"
 #include "SceneManager.h"
@@ -36,6 +37,9 @@ SceneManager::SceneManager()
     actions[IN_CODE_EXIT] = &SceneManager::exit;
     actions[IN_CODE_CONNECT] = &SceneManager::noAction;   // For starting with a connector keyword
 
+    player = NULL;
+    activeZone = NULL;
+
     exitFlag = false;
 }
 
@@ -48,9 +52,34 @@ SceneManager::~SceneManager() {
 // Initialize input manager to a usable state
 void SceneManager::intialize() {
 
-    player = new Player();
-    activeZone = GameObjectMaker::Instance().newZone("meeting quarter");
-    
+    // "Title Screen" initialization
+    std::string name = "";
+    std::string saveLoc = "";
+
+    while (name.length() == 0) {
+
+        RenderSystem::Instance().directToOut("What is your name?");
+        name = InputSystem::Instance().directFromInput();
+    }
+
+
+    // MOVE ALL OF THIS FILE SYSTEM STUFF TO GAMEOBJECT MAKER IT CAN CHECK IF PLAYER EXISTS
+    // IN LOADPLAYER FUNCTION. THEN HERE JUST CALL THE LOADPLAYER FUNCTION BY NAME
+    saveLoc = "../res/save/" + name + ".sol";
+
+    if (FileSystem::Instance().loadFile(name, saveLoc)) {
+
+        //player = GameObjectMaker::Instance().loadPlayer(name);
+        //activeZone = GameObjectMaker::Instance().loadZone(player->getCurrentZone());
+    }
+    else {
+
+        FileSystem::Instance().createTempFile(name);
+
+        player = new Player();
+        activeZone = GameObjectMaker::Instance().newZone("meeting quarter");
+    }
+
     if (activeZone != NULL && player != NULL) {
 
         activeZone->setPlayer(player);

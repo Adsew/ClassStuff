@@ -61,6 +61,9 @@ public:
 
     // Get the text-based input's current status
     std::list<std::pair<int, std::string>> getInput();
+
+    // Get raw input directly from console
+    std::string directFromInput();
 };
 
 #endif
