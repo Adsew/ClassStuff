@@ -1,36 +1,38 @@
-#ifndef FILE_SYSTEM_H
-#define FILE_SYSTEM_H
+#pragma once
 
-/*
-Student: James Brooks
-Class: Game Architecture
+#include <string>
+#include "ISystem.h"
 
-File: FileSystem.h
-
-Class: FileSystem
-
-Description: Manages the input and output of files used by the game
-*/
-
-
-class FileSystem {
+class FileSystem : public ISystem
+{
 
 public:
 
-    /***** Functions *****/
+	inline static FileSystem& Instance()
+	{
+		static FileSystem instance;
 
-    FileSystem();
+		return instance;
+	}
 
-    ~FileSystem();
+private:
 
-    // Initialize the file system to a usable state
-    void initialize();
+    FileSystem() = default;
 
-    // Cycle update for file system
-    void update();
+    ~FileSystem() = default;
 
-    // Display relavent information from the file system to the screen
-    void display();
+    FileSystem(const FileSystem& other) = default;
+
+    friend class GameEngine;
+
+protected:
+
+	void initialize() override;
+
+	void update(float _deltaTime) override;
+
+public:
+
+    void load(std::string &name);
 };
 
-#endif

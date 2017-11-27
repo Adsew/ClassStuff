@@ -1,26 +1,15 @@
-#ifndef IRENDERABLE_H
-#define IRENDERABLE_H
+#pragma once
 
-/*
-Student: James Brooks
-Class: Game Architecture
+/// <summary>
+/// 
+/// </summary>
+class IRenderable
+{
+	friend class RenderSystem;
 
-File: IRenderable.h
-
-Class: IRenderable
-
-Description:
-*/
-
-
-class IRenderable {
-
-
-protected:
-
-    /***** Functions *****/
-
-    virtual void render() = 0;
+protected:	
+	/// <summary>
+	/// Renders this instance.
+	/// </summary>
+	virtual void render() = 0;
 };
-
-#endif

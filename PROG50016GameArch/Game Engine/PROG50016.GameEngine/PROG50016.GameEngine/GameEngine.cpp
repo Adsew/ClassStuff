@@ -1,192 +1,49 @@
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: GameEngine.cpp
-
-Class: GameEngine
-
-Description: main game engine runs everything else
-*/
-
+#include "GameEngine.h"
 
 #include <iostream>
-#include <ctime>
+#include <time.h>
 
-#include "GameEngine.h"
-#include "tinyxml2.h"
+#include "AssetManager.h"
+#include "FileSystem.h"
+#include "InputManager.h"
+#include "RenderSystem.h"
+#include "GameObjectManager.h"
 
-using namespace tinyxml2;
+void GameEngine::initialize()
+{
+	AssetManager::Instance().initialize();
+	InputManager::Instance().initialize();
+	RenderSystem::Instance().initialize();
+	GameObjectManager::Instance().initialize();
 
-
-GameEngine::GameEngine() {
-
-
+	// Needs to be at the end because we will load a default file
+	FileSystem::Instance().initialize();
 }
 
-GameEngine::~GameEngine() {
+void GameEngine::gameLoop()
+{
+	float gameTime = 0.0f;
+	clock_t _time;
+	float deltaTime = 0.0f;
 
+	while (true)
+	{
+		_time = clock();
 
-}
+		InputManager::Instance().update(deltaTime);
 
-// Initialize the game engine to be available for start
-void GameEngine::initialize(std::string &settingsFile) {
+		FileSystem::Instance().update(deltaTime);
 
-    XMLDocument docSettings;
-    XMLDocument docLevel;
-    
-    std::string levelFileStr = "";
+		AssetManager::Instance().update(deltaTime);
 
-    docSettings.LoadFile(settingsFile.c_str());
+		GameObjectManager::Instance().update(deltaTime);
 
-    if (docSettings.Error() == false) {
+		RenderSystem::Instance().update(deltaTime);
 
-        XMLNode *settings = docSettings.FirstChildElement("GameSettings");
+		_time = clock() - _time;
+		deltaTime = ((float)_time) / ((clock_t)1000);
+		gameTime += deltaTime;
 
-        if (settings != NULL) {
-
-            // Get game engine settings
-            XMLElement *gameEngiSettings = settings->FirstChildElement("GameEngine");
-            
-            if (gameEngiSettings != NULL) {
-
-                XMLElement *levelDefaultNode = gameEngiSettings->FirstChildElement("DefaultFile");
-
-                if (levelDefaultNode != NULL) {
-
-                    levelFileStr = levelDefaultNode->GetText();
-                }
-            }
-            
-            // Get game renderer settings
-            XMLElement *rendererSettings = settings->FirstChildElement("RenderSystem");
-
-            if (rendererSettings != NULL) {
-
-                std::string sysName = "";
-                int width = 0, height = 0;
-                bool fullscreenMode = true;
-
-                XMLElement *curElement = rendererSettings->FirstChildElement("Name");
-
-                if (curElement != NULL) {
-
-                    sysName = curElement->GetText();
-                }
-
-                curElement = rendererSettings->FirstChildElement("WindowSize");
-
-                if (curElement != NULL) {
-
-                    fullscreenMode = curElement->BoolAttribute("fullscreen");
-                    width = curElement->IntAttribute("width");
-                    height = curElement->IntAttribute("height");
-                }
-
-                rendSys.initialize(sysName, width, height, fullscreenMode);
-            }
-        }
-    }
-    else {
-
-        std::cerr << "Could not open file: " << settingsFile;
-    }
-
-    docLevel.LoadFile(levelFileStr.c_str());
-
-    if (docLevel.Error() == false) {
-
-        XMLNode *managerNode = docLevel.FirstChildElement("GameObjectManager");
-
-        if (managerNode != NULL) {
-
-            XMLElement *gameObjs = managerNode->FirstChildElement("GameObjects");
-
-            if (gameObjs != NULL) {
-
-                // Loop and load all game objects into manager
-                for (XMLElement *go = gameObjs->FirstChildElement("GameObject");
-                    go != NULL;
-                    go = go->NextSiblingElement("GameObject")) {
-
-                    GameObject *newGameObj = NULL;
-                    std::string name = "";
-
-                    XMLElement *goElem = go->FirstChildElement("name");
-
-                    if (goElem != NULL) {
-
-                        name = goElem->GetText();
-                    }
-
-                    newGameObj = new GameObject(name);
-
-                    goElem = go->FirstChildElement("Components");
-
-                    // Load all components for this game object
-                    for (XMLElement *comp = goElem->FirstChildElement("Component");
-                        comp != NULL;
-                        comp = comp->NextSiblingElement("Component")) {
-
-                        Component *newCompObj = NULL;
-                        int id = 0;
-
-                        XMLElement *idElem = comp->FirstChildElement("id");
-
-                        if (idElem != NULL) {
-
-                            id = atoi(idElem->GetText());
-                        }
-
-                        newCompObj = new Component(id);
-
-                        newGameObj->addComponent(newCompObj);
-                    }
-
-                    goMgr.addGameObject(newGameObj);
-                }
-            }
-        }
-    }
-    else {
-
-        std::cerr << "Could not open file: " << levelFileStr;
-    }
-}
-
-// main game loop for running through updates
-void GameEngine::gameLoop() {
-
-    clock_t startT = clock();
-    double timeElapsed = 0;
-    double runTime = 10;    // Seconds
-    bool isRunning = true;
-    
-    std::cout << "Game loop started. Running for " << runTime << " seconds...\n";
-
-    while (isRunning) {
-
-        rendSys.update();
-        fileSys.update();
-        inSys.update();
-        assetMgr.update();
-        goMgr.update();
-
-        timeElapsed = (clock() - startT) / CLOCKS_PER_SEC;
-
-        if (timeElapsed >= runTime) {
-
-            isRunning = false;
-        }
-    }
-}
-
-// Display everything to the renderer
-void GameEngine::display() {
-
-    fileSys.display();
-    inSys.display();
-    assetMgr.display();
-    goMgr.display();
-    rendSys.display();
+		std::cout << "Current Game Time: " << gameTime << " Delta Time: " << deltaTime << std::endl;
+	}
 }

@@ -1,56 +1,23 @@
-#ifndef GAME_ENGINE_H
-#define GAME_ENGINE_H
+#pragma once
 
-/*
-Student: James Brooks
-Class: Game Architecture
+class ISystem;
 
-File: GameEngine.h
-
-Class: GameEngine
-
-Description: main game engine runs everything else
-*/
-
-
-#include <string>
-
-#include "RenderSystem.h"
-#include "FileSystem.h"
-#include "InputManager.h"
-#include "AssetManager.h"
-#include "GameObjectManager.h"
-
-
-class GameEngine {
-
-private:
-
-    /***** Variables *****/
-
-    RenderSystem rendSys;
-    FileSystem fileSys;
-    InputManager inSys;
-    AssetManager assetMgr;
-    GameObjectManager goMgr;
-
+class GameEngine
+{
 
 public:
+	inline static GameEngine& Instance()
+	{
+		static GameEngine instance;
+		return instance;
+	}
 
-    /***** Functions *****/
+	void initialize();
+	void gameLoop();
 
-    GameEngine();
-
-    ~GameEngine();
-
-    // Initialize the game engine to be available for start
-    void initialize(std::string &settingsFile);
-
-    // main game loop for running through updates
-    void gameLoop();
-
-    // Display everything to the renderer
-    void display();
+private:
+	GameEngine() = default;
+	~GameEngine() = default;
+	GameEngine(const GameEngine& other) = default;
 };
 
-#endif

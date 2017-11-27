@@ -1,53 +1,25 @@
-#ifndef GAME_OBJECT_H
-#define GAME_OBJECT_H
+#pragma once
 
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: GameObject.h
-
-Class: GameObject
-
-Description: A game object to be used to represent objects within the game world.
-*/
-
-
-#include <string>
 #include <map>
 
 #include "Object.h"
 
-
 class Component;
 
-
-class GameObject : public Object {
-
+class GameObject : public Object
+{
 private:
-
-    /***** Variables *****/
-
-    std::map<std::string, Component *> components;
+	std::map<std::string, Component*> components;
 
 public:
+	GameObject();
+	~GameObject();
 
-    /***** Functions *****/
+	void initialize() override;
 
-    GameObject();
+	void addComponent(Component* component);
+	void removeComponent(Component* component);
 
-    GameObject(std::string &n);
-
-    ~GameObject();
-
-    // Add component to this game object
-    void addComponent(Component *comp);
-
-    // Remove a component, if exists, from game object
-   void removeComponent(Component *comp);
-
-   // Cycle update for game object
-   virtual void update();
+	virtual void update();
 };
 
-#endif

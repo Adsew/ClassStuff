@@ -1,42 +1,17 @@
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: FileSystem.cpp
-
-Class: FileSystem
-
-Description: Manages the input and output of files used by the game
-*/
-
-
 #include "FileSystem.h"
+#include <vector>
 
-
-FileSystem::FileSystem() {
-
-
-}
-
-FileSystem::~FileSystem() {
-
-
-}
-
-// Initialize the file system to a usable state
 void FileSystem::initialize() {
 
 
 }
 
-// Cycle update for file system
-void FileSystem::update() {
+void FileSystem::update(float _deltaTime) {
 
 
 }
 
-// Display relavent information from the file system to the screen
-void FileSystem::display() {
+void FileSystem::load(std::string &name) {
 
 
 }

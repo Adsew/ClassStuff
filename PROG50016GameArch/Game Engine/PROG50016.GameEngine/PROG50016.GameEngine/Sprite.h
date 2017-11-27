@@ -1,39 +1,34 @@
-#ifndef SPRITE_H
-#define SPRITE_H
-
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: Sprite.h
-
-Class: Sprite
-
-Description:
-*/
-
+#pragma once
 
 #include "Component.h"
 #include "IRenderable.h"
 
-
-class Sprite : public Component, public IRenderable {
-
-protected:
-
-    /***** Functions *****/
-
-    void render() override;
-
+/// <summary>
+/// Sprite
+/// </summary>
+/// <seealso cref="Component" />
+/// <seealso cref="IRenderable" />
+class Sprite : public Component, public IRenderable
+{
 public:
+	Sprite();
+	~Sprite();
+	
+	/// <summary>
+	/// Initializes this instance.
+	/// </summary>
+	virtual void initialize() override;
+	
+	/// <summary>
+	/// Gets the component identifier.
+	/// </summary>
+	/// <returns></returns>
+	std::string getComponentId() override { return "Sprite"; }
 
-    Sprite();
-
-    ~Sprite();
-
-    void update() override;
-
-    std::string getComponentId();
+protected:	
+	/// <summary>
+	/// Renders this instance.
+	/// </summary>
+	virtual void render() override;
 };
 
-#endif

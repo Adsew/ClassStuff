@@ -1,35 +1,23 @@
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: Sprite.cpp
-
-Class: Sprite
-
-Description:
-*/
-
-
 #include "Sprite.h"
 
-
-Sprite::Sprite() {
-
+Sprite::Sprite()
+{
+	std::cout << "Sprite Created" << std::endl;
 }
 
-
-Sprite::~Sprite() {
-
+Sprite::~Sprite()
+{
+	std::cout << "Sprite Destroyed" << std::endl;
 }
 
-void Sprite::update() {
+void Sprite::initialize()
+{
+	Component::initialize();
 
-
+	std::cout << "Sprite initialized" << std::endl;
 }
 
-void Sprite::render() {
-
-
+void Sprite::render()
+{
+	// Render
 }
-
-std::string Sprite::getComponentId() { return "Sprite";  }

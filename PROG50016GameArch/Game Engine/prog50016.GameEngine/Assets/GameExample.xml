@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Assets>
+	<Asset class="TextureAsset">
+		<filename>foo.png</filename>
+	</Asset>
+</Assets>
+<Level>
+</Level>

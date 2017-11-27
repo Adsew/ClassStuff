@@ -1,55 +1,31 @@
-#ifndef GAME_OBJECT_MANAGER_H
-#define GAME_OBJECT_MANAGER_H
-
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: GameObjectManager.h
-
-Class: GameObjectManager
-
-Description: Manages list of game objects in a given scene
-*/
-
+#pragma once
 
 #include <list>
+#include "ISystem.h"
 
-#include "GameObject.h"
+class GameObject;
 
-
-class GameObjectManager {
-
+class GameObjectManager : public ISystem
+{
 private:
-
-    /***** Variables *****/
-
-    std::list<GameObject *> gameObjects;
-
+	std::list<GameObject*> gameObjects;
 
 public:
+	inline static GameObjectManager& Instance()
+	{
+		static GameObjectManager instance;
+		return instance;
+	}
 
-    /***** Functions *****/
+protected:
+	void initialize() override;
+	void update(float _deltaTime) override;
 
-    GameObjectManager();
+private:
+	GameObjectManager() = default;
+	~GameObjectManager() = default;
+	GameObjectManager(const GameObjectManager& other) = default;
 
-    ~GameObjectManager();
-
-    // Add game object to the manager
-    void addGameObject(GameObject *go);
-
-    // Remove game object from the manager
-    void removeGameObject(GameObject *go);
-
-    // Initialize manager to usable status
-    void initialize();
-
-    // Cycle update from manager
-    void update();
-
-    // Display game objects to the screen
-    void display();
+	friend class GameEngine;
 };
 
-
-#endif

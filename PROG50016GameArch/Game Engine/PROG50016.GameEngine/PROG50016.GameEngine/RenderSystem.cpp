@@ -1,69 +1,24 @@
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: RenderSystem.cpp
-
-Class: RenderSystem
-
-Description: Renders data to the screen given by other classes
-*/
-
-
-#include <iostream>
-
-#include "IRenderable.h"
 #include "RenderSystem.h"
+#include "IRenderable.h"
 
-
-RenderSystem::RenderSystem() {
-
-    
+void RenderSystem::addRenderable(IRenderable* component)
+{
+	renderComponents.push_back(component);
 }
 
-RenderSystem::RenderSystem(RenderSystem &rs) {}
-
-RenderSystem::~RenderSystem() {
-
-
+void RenderSystem::removeRenderable(IRenderable* component)
+{
+	renderComponents.remove(component);
 }
 
-RenderSystem &RenderSystem::operator=(RenderSystem &rs) {}
-
-int RenderSystem::priority() {
-
-    
+void RenderSystem::initialize()
+{
 }
 
-// Cycle update for render system
-void RenderSystem::update() {
-
-    
-}
-
-
-// Add renderable component to the list
-void RenderSystem::addIRenderable(IRenderable *component) {
-
-    if (component != NULL) {
-
-        renderComponents.push_back(component);
-    }
-}
-
-// Remove renderable component to the list
-void RenderSystem::removeIRenderable(IRenderable *component) {
-
-    std::list<IRenderable *>::iterator iter;
-
-    for (iter = renderComponents.begin(); iter != renderComponents.end(); iter++) {
-
-        if (component == (*iter)) {
-
-            delete (*iter);
-            iter = renderComponents.erase(iter);
-            
-            break;
-        }
-    }
+void RenderSystem::update(float _deltaTime)
+{
+	for (auto renderable : renderComponents)
+	{
+		renderable->render();
+	}
 }

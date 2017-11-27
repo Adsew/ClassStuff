@@ -1,36 +1,26 @@
-#ifndef INPUT_MANAGER_H
-#define INPUT_MANAGER_H
+#pragma once
 
-/*
-Student: James Brooks
-Class: Game Architecture
+#include "ISystem.h"
 
-File: InputManager.h
-
-Class: InputManager
-
-Description:
-*/
-
-
-class InputManager {
+class InputManager : public ISystem
+{
 
 public:
+	inline static InputManager& Instance()
+	{
+		static InputManager instance;
+		return instance;
+	}
 
-    /***** Functions *****/
+protected:
+	void initialize() override;
+	void update(float _deltaTime) override;
 
-    InputManager();
+private:
+	InputManager() = default;
+	~InputManager() = default;
+	InputManager(const InputManager& other) = default;
 
-    ~InputManager();
-
-    // Initialize input manager to a usable state
-    void intialize();
-
-    // Cycle update for input manager
-    void update();
-
-    // Display relavent metrics to screen
-    void display();
+	friend class GameEngine;
 };
 
-#endif

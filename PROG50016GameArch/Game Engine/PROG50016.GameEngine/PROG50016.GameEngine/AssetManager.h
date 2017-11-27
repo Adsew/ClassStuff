@@ -1,36 +1,52 @@
-#ifndef ASSET_MANAGER_H
-#define ASSET_MANAGER_H
-
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: AssetManager.h
-
-Class: AssetManager
-
-Description:
-*/
+#pragma once
 
 
-class AssetManager {
+#include <list>
+
+#include "tinyxml2.h"
+#include "ISystem.h"
+
+
+class Asset;
+
+
+class AssetManager : public ISystem {
+
+private:
+
+	std::list<Asset*> assets;
 
 public:
 
-    /***** Functions *****/
+	inline static AssetManager &Instance()
+	{
+		static AssetManager instance;
 
-    AssetManager();
+		return instance;
+	}
 
-    ~AssetManager();
+private:
 
-    // Initialize asset manager to a usable point
-    void initialize();
+    AssetManager() = default;
 
-    // Cycle update for asset manager
-    void update();
+    ~AssetManager() = default;
 
-    // Display relavent data to screen
-    void display();
+    AssetManager(const AssetManager& other) = default;
+
+    friend class GameEngine;
+
+protected:
+
+	void initialize() override;
+
+    void update(float _deltaTime) override;
+
+public:
+
+    void addAsset(Asset *component);
+
+    void RemoveAsset(Asset *component);
+
+    void load(tinyxml2::XMLElement *element);
 };
 
-#endif

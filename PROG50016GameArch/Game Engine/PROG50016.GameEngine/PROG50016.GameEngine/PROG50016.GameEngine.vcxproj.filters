@@ -13,120 +13,120 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Object">
-      <UniqueIdentifier>{6a678167-2bb9-4611-8fd2-3077da401c1b}</UniqueIdentifier>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{7e64636c-cb35-4573-b65a-0718de3ad200}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Object\Component">
-      <UniqueIdentifier>{b2b7848b-b16c-476d-8a8b-04192c594685}</UniqueIdentifier>
+    <Filter Include="Header Files\Assets">
+      <UniqueIdentifier>{13d99c89-0d18-4966-8e6c-37dd272d08db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\IO">
-      <UniqueIdentifier>{9f50cfe5-e131-4c56-965d-0690be85de3d}</UniqueIdentifier>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{18b65ffd-9ecc-4e8b-a30c-f59b4aa6b1c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Manager">
-      <UniqueIdentifier>{5e4250fd-c008-43bd-b097-39783288f6d1}</UniqueIdentifier>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{52fb8970-4828-4c6e-af53-6d3a5744749d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{91b671c1-a3c1-4638-8045-75dd5c5bd5f2}</UniqueIdentifier>
+    <Filter Include="Source Files\Assets">
+      <UniqueIdentifier>{cb408d83-ef77-4a64-8edd-bd4a51eb7d1c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\IO">
-      <UniqueIdentifier>{a1dea722-9281-4aac-b9d8-3e25edb3fabb}</UniqueIdentifier>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{38a96d33-f3f3-4809-8161-c657b08489bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Manager">
-      <UniqueIdentifier>{10cf1992-3aa4-42c7-9ea1-99896cc3f35f}</UniqueIdentifier>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{00b057eb-203b-4dbd-9b39-2afce14355de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{ae77a69e-f08a-4a45-8b9f-9dff538b10ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object">
-      <UniqueIdentifier>{ac314184-ea23-4981-b143-5cee79640c16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Object\Component">
-      <UniqueIdentifier>{c889923c-7df1-40a0-a0c4-352399603a71}</UniqueIdentifier>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{be3ae5f9-3e55-4006-ad56-1865aba18bb3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Source Files\Object\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="FileSystem.cpp">
-      <Filter>Source Files\IO</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
-      <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="AssetManager.cpp">
-      <Filter>Source Files\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="RenderSystem.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
-      <Filter>Source Files\IO</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Asset.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
     <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files\Object\Component</Filter>
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="IRenderable.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="ISystem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AssetManager.h">
-      <Filter>Header Files\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjectManager.h">
-      <Filter>Header Files\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem.h">
-      <Filter>Header Files\IO</Filter>
-    </ClInclude>
-    <ClInclude Include="tinyxml2.h">
-      <Filter>Header Files\IO</Filter>
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
     <ClInclude Include="RenderSystem.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Header Files\Object\Component</Filter>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Object</Filter>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem.h">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files\Object\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="IRenderable.h">
-      <Filter>Header Files\Graphics</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="ISystem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="IRenderable.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

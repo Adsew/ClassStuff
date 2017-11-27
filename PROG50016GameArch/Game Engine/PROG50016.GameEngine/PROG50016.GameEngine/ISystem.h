@@ -1,27 +1,20 @@
-#ifndef ISYSTEM_H
-#define ISYSTEM_H
+#pragma once
 
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: ISystem.h
-
-Class: ISystem
-
-Description:
-*/
-
-
-class ISystem {
-
-public:
-
-    /***** Functions *****/
-
-    virtual int priority() = 0;
-
-    virtual void update() = 0;
+/// <summary>
+/// Interface class for System types
+/// </summary>
+class ISystem
+{
+public:			
+	/// <summary>
+	/// Initializes this instance.
+	/// </summary>
+	/// <returns></returns>
+	virtual void initialize() = 0;
+	
+	/// <summary>
+	/// Updates this instance.
+	/// </summary>
+	virtual void update(float _deltaTime) = 0;
 };
 
-#endif

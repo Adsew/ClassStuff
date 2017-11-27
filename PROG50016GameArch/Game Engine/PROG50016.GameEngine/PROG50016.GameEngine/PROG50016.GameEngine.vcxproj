@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{3BADC08D-8A75-42EF-A319-DCDE78046AFC}</ProjectGuid>
-    <RootNamespace>PROG50016GameEngine</RootNamespace>
+    <ProjectGuid>{8FEE3892-7581-48B2-9FB1-DD63057F2938}</ProjectGuid>
+    <RootNamespace>prog50016GameEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asset.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="FileSystem.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asset.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="FileSystem.h" />

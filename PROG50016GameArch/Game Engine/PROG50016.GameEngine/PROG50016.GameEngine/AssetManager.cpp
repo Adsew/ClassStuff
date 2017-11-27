@@ -1,42 +1,44 @@
-/*
-Student: James Brooks
-Class: Game Architecture
-
-File: AssetManager.cpp
-
-Class: AssetManager
-
-Description:
-*/
-
-
 #include "AssetManager.h"
 
 
-AssetManager::AssetManager() {
+using namespace tinyxml2;
 
 
-}
-
-AssetManager::~AssetManager() {
-
-
-}
-
-// Initialize asset manager to a usable point
 void AssetManager::initialize() {
 
 
 }
 
-// Cycle update for asset manager
-void AssetManager::update() {
+void AssetManager::update(float _deltaTime) {
 
 
 }
 
-// Display relavent data to screen
-void AssetManager::display() {
+void AssetManager::addAsset(Asset *component) {
+
+    if (component != NULL) {
+
+        assets.push_back(component);
+    }
+}
+
+void AssetManager::RemoveAsset(Asset *component) {
+
+    if (component != NULL) {
+
+        for (std::list<Asset *>::iterator iter = assets.begin();
+            iter != assets.end();
+            iter++) {
+
+            if (*iter == component) {
+
+                assets.erase(iter);
+            }
+        }
+    }
+}
+
+void AssetManager::load(XMLElement *element) {
 
 
 }
