@@ -84,8 +84,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AssetBundleManager\AssetBundleLoadOperation.cs" />
+    <Compile Include="Assets\AssetBundleManager\AssetBundleManager.cs" />
+    <Compile Include="Assets\AssetBundleManager\Utility.cs" />
     <Compile Include="Assets\Scripts\ControlsMgr.cs" />
     <Compile Include="Assets\Scripts\LvlMgr.cs" />
+    <Compile Include="Assets\Scripts\Scripts\LoadAssets.cs" />
+    <Compile Include="Assets\Scripts\Scripts\LoadScenes.cs" />
+    <Compile Include="Assets\Scripts\Scripts\LoadTanks.cs" />
+    <Compile Include="Assets\Scripts\Scripts\LoadVariants.cs" />
     <Compile Include="Assets\Scripts\SoundMgr.cs" />
     <Compile Include="Assets\Scripts\UI\Hysteresis.cs" />
     <Compile Include="Assets\Scripts\UI\IsAUIPanel.cs" />

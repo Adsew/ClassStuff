@@ -391,7 +391,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 225514084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 583, y: 233, z: 0}
+  m_LocalPosition: {x: 575, y: 232, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -745,7 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -852,6 +852,8 @@ GameObject:
   - component: {fileID: 1275659937}
   - component: {fileID: 1275659936}
   - component: {fileID: 1275659940}
+  - component: {fileID: 1275659942}
+  - component: {fileID: 1275659941}
   m_Layer: 0
   m_Name: GLOBAL
   m_TagString: Untagged
@@ -925,6 +927,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Instance: {fileID: 0}
+--- !u!114 &1275659941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275659935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdbd7a29d2d518942b7af8c0a583c7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetBundleName: playerbundle
+  assetName: Player
+--- !u!114 &1275659942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275659935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed085a901b1ce34c871a02024743a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneAssetBundle: 
+  sceneName: 
 --- !u!1 &1339239418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,7 +1509,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: SUPER SHERIDAN STRIKE 2
+  m_Text: Awesome Strike 2017
 --- !u!222 &1793956107
 CanvasRenderer:
   m_ObjectHideFlags: 0

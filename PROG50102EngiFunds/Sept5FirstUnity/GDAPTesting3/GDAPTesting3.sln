@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDAPTesting3", "GDAPTesting3.csproj", "{2CCF0463-FC30-EC27-E0CD-2E71896C4AB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GDAPTesting3.Editor", "GDAPTesting3.Editor.csproj", "{CC48C677-AB61-ACCE-5C41-20E0AD715221}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{2CCF0463-FC30-EC27-E0CD-2E71896C4AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CCF0463-FC30-EC27-E0CD-2E71896C4AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CCF0463-FC30-EC27-E0CD-2E71896C4AB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC48C677-AB61-ACCE-5C41-20E0AD715221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC48C677-AB61-ACCE-5C41-20E0AD715221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC48C677-AB61-ACCE-5C41-20E0AD715221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC48C677-AB61-ACCE-5C41-20E0AD715221}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
