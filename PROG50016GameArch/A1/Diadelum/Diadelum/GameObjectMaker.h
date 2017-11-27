@@ -22,6 +22,7 @@ class Item;
 class Interactable;
 class Monster;
 class NPC;
+class Player;
 
 
 class GameObjectMaker {
@@ -45,17 +46,41 @@ public:
         return instance;
     }
 
+    // Create a new item given an id
     Item *newItem(int id);
 
+    // Create a new interactable given an id
     Interactable *newInteractable(int id);
 
+    // Create a new monster given an id
     Monster *newMonster(int id);
 
+    // Create a new NPC given a name
     NPC *newNPC(int id);
 
+    // Create a new zone given a name in the map
     Zone *newZone(const char *name);
 
+    // Create a new zone given a name in the map
     Zone *newZone(std::string &name);
+
+    // Load a zone from the current player save
+    Zone *loadZone(const char *name, const char *saveName);
+
+    // Load a zone from the current player save
+    Zone *loadZone(std::string &name, std::string &saveName);
+    
+    // Create a new player from the base player
+    Player *newPlayer(const char *name);
+
+    // Create a new player from the base player
+    Player *newPlayer(std::string &name);
+
+    // Load a pre-existing player from save file
+    Player *loadPlayer(const char *name);
+
+    // Load a pre-existing player from save file
+    Player *loadPlayer(std::string &name);
 };
 
 #endif

@@ -32,6 +32,8 @@ private:
 
     std::map<std::string, Item *> inventory;
 
+    std::string myZone;
+
     Item *weapon;
 
     int health;
@@ -45,7 +47,9 @@ protected:
 
 public:
 
-    Player();
+    Player(const char *name);
+
+    Player(std::string &name);
 
     virtual ~Player();
 
@@ -69,6 +73,15 @@ public:
 
     // Restore player to max health and remove inventory as corpse
     Corpse *restoreFromDeath();
+
+    // Set the zone (by name) the player is currently in
+    void setCurrentZone(const char *zoneName);
+
+    // Set the zone (by name) the player is currently in
+    void setCurrentZone(std::string &zoneName);
+
+    // Get the current zone from the player
+    std::string getCurrentZone();
 
     // Set health to a positive number
     void setHealth(int hp);

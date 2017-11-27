@@ -16,7 +16,6 @@ game world.
 #include "Zone.h"
 #include "InputSystem.h"
 #include "RenderSystem.h"
-#include "FileSystem.h"
 #include "GameObjectMaker.h"
 #include "InputCodes.h"
 #include "SceneManager.h"
@@ -54,7 +53,6 @@ void SceneManager::intialize() {
 
     // "Title Screen" initialization
     std::string name = "";
-    std::string saveLoc = "";
 
     while (name.length() == 0) {
 
@@ -62,21 +60,12 @@ void SceneManager::intialize() {
         name = InputSystem::Instance().directFromInput();
     }
 
+    player = GameObjectMaker::Instance().loadPlayer(name);
+    activeZone = GameObjectMaker::Instance().loadZone(player->getCurrentZone(), name);
 
-    // MOVE ALL OF THIS FILE SYSTEM STUFF TO GAMEOBJECT MAKER IT CAN CHECK IF PLAYER EXISTS
-    // IN LOADPLAYER FUNCTION. THEN HERE JUST CALL THE LOADPLAYER FUNCTION BY NAME
-    saveLoc = "../res/save/" + name + ".sol";
+    // Zone not saved by player, start in starting zone (no save data)
+    if (activeZone == NULL) {
 
-    if (FileSystem::Instance().loadFile(name, saveLoc)) {
-
-        //player = GameObjectMaker::Instance().loadPlayer(name);
-        //activeZone = GameObjectMaker::Instance().loadZone(player->getCurrentZone());
-    }
-    else {
-
-        FileSystem::Instance().createTempFile(name);
-
-        player = new Player();
         activeZone = GameObjectMaker::Instance().newZone("meeting quarter");
     }
 

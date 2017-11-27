@@ -30,6 +30,13 @@ Object::Object(std::string &n)
     needsDeletion = false;
 }
 
+Object::Object(const char *n)
+    : name(n) {
+
+    initialized = false;
+    needsDeletion = false;
+}
+
 Object::~Object() {
 
 

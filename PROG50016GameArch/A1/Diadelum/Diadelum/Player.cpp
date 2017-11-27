@@ -19,13 +19,25 @@ player at any given time.
 #define PLAYER_MAX_HEALTH 10
 
 
-Player::Player() {
+Player::Player(const char *name) 
+    : Object(name) {
+
+    myZone = "";
 
     weapon = NULL;
 
     health = PLAYER_MAX_HEALTH;
 }
 
+Player::Player(std::string &name)
+    : Object(name) {
+
+    myZone = "";
+
+    weapon = NULL;
+
+    health = PLAYER_MAX_HEALTH;
+}
 
 Player::~Player() {
 
@@ -200,6 +212,24 @@ Corpse *Player::restoreFromDeath() {
     }
     
     return corpse;
+}
+
+// Set the zone (by name) the player is currently in
+void Player::setCurrentZone(const char *zoneName) {
+
+    myZone = zoneName;
+}
+
+// Set the zone (by name) the player is currently in
+void Player::setCurrentZone(std::string &zoneName) {
+
+    this->setCurrentZone(zoneName.c_str());
+}
+
+// Get the current zone from the player
+std::string Player::getCurrentZone() {
+
+    return myZone;
 }
 
 // Set health to a positive number

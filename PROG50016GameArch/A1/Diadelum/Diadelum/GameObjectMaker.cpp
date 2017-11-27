@@ -19,6 +19,7 @@ with the helpf of the file system for loading the information.
 #include "Monster.h"
 #include "NPC.h"
 #include "Zone.h"
+#include "Player.h"
 #include "GameObjectMaker.h"
 
 
@@ -30,6 +31,7 @@ GameObjectMaker::~GameObjectMaker() {}
 
 GameObjectMaker &GameObjectMaker::operator=(GameObjectMaker &gom) { return gom; }
 
+// Create a new item given an id
 Item *GameObjectMaker::newItem(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
@@ -102,6 +104,7 @@ Item *GameObjectMaker::newItem(int id) {
     return item;
 }
 
+// Create a new interactable given an id
 Interactable *GameObjectMaker::newInteractable(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
@@ -169,6 +172,7 @@ Interactable *GameObjectMaker::newInteractable(int id) {
     return inter;
 }
 
+// Create a new monster given an id
 Monster *GameObjectMaker::newMonster(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
@@ -251,6 +255,7 @@ Monster *GameObjectMaker::newMonster(int id) {
     return mon;
 }
 
+// Create a new NPC given a name
 NPC *GameObjectMaker::newNPC(int id) {
 
     FileSystem *fs = &FileSystem::Instance();
@@ -326,6 +331,7 @@ NPC *GameObjectMaker::newNPC(int id) {
     return npc;
 }
 
+// Create a new zone given a name in the map
 Zone *GameObjectMaker::newZone(const char *name) {
 
     FileSystem *fs = &FileSystem::Instance();
@@ -484,7 +490,58 @@ Zone *GameObjectMaker::newZone(const char *name) {
     return zone;
 }
 
+// Create a new zone given a name in the map
 Zone *GameObjectMaker::newZone(std::string &name) {
 
     return this->newZone(name.c_str());
+}
+
+// Load a zone from the current player save
+Zone *GameObjectMaker::loadZone(const char *name, const char *saveName) {
+
+    if (/*check for save file exist*/ 1 == 2) {
+
+
+    }
+    else {
+
+        return this->newZone(name);
+    }
+}
+
+// Load a zone from the current player save
+Zone *GameObjectMaker::loadZone(std::string &name, std::string &saveName) {
+
+    return this->loadZone(name.c_str(), saveName.c_str());
+}
+
+// Create a new player from the base player
+Player *GameObjectMaker::newPlayer(const char *name) {
+
+    return new Player(name);
+}
+
+// Create a new player from the base player
+Player *GameObjectMaker::newPlayer(std::string &name) {
+
+    return this->newPlayer(name.c_str());
+}
+
+// Load a pre-existing player from save file
+Player *GameObjectMaker::loadPlayer(const char *name) {
+
+    if (/*check for save file exist*/ 1 == 2) {
+
+
+    }
+    else {
+
+        return this->newPlayer(name);
+    }
+}
+
+// Load a pre-existing player from save file
+Player *GameObjectMaker::loadPlayer(std::string &name) {
+
+    return this->loadPlayer(name.c_str());
 }

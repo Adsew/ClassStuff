@@ -35,6 +35,8 @@ public:
 
     Object();
 
+    Object(const char *n);
+
     Object(std::string &n);
     
     virtual ~Object();
