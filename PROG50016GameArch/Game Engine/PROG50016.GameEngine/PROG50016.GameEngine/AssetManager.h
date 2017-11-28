@@ -2,6 +2,8 @@
 
 
 #include <list>
+#include <map>
+#include <functional>
 
 #include "tinyxml2.h"
 #include "ISystem.h"
@@ -15,6 +17,7 @@ class AssetManager : public ISystem {
 private:
 
 	std::list<Asset*> assets;
+    std::map<std::string, std::function<Asset *()>> assetCreate;
 
 public:
 
@@ -43,9 +46,9 @@ protected:
 
 public:
 
-    void addAsset(Asset *component);
+    void addAsset(Asset *asset);
 
-    void RemoveAsset(Asset *component);
+    void RemoveAsset(Asset *asset);
 
     void load(tinyxml2::XMLElement *element);
 };

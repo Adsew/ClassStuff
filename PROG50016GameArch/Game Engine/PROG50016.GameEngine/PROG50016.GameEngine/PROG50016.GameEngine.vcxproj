@@ -125,6 +125,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TextureAsset.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TextureAsset.h" />
     <ClInclude Include="tinyxml2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

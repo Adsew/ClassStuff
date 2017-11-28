@@ -13,8 +13,3 @@ Asset::~Asset() {
 
 
 }
-
-void Asset::load(XMLElement *element) {
-
-
-}

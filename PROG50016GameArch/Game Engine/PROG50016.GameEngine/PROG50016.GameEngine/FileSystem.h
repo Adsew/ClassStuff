@@ -1,7 +1,10 @@
 #pragma once
 
+
 #include <string>
+
 #include "ISystem.h"
+
 
 class FileSystem : public ISystem
 {
@@ -33,6 +36,6 @@ protected:
 
 public:
 
-    void load(std::string &name);
+    void load(std::string name);
 };
 

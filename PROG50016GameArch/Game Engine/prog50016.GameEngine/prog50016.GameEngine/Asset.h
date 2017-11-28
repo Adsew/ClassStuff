@@ -9,14 +9,15 @@
 /// Asset Class
 /// </summary>
 class Asset : public Object {
+
     friend class AssetManager;
 
 protected:
 
 	Asset();
 
-	~Asset();
+	virtual ~Asset();
 
-    void load(tinyxml2::XMLElement *element);
+    virtual void load(tinyxml2::XMLElement *element) = 0;
 };
 
