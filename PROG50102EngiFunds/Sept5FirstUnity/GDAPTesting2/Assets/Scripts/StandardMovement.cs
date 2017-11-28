@@ -11,6 +11,12 @@ public class StandardMovement : MonoBehaviour {
     public float v;
     public float h;
 
+    public GameObject ball;
+
+    public float dribblePosition;
+    public float dribbleLastTick;
+    public float dribbleLastLastTick;
+
 	// Use this for initialization
 	void Start () {
 
@@ -44,9 +50,31 @@ public class StandardMovement : MonoBehaviour {
                 anim.SetTrigger("LightPunch");
             }
             
+            if (Input.GetKeyDown(KeyCode.F)) {
+
+                anim.SetTrigger("Fall");
+            }
+
             anim.SetFloat("Moving", Mathf.Abs(v) + Mathf.Abs(h));
             anim.SetFloat("WalkSpeed", v);
             anim.SetFloat("TurnSpeed", h);
+
+            dribbleLastLastTick = dribbleLastTick;
+            dribbleLastTick = dribblePosition;
+            dribblePosition = anim.GetFloat("DribbleCurveData");
+        }
+    }
+
+    void HeroDribbleUpdate() {
+
+        if (ball != null) {
+
+            ball.transform.position = new Vector3(ball.transform.position.x, dribblePosition * 2.0f, ball.transform.position.z);
+
+            if (dribblePosition > dribbleLastTick && dribbleLastTick < dribbleLastLastTick) {
+                
+                SoundMgr.This.PlayDribble();
+            }
         }
     }
 
@@ -55,5 +83,6 @@ public class StandardMovement : MonoBehaviour {
 
         HeroMovementUpdate();
         HeroAnimationUpdate();
+        HeroDribbleUpdate();
 	}
 }
