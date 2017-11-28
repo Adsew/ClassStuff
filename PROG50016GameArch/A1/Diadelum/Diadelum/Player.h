@@ -28,6 +28,8 @@ class Player : public Object, public IRenderable {
 
 private:
 
+    friend class SaveStateManager;
+
     /***** Variables *****/
 
     std::map<std::string, Item *> inventory;
@@ -85,6 +87,9 @@ public:
 
     // Set health to a positive number
     void setHealth(int hp);
+
+    // Get health of player
+    int getHealth();
 
     // Return true if player hp < 0
     bool isDead();

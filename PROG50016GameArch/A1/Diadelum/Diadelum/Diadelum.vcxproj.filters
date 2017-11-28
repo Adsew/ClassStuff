@@ -123,6 +123,9 @@
     <ClInclude Include="Corpse.h">
       <Filter>Header Files\Object\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="SaveStateManager.h">
+      <Filter>Header Files\System\File</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="Corpse.cpp">
       <Filter>Source Files\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveStateManager.cpp">
+      <Filter>Source Files\System\File</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

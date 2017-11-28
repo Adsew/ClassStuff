@@ -63,24 +63,12 @@ public:
 
     // Create a new zone given a name in the map
     Zone *newZone(std::string &name);
-
-    // Load a zone from the current player save
-    Zone *loadZone(const char *name, const char *saveName);
-
-    // Load a zone from the current player save
-    Zone *loadZone(std::string &name, std::string &saveName);
     
     // Create a new player from the base player
     Player *newPlayer(const char *name);
 
     // Create a new player from the base player
     Player *newPlayer(std::string &name);
-
-    // Load a pre-existing player from save file
-    Player *loadPlayer(const char *name);
-
-    // Load a pre-existing player from save file
-    Player *loadPlayer(std::string &name);
 };
 
 #endif

@@ -17,6 +17,7 @@ game world.
 #include "InputSystem.h"
 #include "RenderSystem.h"
 #include "GameObjectMaker.h"
+#include "SaveStateManager.h"
 #include "InputCodes.h"
 #include "SceneManager.h"
 
@@ -60,9 +61,24 @@ void SceneManager::intialize() {
         name = InputSystem::Instance().directFromInput();
     }
 
-    player = GameObjectMaker::Instance().loadPlayer(name);
-    activeZone = GameObjectMaker::Instance().loadZone(player->getCurrentZone(), name);
+    player = SaveStateManager::Instance().loadPlayer(name);
 
+    if (player != NULL) {
+
+        activeZone = SaveStateManager::Instance().loadZone(player->getCurrentZone(), name);
+        
+        // Load default zone, since no modified version in save
+        if (activeZone == NULL) {
+
+            activeZone = GameObjectMaker::Instance().newZone(player->getCurrentZone());
+        }
+    }
+    
+    if (player == NULL) {
+
+        player = GameObjectMaker::Instance().newPlayer(name);
+        SaveStateManager::Instance().createTempSave(name);
+    }
     // Zone not saved by player, start in starting zone (no save data)
     if (activeZone == NULL) {
 
@@ -97,11 +113,22 @@ bool SceneManager::update() {
 
     if (activeZone->movingFlagStatus() == true) {
 
-        Zone *tempZone = GameObjectMaker::Instance().newZone(activeZone->getZoneToMoveTo());
+        Zone *tempZone = SaveStateManager::Instance().loadZone(activeZone->getZoneToMoveTo(), player->getName());
+        
+        // If null, player has not made any changes to this zone yet, so load fresh one
+        if (tempZone == NULL) {
 
+            tempZone = GameObjectMaker::Instance().newZone(activeZone->getZoneToMoveTo());
+        }
+        
         if (tempZone != NULL) {
 
             RenderSystem::Instance().removeIRenderable(activeZone);
+
+            if (activeZone->getModified()) {
+
+                SaveStateManager::Instance().saveZone(player->getName(), activeZone);
+            }
 
             delete activeZone;
 
@@ -166,7 +193,19 @@ void SceneManager::help(std::list<std::pair<int, std::string>> &action) {
 
 void SceneManager::save(std::list<std::pair<int, std::string>> &action) {
 
+    if (activeZone->getModified()) {
 
+        SaveStateManager::Instance().saveZone(player->getName(), activeZone);
+    }
+
+    if (SaveStateManager::Instance().saveGame(player)) {
+
+        activeZone->setMessageToPlayer("Save successful!");
+    }
+    else {
+
+        activeZone->setMessageToPlayer("Could not save game.");
+    }
 }
 
 void SceneManager::exit(std::list<std::pair<int, std::string>> &action) {

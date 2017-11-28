@@ -33,6 +33,8 @@ class Zone : public Object, public IRenderable {
 
 private:
 
+    friend class SaveStateManager;
+
     /***** Variables *****/
 
     Player *player;
@@ -89,6 +91,10 @@ public:
 
     bool setDescription(std::string &desc);
 
+    bool setMessageToPlayer(const char *msg);
+
+    bool setMessageToPlayer(std::string &msg);
+
     bool addInteractable(Interactable *inter);
 
     bool addItem(Item *item);
@@ -104,6 +110,10 @@ public:
     bool movingFlagStatus();
 
     std::string &getZoneToMoveTo();
+
+    void setModified(bool m);
+
+    bool getModified();
 };
 
 #endif

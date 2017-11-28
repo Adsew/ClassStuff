@@ -1,50 +1,18 @@
-Notes for game
-WEapons have a level and can kill monsters based on being a certain level or higher. Maybe allow the weapons to have you lose less health when ifhgitng the enemies.
-
 Multiple endings:
-Need to get sacred water to defeat final boss, die ending
-If you have congealed blood when you kill final boss you get userper ending
+Fighting to death, you die
+Need to get sacred water to defeat final boss, king prosperity ending
+If you have congealed blood when you kill final boss you get userper ending, become the demon
 
 
 IMplementation:
 
 
-For saving, save an xml with zone changes. If something changed in that zone store the changes in an xml that when that zone is loaded, check the save and implement the changes. The save file will also have the players inventory and location at the time as the first elemsnt.
-
-have a special start that asked for name of player to see if a save exists, if not just go into the starting zone as a new playter and make the save for that name
-
-For dying: corpse object derived from player object allows it to have an inventory which can be reclaimed.
-
-For zone, when calling the function with the data, in the data file levels could have loaded response for each key item in the scene. For example, a game object rock in the scene that can be interacted with using the commands could have responses to specific commands, else default to a general startement. EG. Use rock, search file for rock->use response which gives a string, why would you try to use a rock? What are you thinking? But if its dumb, and doesnt need a special response like that default to a Cannot use [rock].
-
-Consider later creating a header or singleton where a file with codes is loaded for the game if data security in this area is neccessary. Eg what codes mean what i dunno
-
-In the file for zone data, items can hold a list for location directions or boxzes they effect and while loading we can check if the locations in the list exist (which they should otherwise dont write them) and check in the map and set it to false if it exists. Allows us to lock of zones until interactables are moved. As a game object, we can set what moves them and remember what location they effect. This will also naturally help saving, as not saving the interactable when gone will stop it from falsing an opened direction
-
-items and stuff might need a render message to play wit hthe zone description to help say what is and isnt there anymore
-
-create map items etc in the file - load and encode using another program after
-
-ask if loading all files at start is a good option
-
-make interactable subclass possibly for talking text? or impleemt another text for talking to intereactables.
-
-fix action types to have a defionition for erreach number so its not hard coeded
-
-add investiaget to search keywords
-
-add alt names for items so I can say a glimmer in the corner of your eye, and use search glimmer to identify the key and pick it up using eitehr glimmer or key. pickup glimmer -> obtained key or i cant pick that up->look at glimmer->a shiny switch->use switch
-
-might need to reverse use with ensure first item determines text. use shards with monster, should play shard message not monster message which doesnt have a use cause you cant use the mosnter with something else
-
-have player when adding inventory item check if damage is higher than current weapon then set as new weapon
-
-needs to make monsters attack if you stay in an area each turn. Add a zone update that can be used to determine if its the ending state etc
-
-make a npc diriviate of interactable. create a talking text return.
-
 to lower case not implemented
 
-implement corpse have restore player return corpse that will be added to zone and zone will be saved before move. Corpses will have unique id for special save/load and zone will need to special delete them by type cast then delete so it called the bottom destructor. Thus implement with save load
+test fighting without weapon
 
-implement game object manager for deleting game objects. Linked with loader. GOs already have need deleteion, just need to remove the update check to manager from zone, player (corpse in add) etc.
+add npc or somethign to tell you key is under mat by door for palace
+
+load player base stats from a file.?
+
+special save and load for corpse

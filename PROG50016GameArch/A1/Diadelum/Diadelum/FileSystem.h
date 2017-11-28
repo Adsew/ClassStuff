@@ -16,6 +16,8 @@ Description: Manages the input and output of files used by the game
 #include <string>
 #include <map>
 
+#include "tinyxml2.h"
+
 
 namespace tinyxml2 {
     class XMLDocument;
@@ -130,6 +132,12 @@ public:
 
         // Saving Functions
 
+    // Save the given file to the location/filename
+    bool saveFile(const char *refName, const char *fileName);
+
+    // Save the given file to the location/filename
+    bool saveFile(std::string &refName, std::string &fileName);
+
     // Create a new asset file. Is not automatically saved
     bool createTempFile(const char *refName);
 
@@ -156,11 +164,29 @@ public:
 
     // Add an attribute to the current element
     template <typename T>
-    bool setElementAttribute(const char *attribute, T val);
+    bool setElementAttribute(const char *attribute, T val) {
+
+        if (activeElem != NULL) {
+
+            activeElem->SetAttribute(attribute, val);
+
+            return true;
+        }
+
+        return false;
+    }
 
     // Add an attribute to the current element
     template <typename T>
-    bool setElementAttribute(std::string &attribute, T val);
+    bool setElementAttribute(std::string &attribute, T val) {
+
+        return this->setElementAttribute(attribute.c_str(), val);
+    }
+
+    
+        // Extra xml handling
+
+    bool destroyCurrentElement();
 };
 
 #endif

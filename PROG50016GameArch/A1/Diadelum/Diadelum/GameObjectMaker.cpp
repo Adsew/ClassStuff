@@ -496,25 +496,6 @@ Zone *GameObjectMaker::newZone(std::string &name) {
     return this->newZone(name.c_str());
 }
 
-// Load a zone from the current player save
-Zone *GameObjectMaker::loadZone(const char *name, const char *saveName) {
-
-    if (/*check for save file exist*/ 1 == 2) {
-
-
-    }
-    else {
-
-        return this->newZone(name);
-    }
-}
-
-// Load a zone from the current player save
-Zone *GameObjectMaker::loadZone(std::string &name, std::string &saveName) {
-
-    return this->loadZone(name.c_str(), saveName.c_str());
-}
-
 // Create a new player from the base player
 Player *GameObjectMaker::newPlayer(const char *name) {
 
@@ -525,23 +506,4 @@ Player *GameObjectMaker::newPlayer(const char *name) {
 Player *GameObjectMaker::newPlayer(std::string &name) {
 
     return this->newPlayer(name.c_str());
-}
-
-// Load a pre-existing player from save file
-Player *GameObjectMaker::loadPlayer(const char *name) {
-
-    if (/*check for save file exist*/ 1 == 2) {
-
-
-    }
-    else {
-
-        return this->newPlayer(name);
-    }
-}
-
-// Load a pre-existing player from save file
-Player *GameObjectMaker::loadPlayer(std::string &name) {
-
-    return this->loadPlayer(name.c_str());
 }

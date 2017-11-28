@@ -1,7 +1,0 @@
-3001 Rat
-3002 Fledgling (house)
-3003 Fledgling
-3004 Burning Fledgling
-3005 Bat Knight
-3006 Succubus
-3007 King Slayer

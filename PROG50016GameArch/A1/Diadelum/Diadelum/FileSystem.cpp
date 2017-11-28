@@ -395,6 +395,26 @@ bool FileSystem::getAttribute(std::string &name, bool &val) {
 
     // Saving Functions
 
+    // Save the given file to the location/filename
+bool FileSystem::saveFile(const char *refName, const char *fileName) {
+
+    if (assets.find(refName) != assets.end()) {
+
+        if (assets[refName]->SaveFile(fileName) == XML_SUCCESS) {
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Save the given file to the location/filename
+bool FileSystem::saveFile(std::string &refName, std::string &fileName) {
+
+    return this->saveFile(refName.c_str(), fileName.c_str());
+}
+
     // Create a new asset file. Is not automatically saved
 bool FileSystem::createTempFile(const char *refName) {
 
@@ -512,23 +532,29 @@ bool FileSystem::setElementText(std::string &text) {
     return this->setElementText(text.c_str());
 }
 
-// Add an attribute to the current element
-template <typename T>
-bool FileSystem::setElementAttribute(const char *attribute, T val) {
+bool FileSystem::destroyCurrentElement() {
 
     if (activeElem != NULL) {
 
-        activeElem->SetAttribute(attribute, val);
+        XMLElement *temp = activeElem;
 
-        return true;
+        XMLNode *parent = activeElem->Parent();
+
+        activeElem = (XMLElement *)parent;
+
+        // If the parent was NULL, the node is the doc, the final parent node, cant delete it
+        if (activeElem != NULL) {
+
+            temp->DeleteChildren();
+            activeAsset->DeleteNode(temp);
+            
+            return true;
+        }
+        else {
+
+            activeElem = temp;
+        }
     }
 
     return false;
-}
-
-// Add an attribute to the current element
-template <typename T>
-bool FileSystem::setElementAttribute(std::string &attribute, T val) {
-
-    return this->setElementAttribute(attribute.c_str(), val);
 }

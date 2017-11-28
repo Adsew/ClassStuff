@@ -241,6 +241,12 @@ void Player::setHealth(int hp) {
     }
 }
 
+// Get health of player
+int Player::getHealth() {
+
+    return health;
+}
+
 // Return true if player hp < 0
 bool Player::isDead() {
 

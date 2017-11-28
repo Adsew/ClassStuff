@@ -90,6 +90,8 @@ void Zone::update() {
             delete interIter->second;
             interIter->second = NULL;
             interIter = interactables.erase(interIter);
+
+            modified = true;
         }
         else {
 
@@ -106,6 +108,8 @@ void Zone::update() {
             delete itemIter->second;
             itemIter->second = NULL;
             itemIter = items.erase(itemIter);
+
+            modified = true;
         }
         else {
             itemIter++;
@@ -121,6 +125,8 @@ void Zone::update() {
             delete monIter->second;
             monIter->second = NULL;
             monIter = monsters.erase(monIter);
+
+            modified = true;
         }
         else {
 
@@ -137,6 +143,8 @@ void Zone::update() {
             delete npcIter->second;
             npcIter->second = NULL;
             npcIter = npcs.erase(npcIter);
+
+            modified = true;
         }
         else {
 
@@ -473,6 +481,8 @@ void Zone::pickup(std::list<std::pair<int, std::string>> &action) {
                 items.erase((*actionItem).second);
                 player->addItemToInventory(itemInScene);
 
+                modified = true;
+
                 messageToP = "Obtained " + itemInScene->getName() + ".";
             }
             catch (const std::out_of_range &ex) {
@@ -641,6 +651,18 @@ bool Zone::setDescription(std::string &desc) {
     return this->setDescription(desc.c_str());
 }
 
+bool Zone::setMessageToPlayer(const char *msg) {
+
+    messageToP = msg;
+
+    return true;
+}
+
+bool Zone::setMessageToPlayer(std::string &msg) {
+
+    return this->setMessageToPlayer(msg.c_str());
+}
+
 bool Zone::addInteractable(Interactable *inter) {
 
     if (inter != NULL) {
@@ -707,6 +729,8 @@ bool Zone::setPlayer(Player *p) {
 
         player = p;
 
+        player->setCurrentZone(this->getName());
+
         return true;
     }
     
@@ -721,4 +745,14 @@ bool Zone::movingFlagStatus() {
 std::string &Zone::getZoneToMoveTo() {
 
     return zoneToMoveTo;
+}
+
+void Zone::setModified(bool m) {
+
+    modified = m;
+}
+
+bool Zone::getModified() {
+
+    return modified;
 }

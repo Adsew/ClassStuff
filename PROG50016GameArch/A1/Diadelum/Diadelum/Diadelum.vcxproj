@@ -34,6 +34,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RenderSystem.h" />
+    <ClInclude Include="SaveStateManager.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Zone.h" />
@@ -53,6 +54,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="SaveStateManager.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Zone.cpp" />
