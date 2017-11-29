@@ -13,6 +13,8 @@ Description: Handles input from the user and converts it into something
 
 
 #include <iostream>
+#include <algorithm>
+#include <locale>
 
 #include "InputCodes.h"
 #include "InputSystem.h"
@@ -38,6 +40,7 @@ void InputSystem::initialize() {
     keyWordMap["push"] = IN_CODE_USE;
     keyWordMap["interact with"] = IN_CODE_USE;
     keyWordMap["open"] = IN_CODE_USE;
+    keyWordMap["give"] = IN_CODE_USE;
 
     keyWordMap["search"] = IN_CODE_SEARCH;
     keyWordMap["look at"] = IN_CODE_SEARCH;
@@ -77,6 +80,8 @@ void InputSystem::update() {
 
     std::getline(std::cin, playerIn);
     
+    std::transform(playerIn.begin(), playerIn.end(), playerIn.begin(), ::tolower);
+
     // Tokenize the input into individual words
     for (unsigned int i = 0; i < playerIn.length(); i++) {
 
@@ -174,6 +179,8 @@ std::string InputSystem::directFromInput() {
     std::string playerIn;
 
     std::getline(std::cin, playerIn);
+
+    std::transform(playerIn.begin(), playerIn.end(), playerIn.begin(), ::tolower);
 
     return playerIn;
 }

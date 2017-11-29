@@ -60,9 +60,9 @@ public:
 
     virtual std::string lookat() = 0;
 
-    int dropItem();
-
     std::string unlockLocation();
+
+    int createItem();
 
         // Accessors
 

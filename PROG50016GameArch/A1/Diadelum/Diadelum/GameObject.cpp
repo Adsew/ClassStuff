@@ -57,16 +57,6 @@ void GameObject::update() {
 
 }
 
-int GameObject::dropItem() {
-
-    if (inUse) {
-
-        return createsID;
-    }
-    
-    return -1;
-}
-
 std::string GameObject::unlockLocation() {
 
     if (inUse) {
@@ -75,6 +65,16 @@ std::string GameObject::unlockLocation() {
     }
     
     return "";
+}
+
+int GameObject::createItem() {
+
+    if (inUse) {
+
+        return createsID;
+    }
+
+    return -1;
 }
 
     // Accessors

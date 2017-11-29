@@ -33,9 +33,9 @@
         <UseText>Reaching out an extended limb, it gently takes the rolled paper. In your empty palm, it pours a red liquid from its finger. It solidifies instantly.</UseText>
         <ZoneText>Something ominous stands in the back of the room. A succubus.</ZoneText>
     </M3006>
-    <M3007 name="king slayer" uses="1" worksID="1015" creates="1028" unlockLoc="throne room" damage="5" hp="6">
+    <M3007 name="king slayer" uses="1" worksID="1015" creates="1028" unlockLoc="forward" damage="5" hp="6">
         <Description>Its hard to tell if its human or creature. Its large and muscular, weilding a massive sword and wearing a hood covering its head like a prisoner sack.</Description>
-        <UseText>You toss the vial at the once-king demon. He screems as his flesh burns and bones melt. In but a few seconds nothing more remains. It's over.</UseText>
-        <ZoneText>The king slayer stands before you.</ZoneText>
+        <UseText>You toss the vial at the once-king demon. He screems as his flesh burns and bones melt. In but a few seconds nothing more remains but his purified ashes. It's over. You see the throne room ahead of you.</UseText>
+        <ZoneText>The king slayer stands before you, blocking your path.</ZoneText>
     </M3007>
 </Monsters>

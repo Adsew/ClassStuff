@@ -95,7 +95,14 @@ std::string Player::render() {
 
     for (iter = inventory.begin(); iter != inventory.end(); iter++) {
 
-        renderText += " " + iter->second->getName();
+        if (iter == inventory.begin()) {
+
+            renderText += " " + iter->second->getName();
+        }
+        else {
+
+            renderText += ", " + iter->second->getName();
+        }
     }
 
     return renderText;

@@ -37,7 +37,7 @@ public:
 
     std::string attack(Player *p);
 
-    std::string getAttackedBy(Player *p);
+    int dropItem();
 
     void setDropsID(int id);
 

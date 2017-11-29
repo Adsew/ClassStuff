@@ -36,7 +36,7 @@
     <E2007 name="palace door" uses="1" worksID="1011" unlockLoc="palace hall">
         <Description>A large spectacular door. The key to such an entrence must be well gaurded.</Description>
         <UseText>The key rotates and clicks. After a chain reaction of what sounds like gears locking into place, the door slowly swings wide open.</UseText>
-        <ZoneText>The door to the palace is clearly visible and almost makes everything else feel insignificant. It's been locked for years.</ZoneText>
+        <ZoneText>The palace door is clearly visible and almost makes everything else feel insignificant. It's been locked for years.</ZoneText>
     </E2007>
     <E2008 name="cage" uses="-1">
         <Description>You see a cage on the other side of the garden's bounds. It's outside the city limits.</Description>

@@ -54,9 +54,14 @@ std::string Monster::attack(Player *p) {
     return msg;
 }
 
-std::string Monster::getAttackedBy(Player *p) {
+int Monster::dropItem() {
 
-    return "";
+    if (inUse) {
+
+        return dropsID;
+    }
+
+    return -1;
 }
 
 void Monster::setDropsID(int id) {

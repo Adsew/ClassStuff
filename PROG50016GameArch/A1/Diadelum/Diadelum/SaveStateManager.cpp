@@ -12,6 +12,7 @@ persistant state of the current game world.
 
 
 #include "Player.h"
+#include "Corpse.h"
 #include "Zone.h"
 #include "GameObject.h"
 #include "FileSystem.h"
@@ -60,6 +61,7 @@ Player *SaveStateManager::loadPlayer(const char *name) {
         if (fs->useFile(name)) {
 
             Player *player = new Player(name);
+            std::list<int> items;
 
             if (fs->traverseToElement("Player")) {
 
@@ -79,11 +81,16 @@ Player *SaveStateManager::loadPlayer(const char *name) {
 
                             fs->getAttribute("id", tempInt);
 
-                            player->addItemToInventory(GameObjectMaker::Instance().newItem(tempInt));
+                            items.push_back(tempInt);
 
                         } while (fs->traverseToSyblingElement());
                     }
                 }
+            }
+
+            for (std::list<int>::iterator iter = items.begin(); iter != items.end(); iter++) {
+
+                player->addItemToInventory(GameObjectMaker::Instance().newItem(*iter));
             }
 
             return player;
@@ -129,6 +136,7 @@ Zone *SaveStateManager::loadZone(const char *zoneName, const char *saveName) {
             std::list<int> interactables;
             std::list<int> monsters;
             std::list<int> npcs;
+            std::list<int> corpse;
             std::string tempStr;
             int tempInt = 0;
             bool tempBool = true;
@@ -152,7 +160,26 @@ Zone *SaveStateManager::loadZone(const char *zoneName, const char *saveName) {
 
                         if (fs->getAttribute("id", tempInt)) {
 
-                            items.push_back(tempInt);
+                            if (tempInt == CORPSE_ID) {
+
+                                if (fs->traverseToChildElement()) {
+
+                                    do {
+
+                                        if (fs->getAttribute("id", tempInt)) {
+
+                                            corpse.push_back(tempInt);
+                                        }
+                                        
+                                    } while (fs->traverseToSyblingElement());
+
+                                    fs->traverseToParentElement();
+                                }
+                            }
+                            else {
+
+                                items.push_back(tempInt);
+                            }
                         }
 
                     } while (fs->traverseToSyblingElement());
@@ -232,7 +259,7 @@ Zone *SaveStateManager::loadZone(const char *zoneName, const char *saveName) {
             }
 
             // Now create all the ids that were loaded
-            if (items.size() > 0 || interactables.size() > 0 || monsters.size() > 0 || npcs.size() > 0) {
+            if (items.size() > 0 || interactables.size() > 0 || monsters.size() > 0 || npcs.size() > 0 || corpse.size() > 0) {
 
                 std::list<int>::iterator iter;
 
@@ -255,6 +282,18 @@ Zone *SaveStateManager::loadZone(const char *zoneName, const char *saveName) {
 
                     zone->addNPC(gom->newNPC(*iter));
                 }
+            }
+            
+            if (corpse.size() > 0) {
+
+                Corpse *corpseItem = new Corpse();
+
+                for (std::list<int>::iterator iter = corpse.begin(); iter != corpse.end(); iter++) {
+
+                    corpseItem->addItemID(*iter);
+                }
+
+                zone->addItem(corpseItem);
             }
         }
 
@@ -335,6 +374,21 @@ void SaveStateManager::saveZone(const char *playerName, Zone *zone) {
                             if (fs->newElement("Item")) {
 
                                 fs->setElementAttribute("id", ((GameObject *)(iter->second))->getID());
+
+                                if (((GameObject *)(iter->second))->getID() == CORPSE_ID) {
+
+                                    Corpse *corpse = (Corpse *)iter->second;
+
+                                    for (int id = corpse->getNextItemID(); id != NULL; id = corpse->getNextItemID()) {
+
+                                        if (fs->newElement("Item")) {
+
+                                            fs->setElementAttribute("id", id);
+
+                                            fs->traverseToParentElement();
+                                        }
+                                    }
+                                }
 
                                 fs->traverseToParentElement();
                             }

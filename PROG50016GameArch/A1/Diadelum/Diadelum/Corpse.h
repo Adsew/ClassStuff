@@ -37,6 +37,9 @@ public:
 
     // Return first item in inventory of corpse, or NULL if none left
     Item *getNextItem();
+
+    // Return first item in inventory of corpse as an ID, or NULL if none left
+    int getNextItemID();
 };
 
 #endif

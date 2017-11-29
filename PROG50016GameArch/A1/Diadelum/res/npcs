@@ -53,4 +53,9 @@
         <ZoneText>Patrolling the circle is a ghostly figure.</ZoneText>
         <TalkText>It moans in response to your attempt at communication.</TalkText>
     </N4008>
+    <N4009 name="townsperson" uses="-1">
+        <Description>The townspeople feel safe here. Purhaps its blissful ignorance.</Description>
+        <ZoneText>A townsperson is free to talk with.</ZoneText>
+        <TalkText>You know, I heard the palace keeper used to leave a key under the door mat of the front entrance. How scandalous!</TalkText>
+    </N4009>
 </NPCs>

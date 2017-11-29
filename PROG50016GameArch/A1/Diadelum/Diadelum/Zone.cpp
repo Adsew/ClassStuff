@@ -159,6 +159,7 @@ void Zone::update() {
 
         addItem((Item *)player->restoreFromDeath());
 
+        modified = true;
         movingFlag = true;
         zoneToMoveTo = "inbetween";
     }
@@ -303,7 +304,7 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
 
                                     if (useItem2 == NULL) {
 
-                                        messageToP = "I can't find what you want me to use " + messageToP + " with.";
+                                        messageToP = "I can't find what you want me to use " + useItem1->getName() + " with.";
                                     }
                                 }
                             }
@@ -330,9 +331,9 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                 }
                 catch (const std::out_of_range &ex) {}
 
-                if (useItem1->dropItem() > 0) {
+                if (useItem1->createItem() > 0) {
 
-                    Item *drop = GameObjectMaker::Instance().newItem(useItem1->dropItem());
+                    Item *drop = GameObjectMaker::Instance().newItem(useItem1->createItem());
 
                     if (drop != NULL) {
 
@@ -361,15 +362,15 @@ void Zone::use(std::list<std::pair<int, std::string>> &action) {
                 }
                 catch (const std::out_of_range &ex) {}
 
-                if (useItem1->dropItem() > 0) {
+                if (useItem1->createItem() > 0) {
 
-                    Item *drop = GameObjectMaker::Instance().newItem(useItem1->dropItem());
+                    Item *drop = GameObjectMaker::Instance().newItem(useItem1->createItem());
 
                     player->addItemToInventory(drop);
                 }
-                else if (useItem2->dropItem() > 0) {
+                else if (useItem2->createItem() > 0) {
 
-                    Item *drop = GameObjectMaker::Instance().newItem(useItem2->dropItem());
+                    Item *drop = GameObjectMaker::Instance().newItem(useItem2->createItem());
 
                     player->addItemToInventory(drop);
                 }
@@ -479,11 +480,12 @@ void Zone::pickup(std::list<std::pair<int, std::string>> &action) {
                 Item *itemInScene = items.at((*actionItem).second);
                 items[(*actionItem).second] = NULL;
                 items.erase((*actionItem).second);
+
+                messageToP = "Obtained " + itemInScene->getName() + ".";
+
                 player->addItemToInventory(itemInScene);
 
                 modified = true;
-
-                messageToP = "Obtained " + itemInScene->getName() + ".";
             }
             catch (const std::out_of_range &ex) {
 

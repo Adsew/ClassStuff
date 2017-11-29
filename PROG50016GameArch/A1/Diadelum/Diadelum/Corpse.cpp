@@ -15,7 +15,7 @@ Description: A special item that can hold multiple items within.
 
 
 Corpse::Corpse()
-    : Item(CORPSE_ID, "Corpse") {
+    : Item(CORPSE_ID, "corpse") {
 
     setDescription("The body of my former self. The path I took was clearly incorrect. I should gather my belongings.");
     setInZoneMsg("A corpse lies on the floor where I was defeated.");
@@ -43,6 +43,23 @@ Item *Corpse::getNextItem() {
         inventory.erase(iter);
 
         return item;
+    }
+
+    return NULL;
+}
+
+// Return first item in inventory of corpse as an ID, or NULL if none left
+int Corpse::getNextItemID() {
+
+    std::list<int>::iterator iter = inventory.begin();
+
+    if (iter != inventory.end()) {
+
+        int itemID = *iter;
+
+        inventory.erase(iter);
+
+        return itemID;
     }
 
     return NULL;

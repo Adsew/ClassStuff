@@ -21,6 +21,7 @@
     <meeting_quarter>
         <Description>The noise of people gathering fills your ears. People frequently gather here for information on current events and updates regarding the safe zone. A crier stands out shouting the latest on ration distribution and monster attacks. Signs point to the desolate quarter, market quarter, and living quarter, as well as the south gate and east gate.</Description>
         <NPCs>
+            <NPC id="4009" />
             <NPC id="4003" />
         </NPCs>
         <Connections>
@@ -358,12 +359,15 @@
         </Connections>
     </old_church>
     <palace_hall>
-        <Description>The hall is grand. Red silk tapestries hang from the ceiling. As you follow the cloth road forward you reach the throne.</Description>
+        <Description>The hall is grand. Red silk tapestries hang from the ceiling. You follow the carpet. You are compelled to move forward.</Description>
         <Monsters>
             <Monster id="3007" />
         </Monsters>
         <Connections>
             <Zone name="town square" access="true" />
+            <Zone name="forward" access="false" />
+            <Zone name="throne room" access="false" />
+            <Zone name="secret entrance" access="false" />
         </Connections>
     </palace_hall>
     <inbetween>
@@ -372,4 +376,19 @@
             <Zone name="desolate quarter" access="true" />
         </Connections>
     </inbetween>
+    <forward>
+        <Description>You step forward into the room, but before you can investigate the area, the floor shakes and massive thumps come from behind you. Before you have a chance to turn, a giant sword pierces your body.
+
+Congratulations! You have achieved the SLAYER ending. You can save the game and immortalize your ending or exit and find the things you missed!</Description>
+    </forward>
+    <throne_room>
+        <Description>You enter the throne room. Before you lies a golden and guilded chair padded with red cushions. You take your rightfully earned seat and not before long do people being to realise the creatures are fleeing. With the demon-king cleansed, the city can finally begin healing.
+
+Congratulations! You have achieved the SAVIOR ending. You can save the game and immortalize your ending or exit and find the things you missed!</Description>
+    </throne_room>
+    <secret_entrance>
+        <Description>No one knows what happened that day. Infact, the world only got worse. For some reason, the creatures became more aggressive. Behind them, a king slayer, stronger than ever before.
+
+Congratulations! You have achieved the USURPER ending. You have found everything! Feel free to immortalize your game by saving.</Description>
+    </secret_entrance>
 </Zones>
