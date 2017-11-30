@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StandardMovement : MonoBehaviour {
+public class IsPlayer : MonoBehaviour {
 
     // Script communicating with an animator
 
     private Animator anim;
-    
+    private IKController ikCont;
+    public GameObject myRHand;
+
+    private GameObject objToPickup;
+    public float pickupDepth;
+
     public float v;
     public float h;
 
     public GameObject ball;
+
+    public GameObject objInHand;
 
     public float dribblePosition;
     public float dribbleLastTick;
@@ -21,6 +28,11 @@ public class StandardMovement : MonoBehaviour {
 	void Start () {
 
         anim = this.gameObject.GetComponent<Animator>();
+
+        if (ikCont == null) {
+
+            ikCont = this.gameObject.GetComponent<IKController>();
+        }
 	}
 
     void HeroMovementUpdate() {
@@ -55,6 +67,18 @@ public class StandardMovement : MonoBehaviour {
                 anim.SetTrigger("Fall");
             }
 
+            if (Input.GetKeyDown(KeyCode.E) && objToPickup != null) {
+                
+                anim.SetTrigger("Pickup");
+
+                IsPickupable ip = objToPickup.GetComponent<IsPickupable>();
+
+                if (ip.rightHandPoint != null) {
+
+                    ikCont.rightHandObj = ip.rightHandPoint.transform;
+                }
+            }
+
             anim.SetFloat("Moving", Mathf.Abs(v) + Mathf.Abs(h));
             anim.SetFloat("WalkSpeed", v);
             anim.SetFloat("TurnSpeed", h);
@@ -62,6 +86,33 @@ public class StandardMovement : MonoBehaviour {
             dribbleLastLastTick = dribbleLastTick;
             dribbleLastTick = dribblePosition;
             dribblePosition = anim.GetFloat("DribbleCurveData");
+        }
+    }
+
+    void pickupUpdate() {
+
+        IsPickupable ip = null;
+
+        pickupDepth = anim.GetFloat("PickupCurveData");
+
+        if (objToPickup != null) {
+            
+            ip = objToPickup.GetComponent<IsPickupable>();
+
+            if (ip != null) {
+
+                ikCont.lookObj = objToPickup.transform;
+            }
+        }
+
+        if (pickupDepth < 0 && objToPickup != null) {
+
+            objInHand = objToPickup;
+            objToPickup = null;
+
+            objInHand.transform.parent = myRHand.transform;
+
+            ikCont.lookObj = null;
         }
     }
 
@@ -84,5 +135,24 @@ public class StandardMovement : MonoBehaviour {
         HeroMovementUpdate();
         HeroAnimationUpdate();
         HeroDribbleUpdate();
+        pickupUpdate();
 	}
+
+    public void setPickupObject(GameObject obj) {
+
+        Debug.Log("I PLAYED");
+
+        if (objToPickup == null) {
+
+            objToPickup = obj;
+        }
+    }
+
+    public void removePickupObject(GameObject obj) {
+
+        if (obj == objToPickup) {
+
+            objToPickup = null;
+        }
+    }
 }

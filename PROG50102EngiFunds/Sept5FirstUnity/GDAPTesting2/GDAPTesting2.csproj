@@ -84,12 +84,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ConnectionPoints\IsHeadLookPoint.cs" />
+    <Compile Include="Assets\Scripts\ConnectionPoints\IsLHPoint.cs" />
+    <Compile Include="Assets\Scripts\ConnectionPoints\IsRHPoint.cs" />
     <Compile Include="Assets\Scripts\CrumpleLogic.cs" />
     <Compile Include="Assets\Scripts\Hystoresis.cs" />
+    <Compile Include="Assets\Scripts\IKController.cs" />
     <Compile Include="Assets\Scripts\InPlaceJumpLogic.cs" />
+    <Compile Include="Assets\Scripts\IsPickupable.cs" />
+    <Compile Include="Assets\Scripts\IsPickupTrigger.cs" />
+    <Compile Include="Assets\Scripts\IsPlayer.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\SoundMgr.cs" />
-    <Compile Include="Assets\Scripts\StandardMovement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
