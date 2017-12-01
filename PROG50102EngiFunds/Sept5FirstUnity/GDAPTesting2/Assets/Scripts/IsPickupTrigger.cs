@@ -9,12 +9,21 @@ public class IsPickupTrigger : MonoBehaviour {
 
     private IsPlayer player;
 
+    private BoxCollider boxcol;
+
+    private bool disabled = false;
+
 	// Use this for initialization
 	void Start () {
 		
         if (playerObj != null) {
 
             player = playerObj.GetComponent<IsPlayer>();
+        }
+
+        if (boxcol == null) {
+
+            boxcol = this.gameObject.GetComponent<BoxCollider>();
         }
 	}
 
@@ -48,4 +57,23 @@ public class IsPickupTrigger : MonoBehaviour {
 
         PositionUpdate();
 	}
+
+    public void setPickedUp() {
+
+        disabled = true;
+
+        boxcol.enabled = false;
+
+        Rigidbody rb = myPickupObj.GetComponent<Rigidbody>();
+        Destroy(rb);
+    }
+
+    public void setDropped() {
+
+        disabled = false;
+
+        boxcol.enabled = true;
+
+        myPickupObj.AddComponent<Rigidbody>();
+    }
 }

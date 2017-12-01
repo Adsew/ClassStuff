@@ -6,6 +6,8 @@ public class IsPlayer : MonoBehaviour {
 
     // Script communicating with an animator
 
+    public static IsPlayer This;
+
     private Animator anim;
     private IKController ikCont;
     public GameObject myRHand;
@@ -26,6 +28,11 @@ public class IsPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        if (This == null) {
+
+            This = this;
+        }
 
         anim = this.gameObject.GetComponent<Animator>();
 
@@ -55,11 +62,25 @@ public class IsPlayer : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.T)) {
 
                 anim.SetTrigger("Dance");
+
+                ikCont.leftHandObj = null;
             }
 
             if (Input.GetButtonDown("Fire1")) {
 
                 anim.SetTrigger("LightPunch");
+
+                if (objInHand != null) {
+
+                    IsPickupable ip = objInHand.GetComponent<IsPickupable>();
+
+                    if (ip != null) {
+                        if (ip.leftHandPoint != null) {
+
+                            ikCont.leftHandObj = ip.leftHandPoint.transform;
+                        }
+                    }
+                }
             }
             
             if (Input.GetKeyDown(KeyCode.F)) {
@@ -67,7 +88,7 @@ public class IsPlayer : MonoBehaviour {
                 anim.SetTrigger("Fall");
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && objToPickup != null) {
+            if (Input.GetKeyDown(KeyCode.E) && objToPickup != null && objInHand == null) {
                 
                 anim.SetTrigger("Pickup");
 
@@ -77,6 +98,23 @@ public class IsPlayer : MonoBehaviour {
 
                     ikCont.rightHandObj = ip.rightHandPoint.transform;
                 }
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && objInHand != null) {
+
+                IsPickupable ip = objInHand.GetComponent<IsPickupable>();
+
+                if (ip.rightHandPoint != null) {
+
+                    ip.trigger.setDropped();
+                }
+
+                objInHand.transform.parent = null;
+                objInHand = null;
+
+                ikCont.rightHandObj = null;
+                ikCont.leftHandObj = null;
+
+                anim.SetBool("WeaponInHand", false);
             }
 
             anim.SetFloat("Moving", Mathf.Abs(v) + Mathf.Abs(h));
@@ -112,7 +150,16 @@ public class IsPlayer : MonoBehaviour {
 
             objInHand.transform.parent = myRHand.transform;
 
+            IsPickupable pickedup = objInHand.GetComponent<IsPickupable>();
+
+            if (pickedup != null) {
+
+                pickedup.trigger.setPickedUp();
+            }
+
             ikCont.lookObj = null;
+
+            anim.SetBool("WeaponInHand", true);
         }
     }
 
@@ -139,9 +186,7 @@ public class IsPlayer : MonoBehaviour {
 	}
 
     public void setPickupObject(GameObject obj) {
-
-        Debug.Log("I PLAYED");
-
+        
         if (objToPickup == null) {
 
             objToPickup = obj;
