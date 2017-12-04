@@ -1,23 +1,19 @@
 #pragma once
 
-
-#include "tinyxml2.h"
 #include "Object.h"
-
 
 /// <summary>
 /// Asset Class
 /// </summary>
-class Asset : public Object {
-
-    friend class AssetManager;
-
+class Asset : public Object
+{
 protected:
-
 	Asset();
+	~Asset();
 
-	virtual ~Asset();
+	virtual void load(XMLElement* _element) = 0;
 
-    virtual void load(tinyxml2::XMLElement *element) = 0;
+private:
+	friend class AssetManager;
 };
 

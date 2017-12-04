@@ -1,14 +1,14 @@
 
-
-#include "FileSystem.h"
+#include "Core.h"
 #include "GameEngine.h"
+#include "FileSystem.h"
+#include <iostream>
 
-
-void main() {
-
+void main()
+{
 	GameEngine::Instance().initialize();
 
-    FileSystem::Instance().load("../Assets/GameExample.xml");
+	FileSystem::Instance().load("../Assets/GameExample.xml");
 
 	GameEngine::Instance().gameLoop();
 }

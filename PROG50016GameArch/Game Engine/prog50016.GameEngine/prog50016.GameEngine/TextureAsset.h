@@ -1,27 +1,21 @@
 #pragma once
 
-
-#include "tinyxml2.h"
 #include "Asset.h"
+#include <string>
 
+class TextureAsset : public Asset
+{
+public:
+	static Asset* _create() { return new TextureAsset(); }
 
-/// <summary>
-/// TextureAsset Class
-/// </summary>
-class TextureAsset : public Asset {
+	TextureAsset();
+	~TextureAsset();
+
+protected:
+	void load(XMLElement* _element) override;
 
 private:
+	std::string fileName;
 
-    std::string fileName;
-
-public:
-
-    static Asset *create() { return new TextureAsset(); }
-
-    TextureAsset();
-    
-    virtual ~TextureAsset();
-
-    void load(tinyxml2::XMLElement *element) override;
 };
 

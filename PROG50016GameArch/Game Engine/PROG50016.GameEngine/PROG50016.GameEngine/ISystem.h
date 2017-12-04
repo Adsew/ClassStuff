@@ -1,5 +1,12 @@
 #pragma once
 
+#include <vector>
+#include <iostream>
+
+#include "tinyxml2.h"
+
+using namespace tinyxml2;
+
 /// <summary>
 /// Interface class for System types
 /// </summary>

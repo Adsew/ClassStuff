@@ -81,11 +81,11 @@
     <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="tinyxml2.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="TextureAsset.cpp">
       <Filter>Source Files\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,11 +128,14 @@
     <ClInclude Include="GameEngine.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="TextureAsset.h">
+      <Filter>Header Files\Assets</Filter>
+    </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="TextureAsset.h">
-      <Filter>Header Files\Assets</Filter>
+    <ClInclude Include="Core.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

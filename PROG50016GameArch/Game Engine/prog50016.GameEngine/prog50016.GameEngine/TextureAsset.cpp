@@ -1,32 +1,24 @@
-
-
 #include "TextureAsset.h"
 
 
-using namespace tinyxml2;
-
-
-TextureAsset::TextureAsset() {
-
-    fileName = "";
+TextureAsset::TextureAsset()
+{
 }
 
-
-TextureAsset::~TextureAsset() {
-
-
+TextureAsset::~TextureAsset()
+{
 }
 
-void TextureAsset::load(XMLElement *element) {
+void TextureAsset::load(XMLElement * _textureElement)
+{
+	XMLElement *element = _textureElement->FirstChildElement("filename");
+	if (element == nullptr)
+	{
+		std::cout << "Cannot finfd texture filename for TextureAsset" << std::endl;
+		return;
+	}
 
-    XMLElement *fileElement = element->FirstChildElement("filename");
+	fileName = element->GetText();
 
-    if (fileElement != NULL) {
-
-        fileName = fileElement->GetText();
-    }
-    else {
-
-        std::cerr << "Could not find file to load for texture asset." << std::endl;
-    }
+	// More later when we 
 }
