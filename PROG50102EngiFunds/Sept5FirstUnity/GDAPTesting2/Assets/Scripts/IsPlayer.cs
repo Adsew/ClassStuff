@@ -9,6 +9,8 @@ public class IsPlayer : MonoBehaviour {
     public static IsPlayer This;
 
     private Animator anim;
+    public RuntimeAnimatorController myAnimPack;
+
     private IKController ikCont;
     public GameObject myRHand;
 
@@ -52,7 +54,8 @@ public class IsPlayer : MonoBehaviour {
         
         // Set movements to controller input etc.
         if (anim != null) {
-
+            
+            
             // SHOULD USE THIS THROUGH INPUT MANAGER ALLOWS DESIGN TIME MODIFICATION WITHOUT CHANIGNG CODE
             if (Input.GetButtonDown("Jump")) {
 
@@ -68,7 +71,7 @@ public class IsPlayer : MonoBehaviour {
 
             if (Input.GetButtonDown("Fire1")) {
 
-                anim.SetTrigger("LightPunch");
+                anim.SetTrigger("UseObj");
 
                 if (objInHand != null) {
 
@@ -113,8 +116,8 @@ public class IsPlayer : MonoBehaviour {
 
                 ikCont.rightHandObj = null;
                 ikCont.leftHandObj = null;
-
-                anim.SetBool("WeaponInHand", false);
+                
+                anim.runtimeAnimatorController = myAnimPack;
             }
 
             anim.SetFloat("Moving", Mathf.Abs(v) + Mathf.Abs(h));
@@ -147,19 +150,24 @@ public class IsPlayer : MonoBehaviour {
 
             objInHand = objToPickup;
             objToPickup = null;
-
-            objInHand.transform.parent = myRHand.transform;
-
+            
             IsPickupable pickedup = objInHand.GetComponent<IsPickupable>();
 
+            myRHand.transform.position = pickedup.rightHandPoint.transform.position;
+
+            objInHand.transform.parent = myRHand.transform;
+            
             if (pickedup != null) {
 
                 pickedup.trigger.setPickedUp();
             }
 
-            ikCont.lookObj = null;
+            if (pickedup.animOverride != null) {
 
-            anim.SetBool("WeaponInHand", true);
+                anim.runtimeAnimatorController = pickedup.animOverride;
+            }
+
+            ikCont.lookObj = null;
         }
     }
 

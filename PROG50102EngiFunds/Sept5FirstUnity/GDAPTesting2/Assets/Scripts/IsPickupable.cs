@@ -7,6 +7,8 @@ public class IsPickupable : MonoBehaviour {
     public GameObject pickupTrigger;
     public IsPickupTrigger trigger;
 
+    public AnimatorOverrideController animOverride;
+
     public GameObject rightHandPoint;
     public GameObject leftHandPoint;
 

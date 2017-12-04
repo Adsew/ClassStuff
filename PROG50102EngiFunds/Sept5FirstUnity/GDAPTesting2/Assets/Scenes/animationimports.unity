@@ -755,6 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupTrigger: {fileID: 1998600404}
   trigger: {fileID: 0}
+  animOverride: {fileID: 22100000, guid: 72bad83bbe898df43b3437900c8291db, type: 2}
   rightHandPoint: {fileID: 0}
   leftHandPoint: {fileID: 0}
 --- !u!1 &1083272701
@@ -955,6 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5856d0abf5d1a4fb103c3688f55c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAnimPack: {fileID: 9100000, guid: 290fd36c8e5716747bc616270d99a028, type: 2}
   myRHand: {fileID: 2119581369}
   pickupDepth: 0
   v: 0

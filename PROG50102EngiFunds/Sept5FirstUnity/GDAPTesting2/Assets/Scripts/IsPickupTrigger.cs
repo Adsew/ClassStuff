@@ -6,7 +6,7 @@ public class IsPickupTrigger : MonoBehaviour {
 
     public GameObject myPickupObj;
     public GameObject playerObj;
-
+    
     private IsPlayer player;
 
     private BoxCollider boxcol;
