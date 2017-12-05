@@ -1,58 +1,57 @@
-#pragma once
+#ifndef RENDER_SYSTEM_H
+#define RENDER_SYSTEM_H
 
-#include <list>
+/*
+Student: James Brooks
+Class: Game Architecture
+
+File: RenderSystem.h
+
+Class: RenderSystem
+
+Description: A system responsable for rendering renderable objects to the screen.
+*/
+
+
 #include "ISystem.h"
+
 
 class IRenderable;
 
-/// <summary>
-/// Render System Instance
-/// </summary>
-/// <seealso cref="ISystem" />
-class RenderSystem : public ISystem
-{
+
+class RenderSystem : public ISystem {
+
+    friend class GameEngine;
+
 private:
-	std::list<IRenderable*> renderComponents;
+	
+    std::list<IRenderable*> renderComponents;
 
 public:	
-	/// <summary>
-	/// Singleton reference to this instance.
-	/// </summary>
-	/// <returns></returns>
-	inline static RenderSystem& Instance()
-	{
+	
+    inline static RenderSystem& Instance() {
+
 		static RenderSystem instance;
 		return instance;
 	}
 	
-	/// <summary>
-	/// Adds the renderable component
-	/// </summary>
-	/// <param name="component">The component.</param>
-	void addRenderable(IRenderable* component);
+    void addRenderable(IRenderable* component);
 	
-	/// <summary>
-	/// Removes the renderable component
-	/// </summary>
-	/// <param name="component">The component.</param>
 	void removeRenderable(IRenderable* component);
 
 protected:		
-	/// <summary>
-	/// Initializes this instance.
-	/// </summary>
-	void initialize() override;
 	
-	/// <summary>
-	/// Updates this instance.
-	/// </summary>
+    void initialize() override;
+	
 	void update(float _deltaTime) override;
 
 private:
-	RenderSystem() = default;
-	~RenderSystem() = default;
-	RenderSystem(const RenderSystem& other) = default;
-
-	friend class GameEngine;
+	
+    RenderSystem() = default;
+	
+    ~RenderSystem() = default;
+	
+    RenderSystem(const RenderSystem& other) = default;
 };
 
+#endif // !RENDER_SYSTEM_H

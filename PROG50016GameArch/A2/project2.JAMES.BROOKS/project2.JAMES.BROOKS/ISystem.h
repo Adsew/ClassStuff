@@ -1,20 +1,25 @@
-#pragma once
+#ifndef I_SYSTEM_H
+#define I_SYSTEM_H
 
-/// <summary>
-/// Interface class for System types
-/// </summary>
-class ISystem
-{
+/*
+Student: James Brooks
+Class: Game Architecture
+
+File: GameEngine.cpp
+
+Class: GameEngine
+
+Description: Holds the game loop and runs the major systems that run the game.
+*/
+
+
+class ISystem {
+
 public:			
-	/// <summary>
-	/// Initializes this instance.
-	/// </summary>
-	/// <returns></returns>
-	virtual void initialize() = 0;
 	
-	/// <summary>
-	/// Updates this instance.
-	/// </summary>
+    virtual void initialize() = 0;
+	
 	virtual void update(float _deltaTime) = 0;
 };
 
+#endif // !I_SYSTEM_H

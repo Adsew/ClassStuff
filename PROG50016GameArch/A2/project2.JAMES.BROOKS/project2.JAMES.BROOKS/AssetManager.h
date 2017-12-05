@@ -14,11 +14,6 @@ Description: Manages all assets created during the course of the game. Responsib
 */
 
 
-#include <list>
-#include <map>
-#include <functional>
-
-#include "tinyxml2.h"
 #include "ISystem.h"
 
 

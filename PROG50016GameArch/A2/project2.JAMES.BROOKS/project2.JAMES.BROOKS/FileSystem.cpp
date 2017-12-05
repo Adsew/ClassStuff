@@ -1,13 +1,20 @@
+/*
+Student: James Brooks
+Class: Game Architecture
+
+File: FileSyster.cpp
+
+Class: FileSystem
+
+Description: Lowest level of file loading. Calling this can return a file element
+    to be sifted through for data.
+*/
 
 
-#include <iostream>
+#include "Core.h"
 
-#include "tinyxml2.h"
 #include "AssetManager.h"
 #include "FileSystem.h"
-
-
-using namespace tinyxml2;
 
 
 void FileSystem::initialize() {

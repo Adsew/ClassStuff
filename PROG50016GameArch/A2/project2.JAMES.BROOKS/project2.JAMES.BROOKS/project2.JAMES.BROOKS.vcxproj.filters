@@ -84,12 +84,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\System\IO\Input</Filter>
     </ClCompile>
-    <ClCompile Include="IRenderable.cpp">
-      <Filter>Source Files\System\IO\Output</Filter>
-    </ClCompile>
-    <ClCompile Include="ISystem.cpp">
-      <Filter>Source Files\System</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
@@ -151,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\System\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Core.h">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

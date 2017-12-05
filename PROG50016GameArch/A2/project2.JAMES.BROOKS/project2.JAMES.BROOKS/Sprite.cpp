@@ -2,13 +2,15 @@
 Student: James Brooks
 Class: Game Architecture
 
-File: Sprite.h
+File: Sprite.cpp
 
 Class: Sprite
 
 Description: A small image to be rendered to the screen.
 */
 
+
+#include "Core.h"
 
 #include "Sprite.h"
 

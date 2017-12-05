@@ -14,7 +14,6 @@ Description: An asset that holds an image to be used as a texture.
 */
 
 
-#include "tinyxml2.h"
 #include "Asset.h"
 
 

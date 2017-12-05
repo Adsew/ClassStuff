@@ -2,7 +2,7 @@
 Student: James Brooks
 Class: Game Architecture
 
-File: TextureAsset.h
+File: TextureAsset.cpp
 
 Class: TextureAsset
 
@@ -10,10 +10,9 @@ Description: An asset that holds an image to be used as a texture.
 */
 
 
+#include "Core.h"
+
 #include "TextureAsset.h"
-
-
-using namespace tinyxml2;
 
 
 TextureAsset::TextureAsset() {

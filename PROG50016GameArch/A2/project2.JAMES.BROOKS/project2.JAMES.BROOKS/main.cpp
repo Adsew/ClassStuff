@@ -1,14 +1,20 @@
+/*
+Student: James Brooks
+Class: Game Architecture
+
+File: main.cpp
+
+Description: Begin running the game engine.
+*/
 
 
-#include "FileSystem.h"
+#include "Core.h"
+
 #include "GameEngine.h"
 
 
 void main() {
 
 	GameEngine::Instance().initialize();
-
-    FileSystem::Instance().load("../Assets/GameExample.xml");
-
 	GameEngine::Instance().gameLoop();
 }

@@ -13,7 +13,6 @@ Description: A base class for all future assets of any time to be created.
 */
 
 
-#include "tinyxml2.h"
 #include "Object.h"
 
 

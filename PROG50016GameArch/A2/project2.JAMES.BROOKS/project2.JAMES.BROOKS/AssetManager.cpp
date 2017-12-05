@@ -2,7 +2,7 @@
 Student: James Brooks
 Class: Game Architecture
 
-File: AssetManager.h
+File: AssetManager.cpp
 
 Class: AssetManager
 
@@ -11,11 +11,11 @@ Description: Manages all assets created during the course of the game. Responsib
 */
 
 
+#include "Core.h"
+
+#include "Asset.h"
 #include "TextureAsset.h"
 #include "AssetManager.h"
-
-
-using namespace tinyxml2;
 
 
 void AssetManager::initialize() {

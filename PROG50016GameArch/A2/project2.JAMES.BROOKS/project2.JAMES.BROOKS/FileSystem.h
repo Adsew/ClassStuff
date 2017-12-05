@@ -1,18 +1,30 @@
-#pragma once
+#ifndef FILE_SYSTEM_H
+#define FILE_SYSTEM_H
 
+/*
+Student: James Brooks
+Class: Game Architecture
 
-#include <string>
+File: FileSyster.h
+
+Class: FileSystem
+
+Description: Lowest level of file loading. Calling this can return a file element
+    to be sifted through for data.
+*/
+
 
 #include "ISystem.h"
 
 
-class FileSystem : public ISystem
-{
+class FileSystem : public ISystem {
+
+    friend class GameEngine;
 
 public:
 
-	inline static FileSystem& Instance()
-	{
+	inline static FileSystem& Instance() {
+
 		static FileSystem instance;
 
 		return instance;
@@ -26,8 +38,6 @@ private:
 
     FileSystem(const FileSystem& other) = default;
 
-    friend class GameEngine;
-
 protected:
 
 	void initialize() override;
@@ -39,3 +49,4 @@ public:
     void load(std::string name);
 };
 
+#endif // !FILE_SYSTEM_H

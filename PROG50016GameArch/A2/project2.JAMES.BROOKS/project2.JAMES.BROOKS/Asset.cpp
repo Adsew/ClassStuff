@@ -2,7 +2,7 @@
 Student: James Brooks
 Class: Game Architecture
 
-File: Asset.h
+File: Asset.cpp
 
 Class: Asset
 
@@ -10,10 +10,9 @@ Description: A base class for all future assets of any time to be created.
 */
 
 
+#include "Core.h"
+
 #include "Asset.h"
-
-
-using namespace tinyxml2;
 
 
 Asset::Asset() {
