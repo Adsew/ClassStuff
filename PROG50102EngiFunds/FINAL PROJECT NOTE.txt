@@ -1,0 +1,1 @@
+If pickuing up with left hand (shortest least eror handle probloem) then use switch hand animation to get to dominent hand.

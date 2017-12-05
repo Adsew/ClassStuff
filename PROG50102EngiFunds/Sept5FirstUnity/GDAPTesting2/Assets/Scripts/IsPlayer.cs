@@ -15,6 +15,7 @@ public class IsPlayer : MonoBehaviour {
     public GameObject myRHand;
 
     private GameObject objToPickup;
+    private GameObject objToPickupHandle;
     public float pickupDepth;
 
     public float v;
@@ -73,17 +74,18 @@ public class IsPlayer : MonoBehaviour {
 
                 anim.SetTrigger("UseObj");
 
-                if (objInHand != null) {
+                // USE TWO HANDS ON TWO HANDED ITEM
+                //if (objInHand != null) {
 
-                    IsPickupable ip = objInHand.GetComponent<IsPickupable>();
+                //    IsPickupable ip = objInHand.GetComponent<IsPickupable>();
 
-                    if (ip != null) {
-                        if (ip.leftHandPoint != null) {
+                //    if (ip != null) {
+                //        if (ip.leftHandPoints.Count != 0) {
 
-                            ikCont.leftHandObj = ip.leftHandPoint.transform;
-                        }
-                    }
-                }
+                //            ikCont.leftHandObj = ip.leftHandPoint[0].transform;
+                //        }
+                //    }
+                //}
             }
             
             if (Input.GetKeyDown(KeyCode.F)) {
@@ -97,16 +99,23 @@ public class IsPlayer : MonoBehaviour {
 
                 IsPickupable ip = objToPickup.GetComponent<IsPickupable>();
 
-                if (ip.rightHandPoint != null) {
+                if ((objToPickupHandle = ip.getClosestHandle(this.gameObject.transform.position)) != null) {
 
-                    ikCont.rightHandObj = ip.rightHandPoint.transform;
+                    Rigidbody rb;
+
+                    if (rb = ip.gameObject.GetComponent<Rigidbody>()){
+
+                        Destroy(rb);
+                    }
+                    
+                    ikCont.rightHandObj = objToPickupHandle.transform;
                 }
             }
             else if (Input.GetKeyDown(KeyCode.E) && objInHand != null) {
 
                 IsPickupable ip = objInHand.GetComponent<IsPickupable>();
 
-                if (ip.rightHandPoint != null) {
+                if (ip != null) {
 
                     ip.trigger.setDropped();
                 }
@@ -149,11 +158,10 @@ public class IsPlayer : MonoBehaviour {
         if (pickupDepth < 0 && objToPickup != null) {
 
             objInHand = objToPickup;
-            objToPickup = null;
             
             IsPickupable pickedup = objInHand.GetComponent<IsPickupable>();
 
-            myRHand.transform.position = pickedup.rightHandPoint.transform.position;
+            myRHand.transform.position = objToPickupHandle.transform.position;
 
             objInHand.transform.parent = myRHand.transform;
             
@@ -168,6 +176,8 @@ public class IsPlayer : MonoBehaviour {
             }
 
             ikCont.lookObj = null;
+            objToPickup = null;
+            objToPickupHandle = null;
         }
     }
 
@@ -206,6 +216,7 @@ public class IsPlayer : MonoBehaviour {
         if (obj == objToPickup) {
 
             objToPickup = null;
+            objToPickupHandle = null;
         }
     }
 }

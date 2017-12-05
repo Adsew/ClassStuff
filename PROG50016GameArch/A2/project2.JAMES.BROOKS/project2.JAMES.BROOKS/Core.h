@@ -24,9 +24,7 @@ Description: Precompiled header for the common files and support macros.
 
 // Extra libraries
 
-#include "tinyxml2.h"
-
-using namespace tinyxml2;
+#include "FileSystem.h"
 
 
 // Easy debug output

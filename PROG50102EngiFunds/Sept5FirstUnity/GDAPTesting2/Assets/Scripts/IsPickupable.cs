@@ -9,8 +9,8 @@ public class IsPickupable : MonoBehaviour {
 
     public AnimatorOverrideController animOverride;
 
-    public GameObject rightHandPoint;
-    public GameObject leftHandPoint;
+    public List<GameObject> rightHandPoints;
+    public List<GameObject> leftHandPoints;
 
 	// Use this for initialization
 	void Start () {
@@ -20,23 +20,23 @@ public class IsPickupable : MonoBehaviour {
             trigger = pickupTrigger.GetComponent<IsPickupTrigger>();
         }
 
-        if (rightHandPoint == null) {
+        if (rightHandPoints.Count == 0) {
 
-            IsRHPoint rh = this.gameObject.GetComponentInChildren<IsRHPoint>();
+            IsRHPoint[] rhs = this.gameObject.GetComponentsInChildren<IsRHPoint>();
 
-            if (rh != null) {
+            foreach (IsRHPoint rh in rhs) {
 
-                rightHandPoint = rh.gameObject;
+                rightHandPoints.Add(rh.gameObject);
             }
         }
 
-        if (leftHandPoint == null) {
+        if (leftHandPoints.Count == 0) {
 
-            IsLHPoint lh = this.gameObject.GetComponentInChildren<IsLHPoint>();
+            IsLHPoint[] lhs = this.gameObject.GetComponentsInChildren<IsLHPoint>();
 
-            if (lh != null) {
+            foreach (IsLHPoint lh in lhs) {
 
-                leftHandPoint = lh.gameObject;
+                leftHandPoints.Add(lh.gameObject);
             }
         }
     }
@@ -45,4 +45,33 @@ public class IsPickupable : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public GameObject getClosestHandle(Vector3 pos) {
+
+        GameObject closestGO = null;
+        float shortestDist = 0;
+        float distance = 0;
+
+        foreach (GameObject handle in rightHandPoints) {
+
+            if (closestGO == null) {
+
+                closestGO = handle;
+
+                shortestDist = Mathf.Abs(Vector3.Magnitude(handle.transform.position - pos));
+            }
+            else {
+
+                distance = Mathf.Abs(Vector3.Magnitude(handle.transform.position - pos));
+
+                if (distance < shortestDist) {
+
+                    shortestDist = distance;
+                    closestGO = handle;
+                }
+            }
+        }
+
+        return closestGO;
+    }
 }

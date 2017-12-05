@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PickupIK.cs" />
     <Compile Include="Assets\Scripts\ConnectionPoints\IsHeadLookPoint.cs" />
     <Compile Include="Assets\Scripts\ConnectionPoints\IsLHPoint.cs" />
     <Compile Include="Assets\Scripts\ConnectionPoints\IsRHPoint.cs" />

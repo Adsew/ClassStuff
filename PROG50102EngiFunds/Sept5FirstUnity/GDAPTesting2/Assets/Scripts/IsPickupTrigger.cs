@@ -63,9 +63,6 @@ public class IsPickupTrigger : MonoBehaviour {
         disabled = true;
 
         boxcol.enabled = false;
-
-        Rigidbody rb = myPickupObj.GetComponent<Rigidbody>();
-        Destroy(rb);
     }
 
     public void setDropped() {
