@@ -9,7 +9,9 @@ File: FileSystem.h
 
 Class: FileSystem
 
-Description: Manages the input and output of files used by the game
+Description: Manages the input and output of files used by the game.
+    The code is modified from my previous project to allow for multiple
+    simultaneous file use via the FileAccessor sub class.
 */
 
 
@@ -21,11 +23,21 @@ namespace tinyxml2 {
 
 class FileSystem {
 
-public:
+protected:
 
-    class Iterator {
+    // Allows unique access to multiple files at once through multiple iterators
+    class FileAccessor {
 
+        friend class FileSystem;
 
+    protected:
+
+        tinyxml2::XMLDocument * const activeAsset;
+        tinyxml2::XMLElement *activeElem;
+
+    protected:
+
+        FileAccessor(tinyxml2::XMLDocument *doc) : activeAsset(doc), activeElem(NULL) {}
     };
 
 private:
@@ -33,9 +45,6 @@ private:
     /***** Variables *****/
 
     std::map<std::string, tinyxml2::XMLDocument *> assets;
-
-    tinyxml2::XMLDocument *activeAsset;
-    tinyxml2::XMLElement *activeElem;
 
     bool initialized;
 
@@ -68,67 +77,67 @@ public:
     void initialize(const std::string &settingsLoc);
 
     // Set the file to be used for loading
-    bool useFile(const char *fileRef);
+    std::unique_ptr<FileSystem::FileAccessor> useFile(const char *fileRef);
 
     // Set the file to be used for loading
-    bool useFile(const std::string &fileRef);
+    std::unique_ptr<FileSystem::FileAccessor> useFile(const std::string &fileRef);
 
 
         // Loading Functions
 
     // Changes from current node to a contained element
-    bool traverseToElement(const char *elem);
+    bool traverseToElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *elem);
 
     // Changes from current node to a contained element
-    bool traverseToElement(const std::string &elem);
+    bool traverseToElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &elem);
 
     // Chamges from current node to the first child
-    bool traverseToChildElement();
+    bool traverseToChildElement(std::unique_ptr<FileSystem::FileAccessor> &accessor);
 
     // Changes from current element to the next element of same parent
-    bool traverseToSyblingElement();
+    bool traverseToSyblingElement(std::unique_ptr<FileSystem::FileAccessor> &accessor);
 
     // Changes from current element to the next element of same parent by name
-    bool traverseToSyblingElement(const char *syb);
+    bool traverseToSyblingElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *syb);
 
     // Changes from current element to the next element of same parent by name
-    bool traverseToSyblingElement(const std::string &syb);
+    bool traverseToSyblingElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &syb);
 
     // Return from current tag to parent tag
-    bool traverseToParentElement();
+    bool traverseToParentElement(std::unique_ptr<FileSystem::FileAccessor> &accessor);
 
     // Get the text contained in the tags of the current element
-    bool getElementText(std::string &val);
+    bool getElementText(std::unique_ptr<FileSystem::FileAccessor> &accessor, std::string &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const char *name, std::string &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, std::string &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const std::string &name, std::string &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, std::string &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const char *name, int &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, int &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const std::string &name, int &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, int &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const char *name, float &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, float &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const std::string &name, float &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, float &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const char *name, double &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, double &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const std::string &name, double &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, double &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const char *name, bool &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, bool &val);
 
     // Get an attribute from the current element, if exists
-    bool getAttribute(const std::string &name, bool &val);
+    bool getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, bool &val);
 
 
         // Saving Functions
@@ -140,32 +149,32 @@ public:
     bool saveFile(const std::string &refName, const std::string &fileName);
 
     // Create a new asset file. Is not automatically saved
-    bool createTempFile(const char *refName);
+    std::unique_ptr<FileSystem::FileAccessor> createTempFile(const char *refName);
 
     // Create a new asset file. Is not automatically saved
-    bool createTempFile(const std::string &refName);
+    std::unique_ptr<FileSystem::FileAccessor> createTempFile(const std::string &refName);
 
     // Load an existing file from location, returns false if doesn't exist
-    bool loadFile(const char *refName, const char *fileLoc);
+    std::unique_ptr<FileSystem::FileAccessor> loadFile(const char *refName, const char *fileLoc);
 
     // Load an existing file from location, returns false if doesn't exist
-    bool loadFile(const std::string &refName, const std::string &fileLoc);
+    std::unique_ptr<FileSystem::FileAccessor> loadFile(const std::string &refName, const std::string &fileLoc);
 
     // Create a new element as a child of the current element
-    bool newElement(const char *name);
+    bool newElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name);
     
     // Create a new element as a child of the current element
-    bool newElement(const std::string &name);
+    bool newElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name);
 
     // Add text to the current element
-    bool setElementText(const char *text);
+    bool setElementText(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *text);
 
     // Add text to the current element
-    bool setElementText(const std::string &text);
+    bool setElementText(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &text);
 
     // Add an attribute to the current element
     template <typename T>
-    bool setElementAttribute(const char *attribute, const T val) {
+    bool setElementAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *attribute, const T val) {
 
         if (activeElem != NULL) {
 
@@ -179,7 +188,7 @@ public:
 
     // Add an attribute to the current element
     template <typename T>
-    bool setElementAttribute(const std::string &attribute, const T val) {
+    bool setElementAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &attribute, const T val) {
 
         return this->setElementAttribute(attribute.c_str(), val);
     }
@@ -187,7 +196,7 @@ public:
     
         // Extra xml handling
 
-    bool destroyCurrentElement();
+    bool destroyCurrentElement(std::unique_ptr<FileSystem::FileAccessor> &accessor);
 };
 
 #endif

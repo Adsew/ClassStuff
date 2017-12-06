@@ -6,7 +6,9 @@ File: FileSystem.cpp
 
 Class: FileSystem
 
-Description: Manages the input and output of files used by the game
+Description: Manages the input and output of files used by the game.
+    The code is modified from my previous project to allow for multiple
+    simultaneous file use via the FileAccessor sub class.
 */
 
 
@@ -23,9 +25,6 @@ using namespace tinyxml2;
 
 FileSystem::FileSystem() {
 
-    activeAsset = NULL;
-    activeElem = NULL;
-
     initialized = false;
 }
 
@@ -40,9 +39,6 @@ FileSystem::~FileSystem() {
         delete (*iter).second;
         (*iter).second = NULL;
     }
-
-    activeAsset = NULL;
-    activeElem = NULL;
 }
 
 FileSystem &FileSystem::operator=(FileSystem &fs) { return fs; }
@@ -107,26 +103,21 @@ void FileSystem::initialize(const std::string &settingsLoc) {
 }
 
 // Set the file to be used for loading
-bool FileSystem::useFile(const char *fileRef) {
+std::unique_ptr<FileSystem::FileAccessor> FileSystem::useFile(const char *fileRef) {
 
     try {
+        // Generate and return a unique pointer to the desired doc if exists
+        std::unique_ptr<FileSystem::FileAccessor> access(new FileSystem::FileAccessor(assets.at(fileRef)));
 
-        activeAsset = assets.at(fileRef);
-        activeElem = NULL;
-
-        return true;
+        return access;
     }
-    catch (const std::out_of_range &ex) {
-    
-        activeAsset = NULL;
-        activeElem = NULL;
-    }
+    catch (const std::out_of_range &ex) {}
 
-    return false;
+    return NULL;
 }
 
 // Set the file to be used for loading
-bool FileSystem::useFile(const std::string &fileRef) {
+std::unique_ptr<FileSystem::FileAccessor> FileSystem::useFile(const std::string &fileRef) {
 
     return this->useFile(fileRef.c_str());
 }
@@ -135,28 +126,28 @@ bool FileSystem::useFile(const std::string &fileRef) {
     // Loading Functions
 
 // Changes from current node to a contained element
-bool FileSystem::traverseToElement(const char *elem) {
+bool FileSystem::traverseToElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *elem) {
 
-    if (activeAsset != NULL) {
+    if (accessor->activeAsset != NULL) {
 
-        XMLElement *temp = activeElem;
+        XMLElement *temp = accessor->activeElem;
 
-        if (activeElem == NULL) {
+        if (accessor->activeElem == NULL) {
 
-            activeElem = activeAsset->FirstChildElement(elem);
+            accessor->activeElem = accessor->activeAsset->FirstChildElement(elem);
         }
         else {
 
-            activeElem = activeElem->FirstChildElement(elem);
+            accessor->activeElem = accessor->activeElem->FirstChildElement(elem);
         }
 
-        if (activeElem != NULL) {
+        if (accessor->activeElem != NULL) {
 
             return true;
         }
         else {
 
-            activeElem = temp;
+            accessor->activeElem = temp;
         }
     }
 
@@ -164,34 +155,34 @@ bool FileSystem::traverseToElement(const char *elem) {
 }
 
 // Changes from current node to a contained element
-bool FileSystem::traverseToElement(const std::string &elem) {
+bool FileSystem::traverseToElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &elem) {
 
-    return this->traverseToElement(elem.c_str());
+    return this->traverseToElement(accessor, elem.c_str());
 }
 
 // Chamges from current node to the first child
-bool FileSystem::traverseToChildElement() {
+bool FileSystem::traverseToChildElement(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
-    if (activeAsset != NULL) {
+    if (accessor->activeAsset != NULL) {
 
-        XMLElement *temp = activeElem;
+        XMLElement *temp = accessor->activeElem;
 
-        if (activeElem == NULL) {
+        if (accessor->activeElem == NULL) {
 
-            activeElem = activeAsset->FirstChildElement();
+            accessor->activeElem = accessor->activeAsset->FirstChildElement();
         }
         else {
 
-            activeElem = activeElem->FirstChildElement();
+            accessor->activeElem = accessor->activeElem->FirstChildElement();
         }
 
-        if (activeElem != NULL) {
+        if (accessor->activeElem != NULL) {
 
             return true;
         }
         else {
 
-            activeElem = temp;
+            accessor->activeElem = temp;
         }
     }
 
@@ -199,22 +190,22 @@ bool FileSystem::traverseToChildElement() {
 }
 
 // Changes from current element to the next element of same parent
-bool FileSystem::traverseToSyblingElement() {
+bool FileSystem::traverseToSyblingElement(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
-    if (activeAsset != NULL) {
-        if (activeElem != NULL) {
+    if (accessor->activeAsset != NULL) {
+        if (accessor->activeElem != NULL) {
 
-            XMLElement *temp = activeElem;
+            XMLElement *temp = accessor->activeElem;
 
-            activeElem = activeElem->NextSiblingElement();
+            accessor->activeElem = accessor->activeElem->NextSiblingElement();
 
-            if (activeElem != NULL) {
+            if (accessor->activeElem != NULL) {
 
                 return true;
             }
             else {
 
-                activeElem = temp;
+                accessor->activeElem = temp;
             }
         }
     }
@@ -223,22 +214,22 @@ bool FileSystem::traverseToSyblingElement() {
 }
 
 // Changes from current element to the next element of same parent by name
-bool FileSystem::traverseToSyblingElement(const char *syb) {
+bool FileSystem::traverseToSyblingElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *syb) {
 
-    if (activeAsset != NULL) {
-        if (activeElem != NULL) {
+    if (accessor->activeAsset != NULL) {
+        if (accessor->activeElem != NULL) {
 
-            XMLElement *temp = activeElem;
+            XMLElement *temp = accessor->activeElem;
 
-            activeElem = activeElem->NextSiblingElement(syb);
+            accessor->activeElem = accessor->activeElem->NextSiblingElement(syb);
 
-            if (activeElem != NULL) {
+            if (accessor->activeElem != NULL) {
 
                 return true;
             }
             else {
 
-                activeElem = temp;
+                accessor->activeElem = temp;
             }
         }
     }
@@ -247,29 +238,29 @@ bool FileSystem::traverseToSyblingElement(const char *syb) {
 }
 
 // Changes from current element to the next element of same parent by name
-bool FileSystem::traverseToSyblingElement(const std::string &syb) {
+bool FileSystem::traverseToSyblingElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &syb) {
 
-    return this->traverseToSyblingElement(syb.c_str());
+    return this->traverseToSyblingElement(accessor, syb.c_str());
 }
 
 // Return from current tag to parent tag
-bool FileSystem::traverseToParentElement() {
+bool FileSystem::traverseToParentElement(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
-    if (activeElem != NULL) {
+    if (accessor->activeElem != NULL) {
 
-        XMLElement *temp = activeElem;
+        XMLElement *temp = accessor->activeElem;
 
-        XMLNode *parent = activeElem->Parent();
+        XMLNode *parent = accessor->activeElem->Parent();
 
-        activeElem = (XMLElement *)parent;
+        accessor->activeElem = (XMLElement *)parent;
 
-        if (activeElem != NULL) {
+        if (accessor->activeElem != NULL) {
 
             return true;
         }
         else {
 
-            activeElem = temp;
+            accessor->activeElem = temp;
         }
     }
 
@@ -277,11 +268,11 @@ bool FileSystem::traverseToParentElement() {
 }
 
 // Get the text contained in the tags of the current element
-bool FileSystem::getElementText(std::string &val) {
+bool FileSystem::getElementText(std::unique_ptr<FileSystem::FileAccessor> &accessor, std::string &val) {
 
-    if (activeElem != NULL) {
+    if (accessor->activeElem != NULL) {
         
-        val = activeElem->GetText();
+        val = accessor->activeElem->GetText();
 
         return true;
     }
@@ -290,33 +281,12 @@ bool FileSystem::getElementText(std::string &val) {
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const char *name, std::string &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, std::string &val) {
 
-    if (activeElem != NULL) {
-        if (activeElem->Attribute(name) != 0) {
+    if (accessor->activeElem != NULL) {
+        if (accessor->activeElem->Attribute(name) != 0) {
 
-            val = activeElem->Attribute(name);
-
-            return true;
-        }
-    }
-
-    return false;
-}
-
-// Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const std::string &name, std::string &val) {
-
-    return this->getAttribute(name.c_str(), val);
-}
-
-// Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const char *name, int &val) {
-
-    if (activeElem != NULL) {
-        if (activeElem->Attribute(name) != 0) {
-
-            val = activeElem->IntAttribute(name);
+            val = accessor->activeElem->Attribute(name);
 
             return true;
         }
@@ -326,18 +296,18 @@ bool FileSystem::getAttribute(const char *name, int &val) {
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const std::string &name, int &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, std::string &val) {
 
-    return this->getAttribute(name.c_str(), val);
+    return this->getAttribute(accessor, name.c_str(), val);
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const char *name, float &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, int &val) {
 
-    if (activeElem != NULL) {
-        if (activeElem->Attribute(name) != 0) {
+    if (accessor->activeElem != NULL) {
+        if (accessor->activeElem->Attribute(name) != 0) {
 
-            val = activeElem->FloatAttribute(name);
+            val = accessor->activeElem->IntAttribute(name);
 
             return true;
         }
@@ -347,18 +317,18 @@ bool FileSystem::getAttribute(const char *name, float &val) {
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const std::string &name, float &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, int &val) {
 
-    return this->getAttribute(name.c_str(), val);
+    return this->getAttribute(accessor, name.c_str(), val);
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const char *name, double &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, float &val) {
 
-    if (activeElem != NULL) {
-        if (activeElem->Attribute(name) != 0) {
+    if (accessor->activeElem != NULL) {
+        if (accessor->activeElem->Attribute(name) != 0) {
 
-            val = activeElem->DoubleAttribute(name);
+            val = accessor->activeElem->FloatAttribute(name);
 
             return true;
         }
@@ -368,18 +338,18 @@ bool FileSystem::getAttribute(const char *name, double &val) {
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const std::string &name, double &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, float &val) {
 
-    return this->getAttribute(name.c_str(), val);
+    return this->getAttribute(accessor, name.c_str(), val);
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const char *name, bool &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, double &val) {
 
-    if (activeElem != NULL) {
-        if (activeElem->Attribute(name) != 0) {
+    if (accessor->activeElem != NULL) {
+        if (accessor->activeElem->Attribute(name) != 0) {
 
-            val = activeElem->BoolAttribute(name);
+            val = accessor->activeElem->DoubleAttribute(name);
 
             return true;
         }
@@ -389,9 +359,30 @@ bool FileSystem::getAttribute(const char *name, bool &val) {
 }
 
 // Get an attribute from the current element, if exists
-bool FileSystem::getAttribute(const std::string &name, bool &val) {
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, double &val) {
 
-    return this->getAttribute(name.c_str(), val);
+    return this->getAttribute(accessor, name.c_str(), val);
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name, bool &val) {
+
+    if (accessor->activeElem != NULL) {
+        if (accessor->activeElem->Attribute(name) != 0) {
+
+            val = accessor->activeElem->BoolAttribute(name);
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Get an attribute from the current element, if exists
+bool FileSystem::getAttribute(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name, bool &val) {
+
+    return this->getAttribute(accessor, name.c_str(), val);
 }
 
 
@@ -418,7 +409,7 @@ bool FileSystem::saveFile(const std::string &refName, const std::string &fileNam
 }
 
     // Create a new asset file. Is not automatically saved
-bool FileSystem::createTempFile(const char *refName) {
+std::unique_ptr<FileSystem::FileAccessor> FileSystem::createTempFile(const char *refName) {
 
     if (assets.find(refName) == assets.end()) {
 
@@ -426,12 +417,11 @@ bool FileSystem::createTempFile(const char *refName) {
 
         if (asset->Error() == false) {
 
+            std::unique_ptr<FileSystem::FileAccessor> access(new FileSystem::FileAccessor(asset));
+
             assets[refName] = asset;
 
-            activeAsset = asset;
-            activeElem = NULL;
-
-            return true;
+            return access;
         }
         else {
 
@@ -439,17 +429,17 @@ bool FileSystem::createTempFile(const char *refName) {
         }
     }
 
-    return false;
+    return NULL;
 }
 
 // Create a new asset file. Is not automatically saved
-bool FileSystem::createTempFile(const std::string &refName) {
+std::unique_ptr<FileSystem::FileAccessor> FileSystem::createTempFile(const std::string &refName) {
 
     return this->createTempFile(refName.c_str());
 }
 
 // Load an existing file from location, returns false if doesn't exist
-bool FileSystem::loadFile(const char *refName, const char *fileLoc) {
+std::unique_ptr<FileSystem::FileAccessor> FileSystem::loadFile(const char *refName, const char *fileLoc) {
 
     // Ensure doesn't already exist
     if (assets.find(refName) == assets.end()) {
@@ -460,12 +450,11 @@ bool FileSystem::loadFile(const char *refName, const char *fileLoc) {
 
         if (asset->Error() == false) {
 
+            std::unique_ptr<FileSystem::FileAccessor> access(new FileSystem::FileAccessor(asset));
+
             assets[refName] = asset;
 
-            activeAsset = asset;
-            activeElem = NULL;
-
-            return true;
+            return access;
         }
         else {
 
@@ -477,30 +466,30 @@ bool FileSystem::loadFile(const char *refName, const char *fileLoc) {
 }
 
 // Load an existing file from location, returns false if doesn't exist
-bool FileSystem::loadFile(const std::string &refName, const std::string &fileLoc) {
+std::unique_ptr<FileSystem::FileAccessor> FileSystem::loadFile(const std::string &refName, const std::string &fileLoc) {
 
     return this->loadFile(refName.c_str(), fileLoc.c_str());
 }
 
 // Create a new element as a child of the current element
-bool FileSystem::newElement(const char *name) {
+bool FileSystem::newElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *name) {
 
-    if (activeAsset != NULL) {
+    if (accessor->activeAsset != NULL) {
 
-        XMLElement *newElem = activeAsset->NewElement(name);
+        XMLElement *newElem = accessor->activeAsset->NewElement(name);
 
         if (newElem != NULL) {
 
-            if (activeElem != NULL) {
+            if (accessor->activeElem != NULL) {
 
-                activeElem->InsertEndChild(newElem);
+                accessor->activeElem->InsertEndChild(newElem);
             }
             else {
 
-                activeAsset->InsertEndChild(newElem);
+                accessor->activeAsset->InsertEndChild(newElem);
             }
             
-            activeElem = newElem;
+            accessor->activeElem = newElem;
 
             return true;
         }
@@ -510,17 +499,17 @@ bool FileSystem::newElement(const char *name) {
 }
 
 // Create a new element as a child of the current element
-bool FileSystem::newElement(const std::string &name) {
+bool FileSystem::newElement(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &name) {
 
-    return this->newElement(name.c_str());
+    return this->newElement(accessor, name.c_str());
 }
 
 // Add text to the current element
-bool FileSystem::setElementText(const char *text) {
+bool FileSystem::setElementText(std::unique_ptr<FileSystem::FileAccessor> &accessor, const char *text) {
 
-    if (activeElem != NULL) {
+    if (accessor->activeElem != NULL) {
 
-        activeElem->SetText(text);
+        accessor->activeElem->SetText(text);
 
         return true;
     }
@@ -529,32 +518,32 @@ bool FileSystem::setElementText(const char *text) {
 }
 
 // Add text to the current element
-bool FileSystem::setElementText(const std::string &text) {
+bool FileSystem::setElementText(std::unique_ptr<FileSystem::FileAccessor> &accessor, const std::string &text) {
 
-    return this->setElementText(text.c_str());
+    return this->setElementText(accessor, text.c_str());
 }
 
-bool FileSystem::destroyCurrentElement() {
+bool FileSystem::destroyCurrentElement(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
-    if (activeElem != NULL) {
+    if (accessor->activeElem != NULL) {
 
-        XMLElement *temp = activeElem;
+        XMLElement *temp = accessor->activeElem;
 
-        XMLNode *parent = activeElem->Parent();
+        XMLNode *parent = accessor->activeElem->Parent();
 
-        activeElem = (XMLElement *)parent;
+        accessor->activeElem = (XMLElement *)parent;
 
         // If the parent was NULL, the node is the doc, the final parent node, cant delete it
-        if (activeElem != NULL) {
+        if (accessor->activeElem != NULL) {
 
             temp->DeleteChildren();
-            activeAsset->DeleteNode(temp);
+            accessor->activeAsset->DeleteNode(temp);
             
             return true;
         }
         else {
 
-            activeElem = temp;
+            accessor->activeElem = temp;
         }
     }
 

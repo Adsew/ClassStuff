@@ -20,6 +20,7 @@ Description: Precompiled header for the common files and support macros.
 #include <map>
 #include <time.h>
 #include <functional>
+#include <memory>
 
 
 // Extra libraries
