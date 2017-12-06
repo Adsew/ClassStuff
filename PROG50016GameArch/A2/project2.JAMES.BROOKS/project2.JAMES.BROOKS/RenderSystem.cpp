@@ -31,7 +31,7 @@ void RenderSystem::initialize() {
 
 }
 
-void RenderSystem::update(float _deltaTime) {
+void RenderSystem::update() {
 
 	for (auto renderable : renderComponents) {
 

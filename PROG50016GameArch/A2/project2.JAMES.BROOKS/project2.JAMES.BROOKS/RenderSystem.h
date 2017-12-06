@@ -23,9 +23,29 @@ class RenderSystem : public ISystem {
 
     friend class GameEngine;
 
+
+    /*****Variables *****/
+
 private:
 	
     std::list<IRenderable*> renderComponents;
+
+
+    /***** Functions *****/
+
+private:
+
+    RenderSystem() = default;
+
+    ~RenderSystem() = default;
+
+    RenderSystem(const RenderSystem& other) = default;
+
+protected:
+
+    void initialize() override;
+
+    void update() override;
 
 public:	
 	
@@ -38,20 +58,6 @@ public:
     void addRenderable(IRenderable* component);
 	
 	void removeRenderable(IRenderable* component);
-
-protected:		
-	
-    void initialize() override;
-	
-	void update(float _deltaTime) override;
-
-private:
-	
-    RenderSystem() = default;
-	
-    ~RenderSystem() = default;
-	
-    RenderSystem(const RenderSystem& other) = default;
 };
 
 #endif // !RENDER_SYSTEM_H

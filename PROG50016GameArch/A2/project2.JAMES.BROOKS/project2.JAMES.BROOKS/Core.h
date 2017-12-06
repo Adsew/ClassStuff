@@ -18,13 +18,13 @@ Description: Precompiled header for the common files and support macros.
 #include <vector>
 #include <list>
 #include <map>
-#include <time.h>
 #include <functional>
 #include <memory>
 
 
 // Extra libraries
 
+#include "Timer.h"
 #include "FileSystem.h"
 
 

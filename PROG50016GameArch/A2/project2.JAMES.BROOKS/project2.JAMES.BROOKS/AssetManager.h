@@ -22,19 +22,19 @@ class Asset;
 
 class AssetManager : public ISystem {
 
+    friend class GameEngine;
+
+
+    /***** Variables *****/
+
 private:
 
 	std::list<Asset*> assets;
+
     std::map<std::string, std::function<Asset *()>> assetCreate;
 
-public:
 
-	inline static AssetManager &Instance()
-	{
-		static AssetManager instance;
-
-		return instance;
-	}
+    /***** Functions *****/
 
 private:
 
@@ -44,15 +44,20 @@ private:
 
     AssetManager(const AssetManager& other) = default;
 
-    friend class GameEngine;
-
 protected:
 
 	void initialize() override;
 
-    void update(float _deltaTime) override;
+    void update() override;
 
 public:
+
+    inline static AssetManager &Instance() {
+
+        static AssetManager instance;
+
+        return instance;
+    }
 
     void addAsset(Asset *asset);
 

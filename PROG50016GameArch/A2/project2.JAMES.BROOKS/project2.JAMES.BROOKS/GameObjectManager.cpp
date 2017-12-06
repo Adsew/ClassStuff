@@ -20,7 +20,7 @@ void GameObjectManager::initialize() {
 
 }
 
-void GameObjectManager::update(float _deltaTime) {
+void GameObjectManager::update() {
 
 
 }

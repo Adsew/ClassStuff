@@ -35,7 +35,7 @@ public:
         return instance;
     }
 
-    void initialize();
+    void initialize(const char *settingsFile);
 
     void gameLoop();
 };

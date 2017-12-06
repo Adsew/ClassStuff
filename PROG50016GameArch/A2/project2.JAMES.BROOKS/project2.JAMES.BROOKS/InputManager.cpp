@@ -20,7 +20,7 @@ void InputManager::initialize() {
 
 }
 
-void InputManager::update(float _deltaTime) {
+void InputManager::update() {
 
 
 }

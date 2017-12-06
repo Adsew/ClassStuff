@@ -23,7 +23,7 @@ void AssetManager::initialize() {
     assetCreate["TextureAsset"] = TextureAsset::create;
 }
 
-void AssetManager::update(float _deltaTime) {
+void AssetManager::update() {
 
 
 }

@@ -20,27 +20,32 @@ class InputManager : public ISystem {
 
 friend class GameEngine;
 
-public:
-	
-    inline static InputManager& Instance() {
 
-		static InputManager instance;
-		return instance;
-	}
+    /***** Functions *****/
+
+private:
+
+    InputManager() = default;
+
+    ~InputManager() = default;
+
+    InputManager(const InputManager& other) = default;
 
 protected:
 	
     void initialize() override;
 	
-    void update(float _deltaTime) override;
+    void update() override;
 
-private:
-	
-    InputManager() = default;
-	
-    ~InputManager() = default;
-	
-    InputManager(const InputManager& other) = default;
+public:
+
+    inline static InputManager& Instance() {
+
+        static InputManager instance;
+
+        return instance;
+    }
+
 };
 
 #endif // !INPUT_MANAGER_H

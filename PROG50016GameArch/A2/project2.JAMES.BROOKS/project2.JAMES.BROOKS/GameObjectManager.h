@@ -23,31 +23,38 @@ class GameObjectManager : public ISystem {
 
 friend class GameEngine;
 
+    
+    /***** Variables *****/
+
 private:
 	
     std::list<GameObject*> gameObjects;
 
-public:
-	
-    inline static GameObjectManager& Instance() {
 
-		static GameObjectManager instance;
-		return instance;
-	}
+    /***** Functions *****/
+
+private:
+
+    GameObjectManager() = default;
+
+    ~GameObjectManager() = default;
+
+    GameObjectManager(const GameObjectManager& other) = default;
 
 protected:
 
 	void initialize() override;
 	
-    void update(float _deltaTime) override;
+    void update() override;
 
-private:
-	
-    GameObjectManager() = default;
-	
-    ~GameObjectManager() = default;
-	
-    GameObjectManager(const GameObjectManager& other) = default;
+public:
+
+    inline static GameObjectManager& Instance() {
+
+        static GameObjectManager instance;
+
+        return instance;
+    }
 };
 
 #endif // !GAME_OBJECT_MANAGER_H
