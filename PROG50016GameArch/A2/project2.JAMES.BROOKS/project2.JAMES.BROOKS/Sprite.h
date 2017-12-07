@@ -1,7 +1,6 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-
 /*
 Student: James Brooks
 Class: Game Architecture
@@ -20,19 +19,22 @@ Description: A small image to be rendered to the screen.
 
 class Sprite : public Component, public IRenderable {
 
+
+    /***** Functions *****/
+
+protected:
+
+    virtual void render() override;
+
 public:
 
-	Sprite();
+	Sprite(unsigned int uniqueID);
 
-	~Sprite();
+	virtual ~Sprite();
 	
 	virtual void initialize() override;
-	
-	std::string getComponentId() override { return "Sprite"; }
 
-protected:	
-	
-	virtual void render() override;
+    virtual void update() override;
 };
 
 #endif // !SPRITE_H

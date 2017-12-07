@@ -16,46 +16,87 @@ Description: A standard object to be created into the scene.
 #include "Component.h"
 
 
-GameObject::GameObject() {
+GameObject::GameObject(unsigned int uniqueID)
+    : Object(uniqueID) {
 
+    name = "New Game Object";
+}
 
+GameObject::GameObject(unsigned int uniqueID, const char *goName)
+    : Object(uniqueID) {
+
+    name = goName;
+}
+
+GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
+    : Object(uniqueID) {
+
+    name = goName.c_str();
 }
 
 GameObject::~GameObject() {
 
-	auto iter = components.begin();
-	
-    while (iter != components.end())
-	{
-		delete (*iter).second;
-		++iter;
-	}
+    for (std::map<std::string, Component *>::iterator iter = components.begin();
+        iter != components.end();
+        iter++) {
+
+        (*iter).second->destroy();
+    }
+
 	components.clear();
 }
 
 void GameObject::initialize() {
 
-	Object::initialize();
+    
 }
 
 void GameObject::addComponent(Component * component) {
 
-	components.insert(std::pair<std::string, Component*>(component->getComponentId(), component));
+    if (component != NULL) {
+
+        components[component->getName()] = component;
+    }
 }
 
 void GameObject::removeComponent(Component * component) {
 
-	components.erase(component->getComponentId());
+    if (component != NULL) {
+
+        std::map<std::string, Component *>::iterator iter = components.find(component->getName());
+
+        if (iter != components.end()) {
+
+            (*iter).second->destroy();
+            components.erase(iter);
+        }
+    }
 }
 
 void GameObject::update() {
 
-	auto iter = components.begin();
-	
-    while (iter != components.end())
-	{
-		// update component possibly???
-		++iter;
-	}
+    for (std::map<std::string, Component *>::iterator iter = components.begin();
+        iter != components.end();
+        iter++) {
+
+        (*iter).second->update();
+    }
 }
 
+
+    /* Gets/Sets */
+
+void GameObject::setName(const char *newName) {
+
+    name = newName;
+}
+
+void GameObject::setName(const std::string &newName) {
+
+    this->setName(newName.c_str());
+}
+
+std::string &GameObject::getName() {
+
+    return name;
+}

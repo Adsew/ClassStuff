@@ -15,19 +15,41 @@ Description: Base class for most entities persisting in the game world.
 #include "Object.h"
 
 
-Object::Object() {
+Object::Object(unsigned int uniqueID) {
 
-	std::cout << "Object Created" << std::endl;
+    id = uniqueID;
+
+    initialized = false;
+    needsDeletion = false;
 }
 
-Object::~Object() {
+Object::~Object() {}
 
-	std::cout << "Object Destroyed" << std::endl;
+// Return true if id's are the same
+bool Object::operator==(const Object &obj) {
+
+    if (id == obj.id) {
+
+        return true;
+    }
+
+    return false;
 }
 
-void Object::initialize() {
+// Return true if object has been initialized
+bool Object::isInitialized() {
+    
+    return initialized;
+}
 
-	initialized = true;
+// Set an object to be deleted by the manager
+void Object::destroy() {
 
-	std::cout << "Object initialized" << std::endl;
+    needsDeletion = true;
+}
+
+// Check if object is set for deletion
+bool Object::pollNeedsDeletion() {
+
+    return needsDeletion;
 }

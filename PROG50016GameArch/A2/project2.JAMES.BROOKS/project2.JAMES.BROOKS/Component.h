@@ -18,19 +18,38 @@ Description: A base class for all components that can be added to a game object.
 
 class Component : public Object {
 
+    friend class ComponentManager;
+
+    /***** Variables *****/
+
 private:
+
+    std::string name;
+
+    
+    /***** Functions *****/
+
+protected:
 	
-    int id;
+    Component(unsigned int uniqueID);
+
+    Component(unsigned int uniqueID, const char *compName);
+
+    Component(unsigned int uniqueID, const std::string &compName);
+
+    virtual ~Component();
 
 public:
-	
-    Component();// Look at calling base
-	
-    ~Component();
 
-	virtual std::string getComponentId() = 0;
-	
-    virtual void initialize() override;
+    // Initialize the component to a usable state
+    virtual void initialize() = 0;
+
+    // Cycle update for a component
+    virtual void update() = 0;
+
+        /* Gets/Sets */
+
+    std::string &getName();
 };
 
 #endif // !COMPONENT_H

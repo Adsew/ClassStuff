@@ -9,7 +9,7 @@ File: GameObjectManager.h
 
 Class: GameObjectManager
 
-Description: Maintains the memory and funcitonality of all game objects currently loaded.
+Description: Maintains the memory and functionality of all game objects currently loaded.
 */
 
 
@@ -21,15 +21,16 @@ class GameObject;
 
 class GameObjectManager : public ISystem {
 
-friend class GameEngine;
+    friend class GameEngine;
 
     
     /***** Variables *****/
 
 private:
 	
-    std::list<GameObject*> gameObjects;
+    std::list<GameObject *> gameObjects;
 
+    unsigned int uniqueIDCount;
 
     /***** Functions *****/
 
@@ -37,9 +38,9 @@ private:
 
     GameObjectManager() = default;
 
-    ~GameObjectManager() = default;
+    ~GameObjectManager();
 
-    GameObjectManager(const GameObjectManager& other) = default;
+    GameObjectManager(const GameObjectManager &gom) = default;
 
 protected:
 
@@ -49,12 +50,14 @@ protected:
 
 public:
 
-    inline static GameObjectManager& Instance() {
+    inline static GameObjectManager &Instance() {
 
         static GameObjectManager instance;
 
         return instance;
     }
+
+    GameObject *createGameObject();
 };
 
 #endif // !GAME_OBJECT_MANAGER_H
