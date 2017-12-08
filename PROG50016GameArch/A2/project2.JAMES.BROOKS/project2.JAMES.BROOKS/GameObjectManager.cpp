@@ -30,7 +30,7 @@ GameObjectManager::~GameObjectManager() {
 
 void GameObjectManager::initialize() {
 
-
+    uniqueIDCount = 0;
 }
 
 void GameObjectManager::update() {
@@ -42,10 +42,12 @@ void GameObjectManager::update() {
         if ((*iter)->pollNeedsDeletion()) {
 
             delete *iter;
-            gameObjects.erase(iter);
+            iter = gameObjects.erase(iter);
         }
+        else {
 
-        (*iter)->update();
+            (*iter)->update();
+        }
     }
 }
 

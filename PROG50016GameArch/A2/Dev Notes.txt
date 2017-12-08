@@ -1,1 +1,3 @@
 Allocator class has an object pool that can be requested to preallocate objects of a certain type and if they have objects of that type when someone requersts as a single allocatoin they will get it [assed to them from the pool of availables.
+
+Make componenets moer generalizable fix macro so oyu dont need to make a static generate class function in every copmonenet

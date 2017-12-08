@@ -28,12 +28,17 @@ Description: Precompiled header for the common files and support macros.
 #include "FileSystem.h"
 
 
+// Generate dynamic component types
+
+#define REGISTER_COMPONENT(_class_type_) _class_type_::generateType();
+
+
 // Easy debug output
 
 #ifdef _DEBUG
-    #define LOG(__out__) std::cout << __out__ << std::endl;
+    #define DEBUG_LOG(__out__) std::cout << __out__ << std::endl;
 #else
-    #define LOG(__out__)
+    #define DEBUG_LOG(__out__)
 #endif
 
 

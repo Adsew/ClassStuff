@@ -30,11 +30,13 @@ class Timer : public ISystem {
 private:
 
     clock_t prevClockTime;
-
+    
     float runTime;
-
     float deltaTime;
 
+    clock_t logTimerStartTime;
+    
+    bool logTimerLocked;
 
     /***** Functions *****/
 
@@ -68,6 +70,12 @@ public:
 
     // Return the current total game runtime since after initialization
     float getRuntime();
+
+    // Begin timing of a segment and lock the timer in use
+    bool startLogTimer();
+
+    // End timing and get the time taken
+    float endLogTimer();
 };
 
 #endif // !TIMER_H

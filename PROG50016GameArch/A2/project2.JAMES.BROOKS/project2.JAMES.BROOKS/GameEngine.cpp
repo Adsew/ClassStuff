@@ -17,6 +17,7 @@ Description: Holds the game loop and runs the major systems that run the game.
 #include "InputManager.h"
 #include "RenderSystem.h"
 #include "GameObjectManager.h"
+#include "ComponentManager.h"
 #include "GameEngine.h"
 
 
@@ -27,6 +28,7 @@ void GameEngine::initialize(const char *settingsFile) {
 	InputManager::Instance().initialize();
 	RenderSystem::Instance().initialize();
 	GameObjectManager::Instance().initialize();
+    ComponentManager::Instance().initialize();
 
 	// Needs to be at the end because we will load a default file
 	FileSystem::Instance().initialize(settingsFile);
@@ -46,10 +48,12 @@ void GameEngine::gameLoop() {
 
 		GameObjectManager::Instance().update();
 
+        ComponentManager::Instance().update();
+
 		RenderSystem::Instance().update();
 
         Timer::Instance().update();
 
-		std::cout << "Current Game Time: " << Timer::Instance().runTime << " Delta Time: " << Timer::Instance().deltaTime << std::endl;
+		DEBUG_LOG("Current Game Time: " << Timer::Instance().runTime << " Delta Time: " << Timer::Instance().deltaTime);
 	}
 }

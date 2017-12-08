@@ -26,7 +26,7 @@ void Timer::initialize() {
 void Timer::update() {
 
     prevClockTime = clock() - prevClockTime;
-    deltaTime = ((float)prevClockTime) / ((clock_t)1000);
+    deltaTime = ((float)prevClockTime) / ((clock_t)1000.0f);
     runTime += deltaTime;
 
     prevClockTime = clock();
@@ -47,4 +47,32 @@ float Timer::getDelta() {
 float Timer::getRuntime() {
 
     return runTime;
+}
+
+// Begin timing of a segment and lock the timer in use
+bool Timer::startLogTimer() {
+
+    if (!logTimerLocked) {
+
+        logTimerLocked = true;
+
+        logTimerStartTime = clock();
+
+        return true;
+    }
+
+    return false;
+}
+
+// End timing and get the time taken
+float Timer::endLogTimer() {
+
+    if (logTimerLocked) {
+
+        logTimerLocked = false;
+
+        return ( (float)(clock() - logTimerStartTime) ) / ((clock_t)1000.0f);
+    }
+
+    return 0.0f;
 }

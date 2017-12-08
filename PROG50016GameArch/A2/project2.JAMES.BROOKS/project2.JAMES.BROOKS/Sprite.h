@@ -19,6 +19,23 @@ Description: A small image to be rendered to the screen.
 
 class Sprite : public Component, public IRenderable {
 
+    /***** Type Creator *****/
+
+private:
+
+    static void generateType();
+
+    class TypeRegister {
+
+        static bool dummy;
+
+        TypeRegister() {
+
+            REGISTER_COMPONENT(Sprite)
+        }
+
+        ~TypeRegister() = default;
+    };
 
     /***** Functions *****/
 

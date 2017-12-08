@@ -16,13 +16,52 @@ Description: Maintains the memory and functionality of all components currently 
 #include "ISystem.h"
 
 
+class Component;
+
+
 class ComponentManager : public ISystem {
 
-public:
-    
-    ComponentManager();
-    
+    friend class GameEngine;
+
+
+    /***** Variables *****/
+
+private:
+
+    std::list<Component *> components;
+
+    std::map<std::string, Component *(unsigned int uniqueID)> createComponent;
+
+    /***** Functions *****/
+
+private:
+
+    ComponentManager() = default;
+
     ~ComponentManager();
+
+    ComponentManager(const ComponentManager &cm) = default;
+
+protected:
+
+    virtual void initialize() override;
+
+    virtual void update() override;
+
+    template <class T>
+    Component *createComponentOfType(unsigned int uniqueID);
+
+public:
+
+    inline static ComponentManager &Instance() {
+
+        static ComponentManager instance;
+
+        return instance;
+    }
+
+    template <class T>
+    void addComponentType(const char *name);
 };
 
 #endif
