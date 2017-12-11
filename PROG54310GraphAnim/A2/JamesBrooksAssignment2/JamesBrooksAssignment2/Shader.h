@@ -19,9 +19,27 @@ Description: This class will allow the addition of multiple shaders
 #include <GLFW/glfw3.h>
 
 
+class Light;
+
+
 class Shader {
 
 private:
+
+    /***** Structs for Shaders *****/
+
+    struct LightVariables {
+
+        GLuint colour;
+        GLuint position;
+        GLuint direction;
+
+        GLuint ambientStrength;
+        GLuint specularStrength;
+
+        GLuint specularSize;
+    };
+
 
     /***** Variables *****/
 
@@ -30,6 +48,10 @@ private:
     GLuint vertexPos_modelSpaceID;
     GLuint colourPos_vec4ID;
     GLuint cameraPos_mat4ID;
+    LightVariables *lightPos_structID;
+    GLuint lightCountPos_int;
+
+    int lightCount;
 
     bool modified;      // True if shader added since last compile, false after compile
 
@@ -63,6 +85,9 @@ public:
     /* Generate the camera handle for the currently built shader program */
     void genHandleCamera(const char *cameraVar);
 
+    /* Generate handles for the amount of lights in the scene */
+    void genHandleLights(const char *lightArrayStr, const char *lightCountStr, int maxNumLights);
+
     /* Sets the bound buffer to the vertex variable of the shader program */
     void setVertexAttribute();
 
@@ -71,6 +96,13 @@ public:
 
     /* Sets the camera matrix to the camera variable of the shader program */
     void setCameraAttribute(glm::mat4 &mvp);
+
+    /* Set a single light attribute to its associated position in the shader program */
+    /* orderNum is from 0 - (maxlights-1) to tell which light to set */
+    void setLightAttribute(Light *light, int orderNum);
+
+    /* Set the attribute to tell the shader how many lights are active */
+    void setLightCountAttribute(int count);
 
     /* Add a shader to the shader program */
     bool addShader(std::string shaderFile, GLenum shaderType);

@@ -17,12 +17,17 @@ a given list of vectors and draw them to an OpenGL window.
 
 #include "Shader.h"
 #include "Camera.h"
+#include "LightContainer.h"
 #include "ModelContainer.h"
 
 
 class Window {
 
 private:
+
+    GLint light_handle;
+    GLint light_amb_handle;
+    GLint light_num_handle;
 
     /***** Variables *****/
 
@@ -40,6 +45,8 @@ private:
     Shader shader;
 
     Camera camera;
+
+    LightContainer lights;
 
     ModelContainer models;
 

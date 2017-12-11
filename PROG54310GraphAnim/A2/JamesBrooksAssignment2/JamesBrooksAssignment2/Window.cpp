@@ -15,7 +15,7 @@ a given list of vectors and draw them to an OpenGL window.
 #include "PresetModelData.h"
 #include "Window.h"
 
-static glm::vec4 lightcol(0.5f, 0.5f, 0.5f, 0.5f);
+
     /***** Support Functions *****/
 /* Would be implemented in a game object based class in an engine */
 /* Simply used for rotating camera right now and simplifying code */
@@ -107,12 +107,18 @@ Window::Window() {
                 shader.addShader("LightingShader.shader", GL_FRAGMENT_SHADER);
 
                 shader.generateHandles("vec3_position", "vec4_colour", "mvp_camera");
+                shader.genHandleLights("lights", "num_lights_used", 1);
 
 
 
 
-                //GLint light = glGetAttribLocation(shader.getProgramID(), "vec4_light_colour");
-                //glUniform4(light, 1, GL_FALSE, lightcol);
+
+
+                /*light1.setColour(glm::vec3(1.0f, 1.0f, 1.0f));
+                light1.setPosition(glm::vec3(10.0f, 10.0f, 10.0f));
+                light1.setAmbientStrength(0.99f);*/
+
+
 
 
 
@@ -122,6 +128,10 @@ Window::Window() {
                 // Set camera defaults
                 camera.updatePosition(glm::vec3(0.0f, 0.0f, 0.0f));
                 camera.updateTarget(glm::vec3(0.0f, 0.0f, 1.0f));
+
+                // Set lights in the scene
+                lights.setMaxLightCount(3);     // Max is set by the array size in the fragment shader
+                                                // It can not be set dynamically without extensions or buffers
 
                 // Load the models
                 // Render order must be in order of opaque -> translucent
@@ -259,6 +269,8 @@ void Window::draw() {
     shader.use();
 
     camera.setCamera(shader);
+
+    lights.setLights(shader);
 
     models.render();
     

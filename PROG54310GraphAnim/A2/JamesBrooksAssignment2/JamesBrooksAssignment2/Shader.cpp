@@ -11,7 +11,9 @@ to create a concatinated program shader.
 
 
 #include <iostream>
+#include <string>
 
+#include "Light.h"
 #include "ShaderLoader.h"
 #include "Shader.h"
 
@@ -20,12 +22,20 @@ Shader::Shader() {
 
     programID = 0;
     modified = false;
+
+    lightPos_structID = NULL;
+    lightCount = 0;
 }
 
 
 Shader::~Shader() {
 
     glDeleteProgram(programID);
+
+    if (*lightPos_structID != NULL) {
+
+        delete lightPos_structID;
+    }
 }
 
 /* Should always be called to get the most up to date Program ID */
@@ -121,6 +131,28 @@ void Shader::genHandleCamera(const char *cameraVar) {
     cameraPos_mat4ID = glGetUniformLocation(getProgramID(), cameraVar);
 }
 
+/* Generate handles for the amount of lights in the scene */
+void Shader::genHandleLights(const char *lightArrayStr, const char *lightCountStr, int maxNumLights) {
+
+    lightPos_structID = new LightVariables[maxNumLights];
+    lightCount = maxNumLights;
+
+    for (int i = 0; i < maxNumLights; i++) {
+
+        std::string lightVar = lightArrayStr + std::string("[") + std::to_string(i) + std::string("]");
+
+        lightPos_structID[i].colour = glGetUniformLocation(getProgramID(), (lightVar + ".colour").c_str());
+        lightPos_structID[i].position = glGetUniformLocation(getProgramID(), (lightVar + ".position").c_str());
+        lightPos_structID[i].direction = glGetUniformLocation(getProgramID(), (lightVar + ".direction").c_str());
+
+        lightPos_structID[i].ambientStrength = glGetUniformLocation(getProgramID(), (lightVar + ".ambient_str").c_str());
+        lightPos_structID[i].specularStrength = glGetUniformLocation(getProgramID(), (lightVar + ".specular_str").c_str());
+        lightPos_structID[i].specularSize = glGetUniformLocation(getProgramID(), (lightVar + ".specular_size").c_str());
+    }
+
+    lightCountPos_int = glGetUniformLocation(getProgramID(), lightCountStr);
+}
+
 /* Sets the bound buffer to the vertex variable of the shader program */
 void Shader::setVertexAttribute() {
 
@@ -155,6 +187,20 @@ void Shader::setColourAttribute() {
 void Shader::setCameraAttribute(glm::mat4 &mvp) {
 
     glUniformMatrix4fv(cameraPos_mat4ID, 1, GL_FALSE, &mvp[0][0]);
+}
+
+/* Set a single light attribute to its associated position in the shader program */
+/* orderNum is from 0 - (maxlights-1) to tell which light to set */
+void Shader::setLightAttribute(Light *light, int orderNum) {
+
+    //glUniform3fv(light_handle, 1, &(light[orderNum].colour[0]));
+    //glUniform1f(light_amb_handle, light[orderNum].ambientStrength);
+}
+
+/* Set the attribute to tell the shader how many lights are active */
+void Shader::setLightCountAttribute(int count) {
+
+    glUniform1i(lightCountPos_int, count);
 }
 
 /* Add a shader to the shader program */

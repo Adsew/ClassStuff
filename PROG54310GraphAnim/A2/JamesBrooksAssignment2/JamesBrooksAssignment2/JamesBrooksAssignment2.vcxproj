@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{68CCFE59-2F65-41C1-81DC-8EF01D8D09F8}</ProjectGuid>
     <RootNamespace>JamesBrooksGraphAnimEx3</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
     <ProjectName>JamesBrooksAssignment2</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="LightContainer.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelContainer.h" />
     <ClInclude Include="PresetModelData.h" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightContainer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelContainer.cpp" />
