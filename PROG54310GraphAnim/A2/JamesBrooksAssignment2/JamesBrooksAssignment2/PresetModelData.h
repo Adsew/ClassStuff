@@ -14,7 +14,7 @@ A collection of static arrays used to showcase the array parameter constructor f
 
 static GLfloat terrainVertData[]{
 
-    // Grass using quad
+    // Grass
     -3.0f, -0.7f, -2.0f,
     3.0f, -0.7f, -2.0f,
     3.0f, -0.7f, 3.0f,
@@ -22,7 +22,7 @@ static GLfloat terrainVertData[]{
     -3.0f, -0.7f, 3.0f,
     -3.0f, -0.7f, -2.0f,
 
-    // Water using quad
+    // Water
     -0.4f, -0.69f, -2.0f,
     0.4f, -0.69f, -2.0f,
     0.15f, -0.69f, 3.0f,

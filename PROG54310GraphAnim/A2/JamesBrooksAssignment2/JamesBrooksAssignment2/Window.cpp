@@ -121,7 +121,7 @@ Window::Window() {
                                                 // It can not be set dynamically without extensions or buffers
                 Light *tempLight = new Light();
                 tempLight->setColour(glm::vec3(1.0f, 1.0f, 1.0f));
-                tempLight->setPosition(glm::vec3(0.0f, 1.0f, 0.0f));
+                tempLight->setPosition(glm::vec3(10.0f, 1.0f, 00.0f));
                 tempLight->setAmbientStrength(0.8f);
 
                 lights.addLight(tempLight);
