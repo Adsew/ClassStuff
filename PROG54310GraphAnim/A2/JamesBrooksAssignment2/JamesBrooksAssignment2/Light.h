@@ -37,7 +37,7 @@ public:
     
     ~Light();
 
-    Light operator=(const Light &l);
+    Light &operator=(const Light &l);
 
     // Set the colour of the light
     void setColour(const glm::vec3 &col);

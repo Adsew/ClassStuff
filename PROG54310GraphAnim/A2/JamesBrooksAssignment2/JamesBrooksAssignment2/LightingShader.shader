@@ -5,9 +5,9 @@
 
 struct Light {
 
-    glm::vec3 colour;
-    glm::vec3 position;
-    glm::vec3 direction;
+    vec3 colour;
+    vec3 position;
+    vec3 direction;
 
     float ambient_str;
     float specular_str;
@@ -21,6 +21,8 @@ uniform int num_lights_used;
 
 // Object
 
+in vec3 frag_position;
+in vec3 vert_normal;
 in vec4 frag_colour;
 
 
@@ -32,24 +34,22 @@ out vec4 FragColour;
 void main() {
 
     // Calculate lighting for fragment
-    vec3 ambient;
-    //vec3 diffuse;
-    //vec3 specular;
+
     vec3 lightResult = vec3(1.0f, 1.0f, 1.0f);
     int i = 0;
     
     for (i = 0; i < num_lights_used && i < 3; i++) {
 
-        ambient = light[i].colour * light[i].ambient_str;
+        // Ambient
+        vec3 ambient = light[i].colour * light[i].ambient_str;
 
-        if (i == 0) {
+        // Diffuse
+        vec3 norm = normalize(vert_normal);
+        vec3 lightDir = normalize(frag_position - light[i].position);
+        float diff = max(dot(norm, lightDir), 0.0f);
+        vec3 diffuse = diff * light[i].colour;
 
-            lightResult = ambient;
-        }
-        else {
-
-            lightResult = lightResult * ambient;
-        }
+        lightResult = lightResult * (diffuse);
     }
 
     FragColour = frag_colour * vec4(lightResult, 1.0f);

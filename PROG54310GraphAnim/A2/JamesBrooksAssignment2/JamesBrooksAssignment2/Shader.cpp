@@ -32,7 +32,7 @@ Shader::~Shader() {
 
     glDeleteProgram(programID);
 
-    if (*lightPos_structID != NULL) {
+    if (lightPos_structID != NULL) {
 
         delete lightPos_structID;
     }
@@ -106,9 +106,10 @@ void Shader::use() {
 }
 
 /* Generate the handles for the currently built shader program */
-void Shader::generateHandles(const char *vertexVar, const char *colourVar, const char *cameraVar) {
+void Shader::generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraVar) {
 
     vertexPos_modelSpaceID = glGetAttribLocation(getProgramID(), vertexVar);
+    normalPos_vec3ID = glGetAttribLocation(getProgramID(), normalVar);
     colourPos_vec4ID = glGetAttribLocation(getProgramID(), colourVar);
     cameraPos_mat4ID = glGetUniformLocation(getProgramID(), cameraVar);
 }
@@ -117,6 +118,12 @@ void Shader::generateHandles(const char *vertexVar, const char *colourVar, const
 void Shader::genHandleVertex(const char *vertexVar) {
 
     vertexPos_modelSpaceID = glGetAttribLocation(getProgramID(), vertexVar);
+}
+
+/* Generate the normal handle for the currently built shader program */
+void Shader::genHandleNormal(const char *normalVar) {
+
+    normalPos_vec3ID = glGetAttribLocation(getProgramID(), normalVar);
 }
 
 /* Generate the colour handle for the currently built shader program */
@@ -168,6 +175,21 @@ void Shader::setVertexAttribute() {
     glEnableVertexAttribArray(vertexPos_modelSpaceID);
 }
 
+/* Sets the bound buffer to the normal variable of the shader program */
+void Shader::setNormalAttribute() {
+
+    glVertexAttribPointer(
+        normalPos_vec3ID, // The attribute we want to configure
+        3,                      // size
+        GL_FLOAT,               // type
+        GL_FALSE,               // normalized
+        0,                      // stride
+        (void*)0                // array buffer offset
+    );
+
+    glEnableVertexAttribArray(normalPos_vec3ID);
+}
+
 /* Sets the bound buffer to the colour variable of the shader program */
 void Shader::setColourAttribute() {
 
@@ -193,8 +215,17 @@ void Shader::setCameraAttribute(glm::mat4 &mvp) {
 /* orderNum is from 0 - (maxlights-1) to tell which light to set */
 void Shader::setLightAttribute(Light *light, int orderNum) {
 
-    //glUniform3fv(light_handle, 1, &(light[orderNum].colour[0]));
-    //glUniform1f(light_amb_handle, light[orderNum].ambientStrength);
+    if (orderNum < lightCount) {
+
+        glUniform3fv(lightPos_structID[orderNum].colour, 1, &(light->colour[0]));
+        glUniform3fv(lightPos_structID[orderNum].position, 1, &(light->position[0]));
+        glUniform3fv(lightPos_structID[orderNum].direction, 1, &(light->direction[0]));
+
+        glUniform1f(lightPos_structID[orderNum].ambientStrength, light->ambientStrength);
+        glUniform1f(lightPos_structID[orderNum].specularStrength, light->specularStrength);
+
+        glUniform1i(lightPos_structID[orderNum].specularSize, light->specularSize);
+    }
 }
 
 /* Set the attribute to tell the shader how many lights are active */

@@ -20,7 +20,7 @@ LightContainer::LightContainer() {
 
 LightContainer::~LightContainer() {
 
-    for (int i = 0; i < lights.size(); i++) {
+    for (unsigned int i = 0; i < lights.size(); i++) {
 
         delete lights[i];
     }
@@ -28,7 +28,7 @@ LightContainer::~LightContainer() {
     lights.clear();
 }
 
-void LightContainer::setMaxLightCount(int maxNumLights) {
+void LightContainer::setMaxLightCount(unsigned int maxNumLights) {
 
     maxLights = maxNumLights;
 }
@@ -47,7 +47,7 @@ bool LightContainer::addLight(Light *light) {
 
 void LightContainer::setLights(Shader &shader) {
 
-    for (int i = 0; i < lights.size(); i++) {
+    for (unsigned int i = 0; i < lights.size(); i++) {
 
         shader.setLightAttribute(lights[i], i);
     }

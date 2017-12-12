@@ -106,21 +106,8 @@ Window::Window() {
                 //shader.addShader("FragmentShader.shader", GL_FRAGMENT_SHADER);
                 shader.addShader("LightingShader.shader", GL_FRAGMENT_SHADER);
 
-                shader.generateHandles("vec3_position", "vec4_colour", "mvp_camera");
-                shader.genHandleLights("lights", "num_lights_used", 1);
-
-
-
-
-
-
-                /*light1.setColour(glm::vec3(1.0f, 1.0f, 1.0f));
-                light1.setPosition(glm::vec3(10.0f, 10.0f, 10.0f));
-                light1.setAmbientStrength(0.99f);*/
-
-
-
-
+                shader.generateHandles("vec3_position", "vec3_normal", "vec4_colour", "mvp_camera");
+                shader.genHandleLights("light", "num_lights_used", 1);
 
                 // Set default background
                 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -132,6 +119,12 @@ Window::Window() {
                 // Set lights in the scene
                 lights.setMaxLightCount(3);     // Max is set by the array size in the fragment shader
                                                 // It can not be set dynamically without extensions or buffers
+                Light *tempLight = new Light();
+                tempLight->setColour(glm::vec3(1.0f, 1.0f, 1.0f));
+                tempLight->setPosition(glm::vec3(0.0f, 1.0f, 0.0f));
+                tempLight->setAmbientStrength(0.8f);
+
+                lights.addLight(tempLight);
 
                 // Load the models
                 // Render order must be in order of opaque -> translucent

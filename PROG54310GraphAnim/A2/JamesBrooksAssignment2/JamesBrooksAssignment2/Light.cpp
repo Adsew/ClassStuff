@@ -31,16 +31,18 @@ Light::~Light() {
 
 }
 
-Light Light::operator=(const Light &l) {
+Light &Light::operator=(const Light &l) {
 
     colour = l.colour;
     position = l.position;
     direction = l.direction;
 
     ambientStrength = l.ambientStrength;
-    specularStrength = l.setSpecularStrength;
+    specularStrength = l.specularStrength;
 
     specularSize = l.specularSize;
+
+    return *this;
 }
 
 // Set the colour of the light

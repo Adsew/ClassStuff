@@ -24,7 +24,7 @@ private:
 
     std::vector<Light *> lights;
 
-    int maxLights;
+    unsigned int maxLights;
 
 public:
 
@@ -32,7 +32,7 @@ public:
 
     ~LightContainer();
 
-    void setMaxLightCount(int maxNumLights);
+    void setMaxLightCount(unsigned int maxNumLights);
 
     bool addLight(Light *light);
 

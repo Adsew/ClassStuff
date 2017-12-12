@@ -27,9 +27,11 @@ private:
 
     GLuint vertArrObj;
     GLuint vertexBuff;
+    GLuint normalBuff;
     GLuint colourBuff;
 
     GLfloat *vertData;
+    GLfloat *normData;
     GLfloat *colData;
 
     int vertCount;

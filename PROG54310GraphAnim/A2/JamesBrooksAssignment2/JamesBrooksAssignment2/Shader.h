@@ -46,6 +46,7 @@ private:
     GLuint programID;   // Program's ID position
 
     GLuint vertexPos_modelSpaceID;
+    GLuint normalPos_vec3ID;
     GLuint colourPos_vec4ID;
     GLuint cameraPos_mat4ID;
     LightVariables *lightPos_structID;
@@ -74,10 +75,13 @@ public:
     void use();
 
     /* Generate the handles for the currently built shader program for all types */
-    void generateHandles(const char *vertexVar, const char *colourVar, const char *cameraVar);
+    void generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraVar);
 
     /* Generate the vertex handle for the currently built shader program */
     void genHandleVertex(const char *vertexVar);
+
+    /* Generate the normal handle for the currently built shader program */
+    void genHandleNormal(const char *normalVar);
 
     /* Generate the colour handle for the currently built shader program */
     void genHandleColour(const char *colourVar);
@@ -90,6 +94,9 @@ public:
 
     /* Sets the bound buffer to the vertex variable of the shader program */
     void setVertexAttribute();
+
+    /* Sets the bound buffer to the normal variable of the shader program */
+    void setNormalAttribute();
 
     /* Sets the bound buffer to the colour variable of the shader program */
     void setColourAttribute();
