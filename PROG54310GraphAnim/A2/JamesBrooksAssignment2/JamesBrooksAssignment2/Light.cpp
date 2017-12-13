@@ -23,6 +23,8 @@ Light::Light()
     specularStrength = 1.0f;
 
     specularSize = 2;
+
+    modified = false;
 }
 
 
@@ -42,6 +44,8 @@ Light &Light::operator=(const Light &l) {
 
     specularSize = l.specularSize;
 
+    modified = true;
+
     return *this;
 }
 
@@ -49,34 +53,58 @@ Light &Light::operator=(const Light &l) {
 void Light::setColour(const glm::vec3 &col) {
 
     colour = col;
+
+    modified = true;
 }
 
 // Set position of the light
 void Light::setPosition(const glm::vec3 &pos) {
 
     position = pos;
+
+    modified = true;
 }
 
 // Set direction the light shines (0,0,0 for all directions)
 void Light::setDirection(const glm::vec3 &dir) {
 
     direction = dir;
+
+    modified = true;
 }
 
 // Set the ambient strneght of the light
 void Light::setAmbientStrength(const float &str) {
 
     ambientStrength = str;
+
+    modified = true;
 }
 
 // Set the specular strength
 void Light::setSpecularStrength(const float &str) {
 
     specularStrength = str;
+
+    modified = true;
 }
 
 // Set the size of the light reflection of specular lighting
 void Light::setSpecularSize(const int &size) {
 
     specularSize = size;
+
+    modified = true;
+}
+
+// Check if the light has been modified since last set
+bool Light::isModified() {
+
+    return modified;
+}
+
+// Set that the light has been set in openGL and thus not modified anymore
+void Light::resetModified() {
+
+    modified = false;
 }

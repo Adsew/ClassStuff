@@ -131,7 +131,7 @@ void Camera::setCamera(Shader &shader) {
 
         mvp = projection * view * model;
 
-        shader.setCameraAttribute(mvp);
+        shader.setCameraAttribute(mvp, camPos);
 
         modified = false;
     }

@@ -1,4 +1,4 @@
-Assignment 1
+Assignment 2
 Student: James Brooks
 
 Compiling
@@ -11,7 +11,12 @@ changes to x64 (which, of course, does not work with our libraries).
 
 
 
-Everything is implemented from assignment page including bonus with keyboard.
+Everything is implemented from assignment page.
+
+Bonuses:
+Depth Effect: Depth test allows objects to render in order of depth.
+Direction lighting: A light (The star in the middle) shines a yellow
+    light in a single direction at the monster.
 
 
 

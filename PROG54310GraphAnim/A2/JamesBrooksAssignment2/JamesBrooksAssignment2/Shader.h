@@ -48,7 +48,8 @@ private:
     GLuint vertexPos_modelSpaceID;
     GLuint normalPos_vec3ID;
     GLuint colourPos_vec4ID;
-    GLuint cameraPos_mat4ID;
+    GLuint cameraMVPPos_mat4ID;
+    GLuint cameraPPos_vec3ID;
     LightVariables *lightPos_structID;
     GLuint lightCountPos_int;
 
@@ -75,7 +76,7 @@ public:
     void use();
 
     /* Generate the handles for the currently built shader program for all types */
-    void generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraVar);
+    void generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraMVPVar, const char *cameraPosVar);
 
     /* Generate the vertex handle for the currently built shader program */
     void genHandleVertex(const char *vertexVar);
@@ -87,7 +88,7 @@ public:
     void genHandleColour(const char *colourVar);
 
     /* Generate the camera handle for the currently built shader program */
-    void genHandleCamera(const char *cameraVar);
+    void genHandleCamera(const char *cameraVar, const char *cameraPosVar);
 
     /* Generate handles for the amount of lights in the scene */
     void genHandleLights(const char *lightArrayStr, const char *lightCountStr, int maxNumLights);
@@ -102,7 +103,7 @@ public:
     void setColourAttribute();
 
     /* Sets the camera matrix to the camera variable of the shader program */
-    void setCameraAttribute(glm::mat4 &mvp);
+    void setCameraAttribute(glm::mat4 &mvp, glm::vec3 &view);
 
     /* Set a single light attribute to its associated position in the shader program */
     /* orderNum is from 0 - (maxlights-1) to tell which light to set */

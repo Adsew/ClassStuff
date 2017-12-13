@@ -19,6 +19,11 @@ uniform Light light[3];
 uniform int num_lights_used;
 
 
+// Camera location
+
+uniform vec3 vec3_cam_pos;
+
+
 // Object
 
 in vec3 frag_position;
@@ -35,7 +40,8 @@ void main() {
 
     // Calculate lighting for fragment
 
-    vec3 lightResult = vec3(1.0f, 1.0f, 1.0f);
+    vec3 lightResult = vec3(0.0f, 0.0f, 0.0f);
+    float lightsUsed = 0.0f;
     int i = 0;
     
     for (i = 0; i < num_lights_used && i < 3; i++) {
@@ -49,7 +55,26 @@ void main() {
         float diff = max(dot(norm, lightDir), 0.0f);
         vec3 diffuse = diff * light[i].colour;
 
-        lightResult = lightResult * (diffuse);
+        // specular
+        vec3 viewDir = normalize(vec3_cam_pos - frag_position);
+        vec3 reflectDir = reflect(-lightDir, norm);
+        float spec = pow(max(dot(viewDir, reflectDir), 0.0), light[i].specular_size);
+        vec3 specular = light[i].specular_str * spec * light[i].colour;
+
+        lightResult = lightResult + (ambient + diffuse + specular);
+
+        lightsUsed = lightsUsed + 1.0f;
+    }
+
+    // Default no lighting
+    if (lightsUsed == 0) {
+
+        lightResult = vec3(1.0f, 1.0f, 1.0f);
+    }
+    // Average out the lights used
+    else {
+
+        lightResult = lightResult / lightsUsed;
     }
 
     FragColour = frag_colour * vec4(lightResult, 1.0f);

@@ -47,9 +47,14 @@ bool LightContainer::addLight(Light *light) {
 
 void LightContainer::setLights(Shader &shader) {
 
-    for (unsigned int i = 0; i < lights.size(); i++) {
+    for (unsigned int i = 0; i < lights.size() && i < maxLights; i++) {
 
-        shader.setLightAttribute(lights[i], i);
+        if (lights[i]->isModified()) {
+
+            shader.setLightAttribute(lights[i], i);
+
+            lights[i]->resetModified();
+        }
     }
 
     shader.setLightCountAttribute(lights.size());

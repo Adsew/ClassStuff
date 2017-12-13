@@ -106,12 +106,13 @@ void Shader::use() {
 }
 
 /* Generate the handles for the currently built shader program */
-void Shader::generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraVar) {
+void Shader::generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraMVPVar, const char *cameraPosVar) {
 
     vertexPos_modelSpaceID = glGetAttribLocation(getProgramID(), vertexVar);
     normalPos_vec3ID = glGetAttribLocation(getProgramID(), normalVar);
     colourPos_vec4ID = glGetAttribLocation(getProgramID(), colourVar);
-    cameraPos_mat4ID = glGetUniformLocation(getProgramID(), cameraVar);
+    cameraMVPPos_mat4ID = glGetUniformLocation(getProgramID(), cameraMVPVar);
+    cameraPPos_vec3ID = glGetUniformLocation(getProgramID(), cameraPosVar);
 }
 
 /* Generate the vertex handle for the currently built shader program */
@@ -133,9 +134,10 @@ void Shader::genHandleColour(const char *colourVar) {
 }
 
 /* Generate the camera handle for the currently built shader program */
-void Shader::genHandleCamera(const char *cameraVar) {
+void Shader::genHandleCamera(const char *cameraMVPVar, const char *cameraPosVar) {
 
-    cameraPos_mat4ID = glGetUniformLocation(getProgramID(), cameraVar);
+    cameraMVPPos_mat4ID = glGetUniformLocation(getProgramID(), cameraMVPVar);
+    cameraPPos_vec3ID = glGetUniformLocation(getProgramID(), cameraPosVar);
 }
 
 /* Generate handles for the amount of lights in the scene */
@@ -206,9 +208,10 @@ void Shader::setColourAttribute() {
 }
 
 /* Sets the camera matrix to the camera variable of the shader program */
-void Shader::setCameraAttribute(glm::mat4 &mvp) {
+void Shader::setCameraAttribute(glm::mat4 &mvp, glm::vec3 &view) {
 
-    glUniformMatrix4fv(cameraPos_mat4ID, 1, GL_FALSE, &mvp[0][0]);
+    glUniformMatrix4fv(cameraMVPPos_mat4ID, 1, GL_FALSE, &mvp[0][0]);
+    glUniform3fv(cameraPPos_vec3ID, 1, &view[0]);
 }
 
 /* Set a single light attribute to its associated position in the shader program */

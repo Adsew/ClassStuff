@@ -106,8 +106,8 @@ Window::Window() {
                 //shader.addShader("FragmentShader.shader", GL_FRAGMENT_SHADER);
                 shader.addShader("LightingShader.shader", GL_FRAGMENT_SHADER);
 
-                shader.generateHandles("vec3_position", "vec3_normal", "vec4_colour", "mvp_camera");
-                shader.genHandleLights("light", "num_lights_used", 1);
+                shader.generateHandles("vec3_position", "vec3_normal", "vec4_colour", "mvp_camera", "vec3_cam_pos");
+                shader.genHandleLights("light", "num_lights_used", 3);
 
                 // Set default background
                 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -119,15 +119,37 @@ Window::Window() {
                 // Set lights in the scene
                 lights.setMaxLightCount(3);     // Max is set by the array size in the fragment shader
                                                 // It can not be set dynamically without extensions or buffers
-                Light *tempLight = new Light();
+                Light *tempLight = NULL;
+                
+                tempLight = new Light();
                 tempLight->setColour(glm::vec3(1.0f, 1.0f, 1.0f));
-                tempLight->setPosition(glm::vec3(0.0f, 2.0f, 0.0f));
-                tempLight->setAmbientStrength(0.8f);
+                tempLight->setPosition(glm::vec3(0.0f, 2.0f, 4.0f));
+                tempLight->setAmbientStrength(0.5f);
+                tempLight->setSpecularStrength(1.0f);
+                tempLight->setSpecularSize(64);
+
+                lights.addLight(tempLight);
+
+                tempLight = new Light();
+                tempLight->setColour(glm::vec3(1.0f, 1.0f, 1.0f));
+                tempLight->setPosition(glm::vec3(4.0f, 2.0f, 1.0f));
+                tempLight->setAmbientStrength(0.1f);
+                tempLight->setSpecularStrength(1.0f);
+                tempLight->setSpecularSize(128);
+
+                lights.addLight(tempLight);
+
+                tempLight = new Light();
+                tempLight->setColour(glm::vec3(1.0f, 1.0f, 0.0f));
+                tempLight->setPosition(glm::vec3(0.5f, 0.7f, 1.0f));
+                tempLight->setAmbientStrength(0.4f);
+                tempLight->setSpecularStrength(0.0f);
+                tempLight->setSpecularSize(32);
 
                 lights.addLight(tempLight);
 
                 // Load the models
-                // Render order must be in order of opaque -> translucent
+                // Render order must be in order of opaque -> translucent for optimal depth testing
                 models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, sizeof(terrainVertData) / sizeof(GLfloat) / 3));
                 models.addModel(new Model(shader, "Monster.model"));
                 models.addModel(new Model(shader, stickmanVertData, stickmanNormData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3));

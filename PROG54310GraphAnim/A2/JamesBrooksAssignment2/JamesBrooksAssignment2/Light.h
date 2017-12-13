@@ -31,6 +31,8 @@ private:
 
     int specularSize;
 
+    bool modified;
+
 public:
     
     Light();
@@ -56,5 +58,11 @@ public:
 
     // Set the size of the light reflection of specular lighting
     void setSpecularSize(const int &size);
+
+    // Check if the light has been modified since last set
+    bool isModified();
+
+    // Set that the light has been set in openGL and thus not modified anymore
+    void resetModified();
 };
 
