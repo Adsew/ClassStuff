@@ -44,7 +44,7 @@ public:
     
     /***** Functions *****/
 
-    Model(Shader &shader, GLfloat verts[], GLfloat cols[], int vCount);
+    Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], int vCount);
 
     Model(Shader &shader, const char *file);
     

@@ -22,10 +22,11 @@ arrays for that data and renders when called.
 /* arrays stored elsewhere for the purpose of maintaining cleaner    */
 /* code. In actual implementation we would pass in heap allocated    */
 /* arrays and be deleted by the model at the end of the life span.   */
-Model::Model(Shader &shader, GLfloat verts[], GLfloat cols[], int vCount) {
+Model::Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], int vCount) {
     
     vertCount = vCount;
     vertData = verts;
+    normData = norms;
     colData = cols;
 
     glGenVertexArrays(1, &vertArrObj);
@@ -37,39 +38,17 @@ Model::Model(Shader &shader, GLfloat verts[], GLfloat cols[], int vCount) {
     glBufferData(GL_ARRAY_BUFFER, vertCount * 3 * sizeof(GLfloat), vertData, GL_STATIC_DRAW);
     shader.setVertexAttribute();
     
+    // Normal buffer
+    glGenBuffers(1, &normalBuff);
+    glBindBuffer(GL_ARRAY_BUFFER, normalBuff);
+    glBufferData(GL_ARRAY_BUFFER, vertCount * 3 * sizeof(GLfloat), normData, GL_STATIC_DRAW);
+    shader.setNormalAttribute();
+
     // Colour buffer
     glGenBuffers(1, &colourBuff);
     glBindBuffer(GL_ARRAY_BUFFER, colourBuff);
     glBufferData(GL_ARRAY_BUFFER, vertCount * 4 * sizeof(GLfloat), colData, GL_STATIC_DRAW);
     shader.setColourAttribute();
-
-    // Normal buffer (calculated first then buffered)
-    normData = new GLfloat[vertCount * 3];
-
-    // All models are triangles so we can gaurentee 3 verts per triangle
-    if (vertCount % 9 == 0) {
-
-        for (int i = 0; i < vertCount * 3; i = i + 9) {
-
-            glm::vec3 triVec1(vertData[i] - vertData[i + 3], vertData[i + 1] - vertData[i + 4], vertData[i + 2] - vertData[i + 5]);
-            glm::vec3 triVec2(vertData[i] - vertData[i + 6], vertData[i + 1] - vertData[i + 7], vertData[i + 2] - vertData[i + 8]);
-
-            glm::vec3 triNorm = glm::cross(triVec1, triVec2);
-
-            // Give the norm to each vertex
-            for (int j = 0; j < 9; j = j + 3) {
-
-                normData[i + j] = triNorm.x;
-                normData[i + j + 1] = triNorm.y;
-                normData[i + j + 2] = triNorm.z;
-            }
-        }
-    }
-
-    glGenBuffers(1, &normalBuff);
-    glBindBuffer(GL_ARRAY_BUFFER, normalBuff);
-    glBufferData(GL_ARRAY_BUFFER, vertCount * 3 * sizeof(GLfloat), normData, GL_STATIC_DRAW);
-    shader.setNormalAttribute();
 
     needsDeletion = false;
 }
@@ -89,12 +68,17 @@ Model::Model(Shader &shader, const char *file) {
         inStream >> vertCount;
         
         vertData = new GLfloat[vertCount * 3];
+        normData = new GLfloat[vertCount * 3];
         colData = new GLfloat[vertCount * 4];
 
-        // Now read vertex and colour data
+        // Now read vertex, norm, and colour data
         for (int i = 0; i < vertCount * 3 && ignore != EOF; i += 3) {
 
             inStream >> vertData[i] >> ignore >> vertData[i+1] >> ignore >> vertData[i+2] >> ignore;
+        }
+        for (int i = 0; i < vertCount * 3 && ignore != EOF; i += 3) {
+
+            inStream >> normData[i] >> ignore >> normData[i + 1] >> ignore >> normData[i + 2] >> ignore;
         }
         for (int i = 0; i < vertCount * 4 && ignore != EOF; i += 4) {
 
@@ -113,39 +97,17 @@ Model::Model(Shader &shader, const char *file) {
         glBufferData(GL_ARRAY_BUFFER, vertCount * 3 * sizeof(GLfloat), vertData, GL_STATIC_DRAW);
         shader.setVertexAttribute();
 
+        // Normal buffer
+        glGenBuffers(1, &normalBuff);
+        glBindBuffer(GL_ARRAY_BUFFER, normalBuff);
+        glBufferData(GL_ARRAY_BUFFER, vertCount * 3 * sizeof(GLfloat), normData, GL_STATIC_DRAW);
+        shader.setNormalAttribute();
+
         // Colour buffer
         glGenBuffers(1, &colourBuff);
         glBindBuffer(GL_ARRAY_BUFFER, colourBuff);
         glBufferData(GL_ARRAY_BUFFER, vertCount * 4 * sizeof(GLfloat), colData, GL_STATIC_DRAW);
         shader.setColourAttribute();
-
-        // Normal buffer (calculated first then buffered)
-        normData = new GLfloat[vertCount * 3];
-
-        // All models are triangles so we can gaurentee 3 verts per triangle
-        if (vertCount % 9 == 0) {
-
-            for (int i = 0; i < vertCount * 3; i = i + 9) {
-
-                glm::vec3 triVec1(vertData[i] - vertData[i + 3], vertData[i + 1] - vertData[i + 4], vertData[i + 2] - vertData[i + 5]);
-                glm::vec3 triVec2(vertData[i] - vertData[i + 6], vertData[i + 1] - vertData[i + 7], vertData[i + 2] - vertData[i + 8]);
-
-                glm::vec3 triNorm = glm::cross(triVec1, triVec2);
-
-                // Give the norm to each vertex
-                for (int j = 0; j < 9; j = j + 3) {
-
-                    normData[i + j] = triNorm.x;
-                    normData[i + j + 1] = triNorm.y;
-                    normData[i + j + 2] = triNorm.z;
-                }
-            }
-        }
-
-        glGenBuffers(1, &normalBuff);
-        glBindBuffer(GL_ARRAY_BUFFER, normalBuff);
-        glBufferData(GL_ARRAY_BUFFER, vertCount * 3 * sizeof(GLfloat), normData, GL_STATIC_DRAW);
-        shader.setNormalAttribute();
 
         needsDeletion = true;
     }
@@ -155,6 +117,7 @@ Model::Model(Shader &shader, const char *file) {
 
         vertCount = 0;
         vertData = NULL;
+        normData = NULL;
         colData = NULL;
 
         needsDeletion = false;
@@ -163,13 +126,12 @@ Model::Model(Shader &shader, const char *file) {
 
 Model::~Model() {
 
-    if (needsDeletion && vertData != NULL && colData != NULL) {
+    if (needsDeletion) {
 
         delete vertData;
+        delete normData;
         delete colData;
     }
-
-    delete normData;
 
     glDeleteBuffers(1, &vertexBuff);
     glDeleteBuffers(1, &normalBuff);

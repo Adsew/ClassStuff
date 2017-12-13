@@ -121,20 +121,20 @@ Window::Window() {
                                                 // It can not be set dynamically without extensions or buffers
                 Light *tempLight = new Light();
                 tempLight->setColour(glm::vec3(1.0f, 1.0f, 1.0f));
-                tempLight->setPosition(glm::vec3(0.0f, 10.0f, 0.0f));
+                tempLight->setPosition(glm::vec3(0.0f, 2.0f, 0.0f));
                 tempLight->setAmbientStrength(0.8f);
 
                 lights.addLight(tempLight);
 
                 // Load the models
                 // Render order must be in order of opaque -> translucent
-                models.addModel(new Model(shader, terrainVertData, terrainColData, sizeof(terrainVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, sizeof(terrainVertData) / sizeof(GLfloat) / 3));
                 models.addModel(new Model(shader, "Monster.model"));
-                models.addModel(new Model(shader, stickmanVertData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, wizhatVertData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, staffVertData, staffColData, sizeof(staffVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, stickmanVertData, stickmanNormData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, wizhatVertData, wizhatNormData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, staffVertData, staffNormData, staffColData, sizeof(staffVertData) / sizeof(GLfloat) / 3));
                 models.addModel(new Model(shader, "Raylight.model"));
-                models.addModel(new Model(shader, sunVertData, sunColData, sizeof(sunVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, sunVertData, sunNormData, sunColData, sizeof(sunVertData) / sizeof(GLfloat) / 3));
                 
                 initSuccess = true;
                 running = true;
