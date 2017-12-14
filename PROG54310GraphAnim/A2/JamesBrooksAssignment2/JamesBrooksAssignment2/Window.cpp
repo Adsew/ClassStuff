@@ -142,7 +142,8 @@ Window::Window() {
                 tempLight = new Light();
                 tempLight->setColour(glm::vec3(1.0f, 1.0f, 0.0f));
                 tempLight->setPosition(glm::vec3(0.5f, 0.7f, 1.0f));
-                tempLight->setAmbientStrength(0.4f);
+                tempLight->setDirection(glm::vec3(0.0f, -0.5f, 0.5f));
+                tempLight->setAmbientStrength(0.0f);
                 tempLight->setSpecularStrength(0.0f);
                 tempLight->setSpecularSize(32);
 
