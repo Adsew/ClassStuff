@@ -1,0 +1,43 @@
+Keeran - Marbles: multiplayer game using ball mechanics, 3 ball types can be switched between with different properties, small scope, unsure of objective
+
+Yuan - Muppet man: metrodvania style combined with little nightmares. might be cool but no theme or mechanic that is special to the character
+
+Dylan/Congchen Li - Lost Puppy: go for a walk and leave trail, find way home using only the trail, too simple but cute. mobile
+
+Sohrab mathew john - arena battle stars: arena game like hunger games where environment dictates gameplay instead of leveling up over time like dota (says players start as if they are at max level). mobile
+
+Regis - project umbrella: umbrella is the sole weapon, can absorb and fire back enemy attack, can be used like an umbrella, melee weapon etc, i like it. Received nothing but praise by teachers for simple singular concept thats expandable/versatile
+
+Thomas - some platformer: uses "easy mode" ability that is temporary. choose what/when to powerup, could be cool. Allows players to rough it through parts theyre good at and simplify things theyre not good at. Teachers suggested rewarding players by not using the powerup as powerup might make a coin or something unreachable now (by breaking a platform etc)
+
+fernando - lesson punch: the school based diablo style & platformer fighter. Switches 2D to 3D for different parts. Suggested too complicated to switch perspective but really fun idea with good theme
+
+James - call of the nightmare: horde mode game focusing on AI. Focus on AI emergently combining abilities. Any random group of enemies can chain different abilities together including bosses. Choose from different classes
+
+Manar: Basic adventure game, didnt present any unique mechanics. 3 characters with different powers switched between throughout story.
+
+Jessica: vine character game with different vine types to do different things. Earn powerups like super metroid. have to replant seeds around the world to grow your powers / further the story. could be cool. Upgrades effect combat and exploration restricted areas
+
+
+
+
+
+
+
+Weiyi Zhang - Escape Light Elf: use reflecting surfaces to move around world, adjust world to rerach goal
+
+Matthew Warner - another mans pleasure: friday the 13th with fortnight graphics. interesting but pubg too big
+
+lucian - world eater: snake + twin stick shooter, cool but small concept
+
+pranesh - replay: go to places then restart and use your copies to progresthrough the levels
+
+raph - kingdom war: tower vs tower summon monsters vs enemies army
+
+andrew - unnames detective game: player driven detective mechanics. Find clues yourself, not system dircted. interesting but too broad could be good if contained to a smalller area.
+
+daniel - stalker: predators vs prey (cops vs robbers) style game. Assassins creed gameplay hunt game.
+
+tadeu - ??: uses swap mechanic to traverse level and solve puzzles
+
+peter - puzzle game: designer heavy world of puzzles where things happen over time no matter where you are (world progresses on its own). player merely interferes as time goes on. Cool concept but large scope for puzzles. Non-linearity can cause problems missing key moments Cool concept, need way to focus the player towards objectives
