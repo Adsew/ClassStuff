@@ -162,6 +162,18 @@ void Shader::genHandleLights(const char *lightArrayStr, const char *lightCountSt
     lightCountPos_int = glGetUniformLocation(getProgramID(), lightCountStr);
 }
 
+/* Generate handles for two textures */
+void Shader::genHandleTextures(const char *texture1, const char *texture2, const char *activeTextureCount) {
+
+    texturePos_sample1 = glGetUniformLocation(getProgramID(), texture1);
+    glUniform1i(texturePos_sample1, 0);
+
+    texturePos_sample2 = glGetUniformLocation(getProgramID(), texture2);
+    glUniform1i(texturePos_sample2, 1);
+
+    textureCountPos_int = glGetUniformLocation(getProgramID(), activeTextureCount);
+}
+
 /* Sets the bound buffer to the vertex variable of the shader program */
 void Shader::setVertexAttribute() {
 

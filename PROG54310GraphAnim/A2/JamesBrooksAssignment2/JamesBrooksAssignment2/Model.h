@@ -19,11 +19,16 @@ Description: This class can later be converted to true models which will hold
 #include "Shader.h"
 
 
+class Texture;
+
+
 class Model {
 
 private:
 
     /***** Variables *****/
+
+    Texture *tex;
 
     GLuint vertArrObj;
     GLuint vertexBuff;
@@ -44,7 +49,11 @@ public:
     
     /***** Functions *****/
 
+    Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], int vCount, const char *textureLocation);
+
     Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], int vCount);
+
+    Model(Shader &shader, const char *file, const char *textureLocation);
 
     Model(Shader &shader, const char *file);
     

@@ -48,10 +48,16 @@ private:
     GLuint vertexPos_modelSpaceID;
     GLuint normalPos_vec3ID;
     GLuint colourPos_vec4ID;
+
     GLuint cameraMVPPos_mat4ID;
     GLuint cameraPPos_vec3ID;
+
     LightVariables *lightPos_structID;
     GLuint lightCountPos_int;
+
+    GLuint texturePos_sample1;
+    GLuint texturePos_sample2;
+    GLuint textureCountPos_int;
 
     int lightCount;
 
@@ -92,6 +98,9 @@ public:
 
     /* Generate handles for the amount of lights in the scene */
     void genHandleLights(const char *lightArrayStr, const char *lightCountStr, int maxNumLights);
+
+    /* Generate handles for two textures */
+    void genHandleTextures(const char *texture1, const char *texture2, const char *activeTextureCount);
 
     /* Sets the bound buffer to the vertex variable of the shader program */
     void setVertexAttribute();

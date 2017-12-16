@@ -19,6 +19,14 @@ uniform Light light[3];
 uniform int num_lights_used;
 
 
+// Texture
+
+uniform sampler2D objTexture1;
+uniform sampler2D objTexture2;
+
+uniform int activeTextures;
+
+
 // Camera location
 
 uniform vec3 vec3_cam_pos;
@@ -46,11 +54,9 @@ void main() {
     
     for (i = 0; i < num_lights_used && i < 3; i++) {
 
-        // Ambient
-        vec3 ambient = light[i].colour * light[i].ambient_str;
-
         // Diffuse
         vec3 norm = normalize(vert_normal);
+        vec3 fragToLightDir = normalize(light[i].position - frag_position);
         vec3 lightDir;
 
         if (length(light[i].direction) == 0.0f) {
@@ -62,8 +68,12 @@ void main() {
             lightDir = normalize(-light[i].direction);
         }
 
+        float inDirectionDiff = max(dot(lightDir, fragToLightDir), 0.0f);
         float diff = max(dot(norm, lightDir), 0.0f);
-        vec3 diffuse = diff * light[i].colour;
+        vec3 diffuse = diff * inDirectionDiff * light[i].colour;
+
+        // Ambient
+        vec3 ambient = light[i].colour * light[i].ambient_str * inDirectionDiff;
 
         // specular
         vec3 viewDir = normalize(vec3_cam_pos - frag_position);

@@ -106,8 +106,11 @@ Window::Window() {
                 //shader.addShader("FragmentShader.shader", GL_FRAGMENT_SHADER);
                 shader.addShader("LightingShader.shader", GL_FRAGMENT_SHADER);
 
+                shader.use();
+
                 shader.generateHandles("vec3_position", "vec3_normal", "vec4_colour", "mvp_camera", "vec3_cam_pos");
                 shader.genHandleLights("light", "num_lights_used", 3);
+                shader.genHandleTextures("objTexture1", "objTexture2", "activeTextures");
 
                 // Set default background
                 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -121,29 +124,32 @@ Window::Window() {
                                                 // It can not be set dynamically without extensions or buffers
                 Light *tempLight = NULL;
                 
+                    // Main sun, forward in the scene
                 tempLight = new Light();
                 tempLight->setColour(glm::vec3(1.0f, 1.0f, 1.0f));
                 tempLight->setPosition(glm::vec3(0.0f, 2.0f, 4.0f));
-                tempLight->setAmbientStrength(0.5f);
+                tempLight->setAmbientStrength(0.9f);
                 tempLight->setSpecularStrength(1.0f);
                 tempLight->setSpecularSize(64);
 
                 lights.addLight(tempLight);
 
+                    // Second bright light, to the left of the scene
                 tempLight = new Light();
                 tempLight->setColour(glm::vec3(1.0f, 1.0f, 1.0f));
                 tempLight->setPosition(glm::vec3(4.0f, 2.0f, 1.0f));
-                tempLight->setAmbientStrength(0.1f);
+                tempLight->setAmbientStrength(0.5f);
                 tempLight->setSpecularStrength(1.0f);
                 tempLight->setSpecularSize(128);
 
                 lights.addLight(tempLight);
 
+                    // Red light emitted from the star in the center of the scene
                 tempLight = new Light();
-                tempLight->setColour(glm::vec3(1.0f, 1.0f, 0.0f));
+                tempLight->setColour(glm::vec3(1.0f, 0.0f, 0.0f));
                 tempLight->setPosition(glm::vec3(0.5f, 0.7f, 1.0f));
-                tempLight->setDirection(glm::vec3(0.0f, -0.5f, 0.5f));
-                tempLight->setAmbientStrength(0.0f);
+                tempLight->setDirection(glm::vec3(0.0f, -1.0f, 1.0f));
+                tempLight->setAmbientStrength(1.0f);
                 tempLight->setSpecularStrength(0.0f);
                 tempLight->setSpecularSize(32);
 
@@ -152,7 +158,7 @@ Window::Window() {
                 // Load the models
                 // Render order must be in order of opaque -> translucent for optimal depth testing
                 models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, sizeof(terrainVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, "Monster.model"));
+                models.addModel(new Model(shader, "Monster.model", "fur.png"));
                 models.addModel(new Model(shader, stickmanVertData, stickmanNormData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3));
                 models.addModel(new Model(shader, wizhatVertData, wizhatNormData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3));
                 models.addModel(new Model(shader, staffVertData, staffNormData, staffColData, sizeof(staffVertData) / sizeof(GLfloat) / 3));
