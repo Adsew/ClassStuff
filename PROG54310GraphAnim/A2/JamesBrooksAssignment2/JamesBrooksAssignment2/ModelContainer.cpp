@@ -37,10 +37,10 @@ void ModelContainer::addModel(Model *model) {
 }
 
 /* Renders all models in the container */
-void ModelContainer::render() {
+void ModelContainer::render(Shader &shader) {
 
     for (std::list<Model *>::iterator iter = models.begin(); iter != models.end(); iter++) {
 
-        (*iter)->render();
+        (*iter)->render(shader);
     }
 }

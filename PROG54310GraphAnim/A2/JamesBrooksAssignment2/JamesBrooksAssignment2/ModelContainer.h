@@ -14,6 +14,7 @@ with all models at once in a scene.
 
 #include <list>
 
+#include "Shader.h"
 #include "Model.h"
 
 
@@ -33,5 +34,5 @@ public:
     void addModel(Model *model);
 
     /* Renders all models in the container */
-    void render();
+    void render(Shader &shader);
 };

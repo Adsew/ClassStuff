@@ -11,6 +11,10 @@ Description: Holds the texture location and data to be used by a model for rende
 */
 
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+
 class Texture {
 
 private:
@@ -27,6 +31,6 @@ public:
 
     bool error();
 
-    void activateTexture();
+    void activateTexture(GLuint texID);
 };
 

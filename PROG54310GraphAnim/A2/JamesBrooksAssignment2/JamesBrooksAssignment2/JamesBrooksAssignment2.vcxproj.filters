@@ -107,7 +107,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="fur.png">
+    <Image Include="textures\bluecloth.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\fur.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\grass.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\marks.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\wood.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

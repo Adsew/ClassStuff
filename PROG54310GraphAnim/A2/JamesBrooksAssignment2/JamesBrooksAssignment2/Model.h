@@ -28,38 +28,46 @@ private:
 
     /***** Variables *****/
 
-    Texture *tex;
+    Texture *tex1;
+    Texture *tex2;
 
     GLuint vertArrObj;
     GLuint vertexBuff;
     GLuint normalBuff;
     GLuint colourBuff;
+    GLuint textureBuff;
 
     GLfloat *vertData;
     GLfloat *normData;
     GLfloat *colData;
+    GLfloat *texData;
 
     int vertCount;
+
+    int texCount;
 
     // Only needed in this exercise. See constructor implementations
     // for notes. Will be removed in actual use later.
     bool needsDeletion;
+    bool texNeedsDeletion;
     
 public:
     
     /***** Functions *****/
 
-    Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], int vCount, const char *textureLocation);
+    Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], GLfloat texs[], int vCount, const char *textureLocation, const char *textureLocation2);
+
+    Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], int vCount, const char *textureLocation, const char *textureLocation2);
 
     Model(Shader &shader, GLfloat verts[], GLfloat norms[], GLfloat cols[], int vCount);
 
-    Model(Shader &shader, const char *file, const char *textureLocation);
+    Model(Shader &shader, const char *file, const char *textureLocation, const char *textureLocation2);
 
     Model(Shader &shader, const char *file);
     
     ~Model();
 
     /* Render the stored buffer using draw arrays */
-    void render();
+    void render(Shader &shader);
 };
 

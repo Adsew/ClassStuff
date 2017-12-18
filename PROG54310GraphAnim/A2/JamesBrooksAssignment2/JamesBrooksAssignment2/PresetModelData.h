@@ -25,15 +25,7 @@ static GLfloat terrainVertData[]{
     3.0f, -0.71f, 3.0f,
     3.0f, -0.71f, 3.0f,
     -3.0f, -0.71f, 3.0f,
-    -3.0f, -0.71f, -2.0f,
-
-    // Water
-    -0.4f, -0.699f, -2.0f,
-    0.4f, -0.699f, -2.0f,
-    0.15f, -0.699f, 3.0f,
-    0.15f, -0.699f, 3.0f,
-    -0.15f, -0.699f, 3.0f,
-    -0.4f, -0.699f, -2.0f,
+    -3.0f, -0.71f, -2.0f
 };
 
 static GLfloat terrainNormData[]{
@@ -50,14 +42,7 @@ static GLfloat terrainNormData[]{
     0.0f, -1.0f, 0.0f,
     0.0f, -1.0f, 0.0f,
     0.0f, -1.0f, 0.0f,
-    0.0f, -1.0f, 0.0f,
-
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
-    0.0f, 1.0f, 0.0f,
+    0.0f, -1.0f, 0.0f
 };
 
 static GLfloat terrainColData[]{
@@ -75,15 +60,26 @@ static GLfloat terrainColData[]{
     0.10f, 0.55f, 0.13f, 1.0f,
     0.10f, 0.55f, 0.13f, 1.0f,
     0.10f, 0.55f, 0.13f, 1.0f,
-    0.10f, 0.55f, 0.13f, 1.0f,
+    0.10f, 0.55f, 0.13f, 1.0f
+};
 
-    // Water
-    0.1f, 0.6f, 0.6f, 1.0f,
-    0.1f, 0.6f, 0.6f, 1.0f,
-    0.1f, 0.6f, 0.6f, 1.0f,
-    0.1f, 0.6f, 0.6f, 1.0f,
-    0.1f, 0.6f, 0.6f, 1.0f,
-    0.1f, 0.6f, 0.6f, 1.0f,
+static GLfloat terrainTexData[]{
+
+    // Grass
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    1.0f, 1.0f,
+    1.0f, 1.0f,
+    0.0f, 1.0f,
+    0.0f, 0.0f,
+
+    // Grass bottom side
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    1.0f, 1.0f,
+    1.0f, 1.0f,
+    0.0f, 1.0f,
+    0.0f, 0.0f
 };
 
 static GLfloat sunVertData[]{
@@ -511,6 +507,41 @@ static GLfloat staffColData[]{
     0.5f, 0.0f, 0.0f, 1.0f,
     0.5f, 0.0f, 0.0f, 1.0f,
     0.5f, 0.0f, 0.0f, 1.0f,
+};
+
+static GLfloat staffTexData[]{
+
+    // Grass
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    1.0f, 1.0f,
+    1.0f, 1.0f,
+    0.0f, 1.0f,
+    0.0f, 0.0f,
+
+    // Grass bottom side
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    1.0f, 1.0f,
+    1.0f, 1.0f,
+    0.0f, 1.0f,
+    0.0f, 0.0f,
+    
+    // Grass
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    1.0f, 1.0f,
+    1.0f, 1.0f,
+    0.0f, 1.0f,
+    0.0f, 0.0f,
+
+    // Grass bottom side
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    1.0f, 1.0f,
+    1.0f, 1.0f,
+    0.0f, 1.0f,
+    0.0f, 0.0f
 };
 
 //static GLfloat raylightVertData[]{

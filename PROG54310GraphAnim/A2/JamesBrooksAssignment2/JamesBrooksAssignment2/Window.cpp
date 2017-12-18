@@ -108,7 +108,7 @@ Window::Window() {
 
                 shader.use();
 
-                shader.generateHandles("vec3_position", "vec3_normal", "vec4_colour", "mvp_camera", "vec3_cam_pos");
+                shader.generateHandles("vec3_position", "vec3_normal", "vec4_colour", "vec2_texture", "mvp_camera", "vec3_cam_pos");
                 shader.genHandleLights("light", "num_lights_used", 3);
                 shader.genHandleTextures("objTexture1", "objTexture2", "activeTextures");
 
@@ -157,11 +157,11 @@ Window::Window() {
 
                 // Load the models
                 // Render order must be in order of opaque -> translucent for optimal depth testing
-                models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, sizeof(terrainVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, "Monster.model", "fur.png"));
+                models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, terrainTexData, sizeof(terrainVertData) / sizeof(GLfloat) / 3, "textures/grass.png", NULL));
+                models.addModel(new Model(shader, "Monster.model", "textures/fur.png", NULL));
                 models.addModel(new Model(shader, stickmanVertData, stickmanNormData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, wizhatVertData, wizhatNormData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3));
-                models.addModel(new Model(shader, staffVertData, staffNormData, staffColData, sizeof(staffVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, wizhatVertData, wizhatNormData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3, "textures/bluecloth.png", NULL));
+                models.addModel(new Model(shader, staffVertData, staffNormData, staffColData, staffTexData, sizeof(staffVertData) / sizeof(GLfloat) / 3, "textures/wood.png", NULL));
                 models.addModel(new Model(shader, "Raylight.model"));
                 models.addModel(new Model(shader, sunVertData, sunNormData, sunColData, sizeof(sunVertData) / sizeof(GLfloat) / 3));
                 
@@ -294,7 +294,7 @@ void Window::draw() {
 
     lights.setLights(shader);
 
-    models.render();
+    models.render(shader);
     
     glfwSwapBuffers(window);
 

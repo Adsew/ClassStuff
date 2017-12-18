@@ -160,7 +160,11 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="fur.png" />
+    <Image Include="textures\bluecloth.png" />
+    <Image Include="textures\fur.png" />
+    <Image Include="textures\grass.png" />
+    <Image Include="textures\marks.png" />
+    <Image Include="textures\wood.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

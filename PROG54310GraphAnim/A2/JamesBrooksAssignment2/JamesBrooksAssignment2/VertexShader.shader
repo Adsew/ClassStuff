@@ -17,6 +17,9 @@ out vec3 vert_normal;
 in vec4 vec4_colour;
 out vec4 frag_colour;
 
+in vec2 vec2_texture;
+out vec2 texture_coord;
+
 
 void main() {
 
@@ -28,4 +31,5 @@ void main() {
     frag_position = vec3_position;
     vert_normal = vec3_normal;
     frag_colour = vec4_colour;
+    texture_coord = vec2_texture;
 }

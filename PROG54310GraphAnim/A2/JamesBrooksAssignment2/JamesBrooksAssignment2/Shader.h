@@ -48,6 +48,7 @@ private:
     GLuint vertexPos_modelSpaceID;
     GLuint normalPos_vec3ID;
     GLuint colourPos_vec4ID;
+    GLuint texturePos_vec2ID;
 
     GLuint cameraMVPPos_mat4ID;
     GLuint cameraPPos_vec3ID;
@@ -82,7 +83,7 @@ public:
     void use();
 
     /* Generate the handles for the currently built shader program for all types */
-    void generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraMVPVar, const char *cameraPosVar);
+    void generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *textureVar, const char *cameraMVPVar, const char *cameraPosVar);
 
     /* Generate the vertex handle for the currently built shader program */
     void genHandleVertex(const char *vertexVar);
@@ -92,6 +93,9 @@ public:
 
     /* Generate the colour handle for the currently built shader program */
     void genHandleColour(const char *colourVar);
+
+    /* Generate the texture coord handle for the currently built shader program */
+    void genHandleTextureCoord(const char *textureVar);
 
     /* Generate the camera handle for the currently built shader program */
     void genHandleCamera(const char *cameraVar, const char *cameraPosVar);
@@ -111,6 +115,9 @@ public:
     /* Sets the bound buffer to the colour variable of the shader program */
     void setColourAttribute();
 
+    /* Sets the bound buffer to the texture coord variable of the shader program */
+    void setTextureCoordAttribute();
+
     /* Sets the camera matrix to the camera variable of the shader program */
     void setCameraAttribute(glm::mat4 &mvp, glm::vec3 &view);
 
@@ -120,6 +127,9 @@ public:
 
     /* Set the attribute to tell the shader how many lights are active */
     void setLightCountAttribute(int count);
+
+    /* Set the number of textures being used by this model */
+    void setTextureCountAttribute(int count);
 
     /* Add a shader to the shader program */
     bool addShader(std::string shaderFile, GLenum shaderType);

@@ -106,11 +106,12 @@ void Shader::use() {
 }
 
 /* Generate the handles for the currently built shader program */
-void Shader::generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *cameraMVPVar, const char *cameraPosVar) {
+void Shader::generateHandles(const char *vertexVar, const char *normalVar, const char *colourVar, const char *textureVar, const char *cameraMVPVar, const char *cameraPosVar) {
 
     vertexPos_modelSpaceID = glGetAttribLocation(getProgramID(), vertexVar);
     normalPos_vec3ID = glGetAttribLocation(getProgramID(), normalVar);
     colourPos_vec4ID = glGetAttribLocation(getProgramID(), colourVar);
+    texturePos_vec2ID = glGetAttribLocation(getProgramID(), textureVar);
     cameraMVPPos_mat4ID = glGetUniformLocation(getProgramID(), cameraMVPVar);
     cameraPPos_vec3ID = glGetUniformLocation(getProgramID(), cameraPosVar);
 }
@@ -131,6 +132,12 @@ void Shader::genHandleNormal(const char *normalVar) {
 void Shader::genHandleColour(const char *colourVar) {
 
     colourPos_vec4ID = glGetAttribLocation(getProgramID(), colourVar);
+}
+
+/* Generate the texture coord handle for the currently built shader program */
+void Shader::genHandleTextureCoord(const char *textureVar) {
+
+    texturePos_vec2ID = glGetAttribLocation(getProgramID(), textureVar);
 }
 
 /* Generate the camera handle for the currently built shader program */
@@ -219,6 +226,21 @@ void Shader::setColourAttribute() {
     glEnableVertexAttribArray(colourPos_vec4ID);
 }
 
+/* Sets the bound buffer to the texture coord variable of the shader program */
+void Shader::setTextureCoordAttribute() {
+
+    glVertexAttribPointer(
+        texturePos_vec2ID,      // The attribute we want to configure
+        2,                      // size
+        GL_FLOAT,               // type
+        GL_FALSE,               // normalized
+        0,                      // stride
+        (void*)0                // array buffer offset
+    );
+
+    glEnableVertexAttribArray(texturePos_vec2ID);
+}
+
 /* Sets the camera matrix to the camera variable of the shader program */
 void Shader::setCameraAttribute(glm::mat4 &mvp, glm::vec3 &view) {
 
@@ -247,6 +269,12 @@ void Shader::setLightAttribute(Light *light, int orderNum) {
 void Shader::setLightCountAttribute(int count) {
 
     glUniform1i(lightCountPos_int, count);
+}
+
+/* Set the number of textures being used by this model */
+void Shader::setTextureCountAttribute(int count) {
+
+    glUniform1i(textureCountPos_int, count);
 }
 
 /* Add a shader to the shader program */

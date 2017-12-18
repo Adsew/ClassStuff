@@ -54,9 +54,9 @@ Texture::~Texture() {
     glDeleteTextures(1, &textureLoc);
 }
 
-void Texture::activateTexture() {
+void Texture::activateTexture(GLuint texID) {
 
-    glActiveTexture(GL_TEXTURE0);
+    glActiveTexture(texID);
     glBindTexture(GL_TEXTURE_2D, textureLoc);
 }
 

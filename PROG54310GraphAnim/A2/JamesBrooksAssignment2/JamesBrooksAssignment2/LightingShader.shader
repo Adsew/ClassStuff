@@ -37,6 +37,7 @@ uniform vec3 vec3_cam_pos;
 in vec3 frag_position;
 in vec3 vert_normal;
 in vec4 frag_colour;
+in vec2 texture_coord;
 
 
 // Fragment output
@@ -97,5 +98,16 @@ void main() {
         lightResult = lightResult / lightsUsed;
     }
 
-    FragColour = frag_colour * vec4(lightResult, 1.0f);
+    if (activeTextures == 1) {
+
+        FragColour = texture(objTexture1, texture_coord) * vec4(lightResult, 1.0f);
+    }
+    else if (activeTextures == 2) {
+
+        FragColour = mix(texture(objTexture2, texture_coord), texture(objTexture2, texture_coord), 0.2f);
+    }
+    else {
+
+        FragColour = frag_colour * vec4(lightResult, 1.0f);
+    }
 }
