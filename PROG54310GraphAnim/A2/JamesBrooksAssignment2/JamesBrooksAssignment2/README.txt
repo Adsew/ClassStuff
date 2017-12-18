@@ -15,8 +15,9 @@ Everything is implemented from assignment page.
 
 Bonuses:
 Depth Effect: Depth test allows objects to render in order of depth.
-Direction lighting: A light (The star in the middle) shines a yellow
-    light in a single direction at the monster.
+Direction lighting: A light (The star in the middle) shines a red
+    light in a single direction at the monster. The star looks bad
+    now that it is multicoloured but it shows it works so I left it.
 
 
 

@@ -122,5 +122,14 @@
     <Image Include="textures\wood.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+    <Image Include="textures\light.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\skin.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\sun.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

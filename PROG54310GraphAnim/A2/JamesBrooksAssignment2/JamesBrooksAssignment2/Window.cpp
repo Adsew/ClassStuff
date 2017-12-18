@@ -157,13 +157,13 @@ Window::Window() {
 
                 // Load the models
                 // Render order must be in order of opaque -> translucent for optimal depth testing
-                models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, terrainTexData, sizeof(terrainVertData) / sizeof(GLfloat) / 3, "textures/grass.png", NULL));
+                models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, terrainTexData, sizeof(terrainVertData) / sizeof(GLfloat) / 3, "textures/grass.png", "textures/marks.png"));
                 models.addModel(new Model(shader, "Monster.model", "textures/fur.png", NULL));
-                models.addModel(new Model(shader, stickmanVertData, stickmanNormData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, stickmanVertData, stickmanNormData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3, "textures/skin.png", NULL));
                 models.addModel(new Model(shader, wizhatVertData, wizhatNormData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3, "textures/bluecloth.png", NULL));
                 models.addModel(new Model(shader, staffVertData, staffNormData, staffColData, staffTexData, sizeof(staffVertData) / sizeof(GLfloat) / 3, "textures/wood.png", NULL));
-                models.addModel(new Model(shader, "Raylight.model"));
-                models.addModel(new Model(shader, sunVertData, sunNormData, sunColData, sizeof(sunVertData) / sizeof(GLfloat) / 3));
+                models.addModel(new Model(shader, raylightVertData, raylightNormData, raylightColData, raylightTexData, sizeof(raylightVertData) / sizeof(GLfloat) / 3, "textures/light.png", NULL));
+                models.addModel(new Model(shader, sunVertData, sunNormData, sunColData, sunTexData, sizeof(sunVertData) / sizeof(GLfloat) / 3, "textures/sun.png", NULL));
                 
                 initSuccess = true;
                 running = true;
