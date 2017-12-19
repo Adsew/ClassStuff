@@ -140,7 +140,7 @@ Window::Window() {
                 tempLight->setPosition(glm::vec3(4.0f, 2.0f, 1.0f));
                 tempLight->setAmbientStrength(0.5f);
                 tempLight->setSpecularStrength(1.0f);
-                tempLight->setSpecularSize(128);
+                tempLight->setSpecularSize(256);
 
                 lights.addLight(tempLight);
 
@@ -148,7 +148,7 @@ Window::Window() {
                 tempLight = new Light();
                 tempLight->setColour(glm::vec3(1.0f, 0.0f, 0.0f));
                 tempLight->setPosition(glm::vec3(0.5f, 0.7f, 1.0f));
-                tempLight->setDirection(glm::vec3(0.0f, -1.0f, 1.0f));
+                tempLight->setDirection(glm::vec3(-1.0f, -1.0f, 1.0f));
                 tempLight->setAmbientStrength(1.0f);
                 tempLight->setSpecularStrength(0.0f);
                 tempLight->setSpecularSize(32);
@@ -157,7 +157,7 @@ Window::Window() {
 
                 // Load the models
                 // Render order must be in order of opaque -> translucent for optimal depth testing
-                models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, terrainTexData, sizeof(terrainVertData) / sizeof(GLfloat) / 3, "textures/grass.png", "textures/marks.png"));
+                models.addModel(new Model(shader, terrainVertData, terrainNormData, terrainColData, terrainTexData, sizeof(terrainVertData) / sizeof(GLfloat) / 3, "textures/grass.png", "textures/banana.png"));
                 models.addModel(new Model(shader, "Monster.model", "textures/fur.png", NULL));
                 models.addModel(new Model(shader, stickmanVertData, stickmanNormData, stickmanColData, sizeof(stickmanVertData) / sizeof(GLfloat) / 3, "textures/skin.png", NULL));
                 models.addModel(new Model(shader, wizhatVertData, wizhatNormData, wizhatColData, sizeof(wizhatVertData) / sizeof(GLfloat) / 3, "textures/bluecloth.png", NULL));

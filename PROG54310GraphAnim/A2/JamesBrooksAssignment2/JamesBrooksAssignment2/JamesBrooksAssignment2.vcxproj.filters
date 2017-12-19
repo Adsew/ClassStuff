@@ -116,9 +116,6 @@
     <Image Include="textures\grass.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
-    <Image Include="textures\marks.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
     <Image Include="textures\wood.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
@@ -129,6 +126,9 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="textures\sun.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="textures\banana.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

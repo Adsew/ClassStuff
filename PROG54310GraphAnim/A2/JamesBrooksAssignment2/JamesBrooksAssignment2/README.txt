@@ -13,11 +13,24 @@ changes to x64 (which, of course, does not work with our libraries).
 
 Everything is implemented from assignment page.
 
+Everything is textured.
+
+Ground has two textures, grass and bananas.
+
+Three lights:
+    One forward in distance, white light with bright ambience and large specular.
+    One to the left, white light, medium ambient, small specular.
+    One directional from the star, only shines forward-right from the star
+        position. Red light with no specular.
+
 Bonuses:
+
 Depth Effect: Depth test allows objects to render in order of depth.
+
 Direction lighting: A light (The star in the middle) shines a red
     light in a single direction at the monster. The star looks bad
-    now that it is multicoloured but it shows it works so I left it.
+    since the lighting comes from the center and goes in one direction,
+    but it showcases that the light goes in only one direciton.
 
 
 

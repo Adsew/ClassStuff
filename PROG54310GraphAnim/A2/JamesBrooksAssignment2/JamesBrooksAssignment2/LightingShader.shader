@@ -104,7 +104,7 @@ void main() {
     }
     else if (activeTextures == 2) {
 
-        FragColour = mix(texture(objTexture2, texture_coord), texture(objTexture2, texture_coord), 0.2f);
+        FragColour = mix(texture(objTexture1, texture_coord), texture(objTexture2, texture_coord), 0.3f) * vec4(lightResult, 1.0f);
     }
     else {
 
