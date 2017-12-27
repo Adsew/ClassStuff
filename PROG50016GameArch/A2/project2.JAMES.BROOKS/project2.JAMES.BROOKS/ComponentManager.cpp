@@ -29,7 +29,7 @@ ComponentManager::~ComponentManager() {
 }
 
 void ComponentManager::initialize() {
-
+    
 }
 
 void ComponentManager::update() {
@@ -50,27 +50,7 @@ void ComponentManager::update() {
     }
 }
 
-template <class T>
-Component *ComponentManager::createComponentOfType(unsigned int uniqueID) {
+void ComponentManager::addComponentType(const char *name, std::function<Component *(unsigned int)> creationFunc) {
 
-    Component *comp = NULL;
-    
-    try {
-
-        comp = new T(uniqueIDCount);
-
-        components.push_back(comp);
-    }
-    catch (Exception ex&) {
-
-        DEBUG_LOG("ERROR::ComponentManager: " << T << " is not a type of component.")
-    }
-    
-    return comp;
-}
-
-template <class T>
-void ComponentManager::addComponentType(const char *name) {
-
-    createComponent[name] = &createComponentOfType<T>(unsigned int uniqueID);
+    createComponent[name] = creationFunc;
 }

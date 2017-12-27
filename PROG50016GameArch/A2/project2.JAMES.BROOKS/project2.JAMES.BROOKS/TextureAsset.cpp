@@ -15,7 +15,7 @@ Description: An asset that holds an image to be used as a texture.
 #include "TextureAsset.h"
 
 
-TextureAsset::TextureAsset() {
+TextureAsset::TextureAsset(unsigned int uniqueID) : Asset(uniqueID) {
 
     fileName = "";
 }
@@ -26,16 +26,16 @@ TextureAsset::~TextureAsset() {
 
 }
 
-void TextureAsset::load(XMLElement *element) {
+void TextureAsset::load(std::unique_ptr<FileSystem::FileAccessor> element) {
 
-    XMLElement *fileElement = element->FirstChildElement("filename");
+    //FileSystem::Instance(). FirstChildElement("filename");
 
-    if (fileElement != NULL) {
+    /*if (fileElement != NULL) {
 
         fileName = fileElement->GetText();
     }
     else {
 
         std::cerr << "Could not find file to load for texture asset." << std::endl;
-    }
+    }*/
 }

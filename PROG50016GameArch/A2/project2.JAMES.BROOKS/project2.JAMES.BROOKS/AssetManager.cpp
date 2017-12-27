@@ -20,7 +20,7 @@ Description: Manages all assets created during the course of the game. Responsib
 
 void AssetManager::initialize() {
 
-    assetCreate["TextureAsset"] = TextureAsset::create;
+    //assetCreate["TextureAsset"] = TextureAsset::create;
 }
 
 void AssetManager::update() {
@@ -52,9 +52,9 @@ void AssetManager::RemoveAsset(Asset *asset) {
     }
 }
 
-void AssetManager::load(XMLElement *element) {
+void AssetManager::load(std::unique_ptr<FileSystem::FileAccessor> element) {
 
-    XMLElement *assetElement = element->FirstChildElement("Asset");
+    /*XMLElement *assetElement = element->FirstChildElement("Asset");
 
     while (assetElement != NULL) {
 
@@ -72,5 +72,5 @@ void AssetManager::load(XMLElement *element) {
         }
 
         assetElement = assetElement->NextSiblingElement("Asset");
-    }
+    }*/
 }

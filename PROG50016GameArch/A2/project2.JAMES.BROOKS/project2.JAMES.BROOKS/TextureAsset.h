@@ -25,13 +25,11 @@ private:
 
 public:
 
-    static Asset *create() { return new TextureAsset(); }
-
-    TextureAsset();
+    TextureAsset(unsigned int uniqueID);
     
     virtual ~TextureAsset();
 
-    void load(tinyxml2::XMLElement *element) override;
+    void load(std::unique_ptr<FileSystem::FileAccessor> element) override;
 };
 
 #endif // !TEXTURE_ASSET_H

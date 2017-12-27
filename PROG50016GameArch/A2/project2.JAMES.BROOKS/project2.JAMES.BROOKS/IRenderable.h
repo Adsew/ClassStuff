@@ -19,6 +19,10 @@ class IRenderable {
 
 protected:	
 	
+    IRenderable();
+
+    virtual ~IRenderable();
+
 	virtual void render() = 0;
 };
 

@@ -20,6 +20,8 @@ class Object {
 
 private:
 	
+    static unsigned int uniqueIDCount;
+
     unsigned int id;
 
     bool initialized;
@@ -50,6 +52,12 @@ public:
 
     // Check if object is set for deletion
     bool pollNeedsDeletion();
+
+    // One time call to initialize the ID generator for objects
+    static void initializeIDs();
+
+    // Generate a unique ID
+    static unsigned int generateID();
 };
 
 #endif // !OBJECT_H

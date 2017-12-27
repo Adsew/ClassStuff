@@ -26,11 +26,7 @@ Description: Precompiled header for the common files and support macros.
 
 #include "Timer.h"
 #include "FileSystem.h"
-
-
-// Generate dynamic component types
-
-#define REGISTER_COMPONENT(_class_type_) _class_type_::generateType();
+#include "RTTI.h"
 
 
 // Easy debug output

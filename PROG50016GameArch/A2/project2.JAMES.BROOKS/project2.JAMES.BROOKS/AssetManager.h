@@ -63,7 +63,7 @@ public:
 
     void RemoveAsset(Asset *asset);
 
-    void load(tinyxml2::XMLElement *element);
+    void load(std::unique_ptr<FileSystem::FileAccessor> element);
 };
 
 #endif // !ASSET_MANAGER_H

@@ -13,6 +13,7 @@ Description: A base class for all components that can be added to a game object.
 */
 
 
+#include "ComponentManager.h"
 #include "Object.h"
 
 

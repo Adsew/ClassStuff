@@ -12,19 +12,22 @@ Description: A small image to be rendered to the screen.
 
 #include "Core.h"
 
-#include "ComponentManager.h"
+
 #include "Sprite.h"
 
 
-void Sprite::generateType() {
+IMPLEMENT_COMPONENT(Sprite)
 
-    ComponentManager::Instance().addComponentType<Sprite>("Sprite");
-}
 
 Sprite::Sprite(unsigned int uniqueID)
     : Component(uniqueID, "Sprite") {
 
-	
+    xDimension = 0;
+    yDimension = 0;
+    xOrigin = 0;
+    yOrigin = 0;
+    xPos = 0;
+    yPos = 0;
 }
 
 Sprite::~Sprite() {

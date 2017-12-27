@@ -17,25 +17,23 @@ Description: A small image to be rendered to the screen.
 #include "IRenderable.h"
 
 
+class TextureAsset;
+
+
 class Sprite : public Component, public IRenderable {
 
-    /***** Type Creator *****/
+    REGISTER_COMPONENT(Sprite)                                                  
 
-private:
+protected:
 
-    static void generateType();
+    TextureAsset *spriteImage;
 
-    class TypeRegister {
+    // Image rendering
+    int xDimension, yDimension;
+    int xOrigin, yOrigin;
 
-        static bool dummy;
-
-        TypeRegister() {
-
-            REGISTER_COMPONENT(Sprite)
-        }
-
-        ~TypeRegister() = default;
-    };
+    // Rende screen position
+    int xPos, yPos;
 
     /***** Functions *****/
 
@@ -52,6 +50,8 @@ public:
 	virtual void initialize() override;
 
     virtual void update() override;
+
+
 };
 
 #endif // !SPRITE_H

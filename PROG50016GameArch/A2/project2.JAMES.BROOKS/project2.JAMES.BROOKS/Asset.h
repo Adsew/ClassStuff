@@ -22,11 +22,13 @@ class Asset : public Object {
 
 protected:
 
-	Asset();
+	Asset(unsigned int uniqueID);
 
 	virtual ~Asset();
 
-    virtual void load(tinyxml2::XMLElement *element) = 0;
+    void initialize() override final {}
+
+    virtual void load(std::unique_ptr<FileSystem::FileAccessor> element) = 0;
 };
 
 #endif // !ASSET_H

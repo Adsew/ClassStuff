@@ -105,6 +105,9 @@
     <ClCompile Include="ComponentManager.cpp">
       <Filter>Source Files\Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="IRenderable.cpp">
+      <Filter>Source Files\System\IO\Output</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="ComponentManager.h">
       <Filter>Header Files\Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="RTTI.h">
+      <Filter>Header Files\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

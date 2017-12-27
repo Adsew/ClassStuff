@@ -15,6 +15,9 @@ Description: Base class for most entities persisting in the game world.
 #include "Object.h"
 
 
+unsigned int Object::uniqueIDCount = 0;
+
+
 Object::Object(unsigned int uniqueID) {
 
     id = uniqueID;
@@ -52,4 +55,16 @@ void Object::destroy() {
 bool Object::pollNeedsDeletion() {
 
     return needsDeletion;
+}
+
+// One time call to initialize the ID generator for objects
+void Object::initializeIDs() {
+
+    Object::uniqueIDCount = 0;
+}
+
+// Generate a unique ID
+unsigned int Object::generateID() {
+
+    return Object::uniqueIDCount++;
 }

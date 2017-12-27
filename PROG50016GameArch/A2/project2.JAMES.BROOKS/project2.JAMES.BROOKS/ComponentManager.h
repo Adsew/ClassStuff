@@ -30,7 +30,7 @@ private:
 
     std::list<Component *> components;
 
-    std::map<std::string, Component *(unsigned int uniqueID)> createComponent;
+    std::map<std::string, std::function<Component *(unsigned int uniqueID)>> createComponent;
 
     /***** Functions *****/
 
@@ -48,9 +48,6 @@ protected:
 
     virtual void update() override;
 
-    template <class T>
-    Component *createComponentOfType(unsigned int uniqueID);
-
 public:
 
     inline static ComponentManager &Instance() {
@@ -60,8 +57,7 @@ public:
         return instance;
     }
 
-    template <class T>
-    void addComponentType(const char *name);
+    void addComponentType(const char *name, std::function<Component *(unsigned int)> creationFunc);
 };
 
 #endif

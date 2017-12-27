@@ -30,7 +30,7 @@ GameObjectManager::~GameObjectManager() {
 
 void GameObjectManager::initialize() {
 
-    uniqueIDCount = 0;
+    Object::initializeIDs();
 }
 
 void GameObjectManager::update() {
@@ -53,11 +53,9 @@ void GameObjectManager::update() {
 
 GameObject *GameObjectManager::createGameObject() {
 
-    GameObject *go = new GameObject(uniqueIDCount);
+    GameObject *go = new GameObject(Object::generateID());
     
     gameObjects.push_back(go);
-
-    uniqueIDCount++;
 
     return go;
 }

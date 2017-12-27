@@ -13,6 +13,9 @@ Description: A system responsable for rendering renderable objects to the screen
 */
 
 
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
+
 #include "ISystem.h"
 
 
@@ -28,18 +31,26 @@ class RenderSystem : public ISystem {
 
 private:
 	
-    std::list<IRenderable*> renderComponents;
+    sf::RenderWindow *window;
+
+    std::list<IRenderable *> renderComponents;
+
+    std::string winTitle;
+
+    int winHeight, winWidth;
 
 
     /***** Functions *****/
 
 private:
 
-    RenderSystem() = default;
+    RenderSystem();
 
-    ~RenderSystem() = default;
+    ~RenderSystem();
 
-    RenderSystem(const RenderSystem& other) = default;
+    RenderSystem(const RenderSystem &rs) = default;
+
+    RenderSystem &operator=(RenderSystem &rs) = default;
 
 protected:
 

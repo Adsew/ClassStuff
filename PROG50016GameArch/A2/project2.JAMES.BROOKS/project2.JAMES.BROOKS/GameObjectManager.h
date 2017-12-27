@@ -30,8 +30,6 @@ private:
 	
     std::list<GameObject *> gameObjects;
 
-    unsigned int uniqueIDCount;
-
     /***** Functions *****/
 
 private:

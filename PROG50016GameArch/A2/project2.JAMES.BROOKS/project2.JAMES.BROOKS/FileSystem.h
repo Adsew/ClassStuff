@@ -23,7 +23,7 @@ namespace tinyxml2 {
 
 class FileSystem {
 
-protected:
+public:
 
     // Allows unique access to multiple files at once through multiple iterators
     class FileAccessor {

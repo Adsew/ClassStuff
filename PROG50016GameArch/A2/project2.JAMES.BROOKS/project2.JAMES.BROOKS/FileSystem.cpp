@@ -111,7 +111,7 @@ std::unique_ptr<FileSystem::FileAccessor> FileSystem::useFile(const char *fileRe
 
         return access;
     }
-    catch (const std::out_of_range &ex) {}
+    catch (...) {}
 
     return NULL;
 }

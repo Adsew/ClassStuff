@@ -15,7 +15,7 @@ Description: A base class for all future assets of any time to be created.
 #include "Asset.h"
 
 
-Asset::Asset() {
+Asset::Asset(unsigned int uniqueID) : Object(uniqueID) {
 
 
 }
