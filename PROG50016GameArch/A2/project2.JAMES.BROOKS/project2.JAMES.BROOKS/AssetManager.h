@@ -29,9 +29,11 @@ class AssetManager : public ISystem {
 
 private:
 
-	std::list<Asset*> assets;
+	std::list<std::shared_ptr<Asset>> assets;
 
     std::map<std::string, std::function<Asset *()>> assetCreate;
+
+    const char *assetFile;
 
 
     /***** Functions *****/
@@ -63,7 +65,7 @@ public:
 
     void RemoveAsset(Asset *asset);
 
-    void load(std::unique_ptr<FileSystem::FileAccessor> element);
+    void loadAsset(const char *assetName);
 };
 
 #endif // !ASSET_MANAGER_H

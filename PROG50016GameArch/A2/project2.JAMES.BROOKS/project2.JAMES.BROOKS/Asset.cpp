@@ -24,3 +24,8 @@ Asset::~Asset() {
 
 
 }
+
+void Asset::setName(const char *n) {
+
+    name = n;
+}

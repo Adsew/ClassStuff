@@ -20,19 +20,27 @@ Description: Manages all assets created during the course of the game. Responsib
 
 void AssetManager::initialize() {
 
-    //assetCreate["TextureAsset"] = TextureAsset::create;
+    assetCreate.clear();
 }
 
 void AssetManager::update() {
 
+    for (std::list<std::shared_ptr<Asset>>::iterator iter = assets.begin();
+        iter != assets.end();
+        iter++) {
 
+        if ((*iter).use_count() == 1) {
+
+            assets.erase(iter);
+        }
+    }
 }
 
 void AssetManager::addAsset(Asset *asset) {
 
     if (asset != NULL) {
 
-        assets.push_back(asset);
+        //assets.push_back(asset);
     }
 }
 
@@ -40,11 +48,11 @@ void AssetManager::RemoveAsset(Asset *asset) {
 
     if (asset != NULL) {
 
-        for (std::list<Asset *>::iterator iter = assets.begin();
+        for (std::list<std::shared_ptr<Asset>>::iterator iter = assets.begin();
             iter != assets.end();
             iter++) {
 
-            if (*iter == asset) {
+            if (*(*iter).get() == *asset) {
 
                 assets.erase(iter);
             }
@@ -52,25 +60,34 @@ void AssetManager::RemoveAsset(Asset *asset) {
     }
 }
 
-void AssetManager::load(std::unique_ptr<FileSystem::FileAccessor> element) {
+void AssetManager::loadAsset(const char *assetName) {
+    
+    std::unique_ptr<FileSystem::FileAccessor> accessor = FileSystem::Instance().useFile(assetFile);
 
-    /*XMLElement *assetElement = element->FirstChildElement("Asset");
+    FileSystem::Instance().traverseToElement(accessor, "Assets");
 
-    while (assetElement != NULL) {
+    // Check asset exists
+    if (FileSystem::Instance().traverseToElement(accessor, assetName)) {
 
-        std::string attrib = assetElement->Attribute("class");
+        Asset *loadedAsset = NULL;
+        std::string assetType;
+        
+        FileSystem::Instance().getAttribute(accessor, "type", assetType);
 
-        auto iter = assetCreate.find(attrib);
+        try {
 
-        if (iter != assetCreate.end()) {
+            loadedAsset = assetCreate.at(assetType)();
+        }
+        catch (...) {
 
-            Asset *tempAsset = iter->second();
-
-            tempAsset->load(assetElement);
-
-            this->addAsset(tempAsset);
+            DEBUG_LOG("AssetManager: Asset does not exist. Failed to load.")
         }
 
-        assetElement = assetElement->NextSiblingElement("Asset");
-    }*/
+        if (loadedAsset != NULL) {
+
+            loadedAsset->load(accessor);
+
+            // PUT INTO SHARED POINTER AND GIVE BACK TO LOADING COMPONENT
+        }
+    }
 }

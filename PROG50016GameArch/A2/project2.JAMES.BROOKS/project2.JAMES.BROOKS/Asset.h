@@ -20,6 +20,15 @@ class Asset : public Object {
 
     friend class AssetManager;
 
+    /***** Variables *****/
+
+private:
+
+    std::string name;
+
+
+    /***** Functions *****/
+
 protected:
 
 	Asset(unsigned int uniqueID);
@@ -29,6 +38,10 @@ protected:
     void initialize() override final {}
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> element) = 0;
+
+public:
+
+    void setName(const char *n);
 };
 
 #endif // !ASSET_H

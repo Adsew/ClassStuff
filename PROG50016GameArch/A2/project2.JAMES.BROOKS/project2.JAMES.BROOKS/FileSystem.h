@@ -35,9 +35,19 @@ public:
         tinyxml2::XMLDocument * const activeAsset;
         tinyxml2::XMLElement *activeElem;
 
+        bool usable;
+
     protected:
 
-        FileAccessor(tinyxml2::XMLDocument *doc) : activeAsset(doc), activeElem(NULL) {}
+        FileAccessor(tinyxml2::XMLDocument *doc) : activeAsset(doc), activeElem(NULL) {
+            
+            usable = false;
+
+            if (activeAsset != NULL) {
+
+                usable = true;
+            }
+        }
     };
 
 private:
