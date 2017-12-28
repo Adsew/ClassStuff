@@ -52,5 +52,23 @@ void ComponentManager::update() {
 
 void ComponentManager::addComponentType(const char *name, std::function<Component *(unsigned int)> creationFunc) {
 
-    createComponent[name] = creationFunc;
+    createComponentFuncs[name] = creationFunc;
+}
+
+Component *ComponentManager::createComponent(const char *compType) {
+
+    try {
+
+        Component *tempComp = createComponentFuncs.at(compType)(Object::generateID());
+
+        if (tempComp != NULL) {
+
+            components.push_back(tempComp);
+
+            return tempComp;
+        }
+    }
+    catch (...) {}
+
+    return NULL;
 }

@@ -26,13 +26,13 @@ class Sprite : public Component, public IRenderable {
 
 protected:
 
-    TextureAsset *spriteImage;
+    std::weak_ptr<TextureAsset> spriteImage;
 
     // Image rendering
     int xDimension, yDimension;
     int xOrigin, yOrigin;
 
-    // Rende screen position
+    // Render screen position
     int xPos, yPos;
 
     /***** Functions *****/
@@ -40,6 +40,8 @@ protected:
 protected:
 
     virtual void render() override;
+
+    virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
 
 public:
 
@@ -50,8 +52,6 @@ public:
 	virtual void initialize() override;
 
     virtual void update() override;
-
-
 };
 
 #endif // !SPRITE_H

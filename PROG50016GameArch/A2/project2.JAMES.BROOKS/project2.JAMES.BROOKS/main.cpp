@@ -15,6 +15,6 @@ Description: Begin running the game engine.
 
 void main() {
 
-	GameEngine::Instance().initialize("");
+	GameEngine::Instance().initialize("../res/Settings.config");
 	GameEngine::Instance().gameLoop();
 }

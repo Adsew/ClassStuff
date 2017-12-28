@@ -29,11 +29,9 @@ class AssetManager : public ISystem {
 
 private:
 
-	std::list<std::shared_ptr<Asset>> assets;
+	std::map<std::string, std::shared_ptr<Asset>> assets;
 
-    std::map<std::string, std::function<Asset *()>> assetCreate;
-
-    const char *assetFile;
+    std::map<std::string, std::function<Asset *(unsigned int)>> assetCreate;
 
 
     /***** Functions *****/
@@ -52,6 +50,8 @@ protected:
 
     void update() override;
 
+    bool loadAsset(const char *assetName);
+
 public:
 
     inline static AssetManager &Instance() {
@@ -61,11 +61,9 @@ public:
         return instance;
     }
 
-    void addAsset(Asset *asset);
+    void addAssetType(const char *name, std::function<Asset *(unsigned int)> creationFunc);
 
-    void RemoveAsset(Asset *asset);
-
-    void loadAsset(const char *assetName);
+    std::weak_ptr<Asset> getAsset(const char *assetName);
 };
 
 #endif // !ASSET_MANAGER_H

@@ -20,6 +20,7 @@ Description: A base class for all components that can be added to a game object.
 class Component : public Object {
 
     friend class ComponentManager;
+    friend class GameObject;
 
     /***** Variables *****/
 
@@ -39,6 +40,8 @@ protected:
     Component(unsigned int uniqueID, const std::string &compName);
 
     virtual ~Component();
+
+    virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) = 0;
 
 public:
 

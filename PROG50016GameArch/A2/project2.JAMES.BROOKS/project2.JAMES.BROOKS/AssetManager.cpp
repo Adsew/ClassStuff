@@ -14,7 +14,6 @@ Description: Manages all assets created during the course of the game. Responsib
 #include "Core.h"
 
 #include "Asset.h"
-#include "TextureAsset.h"
 #include "AssetManager.h"
 
 
@@ -25,44 +24,49 @@ void AssetManager::initialize() {
 
 void AssetManager::update() {
 
-    for (std::list<std::shared_ptr<Asset>>::iterator iter = assets.begin();
+    for (std::map<std::string, std::shared_ptr<Asset>>::iterator iter = assets.begin();
         iter != assets.end();
         iter++) {
 
-        if ((*iter).use_count() == 1) {
+        if ((*iter).second.use_count() == 1) {
 
             assets.erase(iter);
         }
     }
 }
 
-void AssetManager::addAsset(Asset *asset) {
+void AssetManager::addAssetType(const char *name, std::function<Asset *(unsigned int)> creationFunc) {
 
-    if (asset != NULL) {
-
-        //assets.push_back(asset);
-    }
+    assetCreate[name] = creationFunc;
 }
 
-void AssetManager::RemoveAsset(Asset *asset) {
+std::weak_ptr<Asset> AssetManager::getAsset(const char *assetName) {
 
-    if (asset != NULL) {
+    try {
 
-        for (std::list<std::shared_ptr<Asset>>::iterator iter = assets.begin();
-            iter != assets.end();
-            iter++) {
+        return assets.at(assetName);
+    }
+    catch (...) {
 
-            if (*(*iter).get() == *asset) {
+        if (loadAsset(assetName)) {
 
-                assets.erase(iter);
+            try {
+
+                return assets.at(assetName);
+            }
+            catch (...) {
+
+                DEBUG_LOG("AssetManager: Asset loaded incorrectly.");
             }
         }
     }
+
+    return std::weak_ptr<Asset>();
 }
 
-void AssetManager::loadAsset(const char *assetName) {
+bool AssetManager::loadAsset(const char *assetName) {
     
-    std::unique_ptr<FileSystem::FileAccessor> accessor = FileSystem::Instance().useFile(assetFile);
+    std::unique_ptr<FileSystem::FileAccessor> accessor = FileSystem::Instance().useFile("AssetsList");
 
     FileSystem::Instance().traverseToElement(accessor, "Assets");
 
@@ -76,7 +80,7 @@ void AssetManager::loadAsset(const char *assetName) {
 
         try {
 
-            loadedAsset = assetCreate.at(assetType)();
+            loadedAsset = assetCreate.at(assetType)(Object::generateID());
         }
         catch (...) {
 
@@ -85,9 +89,15 @@ void AssetManager::loadAsset(const char *assetName) {
 
         if (loadedAsset != NULL) {
 
+            loadedAsset->setName(assetName);
+
             loadedAsset->load(accessor);
 
-            // PUT INTO SHARED POINTER AND GIVE BACK TO LOADING COMPONENT
+            assets[assetName] = std::shared_ptr<Asset>(loadedAsset);
+
+            return true;
         }
     }
+
+    return false;
 }

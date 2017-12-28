@@ -43,6 +43,8 @@ protected:
 
     virtual ~GameObject();
 
+    virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor);
+
 public:
 
     // Initialize GO to a usable state

@@ -12,7 +12,7 @@ Description: A small image to be rendered to the screen.
 
 #include "Core.h"
 
-
+#include "AssetManager.h"
 #include "Sprite.h"
 
 
@@ -48,4 +48,19 @@ void Sprite::update() {
 void Sprite::render() {
 
 	
+}
+
+void Sprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
+
+    std::string assetName = "";
+
+    FileSystem::Instance().getAttribute(accessor, "xDimension", xDimension);
+    FileSystem::Instance().getAttribute(accessor, "yDimension", yDimension);
+    FileSystem::Instance().getAttribute(accessor, "xOrigin", xOrigin);
+    FileSystem::Instance().getAttribute(accessor, "yOrigin", yOrigin);
+
+    if (FileSystem::Instance().getAttribute(accessor, "Asset", assetName)) {
+
+        spriteImage = AssetManager::Instance().getAsset(assetName.c_str());
+    }
 }

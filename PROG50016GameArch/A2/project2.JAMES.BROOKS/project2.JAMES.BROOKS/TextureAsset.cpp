@@ -12,30 +12,40 @@ Description: An asset that holds an image to be used as a texture.
 
 #include "Core.h"
 
+#include <SFML/Graphics.hpp>
+
 #include "TextureAsset.h"
+
+
+IMPLEMENT_ASSET(TextureAsset);
 
 
 TextureAsset::TextureAsset(unsigned int uniqueID) : Asset(uniqueID) {
 
+    texture = NULL;
     fileName = "";
 }
 
 
 TextureAsset::~TextureAsset() {
 
+    if (texture != NULL) {
 
+        delete texture;
+    }
 }
 
-void TextureAsset::load(std::unique_ptr<FileSystem::FileAccessor> element) {
+void TextureAsset::load(std::unique_ptr<FileSystem::FileAccessor> &element) {
 
-    //FileSystem::Instance(). FirstChildElement("filename");
+    FileSystem::Instance().getAttribute(element, "path", fileName);
 
-    /*if (fileElement != NULL) {
+    if (!texture->loadFromFile(fileName)) {
 
-        fileName = fileElement->GetText();
+        DEBUG_LOG("TextureAsset: Failed to load file at " << fileName.c_str() << ".");
     }
-    else {
+}
 
-        std::cerr << "Could not find file to load for texture asset." << std::endl;
-    }*/
+sf::Texture *TextureAsset::getTexture() {
+
+    return texture;
 }

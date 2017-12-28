@@ -13,6 +13,7 @@ Description: A base class for all future assets of any time to be created.
 */
 
 
+#include "AssetManager.h"
 #include "Object.h"
 
 
@@ -33,13 +34,13 @@ protected:
 
 	Asset(unsigned int uniqueID);
 
-	virtual ~Asset();
-
     void initialize() override final {}
 
-    virtual void load(std::unique_ptr<FileSystem::FileAccessor> element) = 0;
+    virtual void load(std::unique_ptr<FileSystem::FileAccessor> &element) = 0;
 
 public:
+
+    virtual ~Asset();
 
     void setName(const char *n);
 };

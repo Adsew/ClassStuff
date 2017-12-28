@@ -30,7 +30,7 @@ private:
 
     std::list<Component *> components;
 
-    std::map<std::string, std::function<Component *(unsigned int uniqueID)>> createComponent;
+    std::map<std::string, std::function<Component *(unsigned int uniqueID)>> createComponentFuncs;
 
     /***** Functions *****/
 
@@ -58,6 +58,8 @@ public:
     }
 
     void addComponentType(const char *name, std::function<Component *(unsigned int)> creationFunc);
+
+    Component *createComponent(const char *compType);
 };
 
 #endif

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<Scene>
+    <GameObject name="Player">
+        <Components>
+            <Component type="Sprite" Asset="PlayerSprite" xDimension="10" yDimension="10" xOrigin="0" yOrigin="0" />
+        </Components>
+    </GameObject>
+</Scene>

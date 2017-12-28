@@ -14,6 +14,7 @@ Description: A standard object to be created into the scene.
 
 #include "GameObject.h"
 #include "Component.h"
+#include "ComponentManager.h"
 
 
 GameObject::GameObject(unsigned int uniqueID)
@@ -44,6 +45,36 @@ GameObject::~GameObject() {
     }
 
 	components.clear();
+}
+
+void GameObject::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
+
+    FileSystem::Instance().getAttribute(accessor, "name", name);
+
+    // Load any components under the game object
+    if (FileSystem::Instance().traverseToElement(accessor, "Components")) {
+        if (FileSystem::Instance().traverseToChildElement(accessor)) {
+
+            Component *tempComp = NULL;
+            std::string type = "";
+
+            do {
+                FileSystem::Instance().getAttribute(accessor, "type", type);
+
+                tempComp = ComponentManager::Instance().createComponent(type.c_str());
+
+                if (tempComp != NULL) {
+
+                    tempComp->load(accessor);
+                }
+
+                addComponent(tempComp);
+
+            } while (FileSystem::Instance().traverseToSyblingElement(accessor));
+
+            FileSystem::Instance().traverseToParentElement(accessor);
+        }
+    }
 }
 
 void GameObject::initialize() {
