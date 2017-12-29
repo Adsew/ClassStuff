@@ -12,26 +12,30 @@ Description: A standard object to be created into the scene.
 
 #include "Core.h"
 
-#include "GameObject.h"
+#include "Scene.h"
 #include "Component.h"
 #include "ComponentManager.h"
+#include "GameObject.h"
 
 
 GameObject::GameObject(unsigned int uniqueID)
     : Object(uniqueID) {
 
+    scene = NULL;
     name = "New Game Object";
 }
 
 GameObject::GameObject(unsigned int uniqueID, const char *goName)
     : Object(uniqueID) {
 
+    scene = NULL;
     name = goName;
 }
 
 GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
     : Object(uniqueID) {
 
+    scene = NULL;
     name = goName.c_str();
 }
 
@@ -45,6 +49,11 @@ GameObject::~GameObject() {
     }
 
 	components.clear();
+
+    if (scene != NULL) {
+
+        scene->unmanageGameObject(this);
+    }
 }
 
 void GameObject::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {

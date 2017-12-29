@@ -35,6 +35,7 @@ void GameObjectManager::initialize() {
 
 void GameObjectManager::update() {
 
+    // Deletion pass first
     for (std::list<GameObject *>::iterator iter = gameObjects.begin();
         iter != gameObjects.end();
         iter++) {
@@ -44,10 +45,14 @@ void GameObjectManager::update() {
             delete *iter;
             iter = gameObjects.erase(iter);
         }
-        else {
+    }
 
-            (*iter)->update();
-        }
+    // Normal update after
+    for (std::list<GameObject *>::iterator iter = gameObjects.begin();
+        iter != gameObjects.end();
+        iter++) {
+
+        (*iter)->update();
     }
 }
 

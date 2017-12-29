@@ -61,6 +61,8 @@ void Sprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
     if (FileSystem::Instance().getAttribute(accessor, "Asset", assetName)) {
 
-        spriteImage = AssetManager::Instance().getAsset(assetName.c_str());
+        // Maintain asset reference count and make texture asset usable
+        spriteImagePtr = AssetManager::Instance().getAsset(assetName.c_str());
+        spriteImage = (TextureAsset *)spriteImagePtr.lock().get();
     }
 }

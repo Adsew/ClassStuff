@@ -16,6 +16,7 @@ Description: Holds the game loop and runs the major systems that run the game.
 #include "FileSystem.h"
 #include "InputManager.h"
 #include "RenderSystem.h"
+#include "SceneManager.h"
 #include "GameObjectManager.h"
 #include "ComponentManager.h"
 #include "GameEngine.h"
@@ -27,6 +28,7 @@ void GameEngine::initialize(const char *settingsFile) {
 	AssetManager::Instance().initialize();
 	InputManager::Instance().initialize();
 	RenderSystem::Instance().initialize();
+    SceneManager::Instance().initialize();
 	GameObjectManager::Instance().initialize();
     ComponentManager::Instance().initialize();
 
@@ -51,6 +53,8 @@ void GameEngine::gameLoop() {
         ComponentManager::Instance().update();
 
 		RenderSystem::Instance().update();
+
+        SceneManager::Instance().update();
 
         Timer::Instance().update();
 

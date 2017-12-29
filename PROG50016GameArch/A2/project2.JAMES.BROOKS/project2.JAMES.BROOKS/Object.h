@@ -48,10 +48,10 @@ public:
     bool isInitialized();
 
     // Set an object to be deleted by the manager
-    void destroy();
+    virtual void destroy() final;
 
     // Check if object is set for deletion
-    bool pollNeedsDeletion();
+    virtual bool pollNeedsDeletion() final;
 
     // One time call to initialize the ID generator for objects
     static void initializeIDs();

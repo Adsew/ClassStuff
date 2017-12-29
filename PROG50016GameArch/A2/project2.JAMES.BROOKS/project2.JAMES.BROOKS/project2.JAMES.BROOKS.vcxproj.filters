@@ -55,6 +55,18 @@
     <Filter Include="Source Files\Asset">
       <UniqueIdentifier>{f371777b-2429-4db1-9205-59d1830665ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\GameObject">
+      <UniqueIdentifier>{b6736c87-68c7-44db-a877-08de31327e04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\GameObject">
+      <UniqueIdentifier>{456912fd-be16-4ab9-bda1-5c3432831074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Scene">
+      <UniqueIdentifier>{54e88791-af67-4b2a-9140-c84f3f576f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Scene">
+      <UniqueIdentifier>{cce1c7f0-b76c-4b06-b24f-b54942cdaeff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,12 +83,6 @@
     </ClCompile>
     <ClCompile Include="GameEngine.cpp">
       <Filter>Source Files\System</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObjectManager.cpp">
-      <Filter>Source Files\Object</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\System\IO\Input</Filter>
@@ -108,19 +114,25 @@
     <ClCompile Include="IRenderable.cpp">
       <Filter>Source Files\System\IO\Output</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>Source Files\Object\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Object\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Object\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Header Files\Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="GameEngine.h">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObjectManager.h">
-      <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files\System\IO\Input</Filter>
@@ -166,6 +178,18 @@
     </ClInclude>
     <ClInclude Include="RTTI.h">
       <Filter>Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>Header Files\Object\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Object\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Object\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

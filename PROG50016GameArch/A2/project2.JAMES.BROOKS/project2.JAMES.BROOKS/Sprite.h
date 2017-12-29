@@ -17,6 +17,7 @@ Description: A small image to be rendered to the screen.
 #include "IRenderable.h"
 
 
+class Asset;
 class TextureAsset;
 
 
@@ -26,7 +27,8 @@ class Sprite : public Component, public IRenderable {
 
 protected:
 
-    std::weak_ptr<TextureAsset> spriteImage;
+    std::weak_ptr<Asset> spriteImagePtr;
+    TextureAsset *spriteImage;
 
     // Image rendering
     int xDimension, yDimension;

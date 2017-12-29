@@ -16,6 +16,7 @@ Description: A standard object to be created into the scene.
 #include "Object.h"
 
 
+class Scene;
 class Component;
 
 
@@ -23,10 +24,14 @@ class GameObject : public Object {
 
     friend class GameObjectManager;
 
+    friend class Scene;
+
     /***** Variables *****/
 
 private:
 	
+    Scene *scene;
+
     std::string name;
 
     std::map<std::string, Component*> components;
