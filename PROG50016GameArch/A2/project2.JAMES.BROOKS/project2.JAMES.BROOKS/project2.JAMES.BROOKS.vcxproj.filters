@@ -126,6 +126,9 @@
     <ClCompile Include="Scene.cpp">
       <Filter>Source Files\Object\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>Header Files\Object\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files\Object\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

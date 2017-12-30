@@ -95,7 +95,13 @@ void GameObject::addComponent(Component * component) {
 
     if (component != NULL) {
 
-        components[component->getName()] = component;
+        std::map<std::string, Component *>::iterator iter = components.find(component->type);
+
+        if (iter == components.end()) {
+
+            components[component->type] = component;
+            component->gameObject = this;
+        }
     }
 }
 
@@ -103,11 +109,12 @@ void GameObject::removeComponent(Component * component) {
 
     if (component != NULL) {
 
-        std::map<std::string, Component *>::iterator iter = components.find(component->getName());
+        std::map<std::string, Component *>::iterator iter = components.find(component->type);
 
         if (iter != components.end()) {
 
             (*iter).second->destroy();
+            (*iter).second->gameObject = NULL;
             components.erase(iter);
         }
     }
@@ -139,4 +146,19 @@ void GameObject::setName(const std::string &newName) {
 std::string &GameObject::getName() {
 
     return name;
+}
+
+Component *GameObject::getComponent(const std::string &type) {
+
+    for (std::map<std::string, Component *>::iterator iter = components.begin();
+        iter != components.end();
+        iter++) {
+
+        if ((*iter).second->type == type) {
+
+            return (*iter).second;
+        }
+    }
+
+    return NULL;
 }

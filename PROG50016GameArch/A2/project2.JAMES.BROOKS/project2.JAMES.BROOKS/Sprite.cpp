@@ -12,6 +12,8 @@ Description: A small image to be rendered to the screen.
 
 #include "Core.h"
 
+#include "GameObject.h"
+#include "Transform.h"
 #include "RenderSystem.h"
 #include "AssetManager.h"
 #include "TextureAsset.h"
@@ -38,24 +40,14 @@ void Sprite::initialize() {
 
 void Sprite::update() {
     
-    /*if (InputManager::Instance().getKeyDown(sf::Keyboard::A)) {
+    Transform *trans = (Transform *)gameObject->getComponent("Transform");
+    
+    if (trans != NULL) {
 
-        x--;
+        sprite.setPosition(trans->position);
+        sprite.setRotation(trans->rotation);
+        sprite.setScale(trans->scale);
     }
-    if (InputManager::Instance().getKeyDown(sf::Keyboard::D)) {
-
-        x++;
-    }
-    if (InputManager::Instance().getKeyDown(sf::Keyboard::W)) {
-
-        y--;
-    }
-    if (InputManager::Instance().getKeyDown(sf::Keyboard::S)) {
-
-        y++;
-    }
-
-    sprite.setPosition(x, y);*/
 }
 
 void Sprite::render() {

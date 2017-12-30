@@ -24,20 +24,22 @@ class Component : public Object {
 
     /***** Variables *****/
 
-private:
+protected:
 
-    std::string name;
+    GameObject *gameObject;
+
+public:
+
+    const std::string type;
 
     
     /***** Functions *****/
 
 protected:
 	
-    Component(unsigned int uniqueID);
+    Component(unsigned int uniqueID, const char *compType);
 
-    Component(unsigned int uniqueID, const char *compName);
-
-    Component(unsigned int uniqueID, const std::string &compName);
+    Component(unsigned int uniqueID, const std::string &compType);
 
     virtual ~Component();
 
@@ -53,7 +55,7 @@ public:
 
         /* Gets/Sets */
 
-    std::string &getName();
+    GameObject * const getGameObject();
 };
 
 #endif // !COMPONENT_H

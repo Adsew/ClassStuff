@@ -15,28 +15,23 @@ Description: A base class for all components that can be added to a game object.
 #include "Component.h"
 
 
-Component::Component(unsigned int uniqueID)
-    : Object(uniqueID) {
+Component::Component(unsigned int uniqueID, const char *compType) 
+    : Object(uniqueID), type(compType) {
 
+    gameObject = NULL;
 }
 
-Component::Component(unsigned int uniqueID, const char *compName) 
-    : Object(uniqueID) {
+Component::Component(unsigned int uniqueID, const std::string &compType) 
+    : Object(uniqueID), type(compType) {
 
-
-}
-
-Component::Component(unsigned int uniqueID, const std::string &compName) 
-    : Object(uniqueID) {
-
-
+    gameObject = NULL;
 }
 
 Component::~Component() {
 
 }
 
-std::string &Component::getName() {
+GameObject * const Component::getGameObject() {
 
-    return name;
+    return gameObject;
 }

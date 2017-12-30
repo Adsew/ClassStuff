@@ -39,16 +39,16 @@ protected:
 
 protected:
 
+    Sprite(unsigned int uniqueID);
+
+    virtual ~Sprite();
+
     virtual void render() override;
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
 
 public:
 
-	Sprite(unsigned int uniqueID);
-
-	virtual ~Sprite();
-	
 	virtual void initialize() override;
 
     virtual void update() override;

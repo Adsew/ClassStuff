@@ -36,6 +36,9 @@ private:
 
     std::map<std::string, Component*> components;
 
+    
+
+
     /***** Functions *****/
 
 protected:
@@ -72,6 +75,8 @@ public:
     void setName(const std::string &newName);
 
     std::string &getName();
+
+    Component *getComponent(const std::string &type);
 };
 
 #endif // !GAME_OBJECT_H
