@@ -23,6 +23,7 @@ protected:
 
     virtual ~IRenderable();
 
+    // Called to render the object to the window
 	virtual void render() = 0;
 };
 

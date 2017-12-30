@@ -63,7 +63,7 @@ public:
 
     void addAssetType(const char *name, std::function<Asset *(unsigned int)> creationFunc);
 
-    std::weak_ptr<Asset> getAsset(const char *assetName);
+    std::shared_ptr<Asset> getAsset(const char *assetName);
 };
 
 #endif // !ASSET_MANAGER_H

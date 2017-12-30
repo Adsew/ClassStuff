@@ -19,19 +19,30 @@ Description: Manages all assets created during the course of the game. Responsib
 
 void AssetManager::initialize() {
 
-    assetCreate.clear();
+    assets.clear();
 }
 
 void AssetManager::update() {
 
+    std::list<std::string> toBeDeleted;
+
+    // Collect all assets that are no longer being used for unloading
     for (std::map<std::string, std::shared_ptr<Asset>>::iterator iter = assets.begin();
         iter != assets.end();
         iter++) {
 
-        if ((*iter).second.use_count() == 1) {
-
-            assets.erase(iter);
+        if ((*iter).second.use_count() <= 1) {
+            
+            toBeDeleted.push_back((*iter).first);
         }
+    }
+
+    // Now delete assets not in use any longer (solves issee deleting last element in map iteratively)
+    for (std::list<std::string>::iterator iter = toBeDeleted.begin();
+        iter != toBeDeleted.end();
+        iter++) {
+
+        assets.erase(*iter);
     }
 }
 
@@ -40,7 +51,7 @@ void AssetManager::addAssetType(const char *name, std::function<Asset *(unsigned
     assetCreate[name] = creationFunc;
 }
 
-std::weak_ptr<Asset> AssetManager::getAsset(const char *assetName) {
+std::shared_ptr<Asset> AssetManager::getAsset(const char *assetName) {
 
     try {
 
@@ -51,7 +62,7 @@ std::weak_ptr<Asset> AssetManager::getAsset(const char *assetName) {
         if (loadAsset(assetName)) {
 
             try {
-
+                
                 return assets.at(assetName);
             }
             catch (...) {
@@ -61,7 +72,7 @@ std::weak_ptr<Asset> AssetManager::getAsset(const char *assetName) {
         }
     }
 
-    return std::weak_ptr<Asset>();
+    return std::shared_ptr<Asset>();
 }
 
 bool AssetManager::loadAsset(const char *assetName) {

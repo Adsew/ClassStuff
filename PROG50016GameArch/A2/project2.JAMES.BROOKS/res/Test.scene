@@ -2,7 +2,7 @@
 <Scene>
     <GameObject name="Player">
         <Components>
-            <Component type="Sprite" Asset="PlayerSprite" xDimension="10" yDimension="10" xOrigin="0" yOrigin="0" />
+            <Component type="Sprite" Asset="PlayerSprite" width="90" height="90" xOrigin="90" yOrigin="90" />
         </Components>
     </GameObject>
 </Scene>

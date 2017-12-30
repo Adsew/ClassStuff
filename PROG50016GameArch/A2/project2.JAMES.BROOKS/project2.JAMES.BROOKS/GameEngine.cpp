@@ -29,20 +29,18 @@ void GameEngine::initialize(const char *settingsFile) {
 	InputManager::Instance().initialize();
 	RenderSystem::Instance().initialize();
     SceneManager::Instance().initialize();
-	GameObjectManager::Instance().initialize();
     ComponentManager::Instance().initialize();
-
+	GameObjectManager::Instance().initialize();
+    
 	// Needs to be at the end because we will load a default file
 	FileSystem::Instance().initialize(settingsFile);
 }
 
 void GameEngine::gameLoop() {
 
-    bool running = true;
-
     Timer::Instance().beginTiming();
 
-	while (running) {
+	while (!InputManager::Instance().gameCloseTriggered) {
 
 		InputManager::Instance().update();
 
@@ -58,6 +56,6 @@ void GameEngine::gameLoop() {
 
         Timer::Instance().update();
 
-		DEBUG_LOG("Current Game Time: " << Timer::Instance().runTime << " Delta Time: " << Timer::Instance().deltaTime);
+		//DEBUG_LOG("Current Game Time: " << Timer::Instance().runTime << " Delta Time: " << Timer::Instance().deltaTime);
 	}
 }

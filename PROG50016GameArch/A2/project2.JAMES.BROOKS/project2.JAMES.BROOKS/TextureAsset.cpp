@@ -32,6 +32,7 @@ TextureAsset::~TextureAsset() {
     if (texture != NULL) {
 
         delete texture;
+        texture = NULL;
     }
 }
 
@@ -39,9 +40,14 @@ void TextureAsset::load(std::unique_ptr<FileSystem::FileAccessor> &element) {
 
     FileSystem::Instance().getAttribute(element, "path", fileName);
 
+    texture = new sf::Texture();
+
     if (!texture->loadFromFile(fileName)) {
 
         DEBUG_LOG("TextureAsset: Failed to load file at " << fileName.c_str() << ".");
+
+        delete texture;
+        texture = NULL;
     }
 }
 

@@ -13,6 +13,9 @@ Description: A small image to be rendered to the screen.
 */
 
 
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
+
 #include "Component.h"
 #include "IRenderable.h"
 
@@ -27,15 +30,10 @@ class Sprite : public Component, public IRenderable {
 
 protected:
 
-    std::weak_ptr<Asset> spriteImagePtr;
-    TextureAsset *spriteImage;
-
-    // Image rendering
-    int xDimension, yDimension;
-    int xOrigin, yOrigin;
-
-    // Render screen position
-    int xPos, yPos;
+    std::shared_ptr<Asset> spriteImagePtr;
+    sf::Sprite sprite;
+    sf::IntRect spriteRect;
+    
 
     /***** Functions *****/
 

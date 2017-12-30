@@ -69,6 +69,8 @@ public:
     void addRenderable(IRenderable* component);
 	
 	void removeRenderable(IRenderable* component);
+
+    sf::RenderWindow *getWindow();
 };
 
 #endif // !RENDER_SYSTEM_H

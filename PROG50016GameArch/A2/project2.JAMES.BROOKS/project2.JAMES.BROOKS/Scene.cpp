@@ -35,6 +35,8 @@ Scene::~Scene() {
 
         (*iter)->destroy();
     }
+
+    gameObjects.clear();
 }
 
 void Scene::initialize() {
@@ -59,6 +61,8 @@ bool Scene::load() {
                     if (newGO != NULL) {
 
                         newGO->load(accessor);
+
+                        gameObjects.push_back(newGO);
                     }
 
                 } while (FileSystem::Instance().traverseToSyblingElement(accessor));

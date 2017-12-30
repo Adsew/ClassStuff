@@ -28,6 +28,8 @@ RenderSystem::RenderSystem() {
 
 RenderSystem::~RenderSystem() {
 
+    window->close();
+
     delete window;
     window = NULL;
 }
@@ -59,12 +61,23 @@ void RenderSystem::update() {
     }
 }
 
-void RenderSystem::addRenderable(IRenderable* component) {
+void RenderSystem::addRenderable(IRenderable *component) {
 
-	renderComponents.push_back(component);
+    if (component != NULL) {
+
+        renderComponents.push_back(component);
+    }
 }
 
-void RenderSystem::removeRenderable(IRenderable* component) {
+void RenderSystem::removeRenderable(IRenderable *component) {
+    
+    if (component != NULL && renderComponents.size() > 0) {
 
-	renderComponents.remove(component);
+        renderComponents.remove(component);
+    }
+}
+
+sf::RenderWindow *RenderSystem::getWindow() {
+
+    return window;
 }

@@ -14,6 +14,7 @@ Description: Manages the input and output of files used by the game.
 
 #include "Core.h"
 
+#include "SceneManager.h"
 #include "tinyxml2.h"
 #include "FileSystem.h"
 
@@ -56,29 +57,75 @@ bool FileSystem::initialize(const char *settingsLoc) {
         if (settings != NULL) {
 
             // Get game engine settings
+
+            // Asset files
             XMLElement *assetsNode = settings->FirstChildElement("AssetFiles");
 
             if (assetsNode != NULL) {
 
-                XMLDocument *asset = NULL;
+                XMLDocument *assetFile = NULL;
 
-                for (XMLElement *assetFile = assetsNode->FirstChildElement();
-                    assetFile != NULL;
-                    assetFile = assetFile->NextSiblingElement()) {
+                for (XMLElement *asset = assetsNode->FirstChildElement();
+                    asset != NULL;
+                    asset = asset->NextSiblingElement()) {
 
-                    if (assetFile->Attribute("file") != NULL && assetFile->Attribute("name") != NULL) {
+                    if (asset->Attribute("file") != NULL && asset->Attribute("name") != NULL) {
 
-                        asset = new XMLDocument();
+                        assetFile = new XMLDocument();
 
-                        asset->LoadFile(assetFile->Attribute("file"));
+                        assetFile->LoadFile(asset->Attribute("file"));
 
-                        if (asset->Error() == false) {
+                        if (assetFile->Error() == false) {
 
-                            assets[assetFile->Attribute("name")] = asset;
+                            assets[asset->Attribute("name")] = assetFile;
                         }
                         else {
 
-                            delete asset;
+                            DEBUG_LOG("FileSystem: Initialization load failure. Can not open asset " << asset->Attribute("file") << ".");
+
+                            delete assetFile;
+
+                            assetFile = NULL;
+                        }
+                    }
+                }
+            }
+
+            // Scene files
+            XMLElement *scenesNode = settings->FirstChildElement("Scenes");
+
+            if (scenesNode != NULL) {
+
+                XMLDocument *sceneFile = NULL;
+
+                for (XMLElement *scene = scenesNode->FirstChildElement();
+                    scene != NULL;
+                    scene = scene->NextSiblingElement()) {
+
+                    if (scene->Attribute("file") != NULL && scene->Attribute("name") != NULL) {
+
+                        sceneFile = new XMLDocument();
+
+                        sceneFile->LoadFile(scene->Attribute("file"));
+
+                        if (sceneFile->Error() == false) {
+
+                            assets[scene->Attribute("name")] = sceneFile;
+
+                            SceneManager::Instance().addScene(scene->Attribute("name"));
+
+                            if (scene->Attribute("default") != NULL) {
+
+                                SceneManager::Instance().changeScene(scene->Attribute("name")); // On first update will load this scene
+                            }
+                        }
+                        else {
+
+                            DEBUG_LOG("FileSystem: Initialization load failure. Can not open scene " << scene->Attribute("file") << ".");
+
+                            delete sceneFile;
+
+                            sceneFile = NULL;
                         }
                     }
                 }
