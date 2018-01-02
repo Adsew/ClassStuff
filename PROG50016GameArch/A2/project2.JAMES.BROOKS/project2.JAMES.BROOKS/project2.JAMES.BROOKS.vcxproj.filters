@@ -129,6 +129,12 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Object\Component</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerControls.cpp">
+      <Filter>Source Files\Object\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Source Files\Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -195,6 +201,12 @@
       <Filter>Header Files\Object\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>Header Files\Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerControls.h">
+      <Filter>Header Files\Object\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
       <Filter>Header Files\Object\Component</Filter>
     </ClInclude>
   </ItemGroup>

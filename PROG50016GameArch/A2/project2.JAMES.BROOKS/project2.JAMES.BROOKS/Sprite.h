@@ -26,7 +26,10 @@ class TextureAsset;
 
 class Sprite : public Component, public IRenderable {
 
-    REGISTER_COMPONENT(Sprite)                                                  
+    REGISTER_COMPONENT(Sprite);
+
+
+    /***** Variables *****/
 
 protected:
 
@@ -41,17 +44,17 @@ protected:
 
     Sprite(unsigned int uniqueID);
 
+    Sprite(unsigned int uniqueID, const char *type);
+
     virtual ~Sprite();
+
+    virtual void initialize() override;
+
+    virtual void update() override;
 
     virtual void render() override;
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
-
-public:
-
-	virtual void initialize() override;
-
-    virtual void update() override;
 };
 
 #endif // !SPRITE_H

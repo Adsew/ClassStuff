@@ -33,6 +33,18 @@ void GameObjectManager::initialize() {
     Object::initializeIDs();
 }
 
+void GameObjectManager::clean() {
+
+    for (std::list<GameObject *>::iterator iter = gameObjects.begin();
+        iter != gameObjects.end();
+        iter++) {
+
+        delete *iter;
+    }
+
+    gameObjects.clear();
+}
+
 void GameObjectManager::update() {
 
     // Deletion pass first

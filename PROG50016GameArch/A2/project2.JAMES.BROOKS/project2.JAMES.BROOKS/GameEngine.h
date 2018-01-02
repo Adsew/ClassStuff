@@ -13,9 +13,6 @@ Description: Holds the game loop and runs the major systems that run the game.
 */
 
 
-class ISystem;
-
-
 class GameEngine {
 
 private:
@@ -26,6 +23,9 @@ private:
 	
     GameEngine(const GameEngine& other) = default;
 
+    // Called automatically at the end of gameLoop to clean system memory
+    void clean();
+
 public:
 
     inline static GameEngine& Instance() {
@@ -35,8 +35,10 @@ public:
         return instance;
     }
 
+    // Initialize all systems needed to run the game. Call before game loop
     void initialize(const char *settingsFile);
 
+    // Main game loop that runs the game
     void gameLoop();
 };
 

@@ -12,7 +12,6 @@ Description: A small image to be rendered to the screen.
 
 #include "Core.h"
 
-#include "GameObject.h"
 #include "Transform.h"
 #include "RenderSystem.h"
 #include "AssetManager.h"
@@ -26,6 +25,11 @@ IMPLEMENT_COMPONENT(Sprite)
 Sprite::Sprite(unsigned int uniqueID)
     : Component(uniqueID, "Sprite") {
     
+}
+
+Sprite::Sprite(unsigned int uniqueID, const char *type)
+    : Component(uniqueID, type) {
+
 }
 
 Sprite::~Sprite() {

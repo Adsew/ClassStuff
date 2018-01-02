@@ -28,6 +28,11 @@ void SceneManager::initialize() {
     newSceneName = "";
 }
 
+void SceneManager::clean() {
+
+    unloadActiveScene();
+}
+
 void SceneManager::update() {
 
     if (newSceneName != "") {

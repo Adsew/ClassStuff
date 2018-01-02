@@ -13,6 +13,7 @@ Description: A base class for all components that can be added to a game object.
 */
 
 
+#include "GameObject.h"
 #include "ComponentManager.h"
 #include "Object.h"
 
@@ -43,15 +44,16 @@ protected:
 
     virtual ~Component();
 
+    // When loading a component from a scene file, details are loaded here
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) = 0;
-
-public:
 
     // Initialize the component to a usable state
     virtual void initialize() = 0;
 
     // Cycle update for a component
     virtual void update() = 0;
+
+public:
 
         /* Gets/Sets */
 

@@ -47,9 +47,11 @@ private:
 
 protected:
 
-    void initialize() override;
+    virtual void initialize() override;
 
-    void update() override;
+    virtual void clean() override;
+
+    virtual void update() override;
 
     bool loadScene(Scene *scene);
 

@@ -28,10 +28,7 @@ RenderSystem::RenderSystem() {
 
 RenderSystem::~RenderSystem() {
 
-    window->close();
-
-    delete window;
-    window = NULL;
+    
 }
 
 void RenderSystem::initialize() {
@@ -42,6 +39,16 @@ void RenderSystem::initialize() {
 
         window->setKeyRepeatEnabled(false);
     }
+}
+
+void RenderSystem::clean() {
+
+    renderComponents.clear();
+
+    window->close();
+
+    delete window;
+    window = NULL;
 }
 
 void RenderSystem::update() {

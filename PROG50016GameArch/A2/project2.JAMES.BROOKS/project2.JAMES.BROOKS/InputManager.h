@@ -45,9 +45,11 @@ private:
 
 protected:
 	
-    void initialize() override;
+    virtual void initialize() override;
 	
-    void update() override;
+    virtual void clean() override;
+
+    virtual void update() override;
 
 public:
 
@@ -66,6 +68,9 @@ public:
 
     // True if key is held down, false if up
     bool getKeyDown(const sf::Keyboard::Key &key);
+
+    // Sets the game exit flag to true (should be moved elsewhere, not sure where though)
+    void exit();
 };
 
 #endif // !INPUT_MANAGER_H

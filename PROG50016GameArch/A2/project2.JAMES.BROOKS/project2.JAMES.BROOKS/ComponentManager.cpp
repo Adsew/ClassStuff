@@ -32,6 +32,18 @@ void ComponentManager::initialize() {
     
 }
 
+void ComponentManager::clean() {
+
+    for (std::list<Component *>::iterator iter = components.begin();
+        iter != components.end();
+        iter++) {
+
+        delete *iter;
+    }
+
+    components.clear();
+}
+
 void ComponentManager::update() {
 
     for (std::list<Component *>::iterator iter = components.begin();

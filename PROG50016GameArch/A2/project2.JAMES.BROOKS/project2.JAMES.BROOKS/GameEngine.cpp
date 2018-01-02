@@ -22,20 +22,35 @@ Description: Holds the game loop and runs the major systems that run the game.
 #include "GameEngine.h"
 
 
+// Initialize all systems needed to run the game. Call before game loop
 void GameEngine::initialize(const char *settingsFile) {
 
+    InputManager::Instance().initialize();
     Timer::Instance().initialize();
-	AssetManager::Instance().initialize();
-	InputManager::Instance().initialize();
+    AssetManager::Instance().initialize();
 	RenderSystem::Instance().initialize();
     SceneManager::Instance().initialize();
-    ComponentManager::Instance().initialize();
 	GameObjectManager::Instance().initialize();
+    ComponentManager::Instance().initialize();
     
 	// Needs to be at the end because we will load a default file
 	FileSystem::Instance().initialize(settingsFile);
 }
 
+// Called automatically at the end of gameLoop to clean system memory
+void GameEngine::clean() {
+
+    ComponentManager::Instance().clean();
+    GameObjectManager::Instance().clean();
+    SceneManager::Instance().clean();
+    RenderSystem::Instance().clean();
+    AssetManager::Instance().clean();
+
+    Timer::Instance().clean();
+    InputManager::Instance().clean();
+}
+
+// Main game loop that runs the game
 void GameEngine::gameLoop() {
 
     Timer::Instance().beginTiming();
@@ -58,4 +73,6 @@ void GameEngine::gameLoop() {
 
 		//DEBUG_LOG("Current Game Time: " << Timer::Instance().runTime << " Delta Time: " << Timer::Instance().deltaTime);
 	}
+
+    clean();
 }

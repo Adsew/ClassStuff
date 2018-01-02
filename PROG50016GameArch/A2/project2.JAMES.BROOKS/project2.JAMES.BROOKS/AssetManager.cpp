@@ -22,6 +22,11 @@ void AssetManager::initialize() {
     assets.clear();
 }
 
+void AssetManager::clean() {
+
+    assets.clear();
+}
+
 void AssetManager::update() {
 
     std::list<std::string> toBeDeleted;

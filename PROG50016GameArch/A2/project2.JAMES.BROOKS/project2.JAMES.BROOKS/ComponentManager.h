@@ -46,6 +46,8 @@ protected:
 
     virtual void initialize() override;
 
+    virtual void clean() override;
+
     virtual void update() override;
 
 public:

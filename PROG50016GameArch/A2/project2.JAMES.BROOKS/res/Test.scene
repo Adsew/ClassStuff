@@ -3,7 +3,13 @@
     <GameObject name="Player">
         <Components>
             <Component type="Transform" position.x="100" position.y="100" rotation="0" scale.x="1" scale.y="1" />
-            <Component type="Sprite" Asset="PlayerSprite" width="90" height="90" xOrigin="90" yOrigin="90" />
+            <Component type="AnimatedSprite" Asset="PlayerSprite">
+				<Anim width="90" height="90" xOrigin="0" yOrigin="0" steps="5" fps="1" />
+				<Anim width="90" height="90" xOrigin="0" yOrigin="90" steps="5" fps="1" />
+				<Anim width="90" height="90" xOrigin="0" yOrigin="180" steps="5" fps="1" />
+				<Anim width="90" height="90" xOrigin="0" yOrigin="270" steps="5" fps="1" />
+			</Component>	
+			<Component type="PlayerControls" />
         </Components>
     </GameObject>
 </Scene>

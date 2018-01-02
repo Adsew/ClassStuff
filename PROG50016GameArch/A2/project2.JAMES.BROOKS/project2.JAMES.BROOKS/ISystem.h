@@ -18,9 +18,11 @@ class ISystem {
     
     /***** Functions *****/
 
-public:			
+protected:			
 	
     virtual void initialize() = 0;
+
+    virtual void clean() = 0;
 	
 	virtual void update() = 0;
 };

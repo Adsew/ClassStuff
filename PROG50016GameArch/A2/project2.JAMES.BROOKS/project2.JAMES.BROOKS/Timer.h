@@ -32,7 +32,7 @@ private:
     clock_t prevClockTime;
     
     float runTime;
-    float deltaTime;
+    float deltaTime;    // In milliseconds
 
     clock_t logTimerStartTime;
     
@@ -50,9 +50,11 @@ private:
 
 protected:
 
-    void initialize() override;
+    virtual void initialize() override;
 
-    void update() override;
+    virtual  void clean() override;
+
+    virtual void update() override;
 
     void beginTiming();
 
@@ -65,10 +67,10 @@ public:
         return instance;
     }
 
-    // Return the delta time of the previous update
+    // Return the delta time of the previous update in milliseconds
     float getDelta();
 
-    // Return the current total game runtime since after initialization
+    // Return the current total game runtime since after initialization in milliseconds
     float getRuntime();
 
     // Begin timing of a segment and lock the timer in use

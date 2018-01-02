@@ -25,6 +25,11 @@ void InputManager::initialize() {
     gameCloseTriggered = false;
 }
 
+void InputManager::clean() {
+
+
+}
+
 void InputManager::update() {
 
     sf::Event windowEvent;
@@ -36,9 +41,7 @@ void InputManager::update() {
 
         if (windowEvent.type == sf::Event::Closed) {
 
-            RenderSystem::Instance().getWindow()->close();
-
-            gameCloseTriggered = true;
+            exit();
         }
         else if (windowEvent.type == sf::Event::KeyPressed) {
             
@@ -90,4 +93,10 @@ bool InputManager::getKeyDown(const sf::Keyboard::Key &key) {
     }
 
     return false;
+}
+
+// Sets the game exit flag to true (should be moved elsewhere, not sure where though)
+void InputManager::exit() {
+
+    gameCloseTriggered = true;
 }

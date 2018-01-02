@@ -23,6 +23,11 @@ void Timer::initialize() {
     deltaTime = 0.0f;
 }
 
+void Timer::clean() {
+
+
+}
+
 void Timer::update() {
 
     prevClockTime = clock() - prevClockTime;

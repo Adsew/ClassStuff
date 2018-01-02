@@ -86,6 +86,9 @@ public:
     // Initialize the file system to a usable state
     void initialize(const std::string &settingsLoc);
 
+
+        // File access functions
+
     // Set the file to be used for loading
     std::unique_ptr<FileSystem::FileAccessor> useFile(const char *fileRef);
 

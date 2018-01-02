@@ -12,6 +12,7 @@ Description: A base class for all components that can be added to a game object.
 
 #include "Core.h"
 
+#include "GameObject.h"
 #include "Component.h"
 
 
@@ -29,6 +30,11 @@ Component::Component(unsigned int uniqueID, const std::string &compType)
 
 Component::~Component() {
 
+    if (gameObject != NULL) {
+
+        gameObject->removeComponent(this);
+        gameObject = NULL;
+    }
 }
 
 GameObject * const Component::getGameObject() {
