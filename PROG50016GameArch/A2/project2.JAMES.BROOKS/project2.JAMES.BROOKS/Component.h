@@ -44,14 +44,14 @@ protected:
 
     virtual ~Component();
 
-    // When loading a component from a scene file, details are loaded here
-    virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) = 0;
-
     // Initialize the component to a usable state
     virtual void initialize() = 0;
 
     // Cycle update for a component
     virtual void update() = 0;
+
+    // When loading a component from a scene file, details are loaded here
+    virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) = 0;
 
 public:
 

@@ -88,3 +88,33 @@ void Sprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
         }
     }
 }
+
+void Sprite::setRectangle(int width, int height, int x, int y) {
+
+    spriteRect.width = width;
+    spriteRect.height = height;
+    spriteRect.left = x;
+    spriteRect.top = y;
+
+    sprite.setTextureRect(spriteRect);
+}
+
+void Sprite::setTextureAsset(const char *assetName) {
+
+    TextureAsset *temp = NULL;
+
+    std::shared_ptr<Asset> tempAsset = AssetManager::Instance().getAsset(assetName);
+
+    temp = (TextureAsset *)tempAsset.get();
+
+    if (temp != NULL) {
+
+        spriteImagePtr = tempAsset;
+
+        sprite.setTexture(*(temp->getTexture()));
+    }
+    else {
+
+        DEBUG_LOG("Sprite: Unable to retrieve texture asset for " << assetName << ".");
+    }
+}

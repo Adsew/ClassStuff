@@ -55,6 +55,14 @@ protected:
     virtual void render() override;
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
+
+public:
+
+    /* Gets/Sets */
+
+    void setRectangle(int width, int height, int x, int y);
+
+    void setTextureAsset(const char *name);
 };
 
 #endif // !SPRITE_H

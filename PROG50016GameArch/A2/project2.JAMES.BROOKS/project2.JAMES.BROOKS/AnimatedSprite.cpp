@@ -75,11 +75,11 @@ void AnimatedSprite::update() {
     // Only animate if it has not finished playing
     if (!hasPlayedCountTimes()) {
 
-        float timeNeeded = ( 1.0f / animations[currentAnim][S_FPS] ) / 1000.0f;
+        float timeNeeded = ( 1.0f / animations[currentAnim][S_FPS] ) * 2;
         deltaTime += Timer::Instance().getDelta();
 
         if (deltaTime >= timeNeeded) {
-
+            
             deltaTime -= timeNeeded;
 
             step = (step + 1) % animations[currentAnim][S_STEP_COUNT];
@@ -153,6 +153,8 @@ bool AnimatedSprite::setAnimation(int animID) {
         spriteRect.height = animations[currentAnim][S_HEIGHT];
         spriteRect.left = animations[currentAnim][S_X_ORIGIN];
         spriteRect.top = animations[currentAnim][S_Y_ORIGIN];
+
+        sprite.setTextureRect(spriteRect);
 
         return true;
     }
