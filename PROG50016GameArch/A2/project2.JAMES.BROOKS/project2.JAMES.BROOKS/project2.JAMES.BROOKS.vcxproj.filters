@@ -67,6 +67,12 @@
     <Filter Include="Header Files\Object\Scene">
       <UniqueIdentifier>{cce1c7f0-b76c-4b06-b24f-b54942cdaeff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Component\GameSpecific">
+      <UniqueIdentifier>{9ab08f5c-6260-44e5-b2fa-5f56af731ad6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Component\GameSpecific">
+      <UniqueIdentifier>{834059ec-b286-4e34-ac61-5246f9184b13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -129,14 +135,17 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Source Files\Object\Component</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerControls.cpp">
-      <Filter>Source Files\Object\Component</Filter>
-    </ClCompile>
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Source Files\Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="terrain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Object\Component\GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerControls.cpp">
+      <Filter>Source Files\Object\Component\GameSpecific</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -206,14 +215,17 @@
     <ClInclude Include="Transform.h">
       <Filter>Header Files\Object\Component</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerControls.h">
-      <Filter>Header Files\Object\Component</Filter>
-    </ClInclude>
     <ClInclude Include="AnimatedSprite.h">
       <Filter>Header Files\Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="terrain.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files\Object\Component\GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerControls.h">
+      <Filter>Header Files\Object\Component\GameSpecific</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

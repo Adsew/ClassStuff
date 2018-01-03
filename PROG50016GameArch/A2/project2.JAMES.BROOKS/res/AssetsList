@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
 <Assets>
     <PlayerSprite type="TextureAsset" path="../res/Textures/playersprite.png" />
+    <TileSet type="TextureAsset" path="../res/Textures/tileset.png" />
 </Assets>

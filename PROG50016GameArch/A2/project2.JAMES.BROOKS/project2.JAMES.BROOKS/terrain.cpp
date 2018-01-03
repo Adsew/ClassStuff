@@ -12,6 +12,10 @@ Description: Keeps track of map data for the current level.
 
 #include "Core.h"
 
+#include <sstream>
+
+#include "GameObjectManager.h"
+#include "Tile.h"
 #include "Sprite.h"
 #include "terrain.h"
 
@@ -57,6 +61,12 @@ void Terrain::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
     }
 }
 
+// Create a tile gameobject with the given properties
+GameObject *createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider) {
+
+
+}
+
 // Unload tiles held by the map, if any
 void Terrain::unloadTiles() {
 
@@ -100,13 +110,26 @@ void Terrain::loadMapFile(const char *mapFile) {
 
         if (FileSystem::Instance().traverseToElement(mapFileAccessor, "map")) {
 
-            int width = 0, height = 0;
+            std::string tileset = "";
+            int tilesAcross = 0, tilesDown = 0, tileWidth = 0, tileHeight = 0;
+            int mapWidth = 0, mapHeight = 0;
 
-            FileSystem::Instance().getAttribute(mapFileAccessor, "width", width);
-            FileSystem::Instance().getAttribute(mapFileAccessor, "height", height);
+            FileSystem::Instance().getAttribute(mapFileAccessor, "width", mapWidth);
+            FileSystem::Instance().getAttribute(mapFileAccessor, "height", mapHeight);
+
+            FileSystem::Instance().getAttribute(mapFileAccessor, "tilewidth", tileWidth);
+            FileSystem::Instance().getAttribute(mapFileAccessor, "tileheight", tileHeight);
+
+            // Get tileset data
+            if (FileSystem::Instance().traverseToElement(mapFileAccessor, "tileset")) {
+
+                FileSystem::Instance().getAttribute(mapFileAccessor, "texture", tileset);
+                FileSystem::Instance().getAttribute(mapFileAccessor, "width", tilesAcross);
+                FileSystem::Instance().getAttribute(mapFileAccessor, "height", tilesDown);
+            }
 
             // Load underlying terrain such as the grass
-            if (FileSystem::Instance().traverseToElement(mapFileAccessor, "layer")) {
+            if (FileSystem::Instance().traverseToSyblingElement(mapFileAccessor, "layer")) {
 
                 std::string data = "";
 
@@ -114,15 +137,33 @@ void Terrain::loadMapFile(const char *mapFile) {
 
                 FileSystem::Instance().getElementText(mapFileAccessor, data);
 
-                terrain.resize(height);
+                std::stringstream dataStream(data);
+
+                // Iterate and fill map with tiles based on data
+                terrain.resize(mapHeight);
 
                 for (int i = 0; i < terrain.size(); i++) {
 
-                    terrain[i].resize(width);
+                    terrain[i].resize(mapWidth);
 
                     for (int j = 0; j < terrain[i].size(); j++) {
 
-                        // get data, create tile and 
+                        int x = 0, y = 0, tileNum = 0;
+
+                        dataStream >> tileNum;
+
+                        if (tileNum != 0) {
+
+                            tileNum--;
+                            x = (tileNum % tilesAcross) * tileHeight;
+                            y = ((int)(tileNum / tilesDown)) * tileWidth;
+
+                            terrain[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, i, j, false);
+                        }
+                        else {
+
+                            terrain[i][j] = NULL;
+                        }
                     }
                 }
 
@@ -138,15 +179,33 @@ void Terrain::loadMapFile(const char *mapFile) {
 
                 FileSystem::Instance().getElementText(mapFileAccessor, data);
 
-                objects.resize(height);
+                std::stringstream dataStream(data);
+
+                // Iterate and fill map with tiles based on data
+                objects.resize(mapHeight);
 
                 for (int i = 0; i < objects.size(); i++) {
 
-                    objects[i].resize(width);
+                    objects[i].resize(mapWidth);
 
                     for (int j = 0; j < objects[i].size(); j++) {
 
-                        // get data create tiles and stuff
+                        int x = 0, y = 0, tileNum = 0;
+
+                        dataStream >> tileNum;
+
+                        if (!0) {
+
+                            tileNum--;
+                            x = (tileNum % tilesAcross) * tileHeight;
+                            y = ((int)(tileNum / tilesDown)) * tileWidth;
+
+                            objects[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, i, j, false);
+                        }
+                        else {
+
+                            objects[i][j] = NULL;
+                        }
                     }
                 }
 

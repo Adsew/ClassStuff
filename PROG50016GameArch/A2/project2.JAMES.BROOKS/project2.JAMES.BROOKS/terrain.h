@@ -46,6 +46,9 @@ protected:
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
 
+    // Create a tile gameobject with the given properties
+    GameObject *createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider);
+
     // Unload tiles held by the map, if any
     void unloadTiles();
 
