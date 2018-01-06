@@ -61,7 +61,7 @@ bool Scene::load() {
                     if (newGO != NULL) {
 
                         newGO->load(accessor);
-
+                        newGO->scene = this;
                         gameObjects.push_back(newGO);
                     }
 
@@ -84,7 +84,9 @@ void Scene::unmanageGameObject(GameObject *go) {
 
         if (*go == *(*iter)) {
 
-            iter = gameObjects.erase(iter);
+            gameObjects.erase(iter);
+
+            break;
         }
     }
 }

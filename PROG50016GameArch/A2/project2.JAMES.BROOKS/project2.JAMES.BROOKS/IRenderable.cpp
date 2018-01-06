@@ -16,7 +16,9 @@ Description: Interface to provide screen rendering functionality.
 #include "IRenderable.h"
 
 
-IRenderable::IRenderable() {
+IRenderable::IRenderable(unsigned int p) {
+
+    priority = p;
 
     RenderSystem::Instance().addRenderable(this);
 }
@@ -24,4 +26,17 @@ IRenderable::IRenderable() {
 IRenderable::~IRenderable() {
 
     RenderSystem::Instance().removeRenderable(this);
+}
+
+// Set the priority the object will render over others
+void IRenderable::setRenderPriority(unsigned int p) {
+
+    if (p <= 0 && p > PRIORITIES) {
+
+        RenderSystem::Instance().removeRenderable(this);
+
+        priority = p;
+
+        RenderSystem::Instance().addRenderable(this);
+    }
 }

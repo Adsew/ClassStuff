@@ -14,6 +14,7 @@ Description: A standard object to be created into the scene.
 
 #include "Scene.h"
 #include "Component.h"
+#include "Transform.h"
 #include "ComponentManager.h"
 #include "GameObject.h"
 
@@ -23,6 +24,11 @@ GameObject::GameObject(unsigned int uniqueID)
 
     scene = NULL;
     name = "New Game Object";
+
+    transform = (Transform *)ComponentManager::Instance().createComponent("Transform");
+    transform->setPosition(0, 0);
+    transform->setScale(1.0f, 1.0f);
+    transform->setRotation(0);
 }
 
 GameObject::GameObject(unsigned int uniqueID, const char *goName)
@@ -30,6 +36,11 @@ GameObject::GameObject(unsigned int uniqueID, const char *goName)
 
     scene = NULL;
     name = goName;
+
+    transform = (Transform *)ComponentManager::Instance().createComponent("Transform");
+    transform->setPosition(0, 0);
+    transform->setScale(1.0f, 1.0f);
+    transform->setRotation(0);
 }
 
 GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
@@ -37,9 +48,17 @@ GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
 
     scene = NULL;
     name = goName.c_str();
+
+    transform = (Transform *)ComponentManager::Instance().createComponent("Transform");
+    transform->setPosition(0, 0);
+    transform->setScale(1.0f, 1.0f);
+    transform->setRotation(0);
 }
 
 GameObject::~GameObject() {
+
+    transform->destroy();
+    transform = NULL;
 
     for (std::map<std::string, Component *>::iterator iter = components.begin();
         iter != components.end();
@@ -70,19 +89,34 @@ void GameObject::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
             do {
                 FileSystem::Instance().getAttribute(accessor, "type", type);
 
-                tempComp = ComponentManager::Instance().createComponent(type.c_str());
+                // Special load for transform
+                if (type == "Transform") {
 
-                if (tempComp != NULL) {
+                    if (transform == NULL) {
 
-                    tempComp->load(accessor);
+                        transform = (Transform *)ComponentManager::Instance().createComponent("Transform");
+                    }
+
+                    transform->load(accessor);
                 }
+                // Any other component
+                else {
 
-                addComponent(tempComp);
+                    tempComp = ComponentManager::Instance().createComponent(type.c_str());
 
+                    if (tempComp != NULL) {
+
+                        tempComp->load(accessor);
+
+                        addComponent(tempComp);
+                    }
+                }
             } while (FileSystem::Instance().traverseToSyblingElement(accessor));
 
             FileSystem::Instance().traverseToParentElement(accessor);
         }
+
+        FileSystem::Instance().traverseToParentElement(accessor);
     }
 }
 
@@ -121,6 +155,11 @@ void GameObject::removeComponent(Component * component) {
 }
 
 void GameObject::update() {
+
+    if (transform != NULL) {
+
+        transform->update();
+    }
 
     for (std::map<std::string, Component *>::iterator iter = components.begin();
         iter != components.end();
@@ -161,4 +200,9 @@ Component *GameObject::getComponent(const std::string &type) {
     }
 
     return NULL;
+}
+
+Transform *GameObject::getTransform() {
+
+    return transform;
 }

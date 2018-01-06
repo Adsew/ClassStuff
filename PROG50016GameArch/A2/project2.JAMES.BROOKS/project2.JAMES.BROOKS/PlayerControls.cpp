@@ -43,7 +43,7 @@ void PlayerControls::initialize() {
 void PlayerControls::update() {
 
     InputManager &im = InputManager::Instance();
-    Transform *trans = (Transform *)gameObject->getComponent("Transform");
+    Transform *trans = gameObject->getTransform();
     AnimatedSprite *anim = (AnimatedSprite *)gameObject->getComponent("AnimatedSprite");
 
     if (trans != NULL &&anim != NULL) {

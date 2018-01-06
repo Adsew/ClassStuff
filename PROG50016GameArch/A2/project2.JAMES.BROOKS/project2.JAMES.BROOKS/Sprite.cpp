@@ -19,16 +19,16 @@ Description: A small image to be rendered to the screen.
 #include "Sprite.h"
 
 
-IMPLEMENT_COMPONENT(Sprite)
+IMPLEMENT_COMPONENT(Sprite);
 
 
 Sprite::Sprite(unsigned int uniqueID)
-    : Component(uniqueID, "Sprite") {
+    : Component(uniqueID, "Sprite"), IRenderable(LOWEST_PRIORITY) {
     
 }
 
 Sprite::Sprite(unsigned int uniqueID, const char *type)
-    : Component(uniqueID, type) {
+    : Component(uniqueID, type), IRenderable(LOWEST_PRIORITY) {
 
 }
 
@@ -44,7 +44,7 @@ void Sprite::initialize() {
 
 void Sprite::update() {
     
-    Transform *trans = (Transform *)gameObject->getComponent("Transform");
+    Transform *trans = gameObject->getTransform();
     
     if (trans != NULL) {
 
@@ -62,11 +62,17 @@ void Sprite::render() {
 void Sprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
     std::string assetName = "";
+    int priority = LOWEST_PRIORITY;
 
     FileSystem::Instance().getAttribute(accessor, "width", spriteRect.width);
     FileSystem::Instance().getAttribute(accessor, "height", spriteRect.height);
     FileSystem::Instance().getAttribute(accessor, "xOrigin", spriteRect.left);
     FileSystem::Instance().getAttribute(accessor, "yOrigin", spriteRect.top);
+
+    if (FileSystem::Instance().getAttribute(accessor, "priority", priority)) {
+
+        setRenderPriority(priority);
+    }
 
     if (FileSystem::Instance().getAttribute(accessor, "Asset", assetName)) {
 

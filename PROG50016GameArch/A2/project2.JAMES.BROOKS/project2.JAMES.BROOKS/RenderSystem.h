@@ -33,7 +33,7 @@ private:
 	
     sf::RenderWindow *window;
 
-    std::list<IRenderable *> renderComponents;
+    std::vector<std::list<IRenderable *>> renderComponents;
 
     std::string winTitle;
 

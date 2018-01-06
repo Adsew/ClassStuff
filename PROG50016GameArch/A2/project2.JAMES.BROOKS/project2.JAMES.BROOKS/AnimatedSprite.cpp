@@ -63,7 +63,7 @@ AnimatedSprite::~AnimatedSprite() {
 
 void AnimatedSprite::update() {
 
-    Transform *trans = (Transform *)gameObject->getComponent("Transform");
+    Transform *trans = gameObject->getTransform();
 
     if (trans != NULL) {
 
@@ -93,6 +93,7 @@ void AnimatedSprite::update() {
 void AnimatedSprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
     std::string assetName = "";
+    int priority = LOWEST_PRIORITY;
 
     if (FileSystem::Instance().getAttribute(accessor, "Asset", assetName)) {
 
@@ -111,6 +112,11 @@ void AnimatedSprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
             DEBUG_LOG("Sprite: Unable to retrieve texture asset for " << assetName.c_str() << ".");
         }
+    }
+
+    if (FileSystem::Instance().getAttribute(accessor, "priority", priority)) {
+
+        setRenderPriority(priority);
     }
 
     if (FileSystem::Instance().traverseToChildElement(accessor)) {

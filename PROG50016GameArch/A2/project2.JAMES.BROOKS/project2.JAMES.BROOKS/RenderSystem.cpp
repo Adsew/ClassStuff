@@ -39,6 +39,8 @@ void RenderSystem::initialize() {
 
         window->setKeyRepeatEnabled(false);
     }
+
+    renderComponents.resize(PRIORITIES);
 }
 
 void RenderSystem::clean() {
@@ -57,11 +59,14 @@ void RenderSystem::update() {
 
         window->clear();
 
-        for (std::list<IRenderable *>::iterator iter = renderComponents.begin();
-            iter != renderComponents.end();
-            iter++) {
+        for (int i = LOWEST_PRIORITY; i >= HIGHEST_PRIORITY; i--) {
 
-            (*iter)->render();
+            for (std::list<IRenderable *>::iterator iter = renderComponents[i].begin();
+                iter != renderComponents[i].end();
+                iter++) {
+
+                (*iter)->render();
+            }
         }
 
         window->display();
@@ -72,7 +77,14 @@ void RenderSystem::addRenderable(IRenderable *component) {
 
     if (component != NULL) {
 
-        renderComponents.push_back(component);
+        if (component->priority > PRIORITIES && component->priority <= HIGHEST_PRIORITY) {
+
+            renderComponents[component->priority].push_back(component);
+        }
+        else {
+
+            renderComponents[LOWEST_PRIORITY].push_back(component);
+        }
     }
 }
 
@@ -80,7 +92,14 @@ void RenderSystem::removeRenderable(IRenderable *component) {
     
     if (component != NULL && renderComponents.size() > 0) {
 
-        renderComponents.remove(component);
+        if (component->priority > PRIORITIES && component->priority <= HIGHEST_PRIORITY) {
+
+            renderComponents[component->priority].remove(component);
+        }
+        else {
+
+            renderComponents[LOWEST_PRIORITY].remove(component);
+        }
     }
 }
 

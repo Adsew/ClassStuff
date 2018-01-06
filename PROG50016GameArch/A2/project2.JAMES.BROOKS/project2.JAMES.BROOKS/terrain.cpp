@@ -14,9 +14,11 @@ Description: Keeps track of map data for the current level.
 
 #include <sstream>
 
+#include "ComponentManager.h"
 #include "GameObjectManager.h"
 #include "Tile.h"
 #include "Sprite.h"
+#include "Transform.h"
 #include "terrain.h"
 
 
@@ -55,16 +57,32 @@ void Terrain::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
     std::string mapFile = "";
 
-    if (FileSystem::Instance().getAttribute(accessor, "mapefile", mapFile)) {
+    if (FileSystem::Instance().getAttribute(accessor, "mapfile", mapFile)) {
 
         loadMapFile(mapFile.c_str());
     }
 }
 
 // Create a tile gameobject with the given properties
-GameObject *createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider) {
+GameObject *Terrain::createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider, unsigned int renderPriority) {
 
+    GameObject *tile = GameObjectManager::Instance().createGameObject();
+    Tile *tileComp = (Tile *)ComponentManager::Instance().createComponent("Tile");
+    Sprite *tileSprite = (Sprite *)ComponentManager::Instance().createComponent("Sprite");
+    Transform *tileTrans = tile->getTransform();
 
+    tileComp->setCollidable(collider);
+
+    tileSprite->setRectangle(w, h, xOrig, yOrig);
+    tileSprite->setTextureAsset(tileAssetName);
+    tileSprite->setRenderPriority(renderPriority);
+
+    tileTrans->setPosition((float)xPos, (float)yPos);
+
+    tile->addComponent(tileComp);
+    tile->addComponent(tileSprite);
+
+    return tile;
 }
 
 // Unload tiles held by the map, if any
@@ -138,6 +156,7 @@ void Terrain::loadMapFile(const char *mapFile) {
                 FileSystem::Instance().getElementText(mapFileAccessor, data);
 
                 std::stringstream dataStream(data);
+                char ignore = ' ';
 
                 // Iterate and fill map with tiles based on data
                 terrain.resize(mapHeight);
@@ -150,15 +169,15 @@ void Terrain::loadMapFile(const char *mapFile) {
 
                         int x = 0, y = 0, tileNum = 0;
 
-                        dataStream >> tileNum;
+                        dataStream >> tileNum >> ignore;
 
                         if (tileNum != 0) {
 
                             tileNum--;
-                            x = (tileNum % tilesAcross) * tileHeight;
-                            y = ((int)(tileNum / tilesDown)) * tileWidth;
+                            x = (tileNum % tilesAcross) * tileWidth;
+                            y = ((int)(tileNum / tilesAcross)) * tileHeight;
 
-                            terrain[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, i, j, false);
+                            terrain[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, false, LOWEST_PRIORITY);
                         }
                         else {
 
@@ -180,6 +199,7 @@ void Terrain::loadMapFile(const char *mapFile) {
                 FileSystem::Instance().getElementText(mapFileAccessor, data);
 
                 std::stringstream dataStream(data);
+                char ignore = ' ';
 
                 // Iterate and fill map with tiles based on data
                 objects.resize(mapHeight);
@@ -192,15 +212,15 @@ void Terrain::loadMapFile(const char *mapFile) {
 
                         int x = 0, y = 0, tileNum = 0;
 
-                        dataStream >> tileNum;
+                        dataStream >> tileNum >> ignore;
 
-                        if (!0) {
+                        if (tileNum != 0) {
 
                             tileNum--;
-                            x = (tileNum % tilesAcross) * tileHeight;
-                            y = ((int)(tileNum / tilesDown)) * tileWidth;
+                            x = (tileNum % tilesAcross) * tileWidth;
+                            y = ((int)(tileNum / tilesAcross)) * tileHeight;
 
-                            objects[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, i, j, false);
+                            objects[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, true, LOW_PRIORITY);
                         }
                         else {
 

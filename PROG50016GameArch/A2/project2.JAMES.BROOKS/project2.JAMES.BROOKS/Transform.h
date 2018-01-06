@@ -47,6 +47,14 @@ public:
     virtual void initialize() override;
 
     virtual void update() override;
+
+        /* Sets/Gets */
+
+    void setPosition(float x, float y);
+
+    void setScale(float x, float y);
+
+    void setRotation(float r);
 };
 
 

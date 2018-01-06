@@ -138,13 +138,13 @@
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Source Files\Object\Component</Filter>
     </ClCompile>
-    <ClCompile Include="terrain.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tile.cpp">
       <Filter>Source Files\Object\Component\GameSpecific</Filter>
     </ClCompile>
     <ClCompile Include="PlayerControls.cpp">
+      <Filter>Source Files\Object\Component\GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="Terrain.cpp">
       <Filter>Source Files\Object\Component\GameSpecific</Filter>
     </ClCompile>
   </ItemGroup>
@@ -218,13 +218,13 @@
     <ClInclude Include="AnimatedSprite.h">
       <Filter>Header Files\Object\Component</Filter>
     </ClInclude>
-    <ClInclude Include="terrain.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Object\Component\GameSpecific</Filter>
     </ClInclude>
     <ClInclude Include="PlayerControls.h">
+      <Filter>Header Files\Object\Component\GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
       <Filter>Header Files\Object\Component\GameSpecific</Filter>
     </ClInclude>
   </ItemGroup>

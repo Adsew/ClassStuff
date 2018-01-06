@@ -51,3 +51,20 @@ void Transform::update() {
 
 
 }
+
+void Transform::setPosition(float x, float y) {
+
+    position.x = x;
+    position.y = y;
+}
+
+void Transform::setScale(float x, float y) {
+
+    scale.x = x;
+    scale.y = y;
+}
+
+void Transform::setRotation(float r) {
+
+    rotation = r;
+}

@@ -17,6 +17,7 @@ Description: A standard object to be created into the scene.
 
 
 class Scene;
+class Transform;
 class Component;
 
 
@@ -33,6 +34,8 @@ private:
     Scene *scene;
 
     std::string name;
+
+    Transform *transform;
 
     std::map<std::string, Component*> components;
 
@@ -77,6 +80,8 @@ public:
     std::string &getName();
 
     Component *getComponent(const std::string &type);
+
+    Transform *getTransform();
 };
 
 #endif // !GAME_OBJECT_H

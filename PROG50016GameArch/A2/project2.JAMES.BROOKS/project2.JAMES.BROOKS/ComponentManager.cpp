@@ -55,10 +55,6 @@ void ComponentManager::update() {
             delete *iter;
             iter = components.erase(iter);
         }
-        else {
-
-            (*iter)->update();
-        }
     }
 }
 
