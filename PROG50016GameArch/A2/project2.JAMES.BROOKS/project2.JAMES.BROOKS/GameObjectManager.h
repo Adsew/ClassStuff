@@ -31,6 +31,12 @@ private:
     std::list<GameObject *> gameObjects;        // Currently updating
     std::list<GameObject *> recentlyCreated;    // To be added to list next cycle
 
+    std::map<unsigned int, std::vector<GameObject *>> objectPool;
+    std::map<unsigned int, std::vector<bool>> objectPoolInUseMap;
+
+    unsigned int poolIDCount;
+
+
     /***** Functions *****/
 
 private:
@@ -59,6 +65,23 @@ public:
     }
 
     GameObject *createGameObject();
+
+        /* Object Pool Functions */
+
+    // Creates a pool of the given game object, returns id to access pool
+    // Does not take responsability for the sample game objects
+    // Returns -1 on error
+    unsigned int createObjectPool(GameObject *sample, const unsigned int amount);
+
+    // Request a game object from the pool
+    // NULL if none available or pool doesn't exist
+    GameObject *requestFromPool(const unsigned int id);
+
+    // Return an object to the pool for later use
+    void returnToPool(const unsigned int id, GameObject *object);
+
+    // Dispose of the object pool, deleting all objects in the pool
+    void destroyObjectPool(const unsigned int id);
 };
 
 #endif // !GAME_OBJECT_MANAGER_H

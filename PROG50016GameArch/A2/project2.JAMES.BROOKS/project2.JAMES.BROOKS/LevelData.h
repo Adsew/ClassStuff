@@ -24,6 +24,7 @@ class LevelData : public Component {
 
 protected:
 
+    unsigned int bombPoolID;
     int score;
 
 
@@ -49,6 +50,10 @@ public:
 
     // Increase current score by X points
     void increaseScore(int points);
+
+        /* Gets/Sets */
+
+    unsigned int getBombPoolID();
 };
 
 #endif // !LEVEL_DATA_H
