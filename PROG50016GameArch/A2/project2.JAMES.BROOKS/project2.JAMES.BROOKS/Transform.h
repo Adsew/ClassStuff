@@ -40,13 +40,17 @@ protected:
 
     virtual ~Transform();
 
+    virtual void initialize() override;
+
+    virtual void update() override;
+
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
 
 public:
 
-    virtual void initialize() override;
+    virtual Component &operator=(const Component &comp) override;
 
-    virtual void update() override;
+    Transform &operator=(const Transform &trans);
 
         /* Sets/Gets */
 

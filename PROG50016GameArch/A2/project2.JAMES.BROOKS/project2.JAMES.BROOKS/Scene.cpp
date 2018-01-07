@@ -33,6 +33,7 @@ Scene::~Scene() {
         iter != gameObjects.end();
         iter++) {
 
+        (*iter)->scene = NULL;
         (*iter)->destroy();
     }
 
@@ -73,6 +74,17 @@ bool Scene::load() {
     }
 
     return false;
+}
+
+// Make the game object part of this scene
+void Scene::manageGameObject(GameObject *go) {
+
+    if (go != NULL) {
+
+        go->scene = this;
+
+        gameObjects.push_back(go);
+    }
 }
 
 // Remove game object from the list of those managed by this scene (does not delete GO)

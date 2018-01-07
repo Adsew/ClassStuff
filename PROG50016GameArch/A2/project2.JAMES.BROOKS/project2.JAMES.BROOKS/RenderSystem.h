@@ -13,13 +13,14 @@ Description: A system responsable for rendering renderable objects to the screen
 */
 
 
-#include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
-
 #include "ISystem.h"
 
 
 class IRenderable;
+
+namespace sf {
+    class RenderWindow;
+}
 
 
 class RenderSystem : public ISystem {
@@ -73,6 +74,8 @@ public:
 	void removeRenderable(IRenderable* component);
 
     sf::RenderWindow *getWindow();
+
+    void setWindowSize(int w, int h);
 };
 
 #endif // !RENDER_SYSTEM_H

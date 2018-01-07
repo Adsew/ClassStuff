@@ -47,6 +47,9 @@ protected:
 
 public:
     
+    // Make the game object part of this scene
+    void manageGameObject(GameObject *go);
+
     // Remove game object from the list of those managed by this scene (does not delete GO)
     void unmanageGameObject(GameObject *go);
 };

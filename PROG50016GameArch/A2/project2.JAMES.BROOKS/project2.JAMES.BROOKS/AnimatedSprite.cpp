@@ -16,6 +16,7 @@ Description: A small image to be rendered to the screen. Animated over time.
 #define S_Y_ORIGIN 3
 #define S_STEP_COUNT 4
 #define S_FPS 5
+#define S_ANIM_STAT_COUNT 6
 
 
 #include "Core.h"
@@ -125,7 +126,7 @@ void AnimatedSprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
         do {
 
-            coords = new int[6];
+            coords = new int[S_ANIM_STAT_COUNT];
 
             FileSystem::Instance().getAttribute(accessor, "width", coords[S_WIDTH]);
             FileSystem::Instance().getAttribute(accessor, "height", coords[S_HEIGHT]);
@@ -142,6 +143,37 @@ void AnimatedSprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
         setAnimation(0);
     }
+}
+
+Component &AnimatedSprite::operator=(const Component &comp) {
+
+    Sprite::operator=(comp);
+
+    const AnimatedSprite *orig = (const AnimatedSprite *)&comp;
+
+    animationCount = orig->animationCount;
+    currentAnim = orig->currentAnim;
+    step = orig->step;
+    playCount = orig->playCount;
+    numTimesPlayed = orig->numTimesPlayed;
+    deltaTime = orig->deltaTime;
+
+    animations.resize(orig->animations.size());
+
+    for (int i = 0; i < animations.size(); i++) {
+
+        if (orig->animations[i] != NULL) {
+
+            animations[i] = new int[S_ANIM_STAT_COUNT];
+
+            for (int j = 0; j < S_ANIM_STAT_COUNT; j++) {
+
+                animations[i][j] = orig->animations[i][j];
+            }
+        }
+    }
+
+    return *this;
 }
 
 // Set which animation is currently playing from the sprite sheet

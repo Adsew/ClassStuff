@@ -30,6 +30,8 @@ private:
     std::map<sf::Keyboard::Key, bool>keyPressedState;
     std::map<sf::Keyboard::Key, bool>keyReleasedState;
 
+    float deltaTime;
+
     bool gameCloseTriggered;
 
 

@@ -58,6 +58,8 @@ protected:
 
 public:
 
+    virtual Component &operator=(const Component &comp) override;
+
     /* Gets/Sets */
 
     void setRectangle(int width, int height, int x, int y);

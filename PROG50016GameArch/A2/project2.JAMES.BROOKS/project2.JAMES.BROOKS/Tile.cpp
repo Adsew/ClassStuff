@@ -50,6 +50,15 @@ void Tile::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
     FileSystem::Instance().getAttribute(accessor, "collidable", collidable);
 }
 
+Component &Tile::operator=(const Component &comp) {
+
+    const Tile *orig = (const Tile *)&comp;
+
+    collidable = orig->collidable;
+
+    return *this;
+}
+
 void Tile::setCollidable(bool c) {
 
     collidable = c;

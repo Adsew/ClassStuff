@@ -117,6 +117,11 @@ void Terrain::unloadTiles() {
     objects.clear();
 }
 
+Component &Terrain::operator=(const Component &comp) {
+
+    return *this;
+}
+
 // Load a map file and create the tiles needed
 void Terrain::loadMapFile(const char *mapFile) {
 

@@ -12,6 +12,7 @@ Description: Manages and refines input received from the user for use elsewhere.
 
 #include "Core.h"
 
+#include "Timer.h"
 #include "RenderSystem.h"
 #include "InputManager.h"
 
@@ -21,6 +22,8 @@ void InputManager::initialize() {
     keyDownState.clear();
     keyPressedState.clear();
     keyReleasedState.clear();
+
+    deltaTime = 0;
 
     gameCloseTriggered = false;
 }
@@ -34,24 +37,44 @@ void InputManager::update() {
 
     sf::Event windowEvent;
 
-    keyPressedState.clear();
-    keyReleasedState.clear();
+    deltaTime += Timer::Instance().getDelta();
 
-    while (RenderSystem::Instance().getWindow()->pollEvent(windowEvent)) {
+    if (deltaTime >= Timer::Instance().getTargetUpdatesPerSecond()) {
 
-        if (windowEvent.type == sf::Event::Closed) {
+        deltaTime -= Timer::Instance().getTargetUpdatesPerSecond();
 
-            exit();
-        }
-        else if (windowEvent.type == sf::Event::KeyPressed) {
-            
-            keyDownState[windowEvent.key.code] = true;
-            keyPressedState[windowEvent.key.code] = true;
-        }
-        else if (windowEvent.type == sf::Event::KeyReleased) {
+        keyPressedState.clear();
+        keyReleasedState.clear();
 
-            keyDownState[windowEvent.key.code] = false;
-            keyReleasedState[windowEvent.key.code] = true;
+        while (RenderSystem::Instance().getWindow()->pollEvent(windowEvent)) {
+
+            if (windowEvent.type == sf::Event::Closed) {
+
+                exit();
+            }
+            else if (windowEvent.type == sf::Event::KeyPressed) {
+
+                if (keyDownState.find(windowEvent.key.code) != keyDownState.end()) {
+
+                    // Pushed before, but was not pushed last update
+                    if (!keyDownState[windowEvent.key.code]) {
+
+                        keyDownState[windowEvent.key.code] = true;
+                        keyPressedState[windowEvent.key.code] = true;
+                    }
+                }
+                // Never been pushed before, so create and set true
+                else {
+
+                    keyDownState[windowEvent.key.code] = true;
+                    keyPressedState[windowEvent.key.code] = true;
+                }
+            }
+            else if (windowEvent.type == sf::Event::KeyReleased) {
+
+                keyDownState[windowEvent.key.code] = false;
+                keyReleasedState[windowEvent.key.code] = true;
+            }
         }
     }
 }
@@ -89,7 +112,7 @@ bool InputManager::getKeyDown(const sf::Keyboard::Key &key) {
     }
     catch (...) {
         
-        keyDownState[key] = false;  // Game wants this key, so we will preemtively create it to avoid exceptions
+        keyDownState[key] = false;  // Game wants this key, so we will pre-emtively create it to avoid exceptions
     }
 
     return false;

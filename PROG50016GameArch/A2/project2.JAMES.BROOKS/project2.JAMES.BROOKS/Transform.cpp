@@ -52,6 +52,30 @@ void Transform::update() {
 
 }
 
+Component &Transform::operator=(const Component &comp) {
+
+    const Transform *orig = (const Transform *)&comp;
+
+    position.x = orig->position.x;
+    position.y = orig->position.y;
+    scale.x = orig->scale.x;
+    scale.y = orig->scale.y;
+    rotation = orig->rotation;
+
+    return *this;
+}
+
+Transform &Transform::operator=(const Transform &trans) {
+
+    position.x = trans.position.x;
+    position.y = trans.position.y;
+    scale.x = trans.scale.x;
+    scale.y = trans.scale.y;
+    rotation = trans.rotation;
+
+    return *this;
+}
+
 void Transform::setPosition(float x, float y) {
 
     position.x = x;

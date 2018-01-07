@@ -39,7 +39,7 @@ private:
 
     std::map<std::string, Component*> components;
 
-    
+    bool active;
 
 
     /***** Functions *****/
@@ -54,12 +54,15 @@ protected:
 
     virtual ~GameObject();
 
+    // Initialize GO to a usable state
+    void initialize() override;
+
+    // Cycle update updates all game object components
+    virtual void update();
+
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor);
 
 public:
-
-    // Initialize GO to a usable state
-	void initialize() override;
 
     // Add a component to the game object for use
 	void addComponent(Component* component);
@@ -67,9 +70,14 @@ public:
     // Remove the component from the game object, if exists
     void removeComponent(Component* component);
 
-    // Cycle update updates all game object components
-	virtual void update();
+    // Create a clone of this gameobject with the same components and settings
+    GameObject *clone();
 
+    // Enable or disable updating of this game object and all its components
+    void setActive(bool a);
+
+    // Check if gameobject is enabled
+    bool isActive();
 
         /* Gets/Sets */
 

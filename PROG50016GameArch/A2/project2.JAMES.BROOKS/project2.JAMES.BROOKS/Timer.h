@@ -23,11 +23,15 @@ Description: Class to manage time of the game during execution, in delta time
 class Timer : public ISystem {
 
     friend class GameEngine;
+    friend class FileSystem;
 
 
     /***** Variables *****/
 
 private:
+
+    float targetFPS;
+    float targetUpdatesPerSecond;
 
     clock_t prevClockTime;
     
@@ -58,6 +62,8 @@ protected:
 
     void beginTiming();
 
+    void setFPS(float f);
+
 public:
 
     inline static Timer &Instance() {
@@ -66,6 +72,12 @@ public:
 
         return instance;
     }
+
+    // Get the desired fps for other systems to measure by
+    float getTargetFPS();
+
+    // Get FPS converted as fraction of seconds
+    float getTargetUpdatesPerSecond();
 
     // Return the delta time of the previous update in milliseconds
     float getDelta();

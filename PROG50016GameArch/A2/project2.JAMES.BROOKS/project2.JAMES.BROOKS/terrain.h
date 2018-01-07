@@ -54,6 +54,8 @@ protected:
 
 public:
 
+    virtual Component &operator=(const Component &comp) override;
+
     // Load a map file and create the tiles needed
     void loadMapFile(const char *mapFile);
 };

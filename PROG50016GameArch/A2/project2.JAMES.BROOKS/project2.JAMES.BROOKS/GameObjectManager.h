@@ -28,7 +28,8 @@ class GameObjectManager : public ISystem {
 
 private:
 	
-    std::list<GameObject *> gameObjects;
+    std::list<GameObject *> gameObjects;        // Currently updating
+    std::list<GameObject *> recentlyCreated;    // To be added to list next cycle
 
     /***** Functions *****/
 

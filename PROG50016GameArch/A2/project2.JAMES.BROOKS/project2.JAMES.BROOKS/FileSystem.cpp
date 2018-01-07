@@ -14,6 +14,8 @@ Description: Manages the input and output of files used by the game.
 
 #include "Core.h"
 
+#include "RenderSystem.h"
+#include "Timer.h"
 #include "SceneManager.h"
 #include "tinyxml2.h"
 #include "FileSystem.h"
@@ -57,6 +59,19 @@ bool FileSystem::initialize(const char *settingsLoc) {
         if (settings != NULL) {
 
             // Get game engine settings
+            XMLElement *windowNode = settings->FirstChildElement("Window");
+
+            if (windowNode != NULL) {
+
+                if (windowNode->Attribute("width") != NULL && windowNode->Attribute("height") != NULL) {
+
+                    RenderSystem::Instance().setWindowSize(windowNode->IntAttribute("width"), windowNode->IntAttribute("height"));
+                }
+                if (windowNode->Attribute("fps") != NULL) {
+
+                    Timer::Instance().setFPS(windowNode->FloatAttribute("fps"));
+                }
+            }
 
             // Asset files
             XMLElement *assetsNode = settings->FirstChildElement("AssetFiles");

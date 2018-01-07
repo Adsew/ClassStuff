@@ -16,6 +16,7 @@ Description: A standard object to be created into the scene.
 #include "Component.h"
 #include "Transform.h"
 #include "ComponentManager.h"
+#include "GameObjectManager.h"
 #include "GameObject.h"
 
 
@@ -29,6 +30,8 @@ GameObject::GameObject(unsigned int uniqueID)
     transform->setPosition(0, 0);
     transform->setScale(1.0f, 1.0f);
     transform->setRotation(0);
+
+    active = true;
 }
 
 GameObject::GameObject(unsigned int uniqueID, const char *goName)
@@ -41,6 +44,8 @@ GameObject::GameObject(unsigned int uniqueID, const char *goName)
     transform->setPosition(0, 0);
     transform->setScale(1.0f, 1.0f);
     transform->setRotation(0);
+
+    active = true;
 }
 
 GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
@@ -53,11 +58,14 @@ GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
     transform->setPosition(0, 0);
     transform->setScale(1.0f, 1.0f);
     transform->setRotation(0);
+
+    active = true;
 }
 
 GameObject::~GameObject() {
 
     transform->destroy();
+    transform->gameObject = NULL;
     transform = NULL;
 
     for (std::map<std::string, Component *>::iterator iter = components.begin();
@@ -65,6 +73,7 @@ GameObject::~GameObject() {
         iter++) {
 
         (*iter).second->destroy();
+        (*iter).second->gameObject = NULL;
     }
 
 	components.clear();
@@ -72,6 +81,28 @@ GameObject::~GameObject() {
     if (scene != NULL) {
 
         scene->unmanageGameObject(this);
+    }
+}
+
+// Initialize GO to a usable state
+void GameObject::initialize() {
+
+
+}
+
+// Cycle update updates all game object components
+void GameObject::update() {
+
+    if (transform != NULL) {
+
+        transform->update();
+    }
+
+    for (std::map<std::string, Component *>::iterator iter = components.begin();
+        iter != components.end();
+        iter++) {
+
+        (*iter).second->update();
     }
 }
 
@@ -120,11 +151,7 @@ void GameObject::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
     }
 }
 
-void GameObject::initialize() {
-
-    
-}
-
+// Add a component to the game object for use
 void GameObject::addComponent(Component * component) {
 
     if (component != NULL) {
@@ -139,6 +166,7 @@ void GameObject::addComponent(Component * component) {
     }
 }
 
+// Remove the component from the game object, if exists
 void GameObject::removeComponent(Component * component) {
 
     if (component != NULL) {
@@ -154,21 +182,42 @@ void GameObject::removeComponent(Component * component) {
     }
 }
 
-void GameObject::update() {
+// Create a clone of this gameobject with the same components and settings
+GameObject *GameObject::clone() {
 
-    if (transform != NULL) {
+    GameObject *clone = GameObjectManager::Instance().createGameObject();
 
-        transform->update();
-    }
+    clone->setName(name + " (clone)");
+    scene->manageGameObject(clone);
+
+    *(clone->transform) = *transform;
+    clone->transform->position.x += 100;
 
     for (std::map<std::string, Component *>::iterator iter = components.begin();
         iter != components.end();
         iter++) {
 
-        (*iter).second->update();
+        Component *newComp = ComponentManager::Instance().createComponent((*iter).second->type.c_str());
+
+        *newComp = *((*iter).second);
+
+        clone->addComponent(newComp);
     }
+
+    return clone;
 }
 
+// Enable or disable updating of this game object and all its components
+void GameObject::setActive(bool a) {
+
+    active = a;
+}
+
+// Check if gameobject is enabled
+bool GameObject::isActive() {
+
+    return active;
+}
 
     /* Gets/Sets */
 

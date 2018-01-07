@@ -14,6 +14,7 @@ Description: Component allowing input from the keyboard to move the player accor
 
 #include <SFML/Window/Keyboard.hpp>
 
+#include "Timer.h"
 #include "InputManager.h"
 #include "Transform.h"
 #include "AnimatedSprite.h"
@@ -26,9 +27,14 @@ IMPLEMENT_COMPONENT(PlayerControls)
 PlayerControls::PlayerControls(unsigned int uniqueID)
     : Component(uniqueID, "PlayerControls") {
 
-
+    deltaTime = 0;
 }
 
+PlayerControls::PlayerControls(unsigned int uniqueID, const char *type)
+    : Component(uniqueID, type) {
+
+    deltaTime = 0;
+}
 
 PlayerControls::~PlayerControls() {
 
@@ -46,39 +52,46 @@ void PlayerControls::update() {
     Transform *trans = gameObject->getTransform();
     AnimatedSprite *anim = (AnimatedSprite *)gameObject->getComponent("AnimatedSprite");
 
-    if (trans != NULL &&anim != NULL) {
+    deltaTime += Timer::Instance().getDelta();
 
-        // movement
-        if (im.getKeyDown(sf::Keyboard::A)) {
+    if (deltaTime >= Timer::Instance().getTargetUpdatesPerSecond()) {
 
-            trans->position.x -= 0.1f;
-            anim->setAnimation(0);
-        }
-        if (im.getKeyDown(sf::Keyboard::D)) {
+        deltaTime -= Timer::Instance().getTargetUpdatesPerSecond();
 
-            trans->position.x += 0.1f;
-            anim->setAnimation(1);
-        }
-        if (im.getKeyDown(sf::Keyboard::W)) {
+        if (trans != NULL &&anim != NULL) {
 
-            trans->position.y -= 0.1f;
-            anim->setAnimation(2);
-        }
-        if (im.getKeyDown(sf::Keyboard::S)) {
+            // movement
+            if (im.getKeyDown(sf::Keyboard::A)) {
 
-            trans->position.y += 0.1f;
-            anim->setAnimation(3);
-        }
+                trans->position.x -= 0.5f;
+                anim->setAnimation(0);
+            }
+            if (im.getKeyDown(sf::Keyboard::D)) {
 
-        // place bomb
-        if (im.getKeyDown(sf::Keyboard::Space)) {
+                trans->position.x += 0.5f;
+                anim->setAnimation(1);
+            }
+            if (im.getKeyDown(sf::Keyboard::W)) {
 
-            
-        }
+                trans->position.y -= 0.5f;
+                anim->setAnimation(2);
+            }
+            if (im.getKeyDown(sf::Keyboard::S)) {
 
-        if (im.getKeyDown(sf::Keyboard::Escape)) {
+                trans->position.y += 0.5f;
+                anim->setAnimation(3);
+            }
 
-            im.exit();
+            // place bomb button
+            if (im.getKeyPressed(sf::Keyboard::Space)) {
+
+                GameObject *go = this->gameObject->clone();
+            }
+
+            if (im.getKeyPressed(sf::Keyboard::Escape)) {
+
+                im.exit();
+            }
         }
     }
 }
@@ -86,4 +99,9 @@ void PlayerControls::update() {
 void PlayerControls::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
 
+}
+
+Component &PlayerControls::operator=(const Component &comp) {
+
+    return *this;
 }

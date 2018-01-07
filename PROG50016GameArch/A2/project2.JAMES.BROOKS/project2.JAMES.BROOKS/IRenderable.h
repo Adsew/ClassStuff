@@ -48,6 +48,9 @@ public:
 
     // Set the priority the object will render over others
     void setRenderPriority(unsigned int p);
+
+    // Get the priority the object will render over others
+    unsigned int getRenderPriority() const;
 };
 
 #endif // !I_RENDERABLE_H

@@ -19,6 +19,7 @@ Description: Class to manage time of the game during execution, in delta time
 
 void Timer::initialize() {
 
+    targetFPS = 30.0f;
     runTime = 0.0f;
     deltaTime = 0.0f;
 }
@@ -40,6 +41,24 @@ void Timer::update() {
 void Timer::beginTiming() {
 
     prevClockTime = clock();
+}
+
+void Timer::setFPS(float f) {
+
+    targetFPS = f;
+    targetUpdatesPerSecond = 1.0f / targetFPS;
+}
+
+// Get the desired fps for other systems to measure by
+float Timer::getTargetFPS() {
+
+    return targetFPS;
+}
+
+// Get FPS converted as fraction of seconds
+float Timer::getTargetUpdatesPerSecond() {
+
+    return targetUpdatesPerSecond;
 }
 
 // Return the delta time of the previous update

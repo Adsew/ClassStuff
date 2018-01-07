@@ -147,6 +147,15 @@
     <ClCompile Include="Terrain.cpp">
       <Filter>Source Files\Object\Component\GameSpecific</Filter>
     </ClCompile>
+    <ClCompile Include="LevelData.cpp">
+      <Filter>Source Files\Object\Component\GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="BombFire.cpp">
+      <Filter>Source Files\Object\Component\GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="Bomb.cpp">
+      <Filter>Source Files\Object\Component\GameSpecific</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h">
@@ -225,6 +234,15 @@
       <Filter>Header Files\Object\Component\GameSpecific</Filter>
     </ClInclude>
     <ClInclude Include="Terrain.h">
+      <Filter>Header Files\Object\Component\GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelData.h">
+      <Filter>Header Files\Object\Component\GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="BombFire.h">
+      <Filter>Header Files\Object\Component\GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="Bomb.h">
       <Filter>Header Files\Object\Component\GameSpecific</Filter>
     </ClInclude>
   </ItemGroup>

@@ -40,3 +40,9 @@ void IRenderable::setRenderPriority(unsigned int p) {
         RenderSystem::Instance().addRenderable(this);
     }
 }
+
+// Get the priority the object will render over others
+unsigned int IRenderable::getRenderPriority() const {
+
+    return priority;
+}

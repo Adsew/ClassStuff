@@ -95,6 +95,30 @@ void Sprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
     }
 }
 
+Component &Sprite::operator=(const Component &comp) {
+
+    const Sprite *orig = (const Sprite *)&comp;
+    TextureAsset *tempTex = NULL;
+
+    spriteImagePtr = orig->spriteImagePtr;
+    spriteRect.width = orig->spriteRect.width;
+    spriteRect.height = orig->spriteRect.height;
+    spriteRect.top = orig->spriteRect.top;
+    spriteRect.left = orig->spriteRect.left;
+
+    tempTex = (TextureAsset *)spriteImagePtr.get();
+
+    if (tempTex != NULL) {
+
+        sprite.setTexture(*(tempTex->getTexture()));
+        sprite.setTextureRect(spriteRect);
+    }
+
+    setRenderPriority(orig->getRenderPriority());
+
+    return *this;
+}
+
 void Sprite::setRectangle(int width, int height, int x, int y) {
 
     spriteRect.width = width;

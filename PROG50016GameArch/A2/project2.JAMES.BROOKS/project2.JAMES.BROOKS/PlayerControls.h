@@ -18,7 +18,12 @@ Description: Component allowing input from the keyboard to move the player accor
 
 class PlayerControls : public Component {
 
-    REGISTER_COMPONENT(PlayerControls)
+    REGISTER_COMPONENT(PlayerControls);
+
+    
+    /***** Variables *****/
+
+    float deltaTime;
 
 
     /***** Functions *****/
@@ -26,6 +31,8 @@ class PlayerControls : public Component {
 protected:
     
     PlayerControls(unsigned int uniqueID);
+
+    PlayerControls(unsigned int uniqueID, const char *type);
     
     ~PlayerControls();
 
@@ -34,6 +41,10 @@ protected:
     virtual void update() override;
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
+
+public:
+
+    virtual Component &operator=(const Component &comp) override;
 };
 
 #endif // !PLAYER_CONTROLS_H

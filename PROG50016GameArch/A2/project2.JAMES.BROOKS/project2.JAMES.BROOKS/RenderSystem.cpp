@@ -12,6 +12,9 @@ Description: A system responsable for rendering renderable objects to the screen
 
 #include "Core.h"
 
+#include <SFML/Graphics.hpp>
+#include <SFML/OpenGL.hpp>
+
 #include "IRenderable.h"
 #include "RenderSystem.h"
 
@@ -36,7 +39,7 @@ void RenderSystem::initialize() {
     if (winWidth > 0 && winHeight > 0) {
 
         window = new sf::RenderWindow(sf::VideoMode(winWidth, winHeight), sf::String(winTitle.c_str()));
-
+        
         window->setKeyRepeatEnabled(false);
     }
 
@@ -106,4 +109,12 @@ void RenderSystem::removeRenderable(IRenderable *component) {
 sf::RenderWindow *RenderSystem::getWindow() {
 
     return window;
+}
+
+void RenderSystem::setWindowSize(int w, int h) {
+
+    if (window != NULL) {
+        
+        window->setSize(sf::Vector2u(w, h));
+    }
 }

@@ -57,6 +57,8 @@ public:
 
         /* Gets/Sets */
 
+    virtual Component &operator=(const Component &comp) = 0;
+
     GameObject * const getGameObject();
 };
 

@@ -18,6 +18,15 @@ Description: Maintains the memory and funcitonality of all game objects currentl
 
 GameObjectManager::~GameObjectManager() {
 
+    for (std::list<GameObject *>::iterator iter = recentlyCreated.begin();
+        iter != recentlyCreated.end();
+        iter++) {
+
+        delete *iter;
+    }
+
+    recentlyCreated.clear();
+
     for (std::list<GameObject *>::iterator iter = gameObjects.begin();
         iter != gameObjects.end();
         iter++) {
@@ -35,6 +44,15 @@ void GameObjectManager::initialize() {
 
 void GameObjectManager::clean() {
 
+    for (std::list<GameObject *>::iterator iter = recentlyCreated.begin();
+        iter != recentlyCreated.end();
+        iter++) {
+
+        delete *iter;
+    }
+
+    recentlyCreated.clear();
+
     for (std::list<GameObject *>::iterator iter = gameObjects.begin();
         iter != gameObjects.end();
         iter++) {
@@ -47,7 +65,17 @@ void GameObjectManager::clean() {
 
 void GameObjectManager::update() {
 
-    // Deletion pass first
+    // Add new gameobjects to this cycle update
+    for (std::list<GameObject *>::iterator iter = recentlyCreated.begin();
+        iter != recentlyCreated.end();
+        iter++) {
+
+        gameObjects.push_back(*iter);
+    }
+
+    recentlyCreated.clear();
+
+    // Deletion pass
     for (std::list<GameObject *>::iterator iter = gameObjects.begin();
         iter != gameObjects.end();
         iter++) {
@@ -64,7 +92,10 @@ void GameObjectManager::update() {
         iter != gameObjects.end();
         iter++) {
 
-        (*iter)->update();
+        if ((*iter)->active) {
+
+            (*iter)->update();
+        }
     }
 }
 
@@ -72,7 +103,7 @@ GameObject *GameObjectManager::createGameObject() {
 
     GameObject *go = new GameObject(Object::generateID());
     
-    gameObjects.push_back(go);
+    recentlyCreated.push_back(go);
 
     return go;
 }

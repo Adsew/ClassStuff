@@ -40,9 +40,9 @@ void GameEngine::initialize(const char *settingsFile) {
 // Called automatically at the end of gameLoop to clean system memory
 void GameEngine::clean() {
 
-    ComponentManager::Instance().clean();
-    GameObjectManager::Instance().clean();
     SceneManager::Instance().clean();
+    GameObjectManager::Instance().clean();
+    ComponentManager::Instance().clean();
     RenderSystem::Instance().clean();
     AssetManager::Instance().clean();
 

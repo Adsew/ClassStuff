@@ -47,6 +47,8 @@ protected:
 
 public:
 
+    virtual Component &operator=(const Component &comp) override;
+
     void setCollidable(bool c);
 
     bool isCollidable();

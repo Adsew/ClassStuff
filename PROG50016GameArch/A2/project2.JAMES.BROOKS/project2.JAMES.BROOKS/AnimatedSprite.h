@@ -50,6 +50,8 @@ protected:
 
 public:
 
+    virtual Component &operator=(const Component &comp) override;
+
     // Set which animation is currently playing from the sprite sheet
     bool setAnimation(int animID);
 
