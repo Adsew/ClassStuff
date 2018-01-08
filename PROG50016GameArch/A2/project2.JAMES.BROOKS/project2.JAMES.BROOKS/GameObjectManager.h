@@ -64,7 +64,11 @@ public:
         return instance;
     }
 
+    // Create an empty game object
     GameObject *createGameObject();
+
+    // Creates a game object using a prefab file, returns null if none found
+    GameObject *createGameObjectFromPrefab(const char *prefab);
 
         /* Object Pool Functions */
 

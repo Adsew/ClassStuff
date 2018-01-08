@@ -101,6 +101,7 @@ void GameObjectManager::update() {
     }
 }
 
+// Create an empty game object
 GameObject *GameObjectManager::createGameObject() {
 
     GameObject *go = new GameObject(Object::generateID());
@@ -110,6 +111,27 @@ GameObject *GameObjectManager::createGameObject() {
     return go;
 }
 
+// Creates a game object using a prefab file, returns null if none found
+GameObject *GameObjectManager::createGameObjectFromPrefab(const char *prefab) {
+
+    std::unique_ptr<FileSystem::FileAccessor> accessor = FileSystem::Instance().useFile(prefab);
+
+    if (accessor != NULL) {
+
+        FileSystem::Instance().traverseToElement(accessor, "GameObject");
+
+        GameObject *go = new GameObject(Object::generateID());
+
+        go->load(accessor);
+
+        recentlyCreated.push_back(go);
+
+        return go;
+    }
+
+    return NULL;
+}
+
     /* Object Pool Functions */
 
 // Creates a pool of the given game object, returns id to access pool
@@ -117,12 +139,12 @@ GameObject *GameObjectManager::createGameObject() {
 // Returns -1 on error
 unsigned int GameObjectManager::createObjectPool(GameObject *sample, const unsigned int amount) {
 
-    if (sample != NULL) {
+    if (sample != NULL && amount > 0) {
 
         objectPool[poolIDCount].resize(amount);
         objectPoolInUseMap[poolIDCount].resize(amount);
 
-        for (int i = 0; i < amount; i++) {
+        for (unsigned int i = 0; i < objectPool[poolIDCount].size(); i++) {
 
             objectPool[poolIDCount][i] = sample->clone();
             objectPool[poolIDCount][i]->setActive(false);
@@ -144,7 +166,7 @@ GameObject *GameObjectManager::requestFromPool(const unsigned int id) {
 
     if (objectPool.find(id) != objectPool.end()) {
 
-        for (int i = 0; i < objectPool[id].size(); i++) {
+        for (unsigned int i = 0; i < objectPool[id].size(); i++) {
 
             if (!objectPoolInUseMap[id][i]) {
 
@@ -156,6 +178,8 @@ GameObject *GameObjectManager::requestFromPool(const unsigned int id) {
             }
         }
     }
+
+    return NULL;
 }
 
 // Return an object to the pool for later use
@@ -171,6 +195,8 @@ void GameObjectManager::returnToPool(const unsigned int id, GameObject *object) 
                 objectPoolInUseMap[id][i] = false;
 
                 objectPool[id][i]->setActive(false);
+
+                break;
             }
         }
     }

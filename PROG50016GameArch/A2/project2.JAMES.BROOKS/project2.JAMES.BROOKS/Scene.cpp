@@ -61,8 +61,8 @@ bool Scene::load() {
 
                     if (newGO != NULL) {
 
-                        newGO->load(accessor);
                         newGO->scene = this;
+                        newGO->load(accessor);
                         gameObjects.push_back(newGO);
                     }
 

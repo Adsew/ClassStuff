@@ -15,6 +15,10 @@ Description: Keeps track of the entities within the current level and the score.
 
 #include "Component.h"
 
+
+class Terrain;
+
+
 class LevelData : public Component {
 
     REGISTER_COMPONENT(LevelData);
@@ -24,11 +28,20 @@ class LevelData : public Component {
 
 protected:
 
+    Terrain *map;
+
     unsigned int bombPoolID;
     int score;
 
+    bool setupPerformed;
+
 
     /***** Functions *****/
+
+private:
+
+    // Perform a one time setup spawning the player and enemies and setting up object pool
+    void setupLevel();
 
 protected:
 

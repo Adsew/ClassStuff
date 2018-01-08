@@ -16,6 +16,9 @@ Description: Component allowing input from the keyboard to move the player accor
 #include "Component.h"
 
 
+class Terrain;
+
+
 class PlayerControls : public Component {
 
     REGISTER_COMPONENT(PlayerControls);
@@ -23,8 +26,13 @@ class PlayerControls : public Component {
     
     /***** Variables *****/
 
+private:
+
     float deltaTime;
 
+protected:
+
+    Terrain *map;
 
     /***** Functions *****/
 
@@ -45,6 +53,8 @@ protected:
 public:
 
     virtual Component &operator=(const Component &comp) override;
+
+    void setMap(Terrain *m);
 };
 
 #endif // !PLAYER_CONTROLS_H

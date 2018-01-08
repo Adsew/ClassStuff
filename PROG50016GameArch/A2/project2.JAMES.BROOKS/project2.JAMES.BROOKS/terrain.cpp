@@ -22,19 +22,24 @@ Description: Keeps track of map data for the current level.
 #include "terrain.h"
 
 
+#define SPAWN_POINT_ID 15
+
+
 IMPLEMENT_COMPONENT(Terrain);
 
 
 Terrain::Terrain(unsigned int uniqueID)
     : Component(uniqueID, "Terrain") {
 
-
+    tileWidth = 0;
+    tileHeight = 0;
 }
 
 Terrain::Terrain(unsigned int uniqueID, const char *compType)
     : Component(uniqueID, compType) {
 
-
+    tileWidth = 0;
+    tileHeight = 0;
 }
 
 
@@ -70,6 +75,9 @@ GameObject *Terrain::createTile(const char *tileAssetName, int w, int h, int xOr
     Tile *tileComp = (Tile *)ComponentManager::Instance().createComponent("Tile");
     Sprite *tileSprite = (Sprite *)ComponentManager::Instance().createComponent("Sprite");
     Transform *tileTrans = tile->getTransform();
+
+    tile->setName("Tile");
+    tile->setScene(this->gameObject);
 
     tileComp->setCollidable(collider);
 
@@ -134,7 +142,7 @@ void Terrain::loadMapFile(const char *mapFile) {
         if (FileSystem::Instance().traverseToElement(mapFileAccessor, "map")) {
 
             std::string tileset = "";
-            int tilesAcross = 0, tilesDown = 0, tileWidth = 0, tileHeight = 0;
+            int tilesAcross = 0, tilesDown = 0;
             int mapWidth = 0, mapHeight = 0;
 
             FileSystem::Instance().getAttribute(mapFileAccessor, "width", mapWidth);
@@ -165,10 +173,12 @@ void Terrain::loadMapFile(const char *mapFile) {
 
                 // Iterate and fill map with tiles based on data
                 terrain.resize(mapHeight);
+                entities.resize(mapHeight);
 
                 for (int i = 0; i < terrain.size(); i++) {
 
                     terrain[i].resize(mapWidth);
+                    entities[i].resize(mapWidth);
 
                     for (int j = 0; j < terrain[i].size(); j++) {
 
@@ -177,6 +187,11 @@ void Terrain::loadMapFile(const char *mapFile) {
                         dataStream >> tileNum >> ignore;
 
                         if (tileNum != 0) {
+
+                            if (tileNum == SPAWN_POINT_ID) {
+
+                                spawnPoints.push_back(std::pair<int, int>(j, i));
+                            }
 
                             tileNum--;
                             x = (tileNum % tilesAcross) * tileWidth;

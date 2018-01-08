@@ -31,7 +31,7 @@ IRenderable::~IRenderable() {
 // Set the priority the object will render over others
 void IRenderable::setRenderPriority(unsigned int p) {
 
-    if (p <= 0 && p > PRIORITIES) {
+    if (p >= 0 && p < PRIORITIES) {
 
         RenderSystem::Instance().removeRenderable(this);
 

@@ -87,6 +87,9 @@ public:
 
     std::string &getName();
 
+    // Uses scene of the given game object
+    void setScene(GameObject *go);
+
     Component *getComponent(const std::string &type);
 
     Transform *getTransform();

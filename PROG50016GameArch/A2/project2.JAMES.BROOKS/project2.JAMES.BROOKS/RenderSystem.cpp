@@ -80,7 +80,7 @@ void RenderSystem::addRenderable(IRenderable *component) {
 
     if (component != NULL) {
 
-        if (component->priority > PRIORITIES && component->priority <= HIGHEST_PRIORITY) {
+        if (component->priority < PRIORITIES && component->priority >= HIGHEST_PRIORITY) {
 
             renderComponents[component->priority].push_back(component);
         }
@@ -95,7 +95,7 @@ void RenderSystem::removeRenderable(IRenderable *component) {
     
     if (component != NULL && renderComponents.size() > 0) {
 
-        if (component->priority > PRIORITIES && component->priority <= HIGHEST_PRIORITY) {
+        if (component->priority < PRIORITIES && component->priority >= HIGHEST_PRIORITY) {
 
             renderComponents[component->priority].remove(component);
         }

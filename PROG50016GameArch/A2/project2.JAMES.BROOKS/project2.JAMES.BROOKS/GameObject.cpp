@@ -126,6 +126,8 @@ void GameObject::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
                     if (transform == NULL) {
 
                         transform = (Transform *)ComponentManager::Instance().createComponent("Transform");
+
+                        transform->gameObject = this;
                     }
 
                     transform->load(accessor);
@@ -137,9 +139,9 @@ void GameObject::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
                     if (tempComp != NULL) {
 
-                        tempComp->load(accessor);
-
                         addComponent(tempComp);
+
+                        tempComp->load(accessor);
                     }
                 }
             } while (FileSystem::Instance().traverseToSyblingElement(accessor));
@@ -188,8 +190,12 @@ GameObject *GameObject::clone() {
     GameObject *clone = GameObjectManager::Instance().createGameObject();
 
     clone->setName(name + " (clone)");
-    scene->manageGameObject(clone);
 
+    if (scene != NULL) {
+
+        scene->manageGameObject(clone);
+    }
+    
     *(clone->transform) = *transform;
     clone->transform->position.x += 100;
 
@@ -234,6 +240,22 @@ void GameObject::setName(const std::string &newName) {
 std::string &GameObject::getName() {
 
     return name;
+}
+
+// Uses scene of the given game object
+void GameObject::setScene(GameObject *go) {
+
+    if (go != NULL) {
+        if (go->scene != NULL) {
+
+            if (scene != NULL) {
+
+                scene->unmanageGameObject(this);
+            }
+
+            go->scene->manageGameObject(this);
+        }
+    }
 }
 
 Component *GameObject::getComponent(const std::string &type) {

@@ -1,7 +1,13 @@
-Allocator class has an object pool that can be requested to preallocate objects of a certain type and if they have objects of that type when someone requersts as a single allocatoin they will get it [assed to them from the pool of availables.
+Have player request next move position from map to move, then wait disable controls until hit spot over time
 
-Make componenets moer generalizable fix macro so oyu dont need to make a static generate class function in every copmonenet
+BOMBS instantiate in player controller, on timer to blow up using animated sprite play x times.
+On blow up check each direction and place game object on open spaces to blow up / exist for a seconds. If can only go one space replace with end peice.
 
-move around the inner class into the macro maker so its alot cleaner to register new components.
+bombs requested from level data? hand out id to bomb pool?
 
-delete game objects at end of frame
+
+Movement = use map ij locations and calculate position using map offset (to center in screen) and multiply by tilesioze.
+
+Simple enemies move randomly place bombs randomly.
+
+Track fps as extra

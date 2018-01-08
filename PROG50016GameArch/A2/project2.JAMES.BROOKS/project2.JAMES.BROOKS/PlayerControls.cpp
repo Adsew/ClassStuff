@@ -28,12 +28,16 @@ PlayerControls::PlayerControls(unsigned int uniqueID)
     : Component(uniqueID, "PlayerControls") {
 
     deltaTime = 0;
+
+    map = NULL;
 }
 
 PlayerControls::PlayerControls(unsigned int uniqueID, const char *type)
     : Component(uniqueID, type) {
 
     deltaTime = 0;
+
+    map = NULL;
 }
 
 PlayerControls::~PlayerControls() {
@@ -64,12 +68,12 @@ void PlayerControls::update() {
             if (im.getKeyDown(sf::Keyboard::A)) {
 
                 trans->position.x -= 0.5f;
-                anim->setAnimation(0);
+                anim->setAnimation(1);
             }
             if (im.getKeyDown(sf::Keyboard::D)) {
 
                 trans->position.x += 0.5f;
-                anim->setAnimation(1);
+                anim->setAnimation(3);
             }
             if (im.getKeyDown(sf::Keyboard::W)) {
 
@@ -79,7 +83,7 @@ void PlayerControls::update() {
             if (im.getKeyDown(sf::Keyboard::S)) {
 
                 trans->position.y += 0.5f;
-                anim->setAnimation(3);
+                anim->setAnimation(0);
             }
 
             // place bomb button
@@ -104,4 +108,9 @@ void PlayerControls::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 Component &PlayerControls::operator=(const Component &comp) {
 
     return *this;
+}
+
+void PlayerControls::setMap(Terrain *m) {
+
+    map = m;
 }

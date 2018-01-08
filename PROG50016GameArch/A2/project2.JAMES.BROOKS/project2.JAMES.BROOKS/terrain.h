@@ -20,6 +20,8 @@ class Terrain : public Component {
 
     REGISTER_COMPONENT(Terrain);
 
+    friend class LevelData;
+
 
     /***** Variables *****/
 
@@ -28,6 +30,11 @@ protected:
     // Parallel maps, terrain is ground, objects are collidable data
     std::vector<std::vector<GameObject *>> terrain;
     std::vector<std::vector<GameObject *>> objects;
+    std::vector<std::vector<GameObject *>> entities;
+
+    std::list<std::pair<int, int>> spawnPoints;
+
+    int tileWidth, tileHeight;
 
 
     /***** Functions *****/
