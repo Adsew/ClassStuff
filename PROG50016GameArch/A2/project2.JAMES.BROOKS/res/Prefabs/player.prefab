@@ -7,6 +7,6 @@
 			<Anim width="32" height="32" xOrigin="0" yOrigin="64" steps="2" fps="4" />
 			<Anim width="32" height="32" xOrigin="0" yOrigin="96" steps="2" fps="4" />
 		</Component>	
-		<Component type="PlayerControls" />
+		<Component type="PlayerControls" bombInterval="3" />
     </Components>
 </GameObject>

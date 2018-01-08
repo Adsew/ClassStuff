@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <Assets>
     <PlayerSprite type="TextureAsset" path="../res/Textures/playersprite.png" />
+    <EnemySprite type="TextureAsset" path="../res/Textures/enemysprite.png" />
     <TileSet type="TextureAsset" path="../res/Textures/tileset.png" />
 </Assets>

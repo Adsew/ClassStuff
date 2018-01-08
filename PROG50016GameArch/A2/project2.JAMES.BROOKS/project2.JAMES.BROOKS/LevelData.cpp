@@ -16,6 +16,7 @@ Description: Keeps track of the entities within the current level and the score.
 #include "GameObjectManager.h"
 #include "AnimatedSprite.h"
 #include "PlayerControls.h"
+#include "EnemyAI.h"
 #include "Terrain.h"
 #include "Bomb.h"
 #include "Transform.h"
@@ -130,7 +131,23 @@ void LevelData::setupLevel() {
             // Now spawn and setup enemies
             for (iter; iter != map->spawnPoints.end(); iter++) {
 
-                
+                GameObject *enemy = GameObjectManager::Instance().createGameObjectFromPrefab("Enemy.prefab");
+
+                if (enemy != NULL) {
+
+                    EnemyAI *eai = (EnemyAI *)enemy->getComponent("EnemyAI");
+
+                    enemy->setScene(this->gameObject);
+
+                    if (eai != NULL) {
+
+                        eai->setMap(map);
+
+                        eai->setPosition(iter->first, iter->second);
+                    }
+
+                    map->placeEntityOnMap(enemy, iter->first, iter->second);
+                }
             }
         }
 

@@ -197,7 +197,6 @@ GameObject *GameObject::clone() {
     }
     
     *(clone->transform) = *transform;
-    clone->transform->position.x += 100;
 
     for (std::map<std::string, Component *>::iterator iter = components.begin();
         iter != components.end();

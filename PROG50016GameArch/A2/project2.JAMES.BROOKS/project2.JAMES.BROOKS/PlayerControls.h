@@ -28,13 +28,17 @@ class PlayerControls : public Component {
 
 private:
 
-    float deltaTime;
+    float deltaTimeInput;
+    float deltaTimeBomb;
 
 protected:
 
     Terrain *map;
 
     int posX, posY;
+
+    float bombInterval;
+
 
     /***** Functions *****/
 
