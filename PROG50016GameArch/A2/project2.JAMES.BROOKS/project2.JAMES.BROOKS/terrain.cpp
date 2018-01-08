@@ -254,3 +254,67 @@ void Terrain::loadMapFile(const char *mapFile) {
         }
     }
 }
+
+// Take the given entity and place him in the map grid
+bool Terrain::placeEntityOnMap(GameObject *entity, int posX, int posY) {
+
+    if (posY >= 0 && posY < entities.size() 
+        && posX >= 0 && posX < entities[0].size()
+        && entity != NULL
+        ) {
+
+        if (entities[posY][posX] == NULL) {
+
+            Transform *trans = entity->getTransform();
+
+            if (trans != NULL) {
+
+                trans->position.x = posX * tileWidth;
+                trans->position.y = posY * tileHeight;
+            }
+
+            entities[posY][posX] = entity;
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Remove an entity from the map, making it none collidable
+bool Terrain::removeEntityFromMap(int posX, int posY) {
+
+    if (posY >= 0 && posY < entities.size()
+        && posX >= 0 && posX < entities[0].size()
+        ) {
+
+        if (entities[posY][posX] != NULL) {
+
+            entities[posY][posX] = NULL;
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Check if you can move to the given square, then move the game object
+bool Terrain::requestMoveEntity(Transform *trans, int posX, int posY, int distX, int distY) {
+
+    if (entities[posY][posX] != NULL && trans != NULL) {
+        if (entities[posY + distY][posX + distX] == NULL && objects[posY + distY][posX + distX] == NULL) {
+
+            entities[posY + distY][posX + distX] = entities[posY][posX];
+            entities[posY][posX] = NULL;
+
+            trans->position.x = (posX + distX) * tileWidth;
+            trans->position.y = (posY + distY) * tileHeight;
+
+            return true;
+        }
+    }
+
+    return false;
+}

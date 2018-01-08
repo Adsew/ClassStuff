@@ -34,6 +34,8 @@ protected:
 
     Terrain *map;
 
+    int posX, posY;
+
     /***** Functions *****/
 
 protected:
@@ -55,6 +57,8 @@ public:
     virtual Component &operator=(const Component &comp) override;
 
     void setMap(Terrain *m);
+
+    void setPosition(int x, int y);
 };
 
 #endif // !PLAYER_CONTROLS_H

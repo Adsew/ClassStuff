@@ -16,6 +16,7 @@ Description: Component allowing input from the keyboard to move the player accor
 
 #include "Timer.h"
 #include "InputManager.h"
+#include "Terrain.h"
 #include "Transform.h"
 #include "AnimatedSprite.h"
 #include "PlayerControls.h"
@@ -30,6 +31,8 @@ PlayerControls::PlayerControls(unsigned int uniqueID)
     deltaTime = 0;
 
     map = NULL;
+    posX = 0;
+    posY = 0;
 }
 
 PlayerControls::PlayerControls(unsigned int uniqueID, const char *type)
@@ -38,6 +41,8 @@ PlayerControls::PlayerControls(unsigned int uniqueID, const char *type)
     deltaTime = 0;
 
     map = NULL;
+    posX = 0;
+    posY = 0;
 }
 
 PlayerControls::~PlayerControls() {
@@ -62,27 +67,43 @@ void PlayerControls::update() {
 
         deltaTime -= Timer::Instance().getTargetUpdatesPerSecond();
 
-        if (trans != NULL &&anim != NULL) {
+        if (trans != NULL && anim != NULL && map != NULL) {
 
             // movement
             if (im.getKeyDown(sf::Keyboard::A)) {
 
-                trans->position.x -= 0.5f;
+                if (map->requestMoveEntity(trans, posX, posY, -1, 0)) {
+
+                    posX--;
+                }
+                
                 anim->setAnimation(1);
             }
             if (im.getKeyDown(sf::Keyboard::D)) {
 
-                trans->position.x += 0.5f;
+                if (map->requestMoveEntity(trans, posX, posY, 1, 0)) {
+
+                    posX++;
+                }
+
                 anim->setAnimation(3);
             }
             if (im.getKeyDown(sf::Keyboard::W)) {
 
-                trans->position.y -= 0.5f;
+                if (map->requestMoveEntity(trans, posX, posY, 0, -1)) {
+
+                    posY--;
+                }
+
                 anim->setAnimation(2);
             }
             if (im.getKeyDown(sf::Keyboard::S)) {
 
-                trans->position.y += 0.5f;
+                if (map->requestMoveEntity(trans, posX, posY, 0, 1)) {
+
+                    posY++;
+                }
+
                 anim->setAnimation(0);
             }
 
@@ -113,4 +134,10 @@ Component &PlayerControls::operator=(const Component &comp) {
 void PlayerControls::setMap(Terrain *m) {
 
     map = m;
+}
+
+void PlayerControls::setPosition(int x, int y) {
+
+    posX = x;
+    posY = y;
 }

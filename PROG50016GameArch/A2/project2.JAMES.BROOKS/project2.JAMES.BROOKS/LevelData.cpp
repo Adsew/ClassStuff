@@ -113,19 +113,16 @@ void LevelData::setupLevel() {
 
                 PlayerControls *pCont = (PlayerControls *)player->getComponent("PlayerControls");
 
+                player->setScene(this->gameObject);
+
                 if (pCont != NULL) {
 
                     pCont->setMap(map);
+
+                    pCont->setPosition(iter->first, iter->second);
                 }
-
-                Transform *pTrans = player->getTransform();
-
-                pTrans->position.x = (float)(iter->first * map->tileWidth);
-                pTrans->position.y = (float)(iter->second * map->tileHeight);
-
-                player->setScene(this->gameObject);
-
-                map->entities[iter->first][iter->second] = player;
+                
+                map->placeEntityOnMap(player, iter->first, iter->second);
             }
 
             iter++;
@@ -133,7 +130,7 @@ void LevelData::setupLevel() {
             // Now spawn and setup enemies
             for (iter; iter != map->spawnPoints.end(); iter++) {
 
-                // Create enemies
+                
             }
         }
 

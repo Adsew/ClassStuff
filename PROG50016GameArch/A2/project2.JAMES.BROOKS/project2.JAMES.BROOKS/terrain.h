@@ -65,6 +65,15 @@ public:
 
     // Load a map file and create the tiles needed
     void loadMapFile(const char *mapFile);
+
+    // Take the given entity and place him in the map grid
+    bool placeEntityOnMap(GameObject *entity, int posX, int posY);
+
+    // Remove an entity from the map, making it none collidable
+    bool removeEntityFromMap(int posX, int posY);
+
+    // Check if you can move to the given square, then move the game object
+    bool requestMoveEntity(Transform *trans, int posX, int posY, int distX, int distY);
 };
 
 #endif // !TERRAIN_H
