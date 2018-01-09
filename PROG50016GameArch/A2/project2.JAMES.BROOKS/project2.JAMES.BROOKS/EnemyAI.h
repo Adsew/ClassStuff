@@ -27,8 +27,6 @@ class EnemyAI : public Component {
 
     /***** Variables *****/
 
-    std::list<GameObject *> activeBombs;
-
     Terrain *map;
 
     int posX, posY;

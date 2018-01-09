@@ -31,6 +31,9 @@ GameObject::GameObject(unsigned int uniqueID)
     transform->setScale(1.0f, 1.0f);
     transform->setRotation(0);
 
+    objectPoolID = 0;
+    isFromObjectPool = false;
+
     active = true;
 }
 
@@ -44,6 +47,9 @@ GameObject::GameObject(unsigned int uniqueID, const char *goName)
     transform->setPosition(0, 0);
     transform->setScale(1.0f, 1.0f);
     transform->setRotation(0);
+
+    objectPoolID = 0;
+    isFromObjectPool = false;
 
     active = true;
 }

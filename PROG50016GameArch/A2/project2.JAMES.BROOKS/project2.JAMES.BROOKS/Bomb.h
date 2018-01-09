@@ -32,6 +32,8 @@ protected:
     AnimatedSprite *anim;
     Terrain *map;
 
+    unsigned int firePoolID;
+
     int posX, posY;
 
     bool exploded;
@@ -57,6 +59,9 @@ protected:
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
 
+    // Called when the bomb explodes after the animation finishes
+    void explode();
+
 public:
 
     virtual Component &operator=(const Component &comp) override;
@@ -67,8 +72,8 @@ public:
     // Place the bomb at the given location in the map
     void placeAtMe(Terrain *terrain, int x, int y);
 
-    // Check if the bomb has exploded and needs deactivation
-    bool isExploded();
+    // Set the fire pool ID to be used when exploding
+    void setFirePoolID(unsigned int fID);
 };
 
 #endif // !BOMB_H

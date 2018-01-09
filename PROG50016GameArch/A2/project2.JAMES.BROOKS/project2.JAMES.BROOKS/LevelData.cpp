@@ -66,18 +66,38 @@ void LevelData::update() {
 
 void LevelData::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
+    unsigned int firePoolID = 1000000;
     int bombPoolSize = 0;
 
     FileSystem::Instance().getAttribute(accessor, "score", score);
 
     if (FileSystem::Instance().getAttribute(accessor, "bombPoolSize", bombPoolSize)) {
 
+        // Build a bomb fire pool for bombs to use when exploding
+        GameObject *fireSample = GameObjectManager::Instance().createGameObjectFromPrefab("BombFire.prefab");
+
+        if (fireSample != NULL) {
+
+            fireSample->setScene(gameObject);
+
+            firePoolID = GameObjectManager::Instance().createObjectPool(fireSample, bombPoolSize * 6);
+
+            fireSample->destroy();
+        }
+
         // Build the bomb pool for participating entities
         GameObject *bombSample = GameObjectManager::Instance().createGameObjectFromPrefab("Bomb.prefab");
 
         if (bombSample != NULL) {
 
-            bombSample->setScene(this->gameObject);
+            Bomb *bombS = (Bomb *)bombSample->getComponent("Bomb");
+
+            if (bombS != NULL) {
+
+                bombS->setFirePoolID(firePoolID);
+            }
+
+            bombSample->setScene(gameObject);
 
             bombPoolID = GameObjectManager::Instance().createObjectPool(bombSample, bombPoolSize);
 

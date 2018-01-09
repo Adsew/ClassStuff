@@ -1,13 +1,7 @@
 Have player request next move position from map to move, then wait disable controls until hit spot over time
 
-BOMBS instantiate in player controller, on timer to blow up using animated sprite play x times.
-On blow up check each direction and place game object on open spaces to blow up / exist for a seconds. If can only go one space replace with end peice.
-
-bombs requested from level data? hand out id to bomb pool?
-
-
-Movement = use map ij locations and calculate position using map offset (to center in screen) and multiply by tilesioze.
-
-Simple enemies move randomly place bombs randomly.
+movement slow to only move once a few
 
 Track fps as extra
+
+Tile some how managed to delete before map

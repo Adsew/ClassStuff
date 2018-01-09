@@ -33,8 +33,6 @@ private:
 
 protected:
 
-    std::list<GameObject *> activeBombs;
-
     Terrain *map;
 
     int posX, posY;

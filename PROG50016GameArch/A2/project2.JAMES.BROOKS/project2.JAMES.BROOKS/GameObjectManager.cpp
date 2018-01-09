@@ -84,8 +84,15 @@ void GameObjectManager::update() {
 
         if ((*iter)->pollNeedsDeletion()) {
 
-            delete *iter;
-            iter = gameObjects.erase(iter);
+            if ((*iter)->isFromObjectPool) {
+
+                returnToPool((*iter)->objectPoolID, (*iter));
+            }
+            else {
+
+                delete *iter;
+                iter = gameObjects.erase(iter);
+            }
         }
     }
 
@@ -148,6 +155,8 @@ unsigned int GameObjectManager::createObjectPool(GameObject *sample, const unsig
 
             objectPool[poolIDCount][i] = sample->clone();
             objectPool[poolIDCount][i]->setActive(false);
+            objectPool[poolIDCount][i]->objectPoolID = poolIDCount;
+            objectPool[poolIDCount][i]->isFromObjectPool = true;
 
             objectPoolInUseMap[poolIDCount][i] = false;
         }
@@ -196,6 +205,8 @@ void GameObjectManager::returnToPool(const unsigned int id, GameObject *object) 
 
                 objectPool[id][i]->setActive(false);
 
+                objectPool[id][i]->undestroy();
+
                 break;
             }
         }
@@ -210,6 +221,7 @@ void GameObjectManager::destroyObjectPool(const unsigned int id) {
         // Delete all objects in the pool
         for (int i = 0; i < objectPool[id].size(); i++) {
 
+            objectPool[id][i]->isFromObjectPool = false; // Allows deletion
             objectPool[id][i]->destroy();
         }
 

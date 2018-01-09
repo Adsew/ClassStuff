@@ -77,6 +77,12 @@ public:
 
     // Check if you can move to the given square, then move the game object
     bool requestMoveEntity(Transform *trans, int posX, int posY, int distX, int distY);
+
+    // Check if an entity or collider is at the given coordinates and pass a reference if so
+    GameObject *checkCollisionOnMap(int posX, int posY);
+
+    // Remove the game object at the given coordinates from the map and destroy the object
+    bool removeAndDestroyObject(int posX, int posY);
 };
 
 #endif // !TERRAIN_H

@@ -78,14 +78,14 @@ void PlayerControls::update() {
         deltaTimeInput -= Timer::Instance().getTargetUpdatesPerSecond();
 
         // Check for exit first
-        if (im.getKeyPressed(sf::Keyboard::Escape)) {
+        if (im.getKeyDown(sf::Keyboard::Escape)) {
 
             im.exit();
         }
         else if (trans != NULL && anim != NULL && map != NULL) {
 
             // movement
-            if (im.getKeyDown(sf::Keyboard::A)) {
+            if (im.getKeyPressed(sf::Keyboard::A)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, -1, 0)) {
 
@@ -94,7 +94,7 @@ void PlayerControls::update() {
                 
                 anim->setAnimation(1);
             }
-            if (im.getKeyDown(sf::Keyboard::D)) {
+            if (im.getKeyPressed(sf::Keyboard::D)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, 1, 0)) {
 
@@ -103,7 +103,7 @@ void PlayerControls::update() {
 
                 anim->setAnimation(3);
             }
-            if (im.getKeyDown(sf::Keyboard::W)) {
+            if (im.getKeyPressed(sf::Keyboard::W)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, 0, -1)) {
 
@@ -112,7 +112,7 @@ void PlayerControls::update() {
 
                 anim->setAnimation(2);
             }
-            if (im.getKeyDown(sf::Keyboard::S)) {
+            if (im.getKeyPressed(sf::Keyboard::S)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, 0, 1)) {
 
@@ -140,34 +140,7 @@ void PlayerControls::update() {
                         bombComp->resetBomb();
                         bombComp->placeAtMe(map, posX, posY);
                     }
-
-                    activeBombs.push_back(bomb);
                 }
-            }
-        }
-
-        // Return exploded bombs to pool
-        std::list<GameObject *>::iterator iter = activeBombs.begin();
-
-        while (iter != activeBombs.end()) {
-
-            Bomb *b = (Bomb *)(*iter)->getComponent("Bomb");
-
-            if (b != NULL) {
-                if (b->isExploded()) {
-
-                    GameObjectManager::Instance().returnToPool(bombPoolID, *iter);
-
-                    iter = activeBombs.erase(iter);
-                }
-                else {
-
-                    iter++;
-                }
-            }
-            else {
-
-                iter++;
             }
         }
     }

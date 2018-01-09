@@ -50,6 +50,10 @@ public:
     // Set an object to be deleted by the manager
     virtual void destroy() final;
 
+    // Special use to undo a destroy before the object is destroyed
+    // Mainly just used by managers when needed
+    virtual void undestroy() final;
+
     // Check if object is set for deletion
     virtual bool pollNeedsDeletion() final;
 

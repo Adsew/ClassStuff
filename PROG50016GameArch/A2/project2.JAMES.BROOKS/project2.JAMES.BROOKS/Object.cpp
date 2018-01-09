@@ -51,6 +51,13 @@ void Object::destroy() {
     needsDeletion = true;
 }
 
+// Special use to undo a destroy before the object is destroyed
+// Mainly just used by managers when needed
+void Object::undestroy() {
+
+    needsDeletion = false;
+}
+
 // Check if object is set for deletion
 bool Object::pollNeedsDeletion() {
 

@@ -12,8 +12,10 @@ Description: Represents an object that will detonate after a set time.
 
 #include "Core.h"
 
+#include "GameObjectManager.h"
 #include "AnimatedSprite.h"
 #include "Terrain.h"
+#include "BombFire.h"
 #include "Bomb.h"
 
 
@@ -61,7 +63,7 @@ void Bomb::update() {
     if (anim != NULL) {
         if (anim->hasPlayedCountTimes()) {
 
-            exploded = true;
+            explode();
         }
     }
 }
@@ -77,6 +79,8 @@ Component &Bomb::operator=(const Component &comp) {
 
     posX = orig->posX;
     posY = orig->posY;
+
+    firePoolID = orig->firePoolID;
 
     return *this;
 }
@@ -102,11 +106,74 @@ void Bomb::placeAtMe(Terrain *terrain, int x, int y) {
         map = terrain;
 
         map->placeEntityOnMapNoCollision(gameObject, x, y);
+
+        posX = x;
+        posY = y;
     }
 }
 
-// Check if the bomb has exploded and needs deactivation
-bool Bomb::isExploded() {
+// Called when the bomb explodes after the animation finishes
+void Bomb::explode() {
 
-    return exploded;
+    exploded = true;
+
+    if (map != NULL) {
+
+        // Create 9 fire sprites from the bombs position
+        for (int i = 0; i < 9; i++) {
+
+            GameObject *fire = GameObjectManager::Instance().requestFromPool(firePoolID);
+
+            if (fire != NULL) {
+
+                BombFire *fireScript = (BombFire *)fire->getComponent("BombFire");
+                int x = 0, y = 0;
+                
+                if (i == 0) {
+
+                    x = posX;
+                    y = posY;
+                }
+                // Up fire
+                else if (i > 0 && i < 3) {
+
+                    x = posX;
+                    y = posY - i;
+                }
+                // Down fire
+                else if (i > 2 && i < 5) {
+
+                    x = posX;
+                    y = posY + i - 2;
+                }
+                // Left fire
+                else if (i > 4 && i < 7) {
+
+                    x = posX - i + 4;
+                    y = posY;
+                }
+                // Right fire
+                else if (i > 6 && i < 9) {
+
+                    x = posX + i - 6;
+                    y = posY;
+                }
+
+                if (fireScript != NULL) {
+
+                    fireScript->setMap(map, x, y);
+
+                    map->placeEntityOnMapNoCollision(fire, x, y);
+                }
+            }
+        }
+    }
+
+    gameObject->destroy();
+}
+
+// Set the fire pool ID to be used when exploding
+void Bomb::setFirePoolID(unsigned int fID) {
+
+    firePoolID = fID;
 }

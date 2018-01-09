@@ -131,34 +131,7 @@ void EnemyAI::update() {
                         bombComp->resetBomb();
                         bombComp->placeAtMe(map, posX, posY);
                     }
-
-                    activeBombs.push_back(bomb);
                 }
-            }
-        }
-
-        // Return exploded bombs to pool
-        std::list<GameObject *>::iterator iter = activeBombs.begin();
-        
-        while (iter != activeBombs.end()) {
-
-            Bomb *b = (Bomb *)(*iter)->getComponent("Bomb");
-
-            if (b != NULL) {
-                if (b->isExploded()) {
-
-                    GameObjectManager::Instance().returnToPool(bombPoolID, *iter);
-
-                    iter = activeBombs.erase(iter);
-                }
-                else {
-
-                    iter++;
-                }
-            }
-            else {
-
-                iter++;
             }
         }
     }

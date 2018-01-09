@@ -340,3 +340,47 @@ bool Terrain::requestMoveEntity(Transform *trans, int posX, int posY, int distX,
 
     return false;
 }
+
+// Check if an entity is at the given coordinates and pass a reference if so
+GameObject *Terrain::checkCollisionOnMap(int posX, int posY) {
+
+    if (posY >= 0 && posY < entities.size()
+        && posX >= 0 && posX < entities[0].size()
+        ) {
+
+        if (entities[posY][posX] != NULL) {
+
+            return entities[posY][posX];
+        }
+
+        return objects[posY][posX];
+    }
+
+    return NULL;
+}
+
+// Remove the game object at the given coordinates from the map and destroy the object
+bool Terrain::removeAndDestroyObject(int posX, int posY) {
+
+    if (posY >= 0 && posY < entities.size()
+        && posX >= 0 && posX < entities[0].size()
+        ) {
+
+        if (entities[posY][posX] != NULL) {
+
+            entities[posY][posX]->destroy();
+            entities[posY][posX] = NULL;
+
+            return true;
+        }
+        else if (objects[posY][posX] != NULL) {
+
+            objects[posY][posX]->destroy();
+            objects[posY][posX] = NULL;
+
+            return true;
+        }
+    }
+
+    return false;
+}

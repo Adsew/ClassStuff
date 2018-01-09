@@ -39,6 +39,10 @@ private:
 
     std::map<std::string, Component*> components;
 
+    unsigned int objectPoolID;
+
+    bool isFromObjectPool;
+
     bool active;
 
 

@@ -16,6 +16,9 @@ Description: Spawned by a bomb after it detonates and kills enemies and players 
 #include "Component.h"
 
 
+class Terrain;
+
+
 class BombFire : public Component {
 
     REGISTER_COMPONENT(BombFire);
@@ -23,7 +26,13 @@ class BombFire : public Component {
 
     /***** Variables *****/
 
+    Terrain *map;
+    GameObject *owner;  // Who spawned the bomb
 
+    int posX, posY;
+
+    float deathTimer;
+    float timeTilDeath;
 
 
     /***** Functions *****/
@@ -45,6 +54,12 @@ protected:
 public:
 
     virtual Component &operator=(const Component &comp) override;
+
+    // Set the map the fire is on
+    void setMap(Terrain *t, int x, int y);
+
+    // Set the owner of who spawned the bomb
+    void setOwner(GameObject *o);
 };
 
 #endif // !BOMB_FIRE_H
