@@ -46,14 +46,22 @@ void ComponentManager::clean() {
 
 void ComponentManager::update() {
 
-    for (std::list<Component *>::iterator iter = components.begin();
-        iter != components.end();
-        iter++) {
+    std::list<Component *>::iterator iter = components.begin();
+    
+    while (iter != components.end()) {
 
         if ((*iter)->pollNeedsDeletion()) {
 
-            delete *iter;
-            iter = components.erase(iter);
+            std::list<Component *>::iterator temp = iter;
+
+            iter++;
+
+            delete *temp;
+            components.erase(temp);
+        }
+        else {
+
+            iter++;
         }
     }
 }

@@ -67,8 +67,10 @@ void GameObjectManager::clean() {
 
 void GameObjectManager::update() {
 
+    std::list<GameObject *>::iterator iter;
+
     // Add new gameobjects to this cycle update
-    for (std::list<GameObject *>::iterator iter = recentlyCreated.begin();
+    for (iter = recentlyCreated.begin();
         iter != recentlyCreated.end();
         iter++) {
 
@@ -78,26 +80,34 @@ void GameObjectManager::update() {
     recentlyCreated.clear();
 
     // Deletion pass
-    for (std::list<GameObject *>::iterator iter = gameObjects.begin();
-        iter != gameObjects.end();
-        iter++) {
+    iter = gameObjects.begin();
+
+    while (iter != gameObjects.end()) {
 
         if ((*iter)->pollNeedsDeletion()) {
 
-            if ((*iter)->isFromObjectPool) {
+            std::list<GameObject *>::iterator temp = iter;
 
-                returnToPool((*iter)->objectPoolID, (*iter));
+            iter++;
+
+            if ((*temp)->isFromObjectPool) {
+
+                returnToPool((*temp)->objectPoolID, (*temp));
             }
             else {
 
-                delete *iter;
-                iter = gameObjects.erase(iter);
+                delete *temp;
+                gameObjects.erase(temp);
             }
+        }
+        else {
+
+            iter++;
         }
     }
 
     // Normal update after
-    for (std::list<GameObject *>::iterator iter = gameObjects.begin();
+    for (iter = gameObjects.begin();
         iter != gameObjects.end();
         iter++) {
 

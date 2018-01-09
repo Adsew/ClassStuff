@@ -7,6 +7,6 @@
 			<Anim width="32" height="32" xOrigin="0" yOrigin="64" steps="2" fps="4" />
 			<Anim width="32" height="32" xOrigin="0" yOrigin="96" steps="2" fps="4" />
 		</Component>	
-		<Component type="EnemyAI" bombInterval="3" bombChance="50" moveInterval="2" />
+		<Component type="EnemyAI" bombInterval="4" bombChance="25" moveInterval="2" />
     </Components>
 </GameObject>

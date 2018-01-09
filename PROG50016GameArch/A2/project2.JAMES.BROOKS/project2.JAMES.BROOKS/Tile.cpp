@@ -22,12 +22,14 @@ Tile::Tile(unsigned int uniqueID)
     : Component(uniqueID, "Tile") {
 
     collidable = false;
+    destroyable = false;
 }
 
 Tile::Tile(unsigned int uniqueID, const char *type) 
     : Component(uniqueID, type) {
 
     collidable = false;
+    destroyable = false;
 }
 
 Tile::~Tile() {
@@ -67,4 +69,14 @@ void Tile::setCollidable(bool c) {
 bool Tile::isCollidable() {
 
     return collidable;
+}
+
+void Tile::setDestructable(bool d) {
+
+    destroyable = d;
+}
+
+bool Tile::isDestructable() {
+
+    return destroyable;
 }

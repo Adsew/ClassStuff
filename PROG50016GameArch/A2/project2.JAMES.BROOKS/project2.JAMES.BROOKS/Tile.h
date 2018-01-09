@@ -27,6 +27,7 @@ class Tile : public Component {
 protected:
 
     bool collidable;
+    bool destroyable;
 
 
     /***** Functions *****/
@@ -52,6 +53,10 @@ public:
     void setCollidable(bool c);
 
     bool isCollidable();
+
+    void setDestructable(bool d);
+
+    bool isDestructable();
 };
 
 #endif // !TILE_H

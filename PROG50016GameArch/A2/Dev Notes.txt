@@ -1,6 +1,6 @@
-Have player request next move position from map to move, then wait disable controls until hit spot over time
+Extra for niceties: Have player request next move position from map to move, then wait disable controls until hit spot over time
 
-movement slow to only move once a few
+make tile destroyable if right tile in map
 
 Track fps as extra
 

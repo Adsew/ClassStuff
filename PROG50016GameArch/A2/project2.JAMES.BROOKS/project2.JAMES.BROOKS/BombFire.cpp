@@ -14,6 +14,7 @@ Description: Spawned by a bomb after it detonates and kills enemies and players 
 
 #include "Timer.h"
 #include "Terrain.h"
+#include "Tile.h"
 #include "EnemyAI.h"
 #include "PlayerControls.h"
 #include "LevelData.h"
@@ -67,7 +68,21 @@ void BombFire::update() {
 
         if (goHit != NULL) {
 
-            // check tile for destructable or enemy/player to kill
+            if (Tile *tile = (Tile *)goHit->getComponent("Tile")) {
+
+                if (tile->isDestructable()) {
+
+                    map->removeAndDestroyObject(posX, posY);
+                }
+            }
+            if (EnemyAI *enemy = (EnemyAI *)goHit->getComponent("EnemyAI")) {
+
+                map->removeAndDestroyObject(posX, posY);
+            }
+            if (PlayerControls *player = (PlayerControls *)goHit->getComponent("EnemyAI")) {
+
+                map->removeAndDestroyObject(posX, posY);
+            }
         }
     }
 
