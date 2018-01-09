@@ -56,7 +56,12 @@ void Sprite::update() {
 
 void Sprite::render() {
     
-    RenderSystem::Instance().getWindow()->draw(sprite);
+    if (gameObject != NULL) {
+        if (gameObject->isActive()) {
+
+            RenderSystem::Instance().getWindow()->draw(sprite);
+        }
+    }
 }
 
 void Sprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {

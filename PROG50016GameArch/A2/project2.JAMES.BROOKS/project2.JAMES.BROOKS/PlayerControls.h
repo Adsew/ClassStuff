@@ -33,9 +33,13 @@ private:
 
 protected:
 
+    std::list<GameObject *> activeBombs;
+
     Terrain *map;
 
     int posX, posY;
+
+    unsigned int bombPoolID;
 
     float bombInterval;
 
@@ -63,6 +67,8 @@ public:
     void setMap(Terrain *m);
 
     void setPosition(int x, int y);
+
+    void setBombPool(unsigned int id);
 };
 
 #endif // !PLAYER_CONTROLS_H

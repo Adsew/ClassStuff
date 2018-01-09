@@ -16,6 +16,10 @@ Description: Represents an object that will detonate after a set time.
 #include "Component.h"
 
 
+class AnimatedSprite;
+class Terrain;
+
+
 class Bomb : public Component {
 
     REGISTER_COMPONENT(Bomb);
@@ -23,7 +27,18 @@ class Bomb : public Component {
 
     /***** Variables *****/
 
+protected:
 
+    AnimatedSprite *anim;
+    Terrain *map;
+
+    int posX, posY;
+
+    bool exploded;
+
+public:
+
+    GameObject *owner;
 
 
     /***** Functions *****/
@@ -45,6 +60,15 @@ protected:
 public:
 
     virtual Component &operator=(const Component &comp) override;
+
+    // Reset the bomb to a pre-exploded state
+    void resetBomb();
+
+    // Place the bomb at the given location in the map
+    void placeAtMe(Terrain *terrain, int x, int y);
+
+    // Check if the bomb has exploded and needs deactivation
+    bool isExploded();
 };
 
 #endif // !BOMB_H

@@ -55,6 +55,9 @@ public:
     // Set which animation is currently playing from the sprite sheet
     bool setAnimation(int animID);
 
+    // Reset the current animation back to the first frame
+    void resetAnimation();
+
     // Return the number of animations loaded from the sprite
     int getAnimationCount();
 

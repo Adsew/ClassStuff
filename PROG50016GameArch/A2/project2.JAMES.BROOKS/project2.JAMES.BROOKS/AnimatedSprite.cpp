@@ -83,7 +83,14 @@ void AnimatedSprite::update() {
             
             deltaTime -= timeNeeded;
 
-            step = (step + 1) % animations[currentAnim][S_STEP_COUNT];
+            step++;
+
+            if (step >= animations[currentAnim][S_STEP_COUNT]) {
+
+                numTimesPlayed++;
+            }
+
+            step = step % animations[currentAnim][S_STEP_COUNT];
             spriteRect.left = step * animations[currentAnim][S_WIDTH];
 
             sprite.setTextureRect(spriteRect);
@@ -114,6 +121,8 @@ void AnimatedSprite::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
             DEBUG_LOG("Sprite: Unable to retrieve texture asset for " << assetName.c_str() << ".");
         }
     }
+
+    FileSystem::Instance().getAttribute(accessor, "playCount", playCount);
 
     if (FileSystem::Instance().getAttribute(accessor, "priority", priority)) {
 
@@ -183,7 +192,6 @@ bool AnimatedSprite::setAnimation(int animID) {
 
         currentAnim = animID;
         step = 0;
-        playCount = 0;
         numTimesPlayed = 0;
         deltaTime = 0;
 
@@ -198,6 +206,14 @@ bool AnimatedSprite::setAnimation(int animID) {
     }
 
     return false;
+}
+
+// Reset the current animation back to the first frame
+void AnimatedSprite::resetAnimation() {
+
+    step = 0;
+    numTimesPlayed = 0;
+    deltaTime = 0;
 }
 
 // Return the number of animations loaded from the sprite

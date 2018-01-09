@@ -13,6 +13,9 @@ Description: Controls the actions the enemies will take.
 
 #include "Core.h"
 
+#include "GameObjectManager.h"
+#include "Transform.h"
+#include "Bomb.h"
 #include "Terrain.h"
 #include "AnimatedSprite.h"
 #include "EnemyAI.h"
@@ -113,7 +116,50 @@ void EnemyAI::update() {
 
             deltaTimeBomb -= bombPlaceInterval;
 
+            // Chance to place bomb so they dont place on an exact timing
+            if ((rand() % 100) < bombPlaceChance) {
 
+                GameObject *bomb = GameObjectManager::Instance().requestFromPool(bombPoolID);
+
+                if (bomb != NULL) {
+
+                    Bomb *bombComp = (Bomb *)bomb->getComponent("Bomb");
+
+                    if (bombComp != NULL) {
+
+                        bombComp->owner = gameObject;
+                        bombComp->resetBomb();
+                        bombComp->placeAtMe(map, posX, posY);
+                    }
+
+                    activeBombs.push_back(bomb);
+                }
+            }
+        }
+
+        // Return exploded bombs to pool
+        std::list<GameObject *>::iterator iter = activeBombs.begin();
+        
+        while (iter != activeBombs.end()) {
+
+            Bomb *b = (Bomb *)(*iter)->getComponent("Bomb");
+
+            if (b != NULL) {
+                if (b->isExploded()) {
+
+                    GameObjectManager::Instance().returnToPool(bombPoolID, *iter);
+
+                    iter = activeBombs.erase(iter);
+                }
+                else {
+
+                    iter++;
+                }
+            }
+            else {
+
+                iter++;
+            }
         }
     }
 }
@@ -145,4 +191,9 @@ void EnemyAI::setPosition(int x, int y) {
 
     posX = x;
     posY = y;
+}
+
+void EnemyAI::setBombPool(unsigned int id) {
+
+    bombPoolID = id;
 }

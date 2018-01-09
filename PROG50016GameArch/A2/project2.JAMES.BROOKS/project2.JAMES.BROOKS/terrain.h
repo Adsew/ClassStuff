@@ -69,6 +69,9 @@ public:
     // Take the given entity and place him in the map grid
     bool placeEntityOnMap(GameObject *entity, int posX, int posY);
 
+    // Take the given entity and give it the correct position without tracking it on the grid
+    bool placeEntityOnMapNoCollision(GameObject *entity, int posX, int posY);
+
     // Remove an entity from the map, making it none collidable
     bool removeEntityFromMap(int posX, int posY);
 

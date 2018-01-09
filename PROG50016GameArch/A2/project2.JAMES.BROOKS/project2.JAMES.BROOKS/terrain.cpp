@@ -282,6 +282,28 @@ bool Terrain::placeEntityOnMap(GameObject *entity, int posX, int posY) {
     return false;
 }
 
+// Take the given entity and give it the correct position without tracking it on the grid
+bool Terrain::placeEntityOnMapNoCollision(GameObject *entity, int posX, int posY) {
+
+    if (posY >= 0 && posY < entities.size()
+        && posX >= 0 && posX < entities[0].size()
+        && entity != NULL
+        ) {
+
+        Transform *trans = entity->getTransform();
+
+        if (trans != NULL) {
+
+            trans->position.x = posX * tileWidth;
+            trans->position.y = posY * tileHeight;
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
 // Remove an entity from the map, making it none collidable
 bool Terrain::removeEntityFromMap(int posX, int posY) {
 

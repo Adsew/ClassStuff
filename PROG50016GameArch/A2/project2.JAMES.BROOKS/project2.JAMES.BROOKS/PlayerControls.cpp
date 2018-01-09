@@ -16,6 +16,9 @@ Description: Component allowing input from the keyboard to move the player accor
 
 #include "Timer.h"
 #include "InputManager.h"
+#include "GameObjectManager.h"
+#include "Transform.h"
+#include "Bomb.h"
 #include "Terrain.h"
 #include "Transform.h"
 #include "AnimatedSprite.h"
@@ -124,6 +127,47 @@ void PlayerControls::update() {
                 && deltaTimeBomb >= bombInterval) {
 
                 deltaTimeBomb = 0;
+
+                GameObject *bomb = GameObjectManager::Instance().requestFromPool(bombPoolID);
+
+                if (bomb != NULL) {
+
+                    Bomb *bombComp = (Bomb *)bomb->getComponent("Bomb");
+
+                    if (bombComp != NULL) {
+
+                        bombComp->owner = gameObject;
+                        bombComp->resetBomb();
+                        bombComp->placeAtMe(map, posX, posY);
+                    }
+
+                    activeBombs.push_back(bomb);
+                }
+            }
+        }
+
+        // Return exploded bombs to pool
+        std::list<GameObject *>::iterator iter = activeBombs.begin();
+
+        while (iter != activeBombs.end()) {
+
+            Bomb *b = (Bomb *)(*iter)->getComponent("Bomb");
+
+            if (b != NULL) {
+                if (b->isExploded()) {
+
+                    GameObjectManager::Instance().returnToPool(bombPoolID, *iter);
+
+                    iter = activeBombs.erase(iter);
+                }
+                else {
+
+                    iter++;
+                }
+            }
+            else {
+
+                iter++;
             }
         }
     }
@@ -148,4 +192,9 @@ void PlayerControls::setPosition(int x, int y) {
 
     posX = x;
     posY = y;
+}
+
+void PlayerControls::setBombPool(unsigned int id) {
+
+    bombPoolID = id;
 }

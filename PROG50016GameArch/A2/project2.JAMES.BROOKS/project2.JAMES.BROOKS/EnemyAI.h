@@ -27,9 +27,13 @@ class EnemyAI : public Component {
 
     /***** Variables *****/
 
+    std::list<GameObject *> activeBombs;
+
     Terrain *map;
 
     int posX, posY;
+
+    unsigned int bombPoolID;
 
     float bombPlaceInterval;
     float bombPlaceChance;
@@ -62,6 +66,8 @@ public:
     void setMap(Terrain *m);
 
     void setPosition(int x, int y);
+
+    void setBombPool(unsigned int id);
 };
 
 #endif // !ENEMY_AI_H

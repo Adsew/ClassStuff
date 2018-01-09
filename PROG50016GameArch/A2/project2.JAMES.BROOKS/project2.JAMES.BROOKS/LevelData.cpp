@@ -73,17 +73,16 @@ void LevelData::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
     if (FileSystem::Instance().getAttribute(accessor, "bombPoolSize", bombPoolSize)) {
 
         // Build the bomb pool for participating entities
-        GameObject *bombSample = GameObjectManager::Instance().createGameObject();
-        bombSample->setName("Bomb");
+        GameObject *bombSample = GameObjectManager::Instance().createGameObjectFromPrefab("Bomb.prefab");
 
-        bombSample->setScene(this->gameObject);
+        if (bombSample != NULL) {
 
-        bombSample->addComponent(ComponentManager::Instance().createComponent("AnimatedSprite"));
-        bombSample->addComponent(ComponentManager::Instance().createComponent("Bomb"));
+            bombSample->setScene(this->gameObject);
 
-        bombPoolID = GameObjectManager::Instance().createObjectPool(bombSample, bombPoolSize);
+            bombPoolID = GameObjectManager::Instance().createObjectPool(bombSample, bombPoolSize);
 
-        bombSample->destroy();
+            bombSample->destroy();
+        }
     }
 }
 
@@ -119,8 +118,8 @@ void LevelData::setupLevel() {
                 if (pCont != NULL) {
 
                     pCont->setMap(map);
-
                     pCont->setPosition(iter->first, iter->second);
+                    pCont->setBombPool(bombPoolID);
                 }
                 
                 map->placeEntityOnMap(player, iter->first, iter->second);
@@ -142,8 +141,8 @@ void LevelData::setupLevel() {
                     if (eai != NULL) {
 
                         eai->setMap(map);
-
                         eai->setPosition(iter->first, iter->second);
+                        eai->setBombPool(bombPoolID);
                     }
 
                     map->placeEntityOnMap(enemy, iter->first, iter->second);
