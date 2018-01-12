@@ -1,0 +1,32 @@
+﻿using UnityEngine;
+
+public class LoadingBehaviour : StateMachineBehaviour
+{
+    public string levelToLoad;
+
+    private bool finishedLoading;
+
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        finishedLoading = false;
+        UIManager.Instance.SetPanelID(UIManager.LoadLevelPanelID);
+        LevelManager.Instance.LoadLevelAsync(levelToLoad);
+        finishedLoading = true;
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        if (finishedLoading)
+        {
+            //GameStateManager.Instance.SetTrigger(GameStateManager.finishedLoading);
+        }
+    }
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        UIManager.Instance.DeactivateCurrentPanel();
+    }
+}

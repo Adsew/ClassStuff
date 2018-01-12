@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 2825305934
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: players
+      Dependencies: {}
+    Info_1:
+      Name: levels
+      Dependencies: {}

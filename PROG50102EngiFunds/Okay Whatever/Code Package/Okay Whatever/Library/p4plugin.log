@@ -1,0 +1,11 @@
+Unhandled exception: Readfile from pipe failed. GLE=The pipe has been ended.
+
+C:/Users/brookjam/Perforce/Workspace-brookjam-S142-3/GDAP/2017/GroupProjects/GDAP_F01/Okay Whatever/Assets/Prefabs/Pickable.meta - file(s) not on client.
+
+w1:C:/Users/brookjam/Perforce/Workspace-brookjam-S142-3/GDAP/2017/GroupProjects/GDAP_F01/Okay Whatever/Assets/Prefabs/Pickable.meta - file(s) not on client.\n
+p1:-1 0 Change 17525 created with 2 open file(s).
+p1:-1 0 Submitting change 17525.
+p1:-1 0 Locking 2 files ...
+p1:-1 0 edit //depot/GDAP/2017/GroupProjects/GDAP_F01/Okay Whatever/Assets/Prefabs/Powerups/Hammer.prefab#9
+p1:-1 0 edit //depot/GDAP/2017/GroupProjects/GDAP_F01/Okay Whatever/Assets/Prefabs/Powerups/Hammer.prefab.meta#8
+p1:-1 0 Change 17525 submitted.

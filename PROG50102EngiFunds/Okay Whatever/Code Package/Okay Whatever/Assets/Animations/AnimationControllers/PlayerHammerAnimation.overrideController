@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: PlayerHammerAnimation
+  m_Controller: {fileID: 9100000, guid: 08948ddb292992546aa962f8836b3ea6, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 76a013565430bf84f93bbaf67952d4ad, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: e4e3c0b97888bae48b0553d1cf8f18f9, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 6c9908dc8d9116c4eb0ef2fede065593, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: ae8a7438df7d0cf48aa9b4a51184a483, type: 3}

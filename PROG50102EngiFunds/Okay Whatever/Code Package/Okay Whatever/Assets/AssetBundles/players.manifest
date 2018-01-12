@@ -1,0 +1,46 @@
+ManifestFileVersion: 0
+CRC: 2444171343
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: aee9247b3cd7d0fe670db21427e6a531
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: de9b7a542fc99c26ea6bb62e26c5c1ef
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: f8398ff0d27c54149b16a1d42487b3fe, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cc52e6e19e72e4f4f9fe700fe7df66d2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 40a8f1a9ba498974a9c1051b5199a832, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+Assets:
+- Assets/Prefabs/PlayerModels/Moustachio.prefab
+- Assets/Prefabs/PlayerModels/BasicPlayerM.prefab
+- Assets/Prefabs/PlayerModels/BasicPlayer.prefab
+Dependencies: []
