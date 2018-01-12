@@ -73,6 +73,12 @@
     <Filter Include="Source Files\Object\Component\GameSpecific">
       <UniqueIdentifier>{834059ec-b286-4e34-ac61-5246f9184b13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\Component\UI">
+      <UniqueIdentifier>{76a253bf-0415-4068-87cb-9136ec485608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Object\Component\UI">
+      <UniqueIdentifier>{b4bc408e-5c3b-4ae3-a366-066cd7b12b0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,6 +164,12 @@
     </ClCompile>
     <ClCompile Include="EnemyAI.cpp">
       <Filter>Source Files\Object\Component\GameSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>Source Files\Object\Component\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIText.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +262,12 @@
     </ClInclude>
     <ClInclude Include="EnemyAI.h">
       <Filter>Header Files\Object\Component\GameSpecific</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>Header Files\Object\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIText.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

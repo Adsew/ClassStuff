@@ -62,7 +62,7 @@ void RenderSystem::update() {
 
         window->clear();
 
-        for (int i = LOWEST_PRIORITY; i >= HIGHEST_PRIORITY; i--) {
+        for (int i = LOWEST_PRIORITY; i >= PRIORITIES_START; i--) {
 
             for (std::list<IRenderable *>::iterator iter = renderComponents[i].begin();
                 iter != renderComponents[i].end();
@@ -80,7 +80,7 @@ void RenderSystem::addRenderable(IRenderable *component) {
 
     if (component != NULL) {
 
-        if (component->priority < PRIORITIES && component->priority >= HIGHEST_PRIORITY) {
+        if (component->priority < PRIORITIES && component->priority >= PRIORITIES_START) {
 
             renderComponents[component->priority].push_back(component);
         }
@@ -95,7 +95,7 @@ void RenderSystem::removeRenderable(IRenderable *component) {
     
     if (component != NULL && renderComponents.size() > 0) {
 
-        if (component->priority < PRIORITIES && component->priority >= HIGHEST_PRIORITY) {
+        if (component->priority < PRIORITIES && component->priority >= PRIORITIES_START) {
 
             renderComponents[component->priority].remove(component);
         }

@@ -13,13 +13,18 @@ Description: Interface to provide screen rendering functionality.
 */
 
 
-#define HIGHEST_PRIORITY 0
-#define HIGH_PRIORITY 1
-#define MID_PRIORITY 2
-#define LOW_PRIORITY 3
-#define LOWEST_PRIORITY 4
+#define UI_HIGHEST_PRIORITY 0
+#define UI_MID_PRIORITY 1
+#define UI_LOW_PRIORITY 2
 
-#define PRIORITIES 5
+#define HIGHEST_PRIORITY 3
+#define HIGH_PRIORITY 4
+#define MID_PRIORITY 5
+#define LOW_PRIORITY 6
+#define LOWEST_PRIORITY 7
+
+#define PRIORITIES_START 0
+#define PRIORITIES 8
 
 
 class IRenderable {
