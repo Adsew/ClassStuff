@@ -79,7 +79,7 @@ void BombFire::update() {
 
                 map->removeAndDestroyObject(posX, posY);
             }
-            if (PlayerControls *player = (PlayerControls *)goHit->getComponent("EnemyAI")) {
+            if (PlayerControls *player = (PlayerControls *)goHit->getComponent("PlayerControls")) {
 
                 map->removeAndDestroyObject(posX, posY);
             }

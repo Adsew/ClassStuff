@@ -29,7 +29,9 @@ protected:
 
     // Parallel maps, terrain is ground, objects are collidable data
     std::vector<std::vector<GameObject *>> terrain;
-    std::vector<std::vector<GameObject *>> objects;
+    std::vector<std::vector<GameObject *>> colliders;
+    std::vector<std::vector<GameObject *>> destructables;
+    std::vector<std::vector<GameObject *>> powerups;
     std::vector<std::vector<GameObject *>> entities;
 
     std::list<std::pair<int, int>> spawnPoints;
@@ -54,7 +56,7 @@ protected:
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;
 
     // Create a tile gameobject with the given properties
-    GameObject *createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider, unsigned int renderPriority);
+    GameObject *createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider, bool destructable, unsigned int renderPriority);
 
     // Unload tiles held by the map, if any
     void unloadTiles();

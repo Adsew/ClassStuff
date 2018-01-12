@@ -25,6 +25,9 @@ Description: Component allowing input from the keyboard to move the player accor
 #include "PlayerControls.h"
 
 
+#define DEFAULT_BOMB_INTERVAL 3;
+
+
 IMPLEMENT_COMPONENT(PlayerControls)
 
 
@@ -61,7 +64,11 @@ PlayerControls::~PlayerControls() {
 
 void PlayerControls::initialize() {
 
+    if (bombInterval == 0) {
 
+        bombInterval = DEFAULT_BOMB_INTERVAL;
+        deltaTimeBomb = bombInterval;
+    }
 }
 
 void PlayerControls::update() {
@@ -149,6 +156,7 @@ void PlayerControls::update() {
 void PlayerControls::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
     FileSystem::Instance().getAttribute(accessor, "bombInterval", bombInterval);
+    deltaTimeBomb = bombInterval;
 }
 
 Component &PlayerControls::operator=(const Component &comp) {

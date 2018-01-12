@@ -69,7 +69,7 @@ void Terrain::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 }
 
 // Create a tile gameobject with the given properties
-GameObject *Terrain::createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider, unsigned int renderPriority) {
+GameObject *Terrain::createTile(const char *tileAssetName, int w, int h, int xOrig, int yOrig, int xPos, int yPos, bool collider, bool destructable, unsigned int renderPriority) {
 
     GameObject *tile = GameObjectManager::Instance().createGameObject();
     Tile *tileComp = (Tile *)ComponentManager::Instance().createComponent("Tile");
@@ -80,6 +80,7 @@ GameObject *Terrain::createTile(const char *tileAssetName, int w, int h, int xOr
     tile->setScene(this->gameObject);
 
     tileComp->setCollidable(collider);
+    tileComp->setDestructable(destructable);
 
     tileSprite->setRectangle(w, h, xOrig, yOrig);
     tileSprite->setTextureAsset(tileAssetName);
@@ -103,26 +104,33 @@ void Terrain::unloadTiles() {
 
                 terrain[i][j]->destroy();
             }
-        }
 
-        terrain[i].clear();
-    }
+            if (colliders[i][j] != NULL) {
 
-    terrain.clear();
+                colliders[i][j]->destroy();
+            }
 
-    for (int i = 0; i < objects.size(); i++) {
-        for (int j = 0; j < objects[i].size(); j++) {
+            if (destructables[i][j] != NULL) {
 
-            if (objects[i][j] != NULL) {
+                destructables[i][j]->destroy();
+            }
 
-                objects[i][j]->destroy();
+            if (powerups[i][j] != NULL) {
+
+                powerups[i][j]->destroy();
             }
         }
 
-        objects[i].clear();
+        terrain[i].clear();
+        colliders[i].clear();
+        destructables[i].clear();
+        powerups[i].clear();
     }
 
-    objects.clear();
+    terrain.clear();
+    colliders.clear();
+    destructables.clear();
+    powerups.clear();
 }
 
 Component &Terrain::operator=(const Component &comp) {
@@ -197,7 +205,7 @@ void Terrain::loadMapFile(const char *mapFile) {
                             x = (tileNum % tilesAcross) * tileWidth;
                             y = ((int)(tileNum / tilesAcross)) * tileHeight;
 
-                            terrain[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, false, LOWEST_PRIORITY);
+                            terrain[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, false, false, LOWEST_PRIORITY);
                         }
                         else {
 
@@ -209,7 +217,7 @@ void Terrain::loadMapFile(const char *mapFile) {
                 FileSystem::Instance().traverseToParentElement(mapFileAccessor);
             }
 
-            // load the objects in now
+            // load the collidable terrain
             if (FileSystem::Instance().traverseToSyblingElement(mapFileAccessor)) {
 
                 std::string data = "";
@@ -222,13 +230,13 @@ void Terrain::loadMapFile(const char *mapFile) {
                 char ignore = ' ';
 
                 // Iterate and fill map with tiles based on data
-                objects.resize(mapHeight);
+                colliders.resize(mapHeight);
 
-                for (int i = 0; i < objects.size(); i++) {
+                for (int i = 0; i < colliders.size(); i++) {
 
-                    objects[i].resize(mapWidth);
+                    colliders[i].resize(mapWidth);
 
-                    for (int j = 0; j < objects[i].size(); j++) {
+                    for (int j = 0; j < colliders[i].size(); j++) {
 
                         int x = 0, y = 0, tileNum = 0;
 
@@ -240,11 +248,97 @@ void Terrain::loadMapFile(const char *mapFile) {
                             x = (tileNum % tilesAcross) * tileWidth;
                             y = ((int)(tileNum / tilesAcross)) * tileHeight;
 
-                            objects[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, true, LOW_PRIORITY);
+                            colliders[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, true, false, LOW_PRIORITY);
                         }
                         else {
 
-                            objects[i][j] = NULL;
+                            colliders[i][j] = NULL;
+                        }
+                    }
+                }
+
+                FileSystem::Instance().traverseToParentElement(mapFileAccessor);
+            }
+
+            // load the destructable terrain
+            if (FileSystem::Instance().traverseToSyblingElement(mapFileAccessor)) {
+
+                std::string data = "";
+
+                FileSystem::Instance().traverseToElement(mapFileAccessor, "data");
+
+                FileSystem::Instance().getElementText(mapFileAccessor, data);
+
+                std::stringstream dataStream(data);
+                char ignore = ' ';
+
+                // Iterate and fill map with tiles based on data
+                destructables.resize(mapHeight);
+
+                for (int i = 0; i < destructables.size(); i++) {
+
+                    destructables[i].resize(mapWidth);
+
+                    for (int j = 0; j < destructables[i].size(); j++) {
+
+                        int x = 0, y = 0, tileNum = 0;
+
+                        dataStream >> tileNum >> ignore;
+
+                        if (tileNum != 0) {
+
+                            tileNum--;
+                            x = (tileNum % tilesAcross) * tileWidth;
+                            y = ((int)(tileNum / tilesAcross)) * tileHeight;
+
+                            destructables[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, true, true, LOW_PRIORITY);
+                        }
+                        else {
+
+                            destructables[i][j] = NULL;
+                        }
+                    }
+                }
+
+                FileSystem::Instance().traverseToParentElement(mapFileAccessor);
+            }
+
+            // load the powers
+            if (FileSystem::Instance().traverseToSyblingElement(mapFileAccessor)) {
+
+                std::string data = "";
+
+                FileSystem::Instance().traverseToElement(mapFileAccessor, "data");
+
+                FileSystem::Instance().getElementText(mapFileAccessor, data);
+
+                std::stringstream dataStream(data);
+                char ignore = ' ';
+
+                // Iterate and fill map with tiles based on data
+                powerups.resize(mapHeight);
+
+                for (int i = 0; i < powerups.size(); i++) {
+
+                    powerups[i].resize(mapWidth);
+
+                    for (int j = 0; j < powerups[i].size(); j++) {
+
+                        int x = 0, y = 0, tileNum = 0;
+
+                        dataStream >> tileNum >> ignore;
+
+                        if (tileNum != 0) {
+
+                            tileNum--;
+                            x = (tileNum % tilesAcross) * tileWidth;
+                            y = ((int)(tileNum / tilesAcross)) * tileHeight;
+
+                            powerups[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, false, false, LOW_PRIORITY);
+                        }
+                        else {
+
+                            powerups[i][j] = NULL;
                         }
                     }
                 }
@@ -269,8 +363,8 @@ bool Terrain::placeEntityOnMap(GameObject *entity, int posX, int posY) {
 
             if (trans != NULL) {
 
-                trans->position.x = posX * tileWidth;
-                trans->position.y = posY * tileHeight;
+                trans->position.x = (float)posX * tileWidth;
+                trans->position.y = (float)posY * tileHeight;
             }
 
             entities[posY][posX] = entity;
@@ -294,8 +388,8 @@ bool Terrain::placeEntityOnMapNoCollision(GameObject *entity, int posX, int posY
 
         if (trans != NULL) {
 
-            trans->position.x = posX * tileWidth;
-            trans->position.y = posY * tileHeight;
+            trans->position.x = (float)posX * tileWidth;
+            trans->position.y = (float)posY * tileHeight;
         }
 
         return true;
@@ -326,13 +420,15 @@ bool Terrain::removeEntityFromMap(int posX, int posY) {
 bool Terrain::requestMoveEntity(Transform *trans, int posX, int posY, int distX, int distY) {
 
     if (entities[posY][posX] != NULL && trans != NULL) {
-        if (entities[posY + distY][posX + distX] == NULL && objects[posY + distY][posX + distX] == NULL) {
+        if (entities[posY + distY][posX + distX] == NULL
+            && colliders[posY + distY][posX + distX] == NULL
+            && destructables[posY + distY][posX + distX] == NULL) {
 
             entities[posY + distY][posX + distX] = entities[posY][posX];
             entities[posY][posX] = NULL;
 
-            trans->position.x = (posX + distX) * tileWidth;
-            trans->position.y = (posY + distY) * tileHeight;
+            trans->position.x = (float)(posX + distX) * tileWidth;
+            trans->position.y = (float)(posY + distY) * tileHeight;
 
             return true;
         }
@@ -353,7 +449,12 @@ GameObject *Terrain::checkCollisionOnMap(int posX, int posY) {
             return entities[posY][posX];
         }
 
-        return objects[posY][posX];
+        if (destructables[posY][posX] != NULL) {
+
+            return destructables[posY][posX];
+        }
+
+        return colliders[posY][posX];
     }
 
     return NULL;
@@ -373,10 +474,10 @@ bool Terrain::removeAndDestroyObject(int posX, int posY) {
 
             return true;
         }
-        else if (objects[posY][posX] != NULL) {
+        else if (destructables[posY][posX] != NULL) {
 
-            objects[posY][posX]->destroy();
-            objects[posY][posX] = NULL;
+            destructables[posY][posX]->destroy();
+            destructables[posY][posX] = NULL;
 
             return true;
         }
