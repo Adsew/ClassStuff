@@ -29,6 +29,10 @@ private:
     std::map<sf::Keyboard::Key, bool>keyDownState;
     std::map<sf::Keyboard::Key, bool>keyPressedState;
     std::map<sf::Keyboard::Key, bool>keyReleasedState;
+    std::map<sf::Mouse::Button, bool>mouseDownState;
+    std::map<sf::Mouse::Button, bool>mousePressedState;
+    std::map<sf::Mouse::Button, bool>mouseReleasedState;
+    sf::Vector2i mousePosition;
 
     float deltaTime;
 
@@ -70,6 +74,18 @@ public:
 
     // True if key is held down, false if up
     bool getKeyDown(const sf::Keyboard::Key &key);
+
+    // True if button was pressed during this cycle update
+    bool getMouseButtonPressed(const sf::Mouse::Button &button);
+
+    // True if button was pressed during this cycle update
+    bool getMouseButtonReleased(const sf::Mouse::Button &button);
+
+    // True if button was pressed during this cycle update
+    bool getMouseButtonDown(const sf::Mouse::Button &button);
+
+    // Returns mouse position at the time of the cycle update
+    sf::Vector2i &getMousePosition();
 
     // Sets the game exit flag to true (should be moved elsewhere, not sure where though)
     void exit();

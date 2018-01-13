@@ -130,8 +130,10 @@ bool FileSystem::initialize(const char *settingsLoc) {
                             SceneManager::Instance().addScene(scene->Attribute("name"));
 
                             if (scene->Attribute("default") != NULL) {
+                                if (scene->BoolAttribute("default")) {
 
-                                SceneManager::Instance().changeScene(scene->Attribute("name")); // On first update will load this scene
+                                    SceneManager::Instance().changeScene(scene->Attribute("name")); // On first update will load this scene
+                                }
                             }
                         }
                         else {

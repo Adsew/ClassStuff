@@ -17,6 +17,9 @@ Description: Displays a button with text to the screen that calls a set
 #include "UIElement.h"
 
 
+class ButtonAction;
+
+
 class UIButton : public UIElement {
 
     REGISTER_COMPONENT(UIButton);
@@ -28,9 +31,12 @@ protected:
     sf::Text displayText;
     sf::Font displayFont;
     sf::Sprite sprite;
+    sf::Vector2i buttonPosition;
     sf::Vector2f buttonScale;
 
-    std::function<void()> onClick;
+    ButtonAction *clicker;
+
+    float deltaTime;
 
     
     /***** Functions *****/
@@ -55,7 +61,7 @@ public:
 
     virtual Component &operator=(const Component &comp) override;
 
-    void setOnClick(void funcToCall());
+    void setOnClick(ButtonAction *clickAction);
 
     void setText(const char *text);
 
@@ -63,7 +69,9 @@ public:
 
     void setColour(sf::Uint8 r, sf::Uint8 g, sf::Uint8 b, sf::Uint8 a);
 
-    void setPosition(int x, int y);
+    void setTextPosition(int x, int y);
+
+    void setButtonPosition(int x, int y);
 
     void setTextureScale(int x, int y);
 };

@@ -260,49 +260,6 @@ void Terrain::loadMapFile(const char *mapFile) {
                 FileSystem::Instance().traverseToParentElement(mapFileAccessor);
             }
 
-            // load the destructable terrain
-            if (FileSystem::Instance().traverseToSyblingElement(mapFileAccessor)) {
-
-                std::string data = "";
-
-                FileSystem::Instance().traverseToElement(mapFileAccessor, "data");
-
-                FileSystem::Instance().getElementText(mapFileAccessor, data);
-
-                std::stringstream dataStream(data);
-                char ignore = ' ';
-
-                // Iterate and fill map with tiles based on data
-                destructables.resize(mapHeight);
-
-                for (int i = 0; i < destructables.size(); i++) {
-
-                    destructables[i].resize(mapWidth);
-
-                    for (int j = 0; j < destructables[i].size(); j++) {
-
-                        int x = 0, y = 0, tileNum = 0;
-
-                        dataStream >> tileNum >> ignore;
-
-                        if (tileNum != 0) {
-
-                            tileNum--;
-                            x = (tileNum % tilesAcross) * tileWidth;
-                            y = ((int)(tileNum / tilesAcross)) * tileHeight;
-
-                            destructables[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, true, true, LOW_PRIORITY);
-                        }
-                        else {
-
-                            destructables[i][j] = NULL;
-                        }
-                    }
-                }
-
-                FileSystem::Instance().traverseToParentElement(mapFileAccessor);
-            }
-
             // load the powers
             if (FileSystem::Instance().traverseToSyblingElement(mapFileAccessor)) {
 
@@ -339,6 +296,49 @@ void Terrain::loadMapFile(const char *mapFile) {
                         else {
 
                             powerups[i][j] = NULL;
+                        }
+                    }
+                }
+
+                FileSystem::Instance().traverseToParentElement(mapFileAccessor);
+            }
+
+            // load the destructable terrain
+            if (FileSystem::Instance().traverseToSyblingElement(mapFileAccessor)) {
+
+                std::string data = "";
+
+                FileSystem::Instance().traverseToElement(mapFileAccessor, "data");
+
+                FileSystem::Instance().getElementText(mapFileAccessor, data);
+
+                std::stringstream dataStream(data);
+                char ignore = ' ';
+
+                // Iterate and fill map with tiles based on data
+                destructables.resize(mapHeight);
+
+                for (int i = 0; i < destructables.size(); i++) {
+
+                    destructables[i].resize(mapWidth);
+
+                    for (int j = 0; j < destructables[i].size(); j++) {
+
+                        int x = 0, y = 0, tileNum = 0;
+
+                        dataStream >> tileNum >> ignore;
+
+                        if (tileNum != 0) {
+
+                            tileNum--;
+                            x = (tileNum % tilesAcross) * tileWidth;
+                            y = ((int)(tileNum / tilesAcross)) * tileHeight;
+
+                            destructables[i][j] = createTile(tileset.c_str(), tileWidth, tileHeight, x, y, j * tileWidth, i * tileHeight, true, true, LOW_PRIORITY);
+                        }
+                        else {
+
+                            destructables[i][j] = NULL;
                         }
                     }
                 }

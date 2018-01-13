@@ -16,6 +16,7 @@
                 </text>
                 <texture position.x="260" position.y="215" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
             </Component>
+            <Component type="ButtonActionSceneChange" scene="Level1" />
         </Components>
     </GameObject>
     <GameObject name="Level2Button">
@@ -26,6 +27,7 @@
                 </text>
                 <texture position.x="260" position.y="260" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
             </Component>
+            <Component type="ButtonActionSceneChange" scene="Level2" />
         </Components>
     </GameObject>
     <GameObject name="Level3Button">
@@ -36,6 +38,7 @@
                 </text>
                 <texture position.x="260" position.y="305" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
             </Component>
+            <Component type="ButtonActionSceneChange" scene="Level3" />
         </Components>
     </GameObject>
     <GameObject name="QuitButton">
@@ -46,6 +49,7 @@
                 </text>
                 <texture position.x="260" position.y="350" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
             </Component>
+            <Component type="ButtonActionQuit" />
         </Components>
     </GameObject>
 </Scene>

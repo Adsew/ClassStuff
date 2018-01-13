@@ -159,6 +159,9 @@
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="BombFire.cpp" />
+    <ClCompile Include="ButtonAction.cpp" />
+    <ClCompile Include="ButtonActionQuit.cpp" />
+    <ClCompile Include="ButtonActionSceneChange.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="EnemyAI.cpp" />
@@ -193,6 +196,9 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="BombFire.h" />
+    <ClInclude Include="ButtonAction.h" />
+    <ClInclude Include="ButtonActionQuit.h" />
+    <ClInclude Include="ButtonActionSceneChange.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="Core.h" />

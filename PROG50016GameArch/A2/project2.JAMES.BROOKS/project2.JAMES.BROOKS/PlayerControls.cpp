@@ -82,7 +82,7 @@ void PlayerControls::update() {
 
     if (deltaTimeInput >= Timer::Instance().getTargetUpdatesPerSecond()) {
 
-        deltaTimeInput -= Timer::Instance().getTargetUpdatesPerSecond();
+        deltaTimeInput = 0;
 
         // Check for exit first
         if (im.getKeyDown(sf::Keyboard::Escape)) {

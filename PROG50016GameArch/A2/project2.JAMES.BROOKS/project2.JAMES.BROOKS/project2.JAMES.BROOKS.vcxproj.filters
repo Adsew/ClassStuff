@@ -79,6 +79,12 @@
     <Filter Include="Source Files\Object\Component\UI">
       <UniqueIdentifier>{b4bc408e-5c3b-4ae3-a366-066cd7b12b0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Object\Component\UI\ButtonScripts">
+      <UniqueIdentifier>{acb248da-053b-437f-bc57-e5b5a65b6fc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\Component\UI\ButtonScripts">
+      <UniqueIdentifier>{f4424027-604d-4113-a698-2b6ff47a58b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -175,7 +181,16 @@
       <Filter>Source Files\Object\Component\UI</Filter>
     </ClCompile>
     <ClCompile Include="UIButton.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Object\Component\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonActionQuit.cpp">
+      <Filter>Source Files\Object\Component\UI\ButtonScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonActionSceneChange.cpp">
+      <Filter>Source Files\Object\Component\UI\ButtonScripts</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonAction.cpp">
+      <Filter>Source Files\Object\Component\UI\ButtonScripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,7 +294,16 @@
       <Filter>Header Files\Object\Component\UI</Filter>
     </ClInclude>
     <ClInclude Include="UIButton.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Object\Component\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonActionQuit.h">
+      <Filter>Header Files\Object\Component\UI\ButtonScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonActionSceneChange.h">
+      <Filter>Header Files\Object\Component\UI\ButtonScripts</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonAction.h">
+      <Filter>Header Files\Object\Component\UI\ButtonScripts</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

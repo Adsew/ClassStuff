@@ -2,7 +2,7 @@
 Student: James Brooks
 Class: Game Architecture
 
-File: UIText.h
+File: UIText.cpp
 
 Class: UIText
 
@@ -11,8 +11,11 @@ Description: Displays text to the screen.
 
 
 #include "Core.h"
-#include <SFML/Graphics/RenderStates.hpp>
+
+#include "Timer.h"
+#include "InputManager.h"
 #include "RenderSystem.h"
+#include "ButtonAction.h"
 #include "TextureAsset.h"
 #include "UIButton.h"
 
@@ -25,6 +28,10 @@ UIButton::UIButton(unsigned int uniqueID)
 
     displayFont.loadFromFile("../res/Yes_Union.ttf");
     displayText.setFont(displayFont);
+
+    clicker = NULL;
+
+    deltaTime = 0;
 }
 
 UIButton::UIButton(unsigned int uniqueID, const char *type)
@@ -32,6 +39,10 @@ UIButton::UIButton(unsigned int uniqueID, const char *type)
 
     displayFont.loadFromFile("../res/Yes_Union.ttf");
     displayText.setFont(displayFont);
+
+    clicker = NULL;
+
+    deltaTime = 0;
 }
 
 UIButton::~UIButton() {
@@ -46,7 +57,26 @@ void UIButton::initialize() {
 
 void UIButton::update() {
 
+    deltaTime += Timer::Instance().getDelta();
 
+    if (deltaTime >= Timer::Instance().getTargetUpdatesPerSecond()) {
+
+        deltaTime -= Timer::Instance().getTargetUpdatesPerSecond();
+
+        if (InputManager::Instance().getMouseButtonReleased(sf::Mouse::Button::Left)) {
+
+            sf::Vector2i pos = InputManager::Instance().getMousePosition();
+
+            if (pos.x >= buttonPosition.x && pos.x <= buttonPosition.x + rectangle.width * buttonScale.x
+                && pos.y >= buttonPosition.y && pos.y <= buttonPosition.y + rectangle.height * buttonScale.y) {
+
+                if (clicker != NULL) {
+
+                    clicker->onClick();
+                }
+            }
+        }
+    }
 }
 
 void UIButton::render() {
@@ -84,8 +114,8 @@ void UIButton::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
         FileSystem::Instance().getAttribute(accessor, "yOrigin", rectangle.top);
         FileSystem::Instance().getAttribute(accessor, "xScale", buttonScale.x);
         FileSystem::Instance().getAttribute(accessor, "yScale", buttonScale.y);
-        FileSystem::Instance().getAttribute(accessor, "position.x", x);
-        FileSystem::Instance().getAttribute(accessor, "position.y", y);
+        FileSystem::Instance().getAttribute(accessor, "position.x", buttonPosition.x);
+        FileSystem::Instance().getAttribute(accessor, "position.y", buttonPosition.y);
 
         if (FileSystem::Instance().getAttribute(accessor, "asset", assetName)) {
 
@@ -101,7 +131,7 @@ void UIButton::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
                 sprite.setTexture(*(temp->getTexture()));
                 sprite.setTextureRect(rectangle);
                 sprite.setScale(buttonScale);
-                sprite.setPosition(sf::Vector2f((float)x, (float)y));
+                sprite.setPosition(sf::Vector2f(buttonPosition));
             }
             else {
 
@@ -126,7 +156,7 @@ void UIButton::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
         }
         if (FileSystem::Instance().getAttribute(accessor, "position.x", x) && FileSystem::Instance().getAttribute(accessor, "position.y", y)) {
 
-            setPosition(x, y);
+            setTextPosition(x, y);
         }
         if (FileSystem::Instance().traverseToElement(accessor, "colour")) {
 
@@ -167,9 +197,9 @@ Component &UIButton::operator=(const Component &comp) {
     return *this;
 }
 
-void UIButton::setOnClick(void funcToCall()) {
+void UIButton::setOnClick(ButtonAction *clickAction) {
 
-    onClick = funcToCall;
+    clicker = clickAction;
 }
 
 void UIButton::setText(const char *text) {
@@ -187,9 +217,17 @@ void UIButton::setColour(sf::Uint8 r, sf::Uint8 g, sf::Uint8 b, sf::Uint8 a) {
     displayText.setFillColor(sf::Color(r, g, b, a));
 }
 
-void UIButton::setPosition(int x, int y) {
+void UIButton::setTextPosition(int x, int y) {
 
     displayText.setPosition((float)x, (float)y);
+}
+
+void UIButton::setButtonPosition(int x, int y) {
+
+    buttonPosition.x = x;
+    buttonPosition.y = y;
+
+    sprite.setPosition(sf::Vector2f(buttonPosition));
 }
 
 void UIButton::setTextureScale(int x, int y) {

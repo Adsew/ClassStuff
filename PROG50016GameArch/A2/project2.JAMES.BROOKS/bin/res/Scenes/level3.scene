@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Scene>
+    <GameObject name="Global">
+        <Components>
+            <Component type="LevelData" score="0" bombPoolSize="10" />
+            <Component type="Terrain" mapfile="../res/Maps/level3.tmx" />
+        </Components>
+    </GameObject>
+</Scene>
