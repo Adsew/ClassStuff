@@ -60,7 +60,7 @@ void UITexture::render() {
 void UITexture::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
     std::string assetName = "";
-    int priority = LOWEST_PRIORITY;
+    int priority = UI_LOW_PRIORITY;
 
     FileSystem::Instance().getAttribute(accessor, "width", rectangle.width);
     FileSystem::Instance().getAttribute(accessor, "height", rectangle.height);

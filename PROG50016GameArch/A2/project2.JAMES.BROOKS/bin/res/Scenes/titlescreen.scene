@@ -2,10 +2,50 @@
 <Scene>
     <GameObject name="UI">
         <Components>
-            <Component type="UIText" text="Bomber Boy!" size="30" position.x="100" position.y="100" priority="1">
+            <Component type="UIText" text="Bomber Boy!" size="30" position.x="100" position.y="100" priority="0">
                 <colour r="0" g="200" b="255" a="255" />
             </Component>
             <Component type="UITexture" width="480" height="480" xOrigin="0" yOrigin="0" asset="TitleBackground" />
+        </Components>
+    </GameObject>
+    <GameObject name="Level1Button">
+        <Components>
+            <Component type="UIButton" priority="1">
+                <text text="Level 1" size="15" position.x="175" position.y="225" priority="1">
+                    <colour r="0" g="200" b="255" a="255" />
+                </text>
+                <texture position.x="260" position.y="215" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
+            </Component>
+        </Components>
+    </GameObject>
+    <GameObject name="Level2Button">
+        <Components>
+            <Component type="UIButton" priority="1">
+                <text text="Level 2" size="15" position.x="175" position.y="270" priority="1">
+                    <colour r="0" g="200" b="255" a="255" />
+                </text>
+                <texture position.x="260" position.y="260" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
+            </Component>
+        </Components>
+    </GameObject>
+    <GameObject name="Level3Button">
+        <Components>
+            <Component type="UIButton" priority="1">
+                <text text="Level 3" size="15" position.x="175" position.y="315" priority="1">
+                    <colour r="0" g="200" b="255" a="255" />
+                </text>
+                <texture position.x="260" position.y="305" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
+            </Component>
+        </Components>
+    </GameObject>
+    <GameObject name="QuitButton">
+        <Components>
+            <Component type="UIButton" priority="1">
+                <text text="Quit" size="15" position.x="175" position.y="360" priority="1">
+                    <colour r="0" g="200" b="255" a="255" />
+                </text>
+                <texture position.x="260" position.y="350" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
+            </Component>
         </Components>
     </GameObject>
 </Scene>

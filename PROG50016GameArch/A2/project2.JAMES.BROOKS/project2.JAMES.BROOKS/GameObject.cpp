@@ -35,6 +35,7 @@ GameObject::GameObject(unsigned int uniqueID)
     isFromObjectPool = false;
 
     active = true;
+    yeilding = false;
 }
 
 GameObject::GameObject(unsigned int uniqueID, const char *goName)
@@ -52,6 +53,7 @@ GameObject::GameObject(unsigned int uniqueID, const char *goName)
     isFromObjectPool = false;
 
     active = true;
+    yeilding = false;
 }
 
 GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
@@ -66,6 +68,7 @@ GameObject::GameObject(unsigned int uniqueID, const std::string &goName)
     transform->setRotation(0);
 
     active = true;
+    yeilding = false;
 }
 
 GameObject::~GameObject() {
@@ -228,6 +231,18 @@ void GameObject::setActive(bool a) {
 bool GameObject::isActive() {
 
     return active;
+}
+
+// Sets the game object to no longer update but still render
+void GameObject::setYeilding(bool y) {
+
+    yeilding = y;
+}
+
+// Check if game object is yeilding
+bool GameObject::isYeilding() {
+
+    return yeilding;
 }
 
     /* Gets/Sets */

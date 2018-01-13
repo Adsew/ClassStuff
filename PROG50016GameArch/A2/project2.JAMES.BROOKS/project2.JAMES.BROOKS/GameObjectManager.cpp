@@ -111,7 +111,7 @@ void GameObjectManager::update() {
         iter != gameObjects.end();
         iter++) {
 
-        if ((*iter)->active) {
+        if ((*iter)->active && !(*iter)->isYeilding()) {
 
             (*iter)->update();
         }

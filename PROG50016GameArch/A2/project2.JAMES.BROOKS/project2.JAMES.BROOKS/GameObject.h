@@ -44,6 +44,7 @@ private:
     bool isFromObjectPool;
 
     bool active;
+    bool yeilding;
 
 
     /***** Functions *****/
@@ -82,6 +83,12 @@ public:
 
     // Check if gameobject is enabled
     bool isActive();
+
+    // Sets the game object to no longer update but still render
+    void setYeilding(bool y);
+
+    // Check if game object is yeilding
+    bool isYeilding();
 
         /* Gets/Sets */
 
