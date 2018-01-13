@@ -23,7 +23,7 @@ RenderSystem::RenderSystem() {
 
     window = NULL;
 
-    winTitle = "";
+    winTitle = "BomberBoy";
 
     winWidth = 800;
     winHeight = 600;
@@ -115,6 +115,11 @@ void RenderSystem::setWindowSize(int w, int h) {
 
     if (window != NULL) {
         
-        window->setSize(sf::Vector2u(w, h));
+        winWidth = w;
+        winHeight = h;
+        
+        delete window;
+
+        window = new sf::RenderWindow(sf::VideoMode(winWidth, winHeight), sf::String(winTitle.c_str()));
     }
 }

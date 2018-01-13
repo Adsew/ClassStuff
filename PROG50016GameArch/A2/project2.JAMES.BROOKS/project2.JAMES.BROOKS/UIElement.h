@@ -28,6 +28,8 @@ class UIElement : public Component, public IRenderable
 {
     /***** Variables *****/
 
+protected:
+
     std::shared_ptr<Asset> texture;
     sf::IntRect rectangle;
 

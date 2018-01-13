@@ -23,6 +23,7 @@ class UIText : public UIElement {
     /***** Variables *****/
 
     sf::Text displayText;
+    sf::Font displayFont;
 
 
     /***** Functions *****/
@@ -48,6 +49,10 @@ public:
     virtual Component &operator=(const Component &comp) override;
 
     void setText(const char *text);
+    
+    void setSize(int x, int y);
+
+    void setColour(sf::Uint8 r, sf::Uint8 g, sf::Uint8 b, sf::Uint8 a);
 
     void setPosition(int x, int y);
 };

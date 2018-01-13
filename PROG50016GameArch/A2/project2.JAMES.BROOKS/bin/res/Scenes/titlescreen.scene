@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Scene>
+    <GameObject name="UI">
+        <Components>
+            <Component type="UIText" text="Bomber Boy!" size="30" position.x="100" position.y="100" priority="1">
+                <colour r="0" g="200" b="255" a="255" />
+            </Component>
+            <Component type="UITexture" width="480" height="480" xOrigin="0" yOrigin="0" asset="TitleBackground" />
+        </Components>
+    </GameObject>
+</Scene>
