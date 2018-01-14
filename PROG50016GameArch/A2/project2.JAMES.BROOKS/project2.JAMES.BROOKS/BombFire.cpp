@@ -34,6 +34,8 @@ BombFire::BombFire(unsigned int uniqueID)
 
     deathTimer = 0;
     timeTilDeath = 0;
+
+    playerOwned = false;
 }
 
 BombFire::BombFire(unsigned int uniqueID, const char *type)
@@ -46,6 +48,8 @@ BombFire::BombFire(unsigned int uniqueID, const char *type)
 
     timeTilDeath = 0;
     deathTimer = 0;
+
+    playerOwned = false;
 }
 
 BombFire::~BombFire() {
@@ -77,11 +81,21 @@ void BombFire::update() {
             }
             if (EnemyAI *enemy = (EnemyAI *)goHit->getComponent("EnemyAI")) {
 
+                if (playerOwned) {
+
+                    enemy->kill(1);
+                }
+                else {
+
+                    enemy->kill(0);
+                }
+
                 map->removeAndDestroyObject(posX, posY);
             }
             if (PlayerControls *player = (PlayerControls *)goHit->getComponent("PlayerControls")) {
 
                 map->removeAndDestroyObject(posX, posY);
+                player->kill();
             }
         }
     }
@@ -118,7 +132,7 @@ void BombFire::setMap(Terrain *t, int x, int y) {
 }
 
 // Set the owner of who spawned the bomb
-void BombFire::setOwner(GameObject *o) {
+void BombFire::setPlayerOwned(bool b) {
 
-    owner = o;
+    playerOwned = b;
 }

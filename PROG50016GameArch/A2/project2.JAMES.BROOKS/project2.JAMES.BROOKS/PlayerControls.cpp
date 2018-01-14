@@ -19,13 +19,15 @@ Description: Component allowing input from the keyboard to move the player accor
 #include "GameObjectManager.h"
 #include "Transform.h"
 #include "Bomb.h"
+#include "LevelData.h"
 #include "Terrain.h"
 #include "Transform.h"
 #include "AnimatedSprite.h"
 #include "PlayerControls.h"
 
 
-#define DEFAULT_BOMB_INTERVAL 3;
+#define DEFAULT_BOMB_INTERVAL 3
+#define MOVE_COOLDOWN 0.2f
 
 
 IMPLEMENT_COMPONENT(PlayerControls)
@@ -80,7 +82,7 @@ void PlayerControls::update() {
     deltaTimeInput += Timer::Instance().getDelta();
     deltaTimeBomb += Timer::Instance().getDelta();
 
-    if (deltaTimeInput >= Timer::Instance().getTargetUpdatesPerSecond()) {
+    if (deltaTimeInput >= MOVE_COOLDOWN) {
 
         deltaTimeInput = 0;
 
@@ -92,7 +94,7 @@ void PlayerControls::update() {
         else if (trans != NULL && anim != NULL && map != NULL) {
 
             // movement
-            if (im.getKeyPressed(sf::Keyboard::A)) {
+            if (im.getKeyDown(sf::Keyboard::A)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, -1, 0)) {
 
@@ -101,7 +103,7 @@ void PlayerControls::update() {
                 
                 anim->setAnimation(1);
             }
-            if (im.getKeyPressed(sf::Keyboard::D)) {
+            if (im.getKeyDown(sf::Keyboard::D)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, 1, 0)) {
 
@@ -110,7 +112,7 @@ void PlayerControls::update() {
 
                 anim->setAnimation(3);
             }
-            if (im.getKeyPressed(sf::Keyboard::W)) {
+            if (im.getKeyDown(sf::Keyboard::W)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, 0, -1)) {
 
@@ -119,7 +121,7 @@ void PlayerControls::update() {
 
                 anim->setAnimation(2);
             }
-            if (im.getKeyPressed(sf::Keyboard::S)) {
+            if (im.getKeyDown(sf::Keyboard::S)) {
 
                 if (map->requestMoveEntity(trans, posX, posY, 0, 1)) {
 
@@ -130,7 +132,7 @@ void PlayerControls::update() {
             }
 
             // place bomb button
-            if (im.getKeyPressed(sf::Keyboard::Space)
+            if (im.getKeyDown(sf::Keyboard::Space)
                 && deltaTimeBomb >= bombInterval) {
 
                 deltaTimeBomb = 0;
@@ -143,7 +145,7 @@ void PlayerControls::update() {
 
                     if (bombComp != NULL) {
 
-                        bombComp->owner = gameObject;
+                        bombComp->playerOwned = true;
                         bombComp->resetBomb();
                         bombComp->placeAtMe(map, posX, posY);
                     }
@@ -162,6 +164,19 @@ void PlayerControls::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 Component &PlayerControls::operator=(const Component &comp) {
 
     return *this;
+}
+
+// Performs notifications and destroys player
+void PlayerControls::kill() {
+
+    level->decreaseLives();
+
+    gameObject->destroy();
+}
+
+void PlayerControls::setLevel(LevelData *currentLevel) {
+
+    level = currentLevel;
 }
 
 void PlayerControls::setMap(Terrain *m) {

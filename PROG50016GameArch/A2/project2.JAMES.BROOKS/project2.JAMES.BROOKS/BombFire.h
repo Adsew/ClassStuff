@@ -27,7 +27,8 @@ class BombFire : public Component {
     /***** Variables *****/
 
     Terrain *map;
-    GameObject *owner;  // Who spawned the bomb
+
+    bool playerOwned;
 
     int posX, posY;
 
@@ -59,7 +60,7 @@ public:
     void setMap(Terrain *t, int x, int y);
 
     // Set the owner of who spawned the bomb
-    void setOwner(GameObject *o);
+    void setPlayerOwned(bool b);
 };
 
 #endif // !BOMB_FIRE_H

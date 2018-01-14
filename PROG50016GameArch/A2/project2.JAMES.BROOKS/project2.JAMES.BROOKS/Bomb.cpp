@@ -32,8 +32,7 @@ Bomb::Bomb(unsigned int uniqueID)
     posY = 0;
 
     exploded = false;
-
-    owner = NULL;
+    playerOwned = false;
 }
 
 Bomb::Bomb(unsigned int uniqueID, const char *type)
@@ -45,8 +44,7 @@ Bomb::Bomb(unsigned int uniqueID, const char *type)
     posY = 0;
 
     exploded = false;
-
-    owner = NULL;
+    playerOwned = false;
 }
 
 Bomb::~Bomb() {
@@ -179,6 +177,7 @@ void Bomb::explode() {
                 if (GameObject *fire = GameObjectManager::Instance().requestFromPool(firePoolID)) {
                     if (BombFire *fireScript = (BombFire *)fire->getComponent("BombFire")) {
 
+                        fireScript->setPlayerOwned(playerOwned);
                         fireScript->setMap(map, x, y);
 
                         map->placeEntityOnMapNoCollision(fire, x, y);

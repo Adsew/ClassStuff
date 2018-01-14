@@ -3,9 +3,9 @@
     <GameObject name="UI">
         <Components>
             <Component type="UIText" text="Bomber Boy!" size="30" position.x="100" position.y="100" priority="0">
-                <colour r="0" g="200" b="255" a="255" />
+                <colour r="255" g="0" b="255" a="255" />
             </Component>
-            <Component type="UITexture" width="480" height="480" xOrigin="0" yOrigin="0" asset="TitleBackground" />
+            <Component type="UITexture" width="900" height="900" xOrigin="0" yOrigin="0" xScale="0.51f" yScale="0.51f" asset="TitleBackground" />
         </Components>
     </GameObject>
     <GameObject name="Level1Button">

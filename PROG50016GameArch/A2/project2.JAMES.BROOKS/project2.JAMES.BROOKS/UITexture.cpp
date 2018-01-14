@@ -61,11 +61,18 @@ void UITexture::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
 
     std::string assetName = "";
     int priority = UI_LOW_PRIORITY;
+    float scaleX = 0, scaleY = 0;
 
     FileSystem::Instance().getAttribute(accessor, "width", rectangle.width);
     FileSystem::Instance().getAttribute(accessor, "height", rectangle.height);
     FileSystem::Instance().getAttribute(accessor, "xOrigin", rectangle.left);
     FileSystem::Instance().getAttribute(accessor, "yOrigin", rectangle.top);
+    
+    if (FileSystem::Instance().getAttribute(accessor, "xScale", scaleX)
+        && FileSystem::Instance().getAttribute(accessor, "yScale", scaleY)) {
+
+        sprite.setScale(sf::Vector2f((float)scaleX, (float)scaleY));
+    }
 
     if (FileSystem::Instance().getAttribute(accessor, "priority", priority)) {
 

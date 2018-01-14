@@ -40,7 +40,7 @@ protected:
 
 public:
 
-    GameObject *owner;
+    bool playerOwned;
 
 
     /***** Functions *****/

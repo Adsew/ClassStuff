@@ -70,6 +70,9 @@ public:
     // Creates a game object using a prefab file, returns null if none found
     GameObject *createGameObjectFromPrefab(const char *prefab);
 
+    // Find game object by given name
+    GameObject *findGameObjectByName(const char *name);
+
         /* Object Pool Functions */
 
     // Creates a pool of the given game object, returns id to access pool
@@ -86,6 +89,9 @@ public:
 
     // Dispose of the object pool, deleting all objects in the pool
     void destroyObjectPool(const unsigned int id);
+
+    // Set every object in the pool, active or otherwise, to yeild
+    void yeildObjectPool(const unsigned int id, bool y);
 };
 
 #endif // !GAME_OBJECT_MANAGER_H

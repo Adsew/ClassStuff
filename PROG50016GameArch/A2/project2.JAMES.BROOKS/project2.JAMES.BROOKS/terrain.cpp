@@ -45,7 +45,6 @@ Terrain::Terrain(unsigned int uniqueID, const char *compType)
 
 Terrain::~Terrain() {
 
-    unloadTiles();
 }
 
 void Terrain::initialize() {
@@ -59,8 +58,6 @@ void Terrain::update() {
 }
 
 void Terrain::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
-
-    std::string mapFile = "";
 
     if (FileSystem::Instance().getAttribute(accessor, "mapfile", mapFile)) {
 
@@ -141,9 +138,16 @@ Component &Terrain::operator=(const Component &comp) {
 // Load a map file and create the tiles needed
 void Terrain::loadMapFile(const char *mapFile) {
 
-    std::unique_ptr<FileSystem::FileAccessor> mapFileAccessor = FileSystem::Instance().loadFile(mapFile, mapFile);
+    std::unique_ptr<FileSystem::FileAccessor> mapFileAccessor;
+    
+    if (!(mapFileAccessor = FileSystem::Instance().useFile(mapFile))) {
+
+        mapFileAccessor = FileSystem::Instance().loadFile(mapFile, mapFile);
+    }
 
     if (mapFileAccessor != NULL) {
+
+        this->mapFile = mapFile;
 
         unloadTiles();
 
@@ -442,6 +446,10 @@ GameObject *Terrain::checkCollisionOnMap(int posX, int posY) {
 
     if (posY >= 0 && posY < entities.size()
         && posX >= 0 && posX < entities[0].size()
+        && posY >= 0 && posY < destructables.size()
+        && posX >= 0 && posX < destructables[0].size()
+        && posY >= 0 && posY < colliders.size()
+        && posX >= 0 && posX < colliders[0].size()
         ) {
 
         if (entities[posY][posX] != NULL) {
@@ -465,6 +473,8 @@ bool Terrain::removeAndDestroyObject(int posX, int posY) {
 
     if (posY >= 0 && posY < entities.size()
         && posX >= 0 && posX < entities[0].size()
+        && posY >= 0 && posY < destructables.size()
+        && posX >= 0 && posX < destructables[0].size()
         ) {
 
         if (entities[posY][posX] != NULL) {
@@ -484,4 +494,10 @@ bool Terrain::removeAndDestroyObject(int posX, int posY) {
     }
 
     return false;
+}
+
+// Get the file name the map loaded from
+std::string &Terrain::getMapFile() {
+
+    return mapFile;
 }

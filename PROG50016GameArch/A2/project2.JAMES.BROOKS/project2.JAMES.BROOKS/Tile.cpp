@@ -61,6 +61,13 @@ Component &Tile::operator=(const Component &comp) {
     return *this;
 }
 
+void Tile::setMapPosition(int x, int y, Terrain *m) {
+
+    map = m;
+    posX = x;
+    posY = y;
+}
+
 void Tile::setCollidable(bool c) {
 
     collidable = c;

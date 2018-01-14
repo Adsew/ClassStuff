@@ -15,6 +15,7 @@ Description: Controls the actions the enemies will take.
 
 #include "GameObjectManager.h"
 #include "Transform.h"
+#include "LevelData.h"
 #include "Bomb.h"
 #include "Terrain.h"
 #include "AnimatedSprite.h"
@@ -127,7 +128,7 @@ void EnemyAI::update() {
 
                     if (bombComp != NULL) {
 
-                        bombComp->owner = gameObject;
+                        bombComp->playerOwned = false;
                         bombComp->resetBomb();
                         bombComp->placeAtMe(map, posX, posY);
                     }
@@ -153,6 +154,22 @@ Component &EnemyAI::operator=(const Component &comp) {
     moveInterval = orig->moveInterval;
 
     return *this;
+}
+
+// Kill the enemy and increase the score
+void EnemyAI::kill(int score) {
+
+    if (level != NULL) {
+
+        level->removeEntity(gameObject);
+        level->increaseScore(score);
+        gameObject->destroy();
+    }
+}
+
+void EnemyAI::setLevel(LevelData *currentLevel) {
+
+    level = currentLevel;
 }
 
 void EnemyAI::setMap(Terrain *m) {

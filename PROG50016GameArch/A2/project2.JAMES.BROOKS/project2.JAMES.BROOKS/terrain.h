@@ -36,6 +36,8 @@ protected:
 
     std::list<std::pair<int, int>> spawnPoints;
 
+    std::string mapFile;
+
     int tileWidth, tileHeight;
 
 
@@ -85,6 +87,9 @@ public:
 
     // Remove the game object at the given coordinates from the map and destroy the object
     bool removeAndDestroyObject(int posX, int posY);
+
+    // Get the file name the map loaded from
+    std::string &getMapFile();
 };
 
 #endif // !TERRAIN_H

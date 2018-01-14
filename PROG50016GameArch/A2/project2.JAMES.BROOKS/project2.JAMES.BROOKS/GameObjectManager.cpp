@@ -149,6 +149,22 @@ GameObject *GameObjectManager::createGameObjectFromPrefab(const char *prefab) {
     return NULL;
 }
 
+// Find game object by given name
+GameObject *GameObjectManager::findGameObjectByName(const char *name) {
+
+    std::string goName = name;
+
+    for (auto iter = gameObjects.begin(); iter != gameObjects.end(); iter++) {
+
+        if ((*iter)->getName() == goName) {
+
+            return *iter;
+        }
+    }
+
+    return NULL;
+}
+
     /* Object Pool Functions */
 
 // Creates a pool of the given game object, returns id to access pool
@@ -239,5 +255,18 @@ void GameObjectManager::destroyObjectPool(const unsigned int id) {
 
         objectPool.erase(objectPool.find(id));
         objectPoolInUseMap.erase(objectPoolInUseMap.find(id));
+    }
+}
+
+// Set every object in the pool, active or otherwise, to yeild
+void GameObjectManager::yeildObjectPool(const unsigned int id, bool y) {
+    
+    if (objectPool.find(id) != objectPool.end()) {
+
+        // Delete all objects in the pool
+        for (int i = 0; i < objectPool[id].size(); i++) {
+
+            objectPool[id][i]->setYeilding(y);
+        }
     }
 }

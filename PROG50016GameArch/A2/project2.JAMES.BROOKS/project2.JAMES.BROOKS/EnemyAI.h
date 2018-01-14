@@ -17,6 +17,7 @@ Description: Controls the actions the enemies will take.
 #include "Component.h"
 
 
+class LevelData;
 class Terrain;
 
 
@@ -27,6 +28,7 @@ class EnemyAI : public Component {
 
     /***** Variables *****/
 
+    LevelData *level;
     Terrain *map;
 
     int posX, posY;
@@ -60,6 +62,11 @@ protected:
 public:
 
     virtual Component &operator=(const Component &comp) override;
+
+    // Kill the enemy and increase the score
+    void kill(int score);
+
+    void setLevel(LevelData *currentLevel);
 
     void setMap(Terrain *m);
 

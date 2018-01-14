@@ -17,6 +17,7 @@ Description: Keeps track of the entities within the current level and the score.
 
 
 class Terrain;
+class UIText;
 
 
 class LevelData : public Component {
@@ -28,11 +29,23 @@ class LevelData : public Component {
 
 protected:
 
+    std::list<GameObject *> entities;
+    GameObject *UI;
+    UIText *scoreDisplay;
+
     Terrain *map;
 
+    std::string mapFile;
+
+    float deltaTime;
+
     unsigned int bombPoolID;
+    unsigned int firePoolID;
+
+    int lives;
     int score;
 
+    bool gameOver;
     bool setupPerformed;
 
 
@@ -61,12 +74,21 @@ public:
 
     virtual Component &operator=(const Component &comp) override;
 
+    // Reverts level to original state
+    void resetLevel();
+
+    // Decrease lives remaining by 1
+    void decreaseLives();
+
     // Increase current score by X points
     void increaseScore(int points);
 
         /* Gets/Sets */
 
     unsigned int getBombPoolID();
+
+    // Remove entity from those still alive
+    void removeEntity(GameObject *e);
 };
 
 #endif // !LEVEL_DATA_H

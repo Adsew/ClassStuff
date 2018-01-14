@@ -17,6 +17,7 @@ Description: Component allowing input from the keyboard to move the player accor
 
 
 class Terrain;
+class LevelData;
 
 
 class PlayerControls : public Component {
@@ -33,6 +34,7 @@ private:
 
 protected:
 
+    LevelData *level;
     Terrain *map;
 
     int posX, posY;
@@ -61,6 +63,11 @@ protected:
 public:
 
     virtual Component &operator=(const Component &comp) override;
+
+    // Performs notifications and destroys player
+    void kill();
+
+    void setLevel(LevelData *currentLevel);
 
     void setMap(Terrain *m);
 

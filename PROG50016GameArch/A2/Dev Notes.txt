@@ -1,7 +1,0 @@
-Extra for niceties: Have player request next move position from map to move, then wait disable controls until hit spot over time
-
-make tile destroyable if right tile in map
-
-Track fps as extra
-
-Tile some how managed to delete before map
