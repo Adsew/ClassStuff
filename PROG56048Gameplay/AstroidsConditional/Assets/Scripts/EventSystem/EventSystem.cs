@@ -22,14 +22,9 @@ public class EventSystem : MonoBehaviour {
         
         foreach (CAEvent e in events) {
 
-            if (e.condition != null) {
-                if (e.condition.condition()) {
+            if (e.evaluate()) {
 
-                    if (e.action != null) {
-
-                        e.action.action();
-                    }
-                }
+                e.act();
             }
         }
 	}

@@ -88,14 +88,17 @@
     <Compile Include="Assets\Scripts\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\Action.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\AstroidAction.cs" />
+    <Compile Include="Assets\Scripts\EventSystem\Actions\DestroyAction.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\InstantiateAction.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\RotateAction.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\TranslateAction.cs" />
     <Compile Include="Assets\Scripts\EventSystem\CAEvent.cs" />
-    <Compile Include="Assets\Scripts\EventSystem\Conditions\AstroidCondition.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Conditions\ButtonCondition.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Conditions\Condition.cs" />
+    <Compile Include="Assets\Scripts\EventSystem\Conditions\TriggerCondition.cs" />
     <Compile Include="Assets\Scripts\EventSystem\EventSystem.cs" />
+    <Compile Include="Assets\Scripts\Seek.cs" />
+    <Compile Include="Assets\Scripts\ShipLogic.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

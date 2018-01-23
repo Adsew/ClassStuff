@@ -13,18 +13,6 @@ public class BulletLogic : MonoBehaviour {
 	void Start () {
 		
 	}
-
-    public void OnTriggerEnter(Collider other) {
-        
-        AstroidCondition astroid = other.gameObject.GetComponent<AstroidCondition>();
-
-        if (astroid != null) {
-
-            astroid.hit = true;
-
-            Destroy(gameObject);
-        }
-    }
     
     // Update is called once per frame
     void Update () {

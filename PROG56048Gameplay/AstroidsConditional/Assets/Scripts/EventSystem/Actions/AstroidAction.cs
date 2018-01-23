@@ -42,7 +42,5 @@ public class AstroidAction : Action {
                 }
             }
         }
-
-        Destroy(this.gameObject);
     }
 }

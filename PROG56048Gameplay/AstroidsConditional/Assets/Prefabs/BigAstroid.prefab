@@ -22,10 +22,11 @@ GameObject:
   - component: {fileID: 33400424459926876}
   - component: {fileID: 65599987228256926}
   - component: {fileID: 23099149082780836}
-  - component: {fileID: 114956490770316324}
-  - component: {fileID: 114500562508830708}
-  - component: {fileID: 114202546292972008}
   - component: {fileID: 114743346196003716}
+  - component: {fileID: 114984944390180718}
+  - component: {fileID: 114248122475775508}
+  - component: {fileID: 114202546292972008}
+  - component: {fileID: 114925896405013398}
   - component: {fileID: 54165500116927026}
   m_Layer: 0
   m_Name: BigAstroid
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toSpawn: {fileID: 1218360374049360, guid: c3cdefde911a13a478f5e222f23bc457, type: 2}
---- !u!114 &114500562508830708
+--- !u!114 &114248122475775508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -133,10 +134,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1234749109487646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1cf68ee946d1034780040ff4220f921, type: 3}
+  m_Script: {fileID: 11500000, guid: be3c6c8af83d0e642a2371bc6912bd18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit: 0
+  mode: 0
+  collidesWith:
+  - BulletLogic
+  - ShipLogic
 --- !u!114 &114743346196003716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +153,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: 0, y: 0, z: 0}
---- !u!114 &114956490770316324
+--- !u!114 &114925896405013398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234749109487646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1dbf99696462244fbe4bc40dc3537bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114984944390180718
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -160,5 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c11a0a18364974991524e0c71380dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  condition: {fileID: 114500562508830708}
-  action: {fileID: 114202546292972008}
+  conditions:
+  - {fileID: 114248122475775508}
+  actions:
+  - {fileID: 114202546292972008}
+  - {fileID: 114925896405013398}

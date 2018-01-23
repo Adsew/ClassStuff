@@ -24,6 +24,9 @@ GameObject:
   - component: {fileID: 23857192562211788}
   - component: {fileID: 114581897150881048}
   - component: {fileID: 54197682655485630}
+  - component: {fileID: 114639699182044980}
+  - component: {fileID: 114476024227562390}
+  - component: {fileID: 114674457074729814}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -98,6 +101,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114476024227562390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1477230789191054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3c6c8af83d0e642a2371bc6912bd18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  collidesWith:
+  - AstroidLogic
 --- !u!114 &114581897150881048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +127,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+--- !u!114 &114639699182044980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1477230789191054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c11a0a18364974991524e0c71380dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conditions:
+  - {fileID: 114476024227562390}
+  actions:
+  - {fileID: 114674457074729814}
+--- !u!114 &114674457074729814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1477230789191054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1dbf99696462244fbe4bc40dc3537bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136738821892682108
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CAEvent : MonoBehaviour {
 
-    public Condition condition;
-    public Action action;
+    public List<Condition> conditions = new List<Condition>();
+    public List<Action> actions = new List<Action>();
 
     private bool registered = false;
 
@@ -37,5 +37,30 @@ public class CAEvent : MonoBehaviour {
         EventSystem.This.addEvent(this);
 
         registered = true;
+    }
+
+    public bool evaluate() {
+
+        if (conditions.Count > 0) {
+
+            bool evaluation = conditions[0].condition();
+
+            foreach (Condition cond in conditions) {
+
+                evaluation = evaluation & cond.condition();
+            }
+
+            return evaluation;
+        }
+
+        return false;
+    }
+
+    public void act() {
+
+        foreach (Action action in actions) {
+
+            action.action();
+        }
     }
 }
