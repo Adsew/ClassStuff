@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AstroidLogic.cs" />
+    <Compile Include="Assets\Scripts\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\Action.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\AstroidAction.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Actions\InstantiateAction.cs" />

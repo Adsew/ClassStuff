@@ -24,6 +24,14 @@ public class CAEvent : MonoBehaviour {
         }
 	}
 
+    private void OnDestroy() {
+        
+        if (registered) {
+
+            EventSystem.This.removeEvent(this);
+        }
+    }
+
     private void registerSelf() {
 
         EventSystem.This.addEvent(this);

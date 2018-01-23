@@ -19,15 +19,7 @@ public class EventSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        foreach (CAEvent e in events) {
-
-            if (e == null) {
-
-                events.Remove(e);
-            }
-        }
-
+        
         foreach (CAEvent e in events) {
 
             if (e.condition != null) {
@@ -47,6 +39,14 @@ public class EventSystem : MonoBehaviour {
         if (e != null) {
 
             events.Add(e);
+        }
+    }
+
+    public void removeEvent(CAEvent e) {
+
+        if (e != null) {
+
+            events.Remove(e);
         }
     }
 }

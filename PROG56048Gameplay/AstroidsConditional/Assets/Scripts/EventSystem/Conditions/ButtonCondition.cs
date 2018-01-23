@@ -6,11 +6,23 @@ public class ButtonCondition : Condition {
 
     public KeyCode key;
 
+    public bool hold = true;
+
     public override bool condition() {
 
-        if (Input.GetKey(key)) {
+        if (hold) {
 
-            return true;
+            if (Input.GetKey(key)) {
+
+                return true;
+            }
+        }
+        else {
+
+            if (Input.GetKeyDown(key)) {
+
+                return true;
+            }
         }
 
         return false;

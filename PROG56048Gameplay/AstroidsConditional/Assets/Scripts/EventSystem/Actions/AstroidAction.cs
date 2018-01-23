@@ -19,23 +19,25 @@ public class AstroidAction : Action {
 
                 AstroidLogic move = astroid.GetComponent<AstroidLogic>();
 
-                if (move != null) {
+                AstroidLogic initMove = gameObject.GetComponent<AstroidLogic>();
+
+                if (move != null && initMove != null) {
 
                     if (i == 0) {
 
-                        move.moveDir = new Vector3(0.1f, 0, 0);
+                        move.moveDir = new Vector3(0.1f, 0, 0) + initMove.moveDir;
                     }
                     if (i == 1) {
 
-                        move.moveDir = new Vector3(-0.1f, 0, 0);
+                        move.moveDir = new Vector3(-0.1f, 0, 0) + initMove.moveDir;
                     }
                     if (i == 2) {
 
-                        move.moveDir = new Vector3(0, 0.1f, 0);
+                        move.moveDir = new Vector3(0, 0.1f, 0) + initMove.moveDir;
                     }
                     if (i == 3) {
 
-                        move.moveDir = new Vector3(0, -0.1f, 0);
+                        move.moveDir = new Vector3(0, -0.1f, 0) + initMove.moveDir;
                     }
                 }
             }
