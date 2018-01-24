@@ -28,6 +28,7 @@ class UIElement : public Component, public IRenderable {
 
     REGISTER_ABSTRACT_COMPONENT(UIElement);
 
+
     /***** Variables *****/
 
 protected:
@@ -40,7 +41,7 @@ protected:
 
 protected:
 
-    virtual void initialize() override = 0;
+    virtual void initialize() override;
 
     virtual void update() override = 0;
 

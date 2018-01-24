@@ -16,25 +16,8 @@ Description: Button action that quits the game on click
 #include "ButtonActionQuit.h"
 
 
-IMPLEMENT_COMPONENT(ButtonActionQuit);
+IMPLEMENT_DERIVED_COMPONENT(ButtonActionQuit, ButtonAction);
 
-
-ButtonActionQuit::ButtonActionQuit(unsigned int uniqueID)
-    : ButtonAction(uniqueID, "ButtonActionQuit") {
-
-    
-}
-
-ButtonActionQuit::ButtonActionQuit(unsigned int uniqueID, const char *type)
-    : ButtonAction(uniqueID, type) {
-
-    
-}
-
-ButtonActionQuit::~ButtonActionQuit() {
-
-
-}
 
 void ButtonActionQuit::onClick() {
 

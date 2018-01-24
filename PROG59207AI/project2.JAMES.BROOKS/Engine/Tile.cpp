@@ -18,28 +18,10 @@ Types are: Collidable, Not Collidable
 IMPLEMENT_COMPONENT(Tile);
 
 
-Tile::Tile(unsigned int uniqueID)
-    : Component(uniqueID, "Tile") {
-
-    collidable = false;
-    destroyable = false;
-}
-
-Tile::Tile(unsigned int uniqueID, const char *type) 
-    : Component(uniqueID, type) {
-
-    collidable = false;
-    destroyable = false;
-}
-
-Tile::~Tile() {
-
-
-}
-
 void Tile::initialize() {
 
-
+    collidable = false;
+    destroyable = false;
 }
 
 void Tile::update() {

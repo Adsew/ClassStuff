@@ -33,44 +33,16 @@ Description: Component allowing input from the keyboard to move the player accor
 IMPLEMENT_COMPONENT(PlayerControls)
 
 
-PlayerControls::PlayerControls(unsigned int uniqueID)
-    : Component(uniqueID, "PlayerControls") {
-
-    deltaTimeInput = 0;
-    deltaTimeBomb = 0;
-
-    map = NULL;
-    posX = 0;
-    posY = 0;
-
-    bombInterval = 0;
-}
-
-PlayerControls::PlayerControls(unsigned int uniqueID, const char *type)
-    : Component(uniqueID, type) {
-
-    deltaTimeInput = 0;
-    deltaTimeBomb = 0;
-
-    map = NULL;
-    posX = 0;
-    posY = 0;
-
-    bombInterval = 0;
-}
-
-PlayerControls::~PlayerControls() {
-
-
-}
-
 void PlayerControls::initialize() {
 
-    if (bombInterval == 0) {
+    deltaTimeInput = 0;
+    deltaTimeBomb = 0;
 
-        bombInterval = DEFAULT_BOMB_INTERVAL;
-        deltaTimeBomb = bombInterval;
-    }
+    map = NULL;
+    posX = 0;
+    posY = 0;
+
+    bombInterval = DEFAULT_BOMB_INTERVAL;
 }
 
 void PlayerControls::update() {

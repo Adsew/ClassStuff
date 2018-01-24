@@ -28,28 +28,10 @@ Description: Keeps track of map data for the current level.
 IMPLEMENT_COMPONENT(Terrain);
 
 
-Terrain::Terrain(unsigned int uniqueID)
-    : Component(uniqueID, "Terrain") {
-
-    tileWidth = 0;
-    tileHeight = 0;
-}
-
-Terrain::Terrain(unsigned int uniqueID, const char *compType)
-    : Component(uniqueID, compType) {
-
-    tileWidth = 0;
-    tileHeight = 0;
-}
-
-
-Terrain::~Terrain() {
-
-}
-
 void Terrain::initialize() {
 
-
+    tileWidth = 0;
+    tileHeight = 0;
 }
 
 void Terrain::update() {

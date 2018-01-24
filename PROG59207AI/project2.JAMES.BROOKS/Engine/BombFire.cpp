@@ -24,42 +24,17 @@ Description: Spawned by a bomb after it detonates and kills enemies and players 
 IMPLEMENT_COMPONENT(BombFire);
 
 
-BombFire::BombFire(unsigned int uniqueID)
-    : Component (uniqueID, "BombFire") {
-
-    map = NULL;
-
-    posX = 0;
-    posY = 0;
-
-    deathTimer = 0;
-    timeTilDeath = 0;
-
-    playerOwned = false;
-}
-
-BombFire::BombFire(unsigned int uniqueID, const char *type)
-    : Component(uniqueID, type) {
-
-    map = NULL;
-
-    posX = 0;
-    posY = 0;
-
-    timeTilDeath = 0;
-    deathTimer = 0;
-
-    playerOwned = false;
-}
-
-BombFire::~BombFire() {
-
-
-}
-
 void BombFire::initialize() {
 
+    map = NULL;
 
+    posX = 0;
+    posY = 0;
+
+    timeTilDeath = 0;
+    deathTimer = 0;
+
+    playerOwned = false;
 }
 
 void BombFire::update() {

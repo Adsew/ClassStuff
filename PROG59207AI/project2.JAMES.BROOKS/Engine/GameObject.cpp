@@ -99,6 +99,11 @@ void GameObject::initialize() {
 
 }
 
+void GameObject::onDestroy() {
+
+
+}
+
 // Cycle update updates all game object components
 void GameObject::update() {
 

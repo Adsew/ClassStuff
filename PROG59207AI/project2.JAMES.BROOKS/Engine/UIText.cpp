@@ -16,31 +16,15 @@ Description: Displays text to the screen.
 #include "UIText.h"
 
 
-IMPLEMENT_COMPONENT(UIText);
+IMPLEMENT_DERIVED_COMPONENT(UIText, UIElement);
 
-
-UIText::UIText(unsigned int uniqueID)
-    : UIElement(uniqueID, "UIText") {
-
-    displayFont.loadFromFile("../res/Yes_Union.ttf");
-    displayText.setFont(displayFont);
-}
-
-UIText::UIText(unsigned int uniqueID, const char *type)
-    : UIElement(uniqueID, type) {
-
-    displayFont.loadFromFile("../res/Yes_Union.ttf");
-    displayText.setFont(displayFont);
-}
-
-UIText::~UIText() {
-
-
-}
 
 void UIText::initialize() {
 
+    UIElement::initialize();
 
+    displayFont.loadFromFile("../res/Yes_Union.ttf");
+    displayText.setFont(displayFont);
 }
 
 void UIText::update() {
@@ -115,7 +99,8 @@ Component &UIText::operator=(const Component &comp) {
 
 void UIText::setText(const char *text) {
 
-    displayText.setString(text);
+    mytext = text;
+    displayText.setString(mytext);
 }
 
 void UIText::setSize(int x, int y) {

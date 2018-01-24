@@ -15,11 +15,10 @@ Description: Holds the position, orientation, and scale data for a game object.
 #include "Transform.h"
 
 
-IMPLEMENT_COMPONENT(Transform)
+IMPLEMENT_COMPONENT(Transform);
 
 
-Transform::Transform(unsigned int uniqueID)
-    : Component(uniqueID, "Transform") {
+void Transform::initialize() {
 
     position.x = 0;
     position.y = 0;
@@ -28,7 +27,7 @@ Transform::Transform(unsigned int uniqueID)
     rotation = 0;
 }
 
-Transform::~Transform() {
+void Transform::update() {
 
 
 }
@@ -40,16 +39,6 @@ void Transform::load(std::unique_ptr<FileSystem::FileAccessor> &accessor) {
     FileSystem::Instance().getAttribute(accessor, "scale.x", scale.x);
     FileSystem::Instance().getAttribute(accessor, "scale.y", scale.y);
     FileSystem::Instance().getAttribute(accessor, "rotation", rotation);
-}
-
-void Transform::initialize() {
-
-
-}
-
-void Transform::update() {
-
-
 }
 
 Component &Transform::operator=(const Component &comp) {

@@ -21,9 +21,9 @@ class UIText : public UIElement {
     REGISTER_COMPONENT(UIText);
 
     /***** Variables *****/
-
     sf::Text displayText;
     sf::Font displayFont;
+    std::string mytext;
 
 
     /***** Functions *****/

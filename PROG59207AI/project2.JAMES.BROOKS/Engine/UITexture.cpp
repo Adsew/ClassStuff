@@ -17,27 +17,12 @@ Description: Displays an image to the screen.
 #include "UITexture.h"
 
 
-IMPLEMENT_COMPONENT(UITexture);
+IMPLEMENT_DERIVED_COMPONENT(UITexture, UIElement);
 
-
-UITexture::UITexture(unsigned int uniqueID)
-    : UIElement(uniqueID, "UITexture") {
-
-}
-
-UITexture::UITexture(unsigned int uniqueID, const char *type)
-    : UIElement(uniqueID, type) {
-
-}
-
-UITexture::~UITexture() {
-
-
-}
 
 void UITexture::initialize() {
 
-
+    UIElement::initialize();
 }
 
 void UITexture::update() {

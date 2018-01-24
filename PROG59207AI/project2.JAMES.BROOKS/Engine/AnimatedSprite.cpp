@@ -28,22 +28,12 @@ Description: A small image to be rendered to the screen. Animated over time.
 #include "AnimatedSprite.h"
 
 
-IMPLEMENT_COMPONENT(AnimatedSprite);
+IMPLEMENT_DERIVED_COMPONENT(AnimatedSprite, Sprite);
 
 
-AnimatedSprite::AnimatedSprite(unsigned int uniqueID) 
-    : Sprite(uniqueID, "AnimatedSprite") {
+void AnimatedSprite::initialize() {
 
-    currentAnim = -1;
-    step = 0;
-    playCount = 0;
-    numTimesPlayed = 0;
-
-    deltaTime = 0;
-}
-
-AnimatedSprite::AnimatedSprite(unsigned int uniqueID, const char *type)
-    : Sprite(uniqueID, type) {
+    Sprite::initialize();
 
     currentAnim = -1;
     step = 0;
@@ -53,7 +43,7 @@ AnimatedSprite::AnimatedSprite(unsigned int uniqueID, const char *type)
     deltaTime = 0;
 }
 
-AnimatedSprite::~AnimatedSprite() {
+void AnimatedSprite::onDestroy() {
 
     for (int i = 0; i < animations.size(); i++) {
 

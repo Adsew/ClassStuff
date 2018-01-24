@@ -34,7 +34,9 @@ protected:
 
 	Asset(unsigned int uniqueID);
 
-    void initialize() override final {}
+    void initialize() override {}
+
+    void onDestroy() override {}
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &element) = 0;
 

@@ -25,7 +25,7 @@ protected:                                                  \
                                                             \
     _class_type_##(unsigned int uniqueID, const char *type);\
                                                             \
-    virtual ~##_class_type_##();                            \
+    virtual ~##_class_type_##() = default;                  \
                                                             \
 public:                                                     \
                                                             \
@@ -62,9 +62,33 @@ protected:                                                  \
 
 
 
-#define IMPLEMENT_COMPONENT(_class_type_)                   \
-                                                            \
-static _class_type_##::__TypeRegister _class_type_##_tr;    \
+#define IMPLEMENT_COMPONENT(_class_type_)                                   \
+                                                                            \
+static _class_type_##::__TypeRegister _class_type_##_tr;                    \
+                                                                            \
+_class_type_##::##_class_type_##(unsigned int uniqueID)                     \
+    : Component(uniqueID, #_class_type_) {}                                 \
+                                                                            \
+_class_type_##::##_class_type_##(unsigned int uniqueID, const char *type)   \
+    : Component(uniqueID, type) {}
+
+
+#define IMPLEMENT_ABSTRACT_COMPONENT(_class_type_)                          \
+                                                                            \
+_class_type_##::##_class_type_##(unsigned int uniqueID, const char *type)   \
+    : Component(uniqueID, type) {}
+
+
+
+#define IMPLEMENT_DERIVED_COMPONENT(_derived_type_, _base_type_)        \
+                                                                        \
+static _derived_type_##::__TypeRegister _derived_type_##_tr;            \
+                                                                        \
+_derived_type_##::##_derived_type_##(unsigned int uniqueID)             \
+    : _base_type_##(uniqueID, #_derived_type_ ) {}                      \
+                                                                        \
+_derived_type_::_derived_type_(unsigned int uniqueID, const char *type) \
+    : _base_type_##(uniqueID, type) {}
 
 
 

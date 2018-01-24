@@ -38,6 +38,10 @@ protected:
 
 protected:
 
+    virtual void initialize() override;
+
+    virtual void onDestroy() override;
+
     virtual void update() override;
 
     virtual void load(std::unique_ptr<FileSystem::FileAccessor> &accessor) override;

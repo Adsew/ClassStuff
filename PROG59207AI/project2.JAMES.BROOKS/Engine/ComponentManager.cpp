@@ -38,6 +38,7 @@ void ComponentManager::clean() {
         iter != components.end();
         iter++) {
 
+        (*iter)->onDestroy();
         delete *iter;
     }
 
@@ -55,6 +56,8 @@ void ComponentManager::update() {
             std::list<Component *>::iterator temp = iter;
 
             iter++;
+
+            (*temp)->onDestroy();
 
             delete *temp;
             components.erase(temp);

@@ -22,24 +22,9 @@ Description: A small image to be rendered to the screen.
 IMPLEMENT_COMPONENT(Sprite);
 
 
-Sprite::Sprite(unsigned int uniqueID)
-    : Component(uniqueID, "Sprite"), IRenderable(LOWEST_PRIORITY) {
-    
-}
-
-Sprite::Sprite(unsigned int uniqueID, const char *type)
-    : Component(uniqueID, type), IRenderable(LOWEST_PRIORITY) {
-
-}
-
-Sprite::~Sprite() {
-    
-
-}
-
 void Sprite::initialize() {
 
-
+    setRenderPriority(LOWEST_PRIORITY);
 }
 
 void Sprite::update() {

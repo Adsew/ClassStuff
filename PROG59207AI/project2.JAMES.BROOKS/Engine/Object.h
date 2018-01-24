@@ -44,6 +44,9 @@ public:
     // Initialize object to a usable state
 	virtual void initialize() = 0;
 
+    // Allows user to perform any cleanup operations before destruction
+    virtual void onDestroy() = 0;
+
     // Return true if object has been initialized
     bool isInitialized();
 

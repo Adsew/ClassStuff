@@ -20,39 +20,19 @@ Description: Displays text to the screen.
 #include "UIButton.h"
 
 
-IMPLEMENT_COMPONENT(UIButton);
+IMPLEMENT_DERIVED_COMPONENT(UIButton, UIElement);
 
-
-UIButton::UIButton(unsigned int uniqueID)
-    : UIElement(uniqueID, "UIButton") {
-
-    displayFont.loadFromFile("../res/Yes_Union.ttf");
-    displayText.setFont(displayFont);
-
-    clicker = NULL;
-
-    deltaTime = 0;
-}
-
-UIButton::UIButton(unsigned int uniqueID, const char *type)
-    : UIElement(uniqueID, type) {
-
-    displayFont.loadFromFile("../res/Yes_Union.ttf");
-    displayText.setFont(displayFont);
-
-    clicker = NULL;
-
-    deltaTime = 0;
-}
-
-UIButton::~UIButton() {
-
-
-}
 
 void UIButton::initialize() {
 
+    UIElement::initialize();
 
+    displayFont.loadFromFile("../res/Yes_Union.ttf");
+    displayText.setFont(displayFont);
+
+    clicker = NULL;
+
+    deltaTime = 0;
 }
 
 void UIButton::update() {

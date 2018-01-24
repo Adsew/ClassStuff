@@ -23,38 +23,15 @@ Description: Represents an object that will detonate after a set time.
 IMPLEMENT_COMPONENT(Bomb);
 
 
-Bomb::Bomb(unsigned int uniqueID) 
-    : Component(uniqueID, "Bomb") {
-
-    map = NULL;
-
-    posX = 0;
-    posY = 0;
-
-    exploded = false;
-    playerOwned = false;
-}
-
-Bomb::Bomb(unsigned int uniqueID, const char *type)
-    : Component(uniqueID, type) {
-
-    map = NULL;
-
-    posX = 0;
-    posY = 0;
-
-    exploded = false;
-    playerOwned = false;
-}
-
-Bomb::~Bomb() {
-
-
-}
-
 void Bomb::initialize() {
 
+    map = NULL;
 
+    posX = 0;
+    posY = 0;
+
+    exploded = false;
+    playerOwned = false;
 }
 
 void Bomb::update() {

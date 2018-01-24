@@ -42,6 +42,8 @@ protected:
 
     void initialize() override;
 
+    void onDestroy() override;
+
     // Loads a scene file with the same name as the scene
     bool load();
 

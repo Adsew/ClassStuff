@@ -45,6 +45,11 @@ void Scene::initialize() {
 
 }
 
+void Scene::onDestroy() {
+
+
+}
+
 // Loads a scene file with the same name as the scene
 bool Scene::load() {
 

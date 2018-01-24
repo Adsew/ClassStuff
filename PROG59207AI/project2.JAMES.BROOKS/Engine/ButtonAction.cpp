@@ -16,20 +16,12 @@ Description: Base class for a button action that will be set to a button to make
 #include "ButtonAction.h"
 
 
-ButtonAction::ButtonAction(unsigned int uniqueID, const char *type)
-    : Component(uniqueID, type) {
+IMPLEMENT_ABSTRACT_COMPONENT(ButtonAction);
 
-    functionSet = false;
-}
-
-ButtonAction::~ButtonAction() {
-
-
-}
 
 void ButtonAction::initialize() {
 
-
+    functionSet = false;
 }
 
 void ButtonAction::update() {

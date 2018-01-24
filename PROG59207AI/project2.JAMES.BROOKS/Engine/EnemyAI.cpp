@@ -25,42 +25,17 @@ Description: Controls the actions the enemies will take.
 IMPLEMENT_COMPONENT(EnemyAI);
 
 
-EnemyAI::EnemyAI(unsigned int uniqueID)
-    : Component(uniqueID, "EnemyAI") {
-
-    posX = 0;
-    posY = 0;
-
-    bombPlaceInterval = 0;
-    bombPlaceChance = 0;
-    moveInterval = 0;
-
-    deltaTimeMove = 0;
-    deltaTimeBomb = 0;
-}
-
-EnemyAI::EnemyAI(unsigned int uniqueID, const char *type) 
-    : Component(uniqueID, type) {
-
-    posX = 0;
-    posY = 0;
-
-    bombPlaceInterval = 0;
-    bombPlaceChance = 0;
-    moveInterval = 0;
-
-    deltaTimeMove = 0;
-    deltaTimeBomb = 0;
-}
-
-EnemyAI::~EnemyAI() {
-
-
-}
-
 void EnemyAI::initialize() {
 
+    posX = 0;
+    posY = 0;
 
+    bombPlaceInterval = 0;
+    bombPlaceChance = 0;
+    moveInterval = 0;
+
+    deltaTimeMove = 0;
+    deltaTimeBomb = 0;
 }
 
 void EnemyAI::update() {

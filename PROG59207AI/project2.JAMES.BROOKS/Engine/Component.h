@@ -45,7 +45,10 @@ protected:
     virtual ~Component();
 
     // Initialize the component to a usable state
-    virtual void initialize() = 0;
+    virtual void initialize() override {}
+
+    // Destroy any data before destruction
+    virtual void onDestroy() override {}
 
     // Cycle update for a component
     virtual void update() = 0;

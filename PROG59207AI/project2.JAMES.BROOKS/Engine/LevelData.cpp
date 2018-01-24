@@ -30,8 +30,7 @@ Description: Keeps track of the entities within the current level and the score.
 IMPLEMENT_COMPONENT(LevelData);
 
 
-LevelData::LevelData(unsigned int uniqueID)
-    : Component(uniqueID, "LevelData") {
+void LevelData::initialize() {
 
     UI = NULL;
     scoreDisplay = NULL;
@@ -48,34 +47,12 @@ LevelData::LevelData(unsigned int uniqueID)
     setupPerformed = false;
 }
 
-LevelData::LevelData(unsigned int uniqueID, const char *type)
-    : Component(uniqueID, type) {
-
-    UI = NULL;
-    scoreDisplay = NULL;
-
-    bombPoolID = -1;
-    firePoolID = -1;
-
-    lives = 1;
-    score = 0;
-
-    deltaTime = 0;
-    
-    gameOver = false;
-    setupPerformed = false;
-}
-
-LevelData::~LevelData() {
+void LevelData::onDestroy() {
 
     GameObjectManager::Instance().destroyObjectPool(bombPoolID);
     GameObjectManager::Instance().destroyObjectPool(firePoolID);
 }
 
-void LevelData::initialize() {
-
-
-}
 
 void LevelData::update() {
 

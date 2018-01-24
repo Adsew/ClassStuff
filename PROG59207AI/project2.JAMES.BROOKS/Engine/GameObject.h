@@ -62,6 +62,9 @@ protected:
     // Initialize GO to a usable state
     void initialize() override;
 
+    // Destroy data contained before deletion
+    void onDestroy() override;
+
     // Cycle update updates all game object components
     virtual void update();
 

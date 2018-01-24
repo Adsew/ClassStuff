@@ -18,8 +18,13 @@ Other classes will derive from this to create specific ui elements.
 #include "UIElement.h"
 
 
-UIElement::UIElement(unsigned int uniqueID, const char *type) 
-    : Component(uniqueID, type), IRenderable(UI_LOW_PRIORITY) {}
+IMPLEMENT_ABSTRACT_COMPONENT(UIElement);
+
+
+void UIElement::initialize() {
+
+    setRenderPriority(UI_LOW_PRIORITY);
+}
 
 void UIElement::setTexture(const char *name) {
     
