@@ -222,7 +222,7 @@ void GameObjectManager::returnToPool(const unsigned int id, GameObject *object) 
 
     if (objectPool.find(id) != objectPool.end()) {
 
-        for (int i = 0; i < objectPool[id].size(); i++) {
+        for (unsigned int i = 0; i < objectPool[id].size(); i++) {
 
             // Check if pointer is in the pool
             if (objectPool[id][i] == object) {
@@ -245,7 +245,7 @@ void GameObjectManager::destroyObjectPool(const unsigned int id) {
     if (objectPool.find(id) != objectPool.end()) {
 
         // Delete all objects in the pool
-        for (int i = 0; i < objectPool[id].size(); i++) {
+        for (unsigned int i = 0; i < objectPool[id].size(); i++) {
 
             objectPool[id][i]->isFromObjectPool = false; // Allows deletion
             objectPool[id][i]->destroy();
@@ -264,7 +264,7 @@ void GameObjectManager::yeildObjectPool(const unsigned int id, bool y) {
     if (objectPool.find(id) != objectPool.end()) {
 
         // Delete all objects in the pool
-        for (int i = 0; i < objectPool[id].size(); i++) {
+        for (unsigned int i = 0; i < objectPool[id].size(); i++) {
 
             objectPool[id][i]->setYeilding(y);
         }

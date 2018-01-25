@@ -45,7 +45,7 @@ void AnimatedSprite::initialize() {
 
 void AnimatedSprite::onDestroy() {
 
-    for (int i = 0; i < animations.size(); i++) {
+    for (unsigned int i = 0; i < animations.size(); i++) {
 
         delete animations[i];
         animations[i] = NULL;
@@ -159,7 +159,7 @@ Component &AnimatedSprite::operator=(const Component &comp) {
 
     animations.resize(orig->animations.size());
 
-    for (int i = 0; i < animations.size(); i++) {
+    for (unsigned int i = 0; i < animations.size(); i++) {
 
         if (orig->animations[i] != NULL) {
 
@@ -178,7 +178,7 @@ Component &AnimatedSprite::operator=(const Component &comp) {
 // Set which animation is currently playing from the sprite sheet
 bool AnimatedSprite::setAnimation(int animID) {
 
-    if (animID >= 0 && animID < animations.size() && animID != currentAnim) {
+    if (animID >= 0 && animID < (int)animations.size() && animID != currentAnim) {
 
         currentAnim = animID;
         step = 0;
