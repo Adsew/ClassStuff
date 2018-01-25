@@ -12,6 +12,7 @@ Description: Displays an image to the screen.
 
 #include "Core.h"
 
+#include "AssetManager.h"
 #include "RenderSystem.h"
 #include "TextureAsset.h"
 #include "UITexture.h"
@@ -23,6 +24,8 @@ IMPLEMENT_DERIVED_COMPONENT(UITexture, UIElement);
 void UITexture::initialize() {
 
     UIElement::initialize();
+
+    texture = NULL;
 }
 
 void UITexture::update() {
@@ -96,4 +99,9 @@ Component &UITexture::operator=(const Component &comp) {
     sprite.setTextureRect(rectangle);
 
     return *this;
+}
+
+void UITexture::setTexture(const char *name) {
+
+    texture = AssetManager::Instance().getAsset(name);
 }

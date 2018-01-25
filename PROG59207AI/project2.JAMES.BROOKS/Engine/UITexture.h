@@ -24,6 +24,8 @@ class UITexture : public UIElement {
 
 protected:
 
+    std::shared_ptr<Asset> texture;
+
     sf::Sprite sprite;
 
 
@@ -42,6 +44,8 @@ protected:
 public:
 
     virtual Component &operator=(const Component &comp) override;
+
+    void setTexture(const char *name);
 };
 
 #endif // !UI_TEXTURE_H

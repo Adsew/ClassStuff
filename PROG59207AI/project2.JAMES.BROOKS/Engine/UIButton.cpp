@@ -13,6 +13,7 @@ Description: Displays text to the screen.
 #include "Core.h"
 
 #include "Timer.h"
+#include "AssetManager.h"
 #include "InputManager.h"
 #include "RenderSystem.h"
 #include "ButtonAction.h"
@@ -26,6 +27,8 @@ IMPLEMENT_DERIVED_COMPONENT(UIButton, UIElement);
 void UIButton::initialize() {
 
     UIElement::initialize();
+
+    texture = NULL;
 
     displayFont.loadFromFile("../res/Yes_Union.ttf");
     displayText.setFont(displayFont);
@@ -208,6 +211,11 @@ void UIButton::setButtonPosition(int x, int y) {
     buttonPosition.y = y;
 
     sprite.setPosition(sf::Vector2f(buttonPosition));
+}
+
+void UIButton::setTexture(const char *name) {
+
+    texture = AssetManager::Instance().getAsset(name);
 }
 
 void UIButton::setTextureScale(int x, int y) {

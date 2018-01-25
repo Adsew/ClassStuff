@@ -28,6 +28,8 @@ class UIButton : public UIElement {
 
 protected:
 
+    std::shared_ptr<Asset> texture;
+
     sf::Text displayText;
     sf::Font displayFont;
     sf::Sprite sprite;
@@ -66,6 +68,8 @@ public:
     void setTextPosition(int x, int y);
 
     void setButtonPosition(int x, int y);
+
+    void setTexture(const char *name);
 
     void setTextureScale(int x, int y);
 };

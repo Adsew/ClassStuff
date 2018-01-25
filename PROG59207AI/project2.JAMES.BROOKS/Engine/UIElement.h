@@ -33,7 +33,6 @@ class UIElement : public Component, public IRenderable {
 
 protected:
 
-    std::shared_ptr<Asset> texture;
     sf::IntRect rectangle;
 
 
@@ -52,8 +51,6 @@ protected:
 public:
 
     virtual Component &operator=(const Component &comp) override = 0;
-
-    virtual void setTexture(const char *name);
 
     virtual void setRectangle(int top, int left, int x, int y);
 };
