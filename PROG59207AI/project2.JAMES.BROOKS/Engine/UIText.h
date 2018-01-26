@@ -22,6 +22,8 @@ class UIText : public UIElement {
 
     /***** Variables *****/
 
+protected:
+
     sf::Text displayText;
     sf::Font displayFont;
     std::string mytext;

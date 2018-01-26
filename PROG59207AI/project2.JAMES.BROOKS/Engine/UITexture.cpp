@@ -12,9 +12,9 @@ Description: Displays an image to the screen.
 
 #include "Core.h"
 
+#include "TextureAsset.h"
 #include "AssetManager.h"
 #include "RenderSystem.h"
-#include "TextureAsset.h"
 #include "UITexture.h"
 
 
