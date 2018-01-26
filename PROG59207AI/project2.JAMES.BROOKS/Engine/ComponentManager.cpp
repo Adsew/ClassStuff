@@ -11,6 +11,7 @@ Description: Maintains the memory and functionality of all components currently 
 
 
 #include "Core.h"
+#include "TypeRegisterRTTI.h"
 
 #include "Component.h"
 #include "ComponentManager.h"
@@ -30,6 +31,7 @@ ComponentManager::~ComponentManager() {
 
 void ComponentManager::initialize() {
     
+    REGISTER_CORE_COMPONENTS();
 }
 
 void ComponentManager::clean() {
@@ -71,7 +73,10 @@ void ComponentManager::update() {
 
 void ComponentManager::addComponentType(const char *name, std::function<Component *(unsigned int)> creationFunc) {
 
-    createComponentFuncs[name] = creationFunc;
+    if (createComponentFuncs.find(name) == createComponentFuncs.end()) {
+
+        createComponentFuncs[name] = creationFunc;
+    }
 }
 
 Component *ComponentManager::createComponent(const char *compType) {

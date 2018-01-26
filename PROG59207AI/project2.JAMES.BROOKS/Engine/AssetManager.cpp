@@ -12,12 +12,15 @@ Description: Manages all assets created during the course of the game. Responsib
 
 
 #include "Core.h"
+#include "TypeRegisterRTTI.h"
 
 #include "Asset.h"
 #include "AssetManager.h"
 
 
 void AssetManager::initialize() {
+
+    REGISTER_CORE_ASSETS();
 
     assets.clear();
 }

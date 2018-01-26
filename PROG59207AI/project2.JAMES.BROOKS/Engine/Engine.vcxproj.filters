@@ -177,6 +177,9 @@
     <ClInclude Include="ButtonActionSceneChange.h">
       <Filter>Header\Game\Object\Component\UI\ButtonActions</Filter>
     </ClInclude>
+    <ClInclude Include="TypeRegisterRTTI.h">
+      <Filter>Header\System\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

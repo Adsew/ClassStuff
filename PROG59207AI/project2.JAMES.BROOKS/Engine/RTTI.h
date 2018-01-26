@@ -62,6 +62,10 @@ protected:                                                  \
 
 
 
+#define CORE_IMPLEMENT_COMPONENT(_class_type_) _class_type_##::__TypeRegister _class_type_##_tr;
+
+
+
 #define IMPLEMENT_COMPONENT(_class_type_)                                   \
                                                                             \
 static _class_type_##::__TypeRegister _class_type_##_tr;                    \
@@ -71,6 +75,7 @@ _class_type_##::##_class_type_##(unsigned int uniqueID)                     \
                                                                             \
 _class_type_##::##_class_type_##(unsigned int uniqueID, const char *type)   \
     : Component(uniqueID, type) {}
+
 
 
 #define IMPLEMENT_ABSTRACT_COMPONENT(_class_type_)                          \
@@ -117,6 +122,9 @@ public:                                                     \
             );                                              \
         }                                                   \
     };
+
+
+#define CORE_IMPLEMENT_ASSET(_class_type_) _class_type_##::__TypeRegister _class_type_##_tr;
 
 
 #define IMPLEMENT_ASSET(_class_type_) static _class_type_##::__TypeRegister _class_type_##_tr;
