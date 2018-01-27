@@ -1,0 +1,21 @@
+AI
+---------------------------
+
+attacks are scrips with an attack function, range check function, and a total damage output function
+	Attack scripts will hold the logic for what happens during an attack.
+	Attacks will have a list of properties (attributes) such as grapple, slow, etc
+	These properties will have a rock paper scissors hierarchy to see what works with what
+	for proper capatalization by the enemies
+
+have a CA event style structure for enemy behaviours, add the bahaviour tree seperatly as a parameter
+	Instead of always checking decisions, behaviours are determined by the tree
+
+Have a heauristic that checks if the attack can hit the player and the damage itll do,
+	the heuristic will also check if other allies engageing the player on the blackboard
+	have posted that their attacks have connected for possible foll.owups.
+	EG if a grapple has been landed, it adds to the heauristic of an attack that follows
+	up on grapples.
+
+Have a singleton blackboard that keeps track of enemeies engaged with the player, thus not having to
+	check all enemies to see what theyre doing all the time. Enemy script will add itseslf when
+	in LOS and remove when out of LOS for a set time.
