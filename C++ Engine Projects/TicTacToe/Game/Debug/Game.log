@@ -1,0 +1,4 @@
+﻿  main.cpp
+main.obj : error LNK2019: unresolved external symbol "public: void __thiscall GameEngine::initialize(char const *)" (?initialize@GameEngine@@QAEXPBD@Z) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "public: void __thiscall GameEngine::gameLoop(void)" (?gameLoop@GameEngine@@QAEXXZ) referenced in function _main
+C:\Users\brookjam\Class Projects\ClassStuff\C++ Engine Projects\TicTacToe\Debug\Game.exe : fatal error LNK1120: 2 unresolved externals

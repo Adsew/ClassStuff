@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Scene>
+    <GameObject name="TitleBackdrop">
+        <Components>
+            <Component type="UITexture" width="600" height="600" xOrigin="0" yOrigin="0" xScale="1" yScale="1" asset="TitleImage" />
+        </Components>
+    </GameObject>
+    <GameObject name="StartButton">
+        <Components>
+            <Component type="UIButton" priority="1">
+                <texture position.x="260" position.y="215" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
+            </Component>
+            <Component type="ButtonActionSceneChange" scene="PlayingBoard" />
+        </Components>
+    </GameObject>
+    <GameObject name="QuitButton">
+        <Components>
+            <Component type="UIButton" priority="1">
+                <texture position.x="260" position.y="350" width="300" height="300" xOrigin="0" yOrigin="0" xScale="0.1f" yScale="0.1f" asset="ButtonTexture" />
+            </Component>
+            <Component type="ButtonActionQuit" />
+        </Components>
+    </GameObject>
+</Scene>

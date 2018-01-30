@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Assets>
+	<TitleImage type="TextureAsset" path="res/Textures/titlescreen.png" />
+	<XPiece type="TextureAsset" path="res/Textures/x.png" />
+	<OPiece type="TextureAsset" path="res/Textures/o.png" />
+	<Board type="TextureAsset" path="res/Textures/board.png" />
+</Assets>
