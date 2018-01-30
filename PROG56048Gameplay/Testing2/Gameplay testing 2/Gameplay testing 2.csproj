@@ -87,6 +87,8 @@
     <Compile Include="Assets\Game\Aspects\AAddComponent.cs" />
     <Compile Include="Assets\Game\Aspects\ACollidable.cs" />
     <Compile Include="Assets\Game\Aspects\ADestroySelf.cs" />
+    <Compile Include="Assets\Game\Aspects\AEquipable.cs" />
+    <Compile Include="Assets\Game\Aspects\AEquipSlot.cs" />
     <Compile Include="Assets\Game\Aspects\ASizeChanger.cs" />
     <Compile Include="Assets\Game\Aspects\ATransferGameObject.cs" />
     <Compile Include="Assets\Game\Identifiers\IsPlayer.cs" />
