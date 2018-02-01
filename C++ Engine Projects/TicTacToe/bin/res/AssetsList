@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <Assets>
 	<TitleImage type="TextureAsset" path="res/Textures/titlescreen.png" />
-	<XPiece type="TextureAsset" path="res/Textures/x.png" />
-	<OPiece type="TextureAsset" path="res/Textures/o.png" />
-	<Board type="TextureAsset" path="res/Textures/board.png" />
+    <QuitButtonTexture type="TextureAsset" path="res/Textures/QuitButton.png" />
+    <StartButtonTexture type="TextureAsset" path="res/Textures/StartButton.png" />
+	<XPieceTexture type="TextureAsset" path="res/Textures/x.png" />
+	<OPieceTexture type="TextureAsset" path="res/Textures/o.png" />
+	<BoardTexture type="TextureAsset" path="res/Textures/board.png" />
 </Assets>
