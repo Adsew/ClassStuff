@@ -21,14 +21,16 @@ class Asset;
 
 class Player : public Component {
 
-    REGISTER_ABSTRACT_COMPONENT(Player);
+    REGISTER_COMPONENT(Player);
 
 
     /***** Variables *****/
 
 public:
 
-    std::shared_ptr<Asset> myPeice;
+    std::shared_ptr<Asset> myPiece;
+
+    char myLetter;
 
     bool human;
 
