@@ -8,6 +8,7 @@ public class IsPlayer : MonoBehaviour {
 
     public AudioClip deathSound;
     public AudioClip winSound;
+    public AudioClip scoreSound;
 
     private AudioSource myAudioSource;
 
@@ -37,6 +38,14 @@ public class IsPlayer : MonoBehaviour {
         if (winSound != null && myAudioSource != null) {
 
             myAudioSource.PlayOneShot(winSound);
+        }
+    }
+
+    public void scoreUpSound() {
+
+        if (scoreSound != null && myAudioSource != null) {
+
+            myAudioSource.PlayOneShot(scoreSound);
         }
     }
 }

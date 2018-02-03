@@ -8,6 +8,13 @@ public class CoinTriggerZone : MonoBehaviour {
 
         if (other.tag == "Player") {
 
+            IsPlayer player = other.GetComponent<IsPlayer>();
+
+            if (player != null) {
+
+                player.scoreUpSound();
+            }
+
             ScoreManager.This.updateScore(1);
 
             Destroy(gameObject);
