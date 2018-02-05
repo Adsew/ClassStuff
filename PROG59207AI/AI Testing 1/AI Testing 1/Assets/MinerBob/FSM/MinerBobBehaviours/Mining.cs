@@ -7,6 +7,7 @@ public class Mining : StateMachineBehaviour {
     public float thirstIncrease;
     public float goldIncrease;
     public float fatigueIncrease;
+    public float yearsSpent;
 
     private MinerBob bob;
 
@@ -24,8 +25,13 @@ public class Mining : StateMachineBehaviour {
         Debug.Log("You mined an hour");
 
         bob.mine(goldIncrease, fatigueIncrease, thirstIncrease);
+        bob.age(yearsSpent);
 
-        if (bob.currentGold >= bob.maxNuggets) {
+        if (bob.currentAge > bob.lifeSpan) {
+
+            animator.SetTrigger("Dying");
+        }
+        else if (bob.currentGold >= bob.maxNuggets) {
 
             animator.SetTrigger("Deposit");
         }

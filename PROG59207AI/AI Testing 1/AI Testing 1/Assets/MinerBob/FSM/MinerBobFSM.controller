@@ -44,6 +44,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: Dying
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: DestroyMe
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -70,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pricePerDrink: 1
   thirstQuenchedPerDrink: 10
+  yearsSpent: 0.05
 --- !u!114 &114030689497815920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,6 +94,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4953ef01f27794fbf0732266a119ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114324855626407446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c563ea5221aa22442b0a03dfdaf10f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114462560871906086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c436d38022fe4ed4b8a14bda916b45b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeTilDeletion: 5
 --- !u!114 &114467249028406996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fatigueRemoved: -10
+  yearsSpent: 0.01
 --- !u!114 &114815347442685522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,6 +144,31 @@ MonoBehaviour:
   thirstIncrease: 1
   goldIncrease: 1
   fatigueIncrease: 1
+  yearsSpent: 0.1
+--- !u!1101 &1101053600069855424
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Dying
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102306779729125538}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &1101078881221243002
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -251,6 +313,30 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1101 &1101974751934397072
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: DestroyMe
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 1102971679692580430}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.75
+  m_HasExitTime: 0
+  m_HasFixedDuration: 0
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &1101987869504717602
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -275,6 +361,31 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &1102306779729125538
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Death
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 1101974751934397072}
+  m_StateMachineBehaviours:
+  - {fileID: 114462560871906086}
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_Motion: {fileID: 0}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
 --- !u!1102 &1102462675953839360
 AnimatorState:
   serializedVersion: 5
@@ -378,6 +489,30 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
+--- !u!1102 &1102971679692580430
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Destroy Game Object
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours:
+  - {fileID: 114324855626407446}
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_Motion: {fileID: 0}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
 --- !u!1107 &1107276299022727784
 AnimatorStateMachine:
   serializedVersion: 5
@@ -394,12 +529,19 @@ AnimatorStateMachine:
     m_Position: {x: 312, y: 24, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102892538898494356}
-    m_Position: {x: 240, y: -72, z: 0}
+    m_Position: {x: 312, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102462675953839360}
     m_Position: {x: 612, y: 24, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102306779729125538}
+    m_Position: {x: 36, y: -72, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102971679692580430}
+    m_Position: {x: -192, y: -72, z: 0}
   m_ChildStateMachines: []
-  m_AnyStateTransitions: []
+  m_AnyStateTransitions:
+  - {fileID: 1101053600069855424}
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SleepingState : StateMachineBehaviour {
 
     public float fatigueRemoved = -10.0f;
+    public float yearsSpent;
 
     private MinerBob bob;
 
@@ -20,8 +21,13 @@ public class SleepingState : StateMachineBehaviour {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
         bob.sleep(fatigueRemoved);
+        bob.age(yearsSpent);
 
-        if (bob.fatigueLevel <= 0) {
+        if (bob.currentAge > bob.lifeSpan) {
+
+            animator.SetTrigger("Dying");
+        }
+        else if (bob.fatigueLevel <= 0) {
 
             animator.SetTrigger("Rested");
         }

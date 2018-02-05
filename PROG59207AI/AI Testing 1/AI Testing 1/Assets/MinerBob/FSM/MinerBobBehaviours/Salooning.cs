@@ -6,6 +6,7 @@ public class Salooning : StateMachineBehaviour {
 
     public float pricePerDrink = 1.0f;
     public float thirstQuenchedPerDrink = 10.0f;
+    public float yearsSpent;
 
     private MinerBob bob;
 
@@ -23,13 +24,18 @@ public class Salooning : StateMachineBehaviour {
         if (bob.currentGold >= pricePerDrink) {
 
             bob.drink(thirstQuenchedPerDrink, pricePerDrink);
+            bob.age(yearsSpent);
         }
         else {
 
             animator.SetTrigger("NotThirsty");
         }
 
-        if (bob.thirstLevel <= 0) {
+        if (bob.currentAge > bob.lifeSpan) {
+
+            animator.SetTrigger("Dying");
+        }
+        else if (bob.thirstLevel <= 0) {
 
             animator.SetTrigger("NotThirsty");
         }

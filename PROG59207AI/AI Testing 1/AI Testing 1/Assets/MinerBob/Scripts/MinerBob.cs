@@ -10,12 +10,14 @@ public class MinerBob : MonoBehaviour {
     public float maxNuggets = 20.0f;
     public float thirstThreshold = 50.0f;
     public float tirednessThreshold = 50.0f;
-
+    public float lifeSpan = 100.0f;
+    
     public float currentGold = 0.0f;
     public float bankAccount = 0.0f;
     public float thirstLevel = 0.0f;
     public float fatigueLevel = 0.0f;
-
+    public float currentAge = 15.0f;
+    
     public void sleep(float restSpeed) {
 
         fatigueLevel += restSpeed;
@@ -43,5 +45,10 @@ public class MinerBob : MonoBehaviour {
 
         currentGold -= amount;
         bankAccount += amount;
+    }
+
+    public void age(float years) {
+
+        currentAge += years;
     }
 }
