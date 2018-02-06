@@ -364,6 +364,7 @@
     <Compile Include="Assets\MixinTesting\Aspects\ASizeChanger.cs" />
     <Compile Include="Assets\MixinTesting\Aspects\ATransferGameObject.cs" />
     <Compile Include="Assets\MixinTesting\Identifiers\IsPlayer.cs" />
+    <Compile Include="Assets\NavMeshTesting\Scripts\TrackTargetNavMesh.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cinemachine\ReleaseNotes.txt" />
