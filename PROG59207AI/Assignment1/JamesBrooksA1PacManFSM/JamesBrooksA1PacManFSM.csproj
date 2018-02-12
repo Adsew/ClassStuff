@@ -315,8 +315,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game\Animation\Animators\Shared\BGhostRecall.cs" />
-    <Compile Include="Assets\Game\Animation\Animators\Shared\BGhostReviving.cs" />
+    <Compile Include="Assets\Game\AI\Shared\BGhostRecall.cs" />
+    <Compile Include="Assets\Game\AI\Shared\BGhostReviving.cs" />
     <Compile Include="Assets\Game\Scripts\Game\GameDirector.cs" />
     <Compile Include="Assets\Game\Scripts\Game\PacmanController.cs" />
     <Compile Include="Assets\Game\Scripts\Game\PelletController.cs" />
@@ -325,6 +325,7 @@
     <Compile Include="Assets\Game\Scripts\Ghosts\GhostController.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\BehaviourMachine\Readme!!!.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Plugins\X-UniTMX\ObjectTypesForTiled.xml" />
     <None Include="Assets\Resources\PacMan\Level.xml" />
