@@ -355,12 +355,6 @@
     <Compile Include="Assets\Plugins\BehaviourMachine Pro\Vehicle\Source\SetMotorTorque.cs" />
     <Compile Include="Assets\Plugins\BehaviourMachine Pro\Vehicle\Source\SetSteerAngle.cs" />
     <Compile Include="Assets\Plugins\BehaviourMachine Pro\Vehicle\Source\UpdateWheelModel.cs" />
-    <Compile Include="Assets\Plugins\BehaviourMachine\Sample Scenes\4 - Controllers\5 - ThirdPerson (Mecanim + CharacterController)\Crouch.cs" />
-    <Compile Include="Assets\Plugins\BehaviourMachine\Sample Scenes\4 - Controllers\5 - ThirdPerson (Mecanim + CharacterController)\Jump.cs" />
-    <Compile Include="Assets\Plugins\BehaviourMachine\Sample Scenes\4 - Controllers\5 - ThirdPerson (Mecanim + CharacterController)\Motion.cs" />
-    <Compile Include="Assets\Plugins\BehaviourMachine\Sample Scenes\7 - Games\Roll-a-Ball\Move.cs" />
-    <Compile Include="Assets\Plugins\BehaviourMachine\Sample Scenes\7 - Games\Roll-a-Ball\ProcessTrigger.cs" />
-    <Compile Include="Assets\Plugins\BehaviourMachine\Sample Scenes\7 - Games\Roll-a-Ball\UpdateGUI.cs" />
     <Compile Include="Assets\Plugins\BehaviourMachine\Source\Blackboard\InternalBlackboard.cs" />
     <Compile Include="Assets\Plugins\BehaviourMachine\Source\Blackboard\InternalGlobalBlackboard.cs" />
     <Compile Include="Assets\Plugins\BehaviourMachine\Source\Nodes\Actions\Animation\BlendAnimation.cs" />

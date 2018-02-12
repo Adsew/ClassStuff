@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviourMachine;
 
-public class BStartState : MonoBehaviour {
+public class BStartState : StateBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	void OnEnable() {
+
+        SendEvent("FINISHED");
+    }
 }

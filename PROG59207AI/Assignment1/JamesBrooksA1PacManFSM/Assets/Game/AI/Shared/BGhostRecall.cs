@@ -7,14 +7,11 @@ public class BGhostRecall : StateBehaviour {
 
     private GhostController gControl;
     private Transform myTrans;
-
-    void Start() {
+    
+    void OnEnable() {
 
         gControl = GetComponent<GhostController>();
         myTrans = transform;
-    }
-
-    void OnEnable() {
 
         if (gControl != null) {
 
