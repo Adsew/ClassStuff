@@ -321,6 +321,15 @@
     <Compile Include="Assets\MinerBob\FSM\MinerBobBehaviours\Salooning.cs" />
     <Compile Include="Assets\MinerBob\FSM\MinerBobBehaviours\SleepingState.cs" />
     <Compile Include="Assets\MinerBob\Scripts\MinerBob.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Actions\BankingAction.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Actions\DrinkingAction.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Actions\MinerBobBAction.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Actions\MiningAction.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Actions\SleepingAction.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Conditions\IsRichCondition.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Conditions\IsThirstyCondition.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Conditions\IsTiredCondition.cs" />
+    <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Conditions\MinerBobBaseCondition.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\BehaviourMachine\Readme!!!.txt" />
