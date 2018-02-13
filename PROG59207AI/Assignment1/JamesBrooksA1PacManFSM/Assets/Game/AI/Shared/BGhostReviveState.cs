@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourMachine;
 
-public class BGhostReviving : StateBehaviour {
+public class BGhostReviveState : BGhostState {
     
     private float cageTimer = 0.0f;
 
@@ -29,7 +29,12 @@ public class BGhostReviving : StateBehaviour {
                 col.enabled = true;
             }
 
-            //animator.SetBool("IsDead", false);
+            if (anim != null) {
+
+                anim.SetBool("IsDead", false);
+            }
+
+            SendEvent("FINISHED");
         }
     }
 }

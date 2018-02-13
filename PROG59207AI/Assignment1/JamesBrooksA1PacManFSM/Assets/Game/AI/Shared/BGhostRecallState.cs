@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourMachine;
 
-public class BGhostRecall : StateBehaviour {
-
-    private GhostController gControl;
-    private Transform myTrans;
+public class BGhostRecallState : BGhostState {
     
     void OnEnable() {
-
-        gControl = GetComponent<GhostController>();
-        myTrans = transform;
-
+        
         if (gControl != null) {
 
             gControl.moveToLocation = gControl.ReturnLocation;
@@ -34,7 +28,7 @@ public class BGhostRecall : StateBehaviour {
             if (myTrans.position.x == gControl.ReturnLocation.x
                 && myTrans.position.y == gControl.ReturnLocation.y) {
 
-                //animator.SetTrigger("IsHome");
+                SendEvent("FINISHED");
             }
         }
     }
