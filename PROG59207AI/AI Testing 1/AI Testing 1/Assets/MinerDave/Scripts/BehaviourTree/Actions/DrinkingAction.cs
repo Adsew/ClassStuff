@@ -11,16 +11,16 @@ public class DrinkingAction : MinerBobBAction {
     public float yearsSpent = 0.1f;
 
     public override Status Update() {
-
-        if (bob.thirstLevel <= 0) {
-
-            return Status.Success;
-        }
-
+        
         if (bob.currentGold >= pricePerDrink) {
 
             bob.drink(thirstQuenchedPerDrink, pricePerDrink);
             bob.age(yearsSpent);
+
+            if (bob.thirstLevel <= 0) {
+
+                return Status.Success;
+            }
 
             return Status.Running;
         }

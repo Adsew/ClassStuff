@@ -5,7 +5,7 @@ using BehaviourMachine;
 
 public class BGhostChaseState : BGhostState {
     
-    private void Update() {
+    protected void Update() {
         
         // Check need to flee
         if (state == GameDirector.States.enState_PacmanInvincible) {
