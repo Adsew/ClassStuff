@@ -10,7 +10,7 @@ public abstract class BGhostState : StateBehaviour {
     protected Animator anim = null;
     protected GameDirector.States state = GameDirector.States.enState_Normal;
 
-    void Awake() {
+    protected void Awake() {
 
         if (gControl == null) {
 

@@ -5,8 +5,22 @@ using BehaviourMachine;
 
 public class BStartState : StateBehaviour {
 
+    private float timer = 0.0f;
+
+    public float timeTilStart;
+
 	void OnEnable() {
 
-        SendEvent("FINISHED");
+        timer = 0.0f;
+    }
+
+    void Update() {
+
+        timer += Time.deltaTime;
+
+        if (timer >= timeTilStart) {
+
+            SendEvent("FINISHED");
+        }
     }
 }

@@ -4,7 +4,19 @@ using UnityEngine;
 using BehaviourMachine;
 
 public class BGhostChaseState : BGhostState {
-    
+
+    protected PacmanController pacman;
+
+    new protected void Awake() {
+
+        base.Awake();
+
+        if (pacman == null && gControl != null) {
+
+            pacman = gControl.PacMan.gameObject.GetComponent<PacmanController>();
+        }
+    }
+
     protected void Update() {
         
         // Check need to flee
