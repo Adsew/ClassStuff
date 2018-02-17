@@ -50,3 +50,6 @@ TagManager:
   - name: Player
     uniqueID: 4253467721
     locked: 0
+  - name: Destroyable
+    uniqueID: 1168394775
+    locked: 0
