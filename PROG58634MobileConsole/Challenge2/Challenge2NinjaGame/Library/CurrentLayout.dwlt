@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 913, y: 421}
   m_MaxSize: {x: 22008, y: 14021}
   vertical: 1
-  controlID: 57
+  controlID: 120
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 913, y: 321}
   m_MaxSize: {x: 22008, y: 10021}
   vertical: 0
-  controlID: 58
+  controlID: 121
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 321}
   m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 59
+  controlID: 34
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -484,15 +484,16 @@ MonoBehaviour:
     - {fileID: 1107254656183467210, guid: 253bf15519d8a8641a7763f19f6d53ee, type: 2}
     - {fileID: 1102074186088657038, guid: 253bf15519d8a8641a7763f19f6d53ee, type: 2}
     - {fileID: 1102597664703924960, guid: 253bf15519d8a8641a7763f19f6d53ee, type: 2}
+    - {fileID: 1107777021306152548, guid: 74aea447231b55e4abcaca1f90f0ab72, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.7175601
+    - e00: 0.7626316
       e01: 0
       e02: 0
-      e03: -52.475807
+      e03: -23.131592
       e10: 0
-      e11: 0.7175601
+      e11: 0.7626316
       e12: 0
-      e13: 7.0399733
+      e13: 107.600525
       e20: 0
       e21: 0
       e22: 1
@@ -525,6 +526,22 @@ MonoBehaviour:
       e11: 1
       e12: 0
       e13: 82
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.7626316
+      e01: 0
+      e02: 0
+      e03: -23.131592
+      e10: 0
+      e11: 0.7626316
+      e12: 0
+      e13: 104.549995
       e20: 0
       e21: 0
       e22: 1
@@ -574,14 +591,14 @@ MonoBehaviour:
     height: 329
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 7680.186355799968
-  m_2DMode: 0
+  lastFramingTime: 285.7282051236936
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.823059, y: 6.8554688, z: -11.994141}
+    m_Target: {x: 5.4707503, y: 2.5406291, z: 1.1992188}
     speed: 2
-    m_Value: {x: 5.823059, y: 6.8554688, z: -11.994141}
+    m_Value: {x: 5.4707503, y: 2.5406291, z: 1.1992188}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -597,27 +614,27 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     yGrid:
-      m_Target: 1
-      speed: 2
-      m_Value: 1
-    zGrid:
       m_Target: 0
       speed: 2
       m_Value: 0
+    zGrid:
+      m_Target: 1
+      speed: 2
+      m_Value: 1
   m_Rotation:
-    m_Target: {x: -0.17340808, y: 0.01536, z: -0.0027053724, w: -0.9847299}
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: -0.17340808, y: 0.015360001, z: -0.0027053724, w: -0.98472995}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.305883
+    m_Target: 16.407993
     speed: 2
-    m_Value: 13.305883
+    m_Value: 16.407993
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: 0.04017865, y: -0.0053985836, z: -0.0002176007, w: -0.99917793}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -677,7 +694,7 @@ MonoBehaviour:
     width: 275
     height: 739
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_ScrollPosition: {x: 0, y: 455.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 160
@@ -713,9 +730,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f02d0000
-    m_LastClickedID: 11760
-    m_ExpandedIDs: dceeffff00000000f02d0000f62d0000
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 9cfbffff9efbffff00000000422b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -777,33 +794,33 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Game/Animation/Controllers
+    - Assets/Game/Scripts
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Game/Animation/Controllers
+  - Assets/Game/Scripts
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\James\Documents\GitHub\ClassStuff\PROG58634MobileConsole\Challenge2\Challenge2NinjaGame
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3c2c0000
-    m_LastClickedID: 11324
-    m_ExpandedIDs: 00000000202c0000442c0000642c0000662c0000702c0000c22d000000ca9a3bffffff7f
+    m_SelectedIDs: ba270000
+    m_LastClickedID: 10170
+    m_ExpandedIDs: 00000000782700009627000072280000c4280000cc2a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Levels
+      m_OriginalName: Levels
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 10274
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_SearchString: 
@@ -817,7 +834,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 1a260000
     m_LastClickedID: 9754
-    m_ExpandedIDs: 00000000202c0000442c0000642c0000662c0000702c0000c22d0000
+    m_ExpandedIDs: 0000000078270000302800006428000070280000c4280000cc2a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -844,22 +861,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000845c00008e4b00006a2600002e2a00009e4f00002236000006400000564400008e76000076330000c0290000982a0000ce290000e64100006c270000a6290000fc290000542a0000f42a0000a2290000000000000e290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: MTimedDestroy
+      m_OriginalName: MTimedDestroy
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 13290
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
