@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61461437849313410}
   - component: {fileID: 50588934416447154}
   - component: {fileID: 114282508713753842}
+  - component: {fileID: 114899591972277940}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -76,7 +77,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1897974}
+  m_Offset: {x: 0, y: -0.14522678}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -87,7 +88,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6842312, y: 1.4735434}
+  m_Size: {x: 0.3053789, y: 0.5375534}
   m_EdgeRadius: 0
 --- !u!95 &95695070457119384
 Animator:
@@ -118,6 +119,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeTilDestroy: 10
+--- !u!114 &114899591972277940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1686648373124918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a2fb99efd0aaa4487245de13def1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212250253307228082
 SpriteRenderer:
   m_ObjectHideFlags: 1

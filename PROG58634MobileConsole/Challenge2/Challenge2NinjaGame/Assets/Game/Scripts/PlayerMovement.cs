@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool isAttacking = false;
 
+    public Transform respawnPoint = null;
+
     public string hMoveAxis = "Horizontal";
     public string vMoveAxis = "Vertical";
 
@@ -24,6 +26,14 @@ public class PlayerMovement : MonoBehaviour {
     public void setAttackingFinished() {
 
         isAttacking = false;
+    }
+
+    public void kill() {
+
+        if (respawnPoint != null && trans != null) {
+
+            trans.position = respawnPoint.position;
+        }
     }
 
 	// Use this for initialization

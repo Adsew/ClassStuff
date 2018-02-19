@@ -147,7 +147,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.05}
   serializedVersion: 2
-  m_Radius: 0.45
+  m_Radius: 0.4
 --- !u!81 &81525121628763610
 AudioListener:
   m_ObjectHideFlags: 1
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f646fcd24ed0aa94dacc74cd5b696daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
   hMoveAxis: Horizontal
   vMoveAxis: Vertical
   fireButton: Fire1

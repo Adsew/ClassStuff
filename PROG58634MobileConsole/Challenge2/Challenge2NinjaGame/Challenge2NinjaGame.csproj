@@ -303,8 +303,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Game\Scripts\MObjectSpawner.cs" />
-    <Compile Include="Assets\Game\Scripts\MTimedDestroy.cs" />
+    <Compile Include="Assets\Game\Scripts\DestroyTileTrigger.cs" />
+    <Compile Include="Assets\Game\Scripts\FireballTriggerDestroy.cs" />
+    <Compile Include="Assets\Game\Scripts\FireTrapFireTrigger.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MDestroy.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MObjectSpawner.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MPlaySound.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MTimedDestroy.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MTimedEvent.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MTriggerEvent.cs" />
     <Compile Include="Assets\Game\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

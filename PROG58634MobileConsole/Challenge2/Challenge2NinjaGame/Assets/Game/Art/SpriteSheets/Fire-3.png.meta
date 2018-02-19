@@ -92,7 +92,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -11, y: -115}
+        - {x: -11, y: -98}
+        - {x: 6, y: -98}
+        - {x: 6, y: -115}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00001
@@ -106,7 +110,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -14, y: -115}
+        - {x: -14, y: -64}
+        - {x: 10, y: -64}
+        - {x: 10, y: -115}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00002
@@ -120,7 +128,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -17, y: -114}
+        - {x: -17, y: 13}
+        - {x: 16, y: 13}
+        - {x: 16, y: -114}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00003
@@ -134,7 +146,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -26, y: -118}
+        - {x: -26, y: 58}
+        - {x: 29, y: 58}
+        - {x: 29, y: -118}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00004
@@ -148,7 +164,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -23, y: -112}
+        - {x: -23, y: 83}
+        - {x: 36, y: 83}
+        - {x: 36, y: -112}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00005
@@ -162,7 +182,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -22, y: -89}
+        - {x: -22, y: 84}
+        - {x: 42, y: 84}
+        - {x: 42, y: -89}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00006
@@ -176,7 +200,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -23, y: -76}
+        - {x: -23, y: 87}
+        - {x: 42, y: 87}
+        - {x: 42, y: -76}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00007
@@ -190,7 +218,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -24, y: -7}
+        - {x: -24, y: 87}
+        - {x: 45, y: 87}
+        - {x: 45, y: -7}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00008
@@ -204,7 +236,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -22, y: -1}
+        - {x: -22, y: 90}
+        - {x: 42, y: 90}
+        - {x: 42, y: -1}
       tessellationDetail: -1
     - serializedVersion: 2
       name: Fire-3_00009
@@ -218,7 +254,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -19, y: 25}
+        - {x: -19, y: 94}
+        - {x: 45, y: 94}
+        - {x: 45, y: 25}
       tessellationDetail: -1
     outline: []
     physicsShape: []
