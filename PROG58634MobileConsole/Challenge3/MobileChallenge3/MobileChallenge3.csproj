@@ -356,6 +356,8 @@
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineMixer.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
+    <Compile Include="Assets\Game\Scripts\Tiles\Animated Tile\Scripts\AnimatedTile.cs" />
+    <Compile Include="Assets\Game\Scripts\Tiles\Rule Tile\Scripts\RuleTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cinemachine\ReleaseNotes.txt" />
