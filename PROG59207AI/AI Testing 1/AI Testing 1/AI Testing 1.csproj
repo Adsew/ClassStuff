@@ -309,6 +309,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AttackFlee\Scripts\BTChangeDestination.cs" />
     <Compile Include="Assets\LightFlipping\Scripts\BaseState.cs" />
     <Compile Include="Assets\LightFlipping\Scripts\FSM.cs" />
     <Compile Include="Assets\LightFlipping\Scripts\ToggleEnableState.cs" />
