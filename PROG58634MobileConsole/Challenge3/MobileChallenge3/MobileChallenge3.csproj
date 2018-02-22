@@ -356,6 +356,16 @@
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineMixer.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineShot.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\CinemachineTrack.cs" />
+    <Compile Include="Assets\Game\Scripts\DestroyTileTrigger.cs" />
+    <Compile Include="Assets\Game\Scripts\FireballTriggerDestroy.cs" />
+    <Compile Include="Assets\Game\Scripts\FireTrapFireTrigger.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MDestroy.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MObjectSpawner.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MPlaySound.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MTimedDestroy.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MTimedEvent.cs" />
+    <Compile Include="Assets\Game\Scripts\Mixins\MTriggerEvent.cs" />
+    <Compile Include="Assets\Game\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Game\Scripts\Tiles\Animated Tile\Scripts\AnimatedTile.cs" />
     <Compile Include="Assets\Game\Scripts\Tiles\Rule Tile\Scripts\RuleTile.cs" />
   </ItemGroup>
