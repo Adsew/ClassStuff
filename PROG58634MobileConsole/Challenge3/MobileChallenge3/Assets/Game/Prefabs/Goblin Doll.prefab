@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 58096131098096670}
   - component: {fileID: 114793275044340054}
   - component: {fileID: 114751697676269602}
+  - component: {fileID: 114260357241575140}
   m_Layer: 0
   m_Name: Goblin Doll
   m_TagString: Untagged
@@ -58,6 +59,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &114260357241575140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1711086162066434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297b721f4d3386540904a50ffcd16fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreWorth: 1
 --- !u!114 &114751697676269602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,6 +99,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114751697676269602}
         m_MethodName: instantDestroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114260357241575140}
+        m_MethodName: increaseScore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
