@@ -1,0 +1,1219 @@
+fileFormatVersion: 2
+guid: 8f272ef6e1848a54897411877ff0afee
+timeCreated: 1519338646
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: level-geo_0
+    21300002: level-geo_1
+    21300004: level-geo_2
+    21300006: level-geo_3
+    21300008: level-geo_4
+    21300010: level-geo_5
+    21300012: level-geo_6
+    21300014: level-geo_7
+    21300016: level-geo_8
+    21300018: level-geo_9
+    21300020: level-geo_10
+    21300022: level-geo_11
+    21300024: level-geo_12
+    21300026: level-geo_13
+    21300028: level-geo_14
+    21300030: level-geo_15
+    21300032: level-geo_16
+    21300034: level-geo_17
+    21300036: level-geo_18
+    21300038: level-geo_19
+    21300040: level-geo_20
+    21300042: level-geo_21
+    21300044: level-geo_22
+    21300046: level-geo_23
+    21300048: level-geo_24
+    21300050: level-geo_25
+    21300052: level-geo_26
+    21300054: level-geo_27
+    21300056: level-geo_28
+    21300058: level-geo_29
+    21300060: level-geo_30
+    21300062: level-geo_31
+    21300064: level-geo_32
+    21300066: level-geo_33
+    21300068: level-geo_34
+    21300070: level-geo_35
+    21300072: level-geo_36
+    21300074: level-geo_37
+    21300076: level-geo_38
+    21300078: level-geo_39
+    21300080: level-geo_40
+    21300082: level-geo_41
+    21300084: level-geo_42
+    21300086: level-geo_43
+    21300088: level-geo_44
+    21300090: level-geo_45
+    21300092: level-geo_46
+    21300094: level-geo_47
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 32
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: level-geo_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -13, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -15}
+        - {x: -11, y: -16}
+        - {x: 14, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 14}
+        - {x: 12, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1, y: 16}
+        - {x: -15, y: 7}
+        - {x: -16, y: 3}
+        - {x: -16, y: -12}
+        - {x: -15, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 15, y: -16}
+        - {x: 16, y: -9}
+        - {x: 16, y: 12}
+        - {x: 6, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 5, y: 15}
+        - {x: -2, y: 15}
+        - {x: -10, y: 13}
+        - {x: -14, y: 6}
+        - {x: -14, y: -10}
+        - {x: -13, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: -15}
+        - {x: 14, y: -5}
+        - {x: 14, y: 8}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 4, y: 11}
+        - {x: -5, y: 11}
+        - {x: -11, y: 8}
+        - {x: -11, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: -3}
+        - {x: 11, y: 2}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -10, y: 15}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -5, y: -14}
+        - {x: 12, y: -14}
+        - {x: 16, y: -11}
+        - {x: 16, y: 6}
+        - {x: 13, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -10, y: 15}
+        - {x: -14, y: 12}
+        - {x: -14, y: -10}
+        - {x: -5, y: -14}
+        - {x: 12, y: -14}
+        - {x: 16, y: -11}
+        - {x: 16, y: 6}
+        - {x: 13, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 15}
+        - {x: -14, y: -10}
+        - {x: -3, y: -16}
+        - {x: 13, y: -16}
+        - {x: 16, y: -10}
+        - {x: 16, y: 13}
+        - {x: 15, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 15}
+        - {x: -14, y: 14}
+        - {x: -14, y: -10}
+        - {x: -11, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -13}
+        - {x: 16, y: 14}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 16}
+        - {x: -16, y: 13}
+        - {x: -16, y: 0}
+        - {x: -13, y: -4}
+        - {x: -3, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: 15, y: -16}
+        - {x: 16, y: -12}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: 16}
+        - {x: -12, y: -16}
+        - {x: 12, y: -16}
+        - {x: 12, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -10, y: 16}
+        - {x: -11, y: 12}
+        - {x: -12, y: 3}
+        - {x: -12, y: -16}
+        - {x: 10, y: -16}
+        - {x: 12, y: -15}
+        - {x: 12, y: 10}
+        - {x: 9, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: 16}
+        - {x: -14, y: 13}
+        - {x: -14, y: -7}
+        - {x: -10, y: -14}
+        - {x: 7, y: -14}
+        - {x: 16, y: -8}
+        - {x: 16, y: 13}
+        - {x: 12, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: 16}
+        - {x: -14, y: 13}
+        - {x: -14, y: -7}
+        - {x: -10, y: -14}
+        - {x: 7, y: -14}
+        - {x: 16, y: -8}
+        - {x: 16, y: 13}
+        - {x: 12, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -11, y: 16}
+        - {x: -14, y: 13}
+        - {x: -14, y: -8}
+        - {x: -6, y: -16}
+        - {x: 9, y: -16}
+        - {x: 13, y: -12}
+        - {x: 15, y: -6}
+        - {x: 16, y: -2}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: 16}
+        - {x: -14, y: 13}
+        - {x: -14, y: -6}
+        - {x: -8, y: -16}
+        - {x: 8, y: -16}
+        - {x: 16, y: -7}
+        - {x: 16, y: 13}
+        - {x: 12, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -13}
+        - {x: -6, y: -15}
+        - {x: 10, y: -15}
+        - {x: 16, y: -13}
+        - {x: 16, y: 9}
+        - {x: -8, y: 9}
+      - - {x: -14, y: 9}
+        - {x: -15, y: 7}
+        - {x: -15, y: 2}
+        - {x: -12, y: 1}
+        - {x: -8, y: 1}
+        - {x: -6, y: 3}
+        - {x: -6, y: 7}
+        - {x: -7, y: 9}
+      - - {x: -5, y: 14}
+        - {x: -7, y: 12}
+        - {x: -7, y: 10}
+        - {x: -5, y: 8}
+        - {x: -1, y: 8}
+        - {x: 1, y: 10}
+        - {x: 1, y: 12}
+        - {x: -1, y: 14}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 15}
+        - {x: -14, y: -16}
+        - {x: 13, y: -16}
+        - {x: 14, y: -13}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_22
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 16}
+        - {x: -13, y: 16}
+        - {x: -14, y: 7}
+        - {x: -14, y: -7}
+        - {x: -4, y: -15}
+        - {x: 3, y: -15}
+        - {x: 14, y: -8}
+        - {x: 14, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -11, y: 16}
+        - {x: -13, y: 14}
+        - {x: -13, y: -11}
+        - {x: -11, y: -13}
+        - {x: 2, y: -13}
+        - {x: 9, y: -10}
+        - {x: 9, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 16}
+        - {x: -9, y: 16}
+        - {x: -12, y: 15}
+        - {x: -14, y: 12}
+        - {x: -14, y: -7}
+        - {x: -9, y: -14}
+        - {x: 7, y: -14}
+        - {x: 16, y: -8}
+        - {x: 16, y: 5}
+        - {x: 14, y: 13}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 12, y: 16}
+        - {x: -9, y: 16}
+        - {x: -12, y: 15}
+        - {x: -14, y: 12}
+        - {x: -14, y: -7}
+        - {x: -9, y: -14}
+        - {x: 7, y: -14}
+        - {x: 16, y: -8}
+        - {x: 16, y: 5}
+        - {x: 14, y: 13}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14, y: 8}
+        - {x: -14, y: -9}
+        - {x: -2, y: -16}
+        - {x: 10, y: -16}
+        - {x: 16, y: -10}
+        - {x: 16, y: 7}
+        - {x: 15, y: 13}
+        - {x: 12, y: 16}
+        - {x: -10, y: 16}
+        - {x: -12, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: 16}
+        - {x: -14, y: 7}
+        - {x: -14, y: -6}
+        - {x: -7, y: -16}
+        - {x: 10, y: -16}
+        - {x: 16, y: -5}
+        - {x: 16, y: 8}
+        - {x: 10, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: -13}
+        - {x: -6, y: -15}
+        - {x: 10, y: -15}
+        - {x: 16, y: -13}
+        - {x: 16, y: 9}
+        - {x: -8, y: 9}
+      - - {x: -9, y: 15}
+        - {x: -11, y: 12}
+        - {x: -11, y: 10}
+        - {x: -9, y: 7}
+        - {x: 0, y: 7}
+        - {x: 1, y: 8}
+        - {x: 1, y: 13}
+        - {x: 0, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_29
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -13, y: 16}
+        - {x: -14, y: 13}
+        - {x: -14, y: -15}
+        - {x: 12, y: -15}
+        - {x: 14, y: -12}
+        - {x: 14, y: 6}
+        - {x: 13, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_30
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 15}
+        - {x: -6, y: 15}
+        - {x: -9, y: 14}
+        - {x: -15, y: 5}
+        - {x: -15, y: -13}
+        - {x: -9, y: -15}
+        - {x: 8, y: -15}
+        - {x: 15, y: -6}
+        - {x: 15, y: 6}
+        - {x: 14, y: 9}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: 9}
+        - {x: -2, y: 9}
+        - {x: -5, y: 5}
+        - {x: -7, y: 2}
+        - {x: -7, y: -1}
+        - {x: 1, y: -11}
+        - {x: 4, y: -11}
+        - {x: 9, y: -6}
+        - {x: 9, y: 0}
+        - {x: 5, y: 8}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 10}
+        - {x: -15, y: -7}
+        - {x: -10, y: -15}
+        - {x: 12, y: -15}
+        - {x: 16, y: -8}
+        - {x: 16, y: 11}
+        - {x: 12, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_33
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 16}
+        - {x: -10, y: 16}
+        - {x: -15, y: 10}
+        - {x: -15, y: -7}
+        - {x: -10, y: -15}
+        - {x: 12, y: -15}
+        - {x: 16, y: -8}
+        - {x: 16, y: 11}
+        - {x: 12, y: 15}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 7, y: 16}
+        - {x: -6, y: 16}
+        - {x: -15, y: 0}
+        - {x: -15, y: -10}
+        - {x: -9, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -8}
+        - {x: 16, y: 9}
+        - {x: 11, y: 13}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_35
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 16}
+        - {x: -15, y: 2}
+        - {x: -15, y: -10}
+        - {x: -5, y: -16}
+        - {x: 15, y: -16}
+        - {x: 16, y: -14}
+        - {x: 16, y: 11}
+        - {x: 13, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_36
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 6, y: 11}
+        - {x: -2, y: 11}
+        - {x: -8, y: 7}
+        - {x: -8, y: -9}
+        - {x: -6, y: -15}
+        - {x: 10, y: -15}
+        - {x: 16, y: -11}
+        - {x: 16, y: -2}
+        - {x: 13, y: 8}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_37
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 13}
+        - {x: -15, y: -12}
+        - {x: -14, y: -13}
+        - {x: 10, y: -13}
+        - {x: 16, y: -12}
+        - {x: 16, y: 11}
+        - {x: 9, y: 13}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_38
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 13, y: 13}
+        - {x: -11, y: 13}
+        - {x: -16, y: 12}
+        - {x: -16, y: -11}
+        - {x: -2, y: -11}
+        - {x: 4, y: -13}
+        - {x: 14, y: -13}
+        - {x: 15, y: -11}
+        - {x: 15, y: 11}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_39
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 11}
+        - {x: -6, y: 11}
+        - {x: -11, y: 4}
+        - {x: -11, y: -2}
+        - {x: -5, y: -10}
+        - {x: 0, y: -11}
+        - {x: 8, y: -11}
+        - {x: 14, y: -3}
+        - {x: 14, y: 2}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3, y: 11}
+        - {x: -3, y: 10}
+        - {x: -12, y: 2}
+        - {x: -12, y: -3}
+        - {x: -8, y: -11}
+        - {x: 16, y: -11}
+        - {x: 16, y: 11}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_41
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -15, y: 11}
+        - {x: -16, y: 10}
+        - {x: -16, y: -11}
+        - {x: 16, y: -11}
+        - {x: 16, y: 11}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_42
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: 16}
+        - {x: -16, y: 11}
+        - {x: -16, y: -10}
+        - {x: -9, y: -16}
+        - {x: 12, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 12}
+        - {x: 11, y: 16}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_43
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 11}
+        - {x: -16, y: -9}
+        - {x: -13, y: -11}
+        - {x: 6, y: -11}
+        - {x: 14, y: -8}
+        - {x: 14, y: 6}
+        - {x: 13, y: 10}
+        - {x: 10, y: 11}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_44
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -10, y: 13}
+        - {x: -16, y: 6}
+        - {x: -16, y: -2}
+        - {x: -9, y: -13}
+        - {x: 5, y: -13}
+        - {x: 16, y: -11}
+        - {x: 16, y: 12}
+        - {x: 11, y: 13}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_45
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 11}
+        - {x: -16, y: -11}
+        - {x: 16, y: -11}
+        - {x: 16, y: 11}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_46
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7, y: 13}
+        - {x: -16, y: 12}
+        - {x: -16, y: -11}
+        - {x: -7, y: -13}
+        - {x: 9, y: -13}
+        - {x: 15, y: -3}
+        - {x: 15, y: 5}
+        - {x: 9, y: 13}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: level-geo_47
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 6, y: 16}
+        - {x: -10, y: 16}
+        - {x: -16, y: 10}
+        - {x: -16, y: -9}
+        - {x: -15, y: -12}
+        - {x: -8, y: -16}
+        - {x: 9, y: -16}
+        - {x: 16, y: -7}
+        - {x: 16, y: 7}
+        - {x: 8, y: 15}
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
