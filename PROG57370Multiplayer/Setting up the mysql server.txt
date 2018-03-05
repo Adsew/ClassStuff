@@ -1,0 +1,21 @@
+
+
+
+To allow remote access by the external program
+----------------------------------------------------
+
+On the server, go to location:
+
+somewhere/php.inc.conf or something
+
+allow all
+grant all
+etc
+
+
+opt/bitnami/mysql/my.cnf
+
+Change bind-address = 127.0.0.1
+to bind-address = 0.0.0.0
+
+(might be able to change variable via script using sql commands
