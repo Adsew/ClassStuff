@@ -352,6 +352,14 @@
     <Compile Include="Assets\Cinemachine\PostFX\Editor\CinemachinePostProcessingEditor.cs" />
     <Compile Include="Assets\Cinemachine\PostFX\Editor\PostFXAutoImport.cs" />
     <Compile Include="Assets\Cinemachine\Timeline\Editor\CinemachineShotEditor.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\Graph\Graph.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\Graph\Layouts\IGraphLayout.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\Graph\Layouts\ReingoldTilford.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\Graph\Node.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\Graph\Renderer\DefaultGraphRenderer.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\Graph\Renderer\IGraphRenderer.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\PlayableGraphVisualizer.cs" />
+    <Compile Include="Assets\PlayableAnimTesting\GraphVisualizer\Editor\PlayableGraphVisualizerWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Cinemachine\ReleaseNotes.txt" />

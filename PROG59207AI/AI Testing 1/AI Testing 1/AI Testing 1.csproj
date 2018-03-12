@@ -334,6 +334,7 @@
     <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Conditions\IsThirstyCondition.cs" />
     <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Conditions\IsTiredCondition.cs" />
     <Compile Include="Assets\MinerDave\Scripts\BehaviourTree\Conditions\MinerBobBaseCondition.cs" />
+    <Compile Include="Assets\NavMeshGuy\Script\NavMeshSimpleMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\BehaviourMachine\Readme!!!.txt" />

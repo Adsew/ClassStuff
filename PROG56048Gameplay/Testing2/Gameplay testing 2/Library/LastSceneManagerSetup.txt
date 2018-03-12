@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/NavMeshTesting/Scene/NavTest.unity
+- path: Assets/PlayableAnimTesting/Scenes/PlayableTest.unity
   isLoaded: 1
   isActive: 1
