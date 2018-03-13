@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/PlayableAnimTesting/Scenes/PlayableTest.unity
+- path: Assets/PerlinNoiseTesting/Scene/PerlinTerrain.unity
   isLoaded: 1
   isActive: 1
