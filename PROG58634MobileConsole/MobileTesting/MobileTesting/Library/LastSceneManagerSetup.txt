@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/GameProfWalk/Scene/Testing.unity
+- path: Assets/SceneManagement/Scene/Core.unity
   isLoaded: 1
   isActive: 1
