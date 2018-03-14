@@ -6,11 +6,6 @@ using UnityEngine.AI;
 public class NavMeshSimpleMovement : MonoBehaviour {
 
     private NavMeshAgent agent = null;
-
-    // Patrol Variables
-    private int routeDestination = 0;
-    public bool patrolMode = true;
-    public List<GameObject> patrolRoute = new List<GameObject>();
     
 	// Use this for initialization
 	void Start () {
@@ -32,14 +27,6 @@ public class NavMeshSimpleMovement : MonoBehaviour {
 
                     agent.SetDestination(hit.point);
                 }
-
-                patrolMode = false;
-            }
-
-            if (patrolRoute.Count > 0 && agent.velocity == Vector3.zero) {
-
-                agent.SetDestination(patrolRoute[routeDestination].transform.position);
-                routeDestination = (routeDestination + 1) % patrolRoute.Count;
             }
         }
 	}
