@@ -340,8 +340,11 @@
     <Compile Include="Assets\NavMeshGuy\Script\Behaviour\AtOffMeshLinkCondition.cs" />
     <Compile Include="Assets\NavMeshGuy\Script\Behaviour\FollowPathAction.cs" />
     <Compile Include="Assets\NavMeshGuy\Script\Behaviour\JumpAction.cs" />
+    <Compile Include="Assets\NavMeshGuy\Script\IAnimComplete.cs" />
+    <Compile Include="Assets\NavMeshGuy\Script\IAnimCompleteBehaviour.cs" />
     <Compile Include="Assets\NavMeshGuy\Script\JumpCurve.cs" />
     <Compile Include="Assets\NavMeshGuy\Script\NavMeshSimpleMovement.cs" />
+    <Compile Include="Assets\NavMeshGuy\Script\NPCMovementAnim.cs" />
     <Compile Include="Assets\NavMeshGuy\Script\WaypointContainer.cs" />
   </ItemGroup>
   <ItemGroup>
