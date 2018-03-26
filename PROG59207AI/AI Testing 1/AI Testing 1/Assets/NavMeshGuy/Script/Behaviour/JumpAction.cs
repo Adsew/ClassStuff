@@ -20,6 +20,8 @@ public class JumpAction : ActionNode {
         curve = agent.currentOffMeshLinkData.offMeshLink.GetComponent<JumpCurve>();
 
         currentJumpTime = 0.0f;
+
+        agent.CompleteOffMeshLink();
     }
 
     public override Status Update() {
@@ -36,9 +38,8 @@ public class JumpAction : ActionNode {
             return Status.Running;
         }
 
-        agent.CompleteOffMeshLink();
         agent.isStopped = false;
-
+        
         return Status.Success;
     }
 }
