@@ -27,7 +27,7 @@ public class PlayRandomIdleAction : Action {
             int idles = anim.GetInteger(idleCountVarName);
             int idleToPlay = Random.Range(0, idles - 1);
 
-            anim.SetInteger(idleToPlayName, idleToPlay);
+            anim.SetFloat(idleToPlayName, (float)idleToPlay);
             anim.SetTrigger(idlePlayTriggerName);
         }
 

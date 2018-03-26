@@ -16,7 +16,7 @@ public class AtWaypointCondition : Conditional {
     public override TaskStatus OnUpdate() {
         
         if (agent != null) {
-            if (agent.desiredVelocity.magnitude == 0.0f) {
+            if (agent.remainingDistance <= agent.stoppingDistance) {
 
                 return TaskStatus.Success;
             }
