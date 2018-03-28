@@ -834,11 +834,15 @@
     <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector2.cs" />
     <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector3.cs" />
     <Compile Include="Assets\Behavior Designer\Runtime\Variables\SharedVector4.cs" />
-    <Compile Include="Assets\Scripts\Behaviours\AtWaypointCondition.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\AgentAtDestinationCondition.cs" />
     <Compile Include="Assets\Scripts\Behaviours\IsAtDestination.cs" />
     <Compile Include="Assets\Scripts\Behaviours\IsListCountComparrison.cs" />
     <Compile Include="Assets\Scripts\Behaviours\MoveNextWaypointAction.cs" />
     <Compile Include="Assets\Scripts\Behaviours\PlayRandomIdleAction.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\RemoveFromTransformList.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\RunToTarget.cs" />
+    <Compile Include="Assets\Scripts\Behaviours\TriggerAnimation.cs" />
+    <Compile Include="Assets\Scripts\EnableAgentRootMotion.cs" />
     <Compile Include="Assets\Scripts\MouseMakeNoise.cs" />
   </ItemGroup>
   <ItemGroup>

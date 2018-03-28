@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using BehaviorDesigner.Runtime;
 
 public class MouseMakeNoise : MonoBehaviour {
-
-    private NavMeshAgent agent = null;
-    private Animator anim = null;
     
+    private BehaviorTree tree = null;
+    private SharedTransformList sounds = null;
+
     void Start() {
 
-        agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
+        tree = GetComponent<BehaviorTree>();
+
+        if (tree != null) {
+
+            sounds = (SharedTransformList)tree.GetVariable("soundLocations");
+        }
     }
 
     // Update is called once per frame
@@ -19,20 +23,24 @@ public class MouseMakeNoise : MonoBehaviour {
 		
         if (Input.GetMouseButtonDown(0)) {
 
-            if (agent != null && anim != null) {
+            if (tree != null) {
 
                 RaycastHit ray;
 
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out ray, 100)) {
                     
+                    GameObject go = new GameObject("Noise");
                     
+                    if (sounds != null && go != null) {
+
+                        go.transform.position = ray.point;
+
+                        sounds.Value.Add(go.transform);
+                    }
                 }
             }
         }
 	}
 
-    private void OnAnimatorMove() {
-
-        agent.velocity = anim.deltaPosition / Time.deltaTime;
-    }
+    
 }

@@ -12,9 +12,7 @@ public class PlayRandomIdleAction : Action {
     public string idlePlayTriggerName;
     public string idleToPlayName;
     public string idleCountVarName;
-
-    public SharedInt waypointsPassed;
-
+    
     public override void OnAwake() {
         
         anim = GetComponent<Animator>();
@@ -30,8 +28,6 @@ public class PlayRandomIdleAction : Action {
             anim.SetFloat(idleToPlayName, (float)idleToPlay);
             anim.SetTrigger(idlePlayTriggerName);
         }
-
-        waypointsPassed.Value = 0;
 
         return TaskStatus.Success;
     }

@@ -13,10 +13,11 @@ public class MoveNextWaypointAction : Action {
     private List<Transform> waypoints = new List<Transform>();
 
     public string speedFloatName;
-
-    public SharedInt waypointsPassed;
+    
     public SharedInt currentWaypoint;
     public SharedTransform waypointsParent;
+
+    public SharedTransform destination;
 
     public override void OnAwake() {
 
@@ -35,17 +36,14 @@ public class MoveNextWaypointAction : Action {
 
             // Move to next waypoint
             anim.SetFloat(speedFloatName, 0.5f);
-
-            currentWaypoint.Value += 1;
-
+            
             if (currentWaypoint.Value >= waypoints.Count) {
 
                 currentWaypoint.Value = 0;
             }
 
+            destination.Value = waypoints[currentWaypoint.Value];
             agent.SetDestination(waypoints[currentWaypoint.Value].position);
-
-            waypointsPassed.Value += 1;
         }
 
         return TaskStatus.Success;

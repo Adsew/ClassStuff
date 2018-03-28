@@ -6,7 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class IsListCountComparrison : Conditional {
 
-    public SharedObjectList list;
+    public SharedTransformList list;
     public SharedInt integer;
 
     public enum Comparitor {
