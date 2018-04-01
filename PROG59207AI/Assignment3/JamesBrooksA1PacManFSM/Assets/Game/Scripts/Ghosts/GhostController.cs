@@ -24,7 +24,8 @@ public class GhostController : MonoBehaviour
 	{
 		List<Vector3> _path = new List<Vector3>();
         //PathFinding.Instance.generatePath(transform.position, moveToLocation, _path);
-        PersonalAStar.AStarPath(transform.position, moveToLocation, _path);
+        PersonalAStar.Instance.AStarPath(transform.position, moveToLocation, _path);
+
 		if (_path.Count >= 2)
 		{
 			iTween.MoveTo(gameObject, iTween.Hash("position", new Vector3(_path[1].x, _path[1].y * -1, 0),
