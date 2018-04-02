@@ -6,8 +6,8 @@ public class PersonalAStar : MonoBehaviour {
 
     public static PersonalAStar Instance { get; private set; }
 
-    public Vector3 mapXRange = new Vector3();
-    public Vector3 mapYRange = new Vector3();
+    public Vector3 mapMinRange = new Vector3();
+    public Vector3 mapMaxRange = new Vector3();
 
     private void Start() {
         
@@ -30,7 +30,7 @@ public class PersonalAStar : MonoBehaviour {
         public AStarPosition(Vector3 pos, AStarPosition prev, Vector3 dest) {
 
             position = pos;
-            prev = previous;
+            previous = prev;
 
             if (prev != null) {
 
@@ -49,8 +49,11 @@ public class PersonalAStar : MonoBehaviour {
     // Pathfinding returns path through path variable
 	public void AStarPath(Vector3 position, Vector3 destination, List<Vector3> path) {
 
-        bool destinationFound = false;
+        if (position == destination) {
 
+            return;
+        }
+        
         // Setup required variables
         List<AStarPosition> openList = new List<AStarPosition>();
         List<AStarPosition> closedList = new List<AStarPosition>();
@@ -61,18 +64,15 @@ public class PersonalAStar : MonoBehaviour {
         }
 
         path.Clear();
-
+        
         // Add first position as start of path
         AStarPosition current = new AStarPosition(position, null, destination);
         openList.Add(current);
 
         // Begin checking all possible paths on loop
         while (openList.Count > 0) {
-
-            if (destinationFound) {
-
-                break;
-            }
+            
+            current = openList[0];
 
             // Find lowest f to work with
             foreach (AStarPosition p in openList) {
@@ -93,20 +93,44 @@ public class PersonalAStar : MonoBehaviour {
 
                 // If we found destination, break, we're done
                 if (neighb.position == destination) {
+                    
+                    EstablishPath(neighb, path);
 
-                    destinationFound = true;
-
-                    break;
+                    return;
                 }
 
-                // Ensure not already closed
                 bool skip = false;
 
+                // Ensure not already closed
                 foreach (AStarPosition closed in closedList) {
 
-                    if (closed.position == neighb.position) {
-
+                    if (closed.position == neighb.position && closed.f <= neighb.f) {
+                        
                         skip = true;
+                        break;
+                    }
+                }
+
+                if (skip) {
+
+                    continue;
+                }
+                
+                // Reevaluate if found in open
+                foreach (AStarPosition open in openList) {
+
+                    if (open.position == neighb.position) {
+
+                        if (open.f > neighb.f) {
+
+                            openList.Remove(open);
+                        }
+                        else {
+
+                            skip = true;
+                        }
+                        
+                        break;
                     }
                 }
 
@@ -115,21 +139,25 @@ public class PersonalAStar : MonoBehaviour {
                     continue;
                 }
 
-                // Reevaluate if found in open
-                foreach (AStarPosition open in openList) {
-
-                    if (open.position == neighb.position && open.f > neighb.f) {
-
-                        openList.Remove(open);
-                        break;
-                    }
-                }
-
                 openList.Add(neighb);
             }
         }
 
-        EstablishPath(closedList[0], path);
+        // Dest not found, find lowest f and move to this point instead
+        if (closedList.Count > 0) {
+
+            current = closedList[0];
+
+            for (int i = 1; i < closedList.Count; i++) {
+
+                if (closedList[i].f < current.f) {
+
+                    current = closedList[i];
+                }
+            }
+
+            EstablishPath(current, path);
+        }
     }
 
     // Get all eligable surrounding positions and return as a list
@@ -139,28 +167,32 @@ public class PersonalAStar : MonoBehaviour {
 
         // Left
         Vector3 tempCheck = new Vector3(currentPos.position.x - 1, currentPos.position.y, currentPos.position.z);
-        if (!AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y)) {
+        if (InBounds(tempCheck, mapMinRange, mapMaxRange)
+            && !AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y * -1)) {
 
             neighbours.Add(new AStarPosition(tempCheck, currentPos, destination));
         }
 
         // Right
         tempCheck = new Vector3(currentPos.position.x + 1, currentPos.position.y, currentPos.position.z);
-        if (!AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y)) {
+        if (InBounds(tempCheck, mapMinRange, mapMaxRange)
+            && !AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y * -1)) {
 
             neighbours.Add(new AStarPosition(tempCheck, currentPos, destination));
         }
 
         // Up
         tempCheck = new Vector3(currentPos.position.x, currentPos.position.y - 1, currentPos.position.z);
-        if (!AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y)) {
+        if (InBounds(tempCheck, mapMinRange, mapMaxRange)
+            && !AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y * -1)) {
 
             neighbours.Add(new AStarPosition(tempCheck, currentPos, destination));
         }
 
         // Down
         tempCheck = new Vector3(currentPos.position.x, currentPos.position.y + 1, currentPos.position.z);
-        if (!AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y)) {
+        if (InBounds(tempCheck, mapMinRange, mapMaxRange)
+            && !AStarPathfinding.PathFinding.Instance.CollisionMap.CheckCollision((int)tempCheck.x, (int)tempCheck.y * -1)) {
 
             neighbours.Add(new AStarPosition(tempCheck, currentPos, destination));
         }
@@ -170,11 +202,24 @@ public class PersonalAStar : MonoBehaviour {
 
     private void EstablishPath(AStarPosition finalPosition, List<Vector3> path) {
 
-        while (finalPosition.previous != null) {
+        while (finalPosition != null) {
 
-            path.Add(finalPosition.position);
+            path.Insert(0, finalPosition.position);
             finalPosition = finalPosition.previous;
         }
+    }
+
+    // Inclusive bound checking
+    public static bool InBounds(Vector3 x, Vector3 min, Vector3 max) {
+
+        if (x.x >= min.x && x.x <= max.x
+            && x.y >= min.y && x.y <= max.y
+            && x.z >= min.z && x.z <= max.z) {
+
+            return true;
+        }
+
+        return false;
     }
 
     // Default heuristic function

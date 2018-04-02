@@ -28,7 +28,7 @@ public class GhostController : MonoBehaviour
 
 		if (_path.Count >= 2)
 		{
-			iTween.MoveTo(gameObject, iTween.Hash("position", new Vector3(_path[1].x, _path[1].y * -1, 0),
+			iTween.MoveTo(gameObject, iTween.Hash("position", new Vector3(_path[1].x, _path[1].y, 0),
 													"speed", speed,
 													"easetype", "linear",
 													"oncomplete", "moveComplete"));
@@ -41,7 +41,7 @@ public class GhostController : MonoBehaviour
 
 	public IEnumerator WaitToMove()
 	{
-		yield return new WaitForSeconds(1);
+        yield return null;// new WaitForSeconds(1);
 		Move();
 	}
 
