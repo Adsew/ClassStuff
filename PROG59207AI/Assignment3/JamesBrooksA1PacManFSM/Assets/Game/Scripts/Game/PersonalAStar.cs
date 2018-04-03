@@ -49,6 +49,13 @@ public class PersonalAStar : MonoBehaviour {
     // Pathfinding returns path through path variable
 	public void AStarPath(Vector3 position, Vector3 destination, List<Vector3> path) {
 
+        if (path == null) {
+
+            path = new List<Vector3>();
+        }
+
+        path.Clear();
+
         if (position == destination) {
 
             return;
@@ -57,13 +64,6 @@ public class PersonalAStar : MonoBehaviour {
         // Setup required variables
         List<AStarPosition> openList = new List<AStarPosition>();
         List<AStarPosition> closedList = new List<AStarPosition>();
-
-        if (path == null) {
-
-            path = new List<Vector3>();
-        }
-
-        path.Clear();
         
         // Add first position as start of path
         AStarPosition current = new AStarPosition(position, null, destination);
@@ -101,12 +101,20 @@ public class PersonalAStar : MonoBehaviour {
 
                 bool skip = false;
 
-                // Ensure not already closed
+                // Ensure better path same position not already closed
                 foreach (AStarPosition closed in closedList) {
 
-                    if (closed.position == neighb.position && closed.f <= neighb.f) {
-                        
-                        skip = true;
+                    if (closed.position == neighb.position) {
+
+                        if (closed.f <= neighb.f) {
+
+                            skip = true;
+                        }
+                        else {
+
+                            closedList.Remove(closed);
+                        }
+
                         break;
                     }
                 }
@@ -143,14 +151,18 @@ public class PersonalAStar : MonoBehaviour {
             }
         }
 
-        // Dest not found, find lowest f and move to this point instead
+        // Dest not found, find lowest h with lowest f and move to this point instead
         if (closedList.Count > 0) {
 
             current = closedList[0];
 
             for (int i = 1; i < closedList.Count; i++) {
 
-                if (closedList[i].f < current.f) {
+                if (closedList[i].h < current.h) {
+
+                    current = closedList[i];
+                }
+                else if (closedList[i].h == current.h && closedList[i].f < current.f) {
 
                     current = closedList[i];
                 }
