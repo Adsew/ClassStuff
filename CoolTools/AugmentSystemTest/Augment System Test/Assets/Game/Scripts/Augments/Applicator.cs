@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Applicator : MonoBehaviour {
     
-    public FireAug any = null;
+    public Augment aug = null;
 
 	// Use this for initialization
 	void Start () {

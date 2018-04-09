@@ -5,11 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Augment {
 
-    protected internal AugmentBoard board = null;
-    protected internal bool needsToBeAdded = true;
-
-
-    protected internal float timer = 0.0f;
+    public AugmentBoard board = null;
+    public bool needsToBeAdded = true;
+    
+    public float timer = 0.0f;
     public float duration = 0.0f;
 
     /// <summary>
