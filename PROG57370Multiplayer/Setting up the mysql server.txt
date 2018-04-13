@@ -6,11 +6,15 @@ To allow remote access by the external program
 
 On the server, go to location:
 
-somewhere/php.inc.conf or something
 
-allow all
-grant all
-etc
+opt/bitnami/apps/phpmyadmin/conf/httpd-apps.conf
+
+Under <IfVersion < 2.3 >
+Change Allow from 127.0.0.1 to Allow from all
+
+
+Under <IfVersion >= 2.3>
+Change Require local to Require all granted
 
 
 opt/bitnami/mysql/my.cnf
@@ -18,4 +22,11 @@ opt/bitnami/mysql/my.cnf
 Change bind-address = 127.0.0.1
 to bind-address = 0.0.0.0
 
-(might be able to change variable via script using sql commands
+
+opt/bitnami/apps/phpmyadmin/htdocs/config.inc.php
+
+sudo chmod -c -R 777 config.inc.php
+
+change $cfg['Servers'][$i]['AllowNoPassword'] = false; to true;
+
+sudo chmod -c -R 444 config.inc.php
