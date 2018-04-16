@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+[CreateAssetMenu(fileName = "Fire Augment", menuName = "Augments/Fire")]
 public class FireAug : Augment {
 
     private Health targetHealth = null;

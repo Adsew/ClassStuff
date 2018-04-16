@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class Augment {
+public abstract class Augment : ScriptableObject {
 
+    [HideInInspector]
     public AugmentBoard board = null;
+    [HideInInspector]
     public bool needsToBeAdded = true;
-    
+
+    [TextArea]
+    public string comment;
+
+    [HideInInspector]
     public float timer = 0.0f;
     public float duration = 0.0f;
 
