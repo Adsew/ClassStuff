@@ -1,0 +1,25 @@
+#ifndef _NETWORKCOMMON_H_
+#define _NETWORKCOMMON_H_
+#pragma once
+
+#include <MessageIdentifiers.h>
+
+enum NetworkPacketIds
+{
+	MSG_DEFAULT = ID_USER_PACKET_ENUM,
+
+	// SERVER PACKET
+	MSG_GAMEOBJECT,
+	MSG_SNAPSHOT,
+	
+	MSG_GAMEOBJECT_CREATE,
+	MSG_GAMEOBJECT_UPDATE,
+
+	MSG_GAMEOBJECT_DESTROY,
+
+	// USER or GAME PACKETS
+	MSG_GAME_PACKET_ENUM
+};
+
+#endif
+
