@@ -1,0 +1,222 @@
+fileFormatVersion: 2
+guid: c468acc99370c324d9c1ca7ea6777ab6
+timeCreated: 1520985316
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Leaf.001
+    100002: Leaf.002
+    100004: Leaf.004
+    100006: Leaf.006
+    100008: Leaf.009
+    100010: Leaf.010
+    100012: Leaf.012
+    100014: Leaf.016
+    100016: Leaf.017
+    100018: Leaf.020
+    100020: Leaf.022
+    100022: Leaf.026
+    100024: Leaf.027
+    100026: Tree-Block.002
+    100028: //RootNode
+    400000: Leaf.001
+    400002: Leaf.002
+    400004: Leaf.004
+    400006: Leaf.006
+    400008: Leaf.009
+    400010: Leaf.010
+    400012: Leaf.012
+    400014: Leaf.016
+    400016: Leaf.017
+    400018: Leaf.020
+    400020: Leaf.022
+    400022: Leaf.026
+    400024: Leaf.027
+    400026: Tree-Block.002
+    400028: //RootNode
+    2100000: Minecraft-Block.248
+    2100002: Minecraft-Block.242
+    2100004: Minecraft-Block.250
+    2100006: Minecraft-Block.254
+    2100008: Minecraft-Block.255
+    2100010: Minecraft-Block.253
+    2100012: Minecraft-Block.249
+    2100014: Minecraft-Block.239
+    2100016: Minecraft-Block.256
+    2100018: Minecraft-Block.251
+    2300000: Leaf.001
+    2300002: Leaf.002
+    2300004: Leaf.004
+    2300006: Leaf.006
+    2300008: Leaf.009
+    2300010: Leaf.010
+    2300012: Leaf.012
+    2300014: Leaf.016
+    2300016: Leaf.017
+    2300018: Leaf.020
+    2300020: Leaf.022
+    2300022: Leaf.026
+    2300024: Leaf.027
+    2300026: Tree-Block.002
+    2300028: //RootNode
+    3300000: Leaf.001
+    3300002: Leaf.002
+    3300004: Leaf.004
+    3300006: Leaf.006
+    3300008: Leaf.009
+    3300010: Leaf.010
+    3300012: Leaf.012
+    3300014: Leaf.016
+    3300016: Leaf.017
+    3300018: Leaf.020
+    3300020: Leaf.022
+    3300022: Leaf.026
+    3300024: Leaf.027
+    3300026: Tree-Block.002
+    3300028: //RootNode
+    4300000: Tree_001
+    4300002: Leaf.001
+    4300004: Leaf.010
+    4300006: Leaf.012
+    4300008: Leaf.016
+    4300010: Leaf.017
+    4300012: Leaf.020
+    4300014: Leaf.022
+    4300016: Leaf.026
+    4300018: Leaf.027
+    4300020: Tree-Block.002
+    4300022: Leaf.009
+    4300024: Leaf.006
+    4300026: Leaf.004
+    4300028: Leaf.002
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.239
+    second: {fileID: 2100000, guid: ffec5ac15a0dc774490b424154724840, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.242
+    second: {fileID: 2100000, guid: afd5d5cc03772d446b06784e584746f3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.248
+    second: {fileID: 2100000, guid: ea8703a58209c7e47ae7303eedd7b813, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.249
+    second: {fileID: 2100000, guid: 94b1df9c82efe49478b10ba6e3ee8dfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.250
+    second: {fileID: 2100000, guid: 4fa36dcc9fb187b4795d0c59759f80d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.251
+    second: {fileID: 2100000, guid: af60bea3c474b7a49997673b1c379471, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.253
+    second: {fileID: 2100000, guid: fb88723b3d73b0645a073b316703ac66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.254
+    second: {fileID: 2100000, guid: 970c8038845740647b7a63c5d8f79ab4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.255
+    second: {fileID: 2100000, guid: 0cbb9ed810487694cb19cae04c6e8aee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.256
+    second: {fileID: 2100000, guid: b23c18a7a757cea47aeddca34a3195a6, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

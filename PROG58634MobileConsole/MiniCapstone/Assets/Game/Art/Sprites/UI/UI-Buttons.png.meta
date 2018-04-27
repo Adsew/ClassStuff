@@ -1,0 +1,606 @@
+fileFormatVersion: 2
+guid: 0ca4459dd17644a4d8a69e80a13bd48f
+timeCreated: 1521590300
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Button_Fill_White
+    21300002: UI-Buttons_1
+    21300004: Button_Outline_Grey
+    21300006: Button_Fill_Green
+    21300008: Button_Outline_Green
+    21300010: UI-Buttons_5
+    21300012: Button_Fill_L_Blue
+    21300014: Button_Outline_L_Blue
+    21300016: Button_Fill_Pink
+    21300018: Button_Outline_Pink
+    21300020: Button_Fill_Brown
+    21300022: Button_Outline_Brown
+    21300024: Button_Fill_D_Blue
+    21300026: Button_Outline_D_Blue
+    21300028: Button_Fill_Red
+    21300030: Button_Outline_Red
+    21300032: UI-Buttons_16
+    21300034: Button_Fill_Grey
+    21300036: Button_Outline_D_Grey
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Button_Fill_White
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 581
+        width: 162
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 9, z: 8, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_Grey
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 580
+        width: 162
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 11, y: 9, z: 10, w: 9}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Fill_Green
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 580
+        width: 162
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 9, y: 10, z: 9, w: 6}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_Green
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 580
+        width: 161
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 9, y: 10, z: 9, w: 7}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Fill_L_Blue
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 407
+        width: 165
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 9, y: 6, z: 10, w: 7}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_L_Blue
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 407
+        width: 161
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 9, z: 11, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Fill_Pink
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 407
+        width: 161
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 10, y: 9, z: 10, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_Pink
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 407
+        width: 160
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 11, y: 9, z: 10, w: 11}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Fill_Brown
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 232
+        width: 163
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 9, y: 7, z: 7, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_Brown
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 232
+        width: 161
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 9, y: 11, z: 10, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Fill_D_Blue
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 232
+        width: 162
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 9, y: 9, z: 9, w: 7}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_D_Blue
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 230
+        width: 161
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 12, z: 11, w: 12}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Fill_Red
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 57
+        width: 163
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 11, z: 14, w: 10}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_Red
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 58
+        width: 164
+        height: 161
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 12, y: 10, z: 14, w: 11}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Fill_Grey
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 56
+        width: 163
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 15, y: 16, z: 13, w: 14}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button_Outline_D_Grey
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 57
+        width: 162
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 13, y: 12, z: 13, w: 11}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: 16, y: -346}
+      - {x: 16, y: -400}
+      - {x: 22, y: -400}
+      - {x: 22, y: -346}
+      - {x: 20, y: -344}
+      - {x: 18, y: -344}
+    - - {x: 360, y: -400}
+      - {x: 400, y: -349}
+      - {x: 400, y: -332}
+      - {x: 362, y: -332}
+      - {x: 400, y: -194}
+      - {x: 400, y: -176}
+      - {x: 358, y: -176}
+      - {x: 355, y: -177}
+      - {x: 355, y: -179}
+      - {x: 240, y: -176}
+      - {x: 182, y: -176}
+      - {x: 172, y: -179}
+      - {x: 15, y: -179}
+      - {x: 10, y: -183}
+      - {x: 11, y: -340}
+      - {x: 14, y: -344}
+      - {x: 172, y: -344}
+      - {x: 172, y: -348}
+      - {x: 198, y: -350}
+      - {x: 200, y: -400}
+      - {x: 208, y: -400}
+      - {x: 209, y: -345}
+      - {x: 353, y: -345}
+      - {x: 354, y: -400}
+    - - {x: -199, y: -176}
+      - {x: -271, y: -176}
+      - {x: -362, y: -179}
+      - {x: -362, y: -344}
+      - {x: -198, y: -344}
+      - {x: -197, y: -341}
+      - {x: -194, y: -223}
+      - {x: -194, y: -180}
+    - - {x: -176, y: -179}
+      - {x: -176, y: -344}
+      - {x: -8, y: -344}
+      - {x: -8, y: -179}
+    - - {x: 0, y: -334}
+      - {x: 0, y: -339}
+      - {x: 10, y: -339}
+      - {x: 10, y: -334}
+      - {x: 8, y: -332}
+      - {x: 2, y: -332}
+    - - {x: 267, y: -250}
+      - {x: 267, y: -251}
+      - {x: 271, y: -255}
+      - {x: 274, y: -254}
+      - {x: 274, y: -250}
+      - {x: 272, y: -248}
+      - {x: 269, y: -248}
+    - - {x: 261, y: -244}
+      - {x: 261, y: -245}
+      - {x: 265, y: -249}
+      - {x: 268, y: -248}
+      - {x: 268, y: -244}
+      - {x: 266, y: -242}
+      - {x: 263, y: -242}
+    - - {x: 255, y: -238}
+      - {x: 255, y: -239}
+      - {x: 259, y: -243}
+      - {x: 262, y: -242}
+      - {x: 262, y: -238}
+      - {x: 260, y: -236}
+      - {x: 257, y: -236}
+    - - {x: 249, y: -232}
+      - {x: 249, y: -233}
+      - {x: 253, y: -237}
+      - {x: 256, y: -236}
+      - {x: 256, y: -232}
+      - {x: 254, y: -230}
+      - {x: 251, y: -230}
+    - - {x: 243, y: -226}
+      - {x: 243, y: -227}
+      - {x: 247, y: -231}
+      - {x: 250, y: -230}
+      - {x: 250, y: -226}
+      - {x: 248, y: -224}
+      - {x: 245, y: -224}
+    - - {x: 237, y: -220}
+      - {x: 237, y: -221}
+      - {x: 241, y: -225}
+      - {x: 244, y: -224}
+      - {x: 244, y: -220}
+      - {x: 242, y: -218}
+      - {x: 239, y: -218}
+    - - {x: 231, y: -214}
+      - {x: 231, y: -215}
+      - {x: 235, y: -219}
+      - {x: 238, y: -218}
+      - {x: 238, y: -214}
+      - {x: 236, y: -212}
+      - {x: 233, y: -212}
+    - - {x: 225, y: -208}
+      - {x: 225, y: -209}
+      - {x: 229, y: -213}
+      - {x: 232, y: -212}
+      - {x: 232, y: -208}
+      - {x: 230, y: -206}
+      - {x: 227, y: -206}
+    - - {x: 219, y: -202}
+      - {x: 219, y: -203}
+      - {x: 223, y: -207}
+      - {x: 226, y: -206}
+      - {x: 226, y: -202}
+      - {x: 224, y: -200}
+      - {x: 221, y: -200}
+    - - {x: 213, y: -196}
+      - {x: 213, y: -197}
+      - {x: 217, y: -201}
+      - {x: 220, y: -200}
+      - {x: 220, y: -196}
+      - {x: 218, y: -194}
+      - {x: 215, y: -194}
+    - - {x: 207, y: -190}
+      - {x: 207, y: -191}
+      - {x: 211, y: -195}
+      - {x: 214, y: -194}
+      - {x: 214, y: -190}
+      - {x: 212, y: -188}
+      - {x: 209, y: -188}
+    - - {x: 2, y: -184}
+      - {x: 0, y: -186}
+      - {x: 0, y: -190}
+      - {x: 2, y: -192}
+      - {x: 8, y: -192}
+      - {x: 10, y: -190}
+      - {x: 10, y: -186}
+      - {x: 8, y: -184}
+    - - {x: 358, y: -4}
+      - {x: 246, y: -4}
+      - {x: 200, y: -5}
+      - {x: 198, y: -8}
+      - {x: 198, y: -166}
+      - {x: 203, y: -170}
+      - {x: 306, y: -174}
+      - {x: 360, y: -174}
+      - {x: 363, y: -166}
+      - {x: 363, y: -6}
+    - - {x: -199, y: -5}
+      - {x: -363, y: -5}
+      - {x: -366, y: -131}
+      - {x: -366, y: -167}
+      - {x: -365, y: -170}
+      - {x: -199, y: -170}
+      - {x: -196, y: -168}
+      - {x: -196, y: -95}
+      - {x: -197, y: -9}
+    - - {x: -175, y: -5}
+      - {x: -175, y: -170}
+      - {x: -10, y: -170}
+      - {x: -10, y: -5}
+    - - {x: 10, y: -5}
+      - {x: 10, y: -148}
+      - {x: 11, y: -170}
+      - {x: 174, y: -170}
+      - {x: 176, y: -167}
+      - {x: 176, y: -5}
+    - - {x: -200, y: 172}
+      - {x: -255, y: 172}
+      - {x: -350, y: 170}
+      - {x: -350, y: 172}
+      - {x: -361, y: 172}
+      - {x: -366, y: 171}
+      - {x: -366, y: 137}
+      - {x: -362, y: 11}
+      - {x: -361, y: 8}
+      - {x: -358, y: 5}
+      - {x: -201, y: 5}
+      - {x: -197, y: 9}
+      - {x: -194, y: 126}
+      - {x: -194, y: 168}
+    - - {x: -175, y: 170}
+      - {x: -175, y: 5}
+      - {x: -10, y: 5}
+      - {x: -10, y: 170}
+    - - {x: 170, y: 171}
+      - {x: 143, y: 172}
+      - {x: 11, y: 172}
+      - {x: 11, y: 6}
+      - {x: 15, y: 5}
+      - {x: 172, y: 5}
+      - {x: 176, y: 9}
+      - {x: 176, y: 166}
+    - - {x: 200, y: 170}
+      - {x: 198, y: 166}
+      - {x: 198, y: 5}
+      - {x: 362, y: 5}
+      - {x: 362, y: 167}
+      - {x: 358, y: 170}
+    - - {x: 363, y: 174}
+      - {x: 365, y: 179}
+      - {x: 399, y: 180}
+      - {x: 400, y: 181}
+      - {x: 400, y: 190}
+      - {x: 362, y: 190}
+      - {x: 400, y: 334}
+      - {x: 400, y: 342}
+      - {x: 362, y: 344}
+      - {x: 361, y: 400}
+      - {x: 354, y: 400}
+      - {x: 354, y: 344}
+      - {x: 210, y: 400}
+      - {x: 198, y: 400}
+      - {x: 190, y: 343}
+      - {x: 189, y: 400}
+      - {x: 180, y: 400}
+      - {x: 179, y: 343}
+      - {x: 177, y: 344}
+      - {x: 176, y: 400}
+      - {x: 162, y: 400}
+      - {x: 162, y: 344}
+      - {x: 23, y: 400}
+      - {x: 12, y: 400}
+      - {x: 10, y: 364}
+      - {x: 10, y: 338}
+      - {x: 11, y: 337}
+      - {x: 11, y: 183}
+      - {x: 15, y: 179}
+      - {x: 173, y: 179}
+      - {x: 182, y: 174}
+      - {x: 192, y: 174}
+      - {x: 202, y: 179}
+      - {x: 356, y: 176}
+      - {x: 358, y: 174}
+    - - {x: -362, y: 344}
+      - {x: -362, y: 179}
+      - {x: -354, y: 178}
+      - {x: -196, y: 178}
+      - {x: -196, y: 310}
+      - {x: -197, y: 344}
+    - - {x: -16, y: 346}
+      - {x: -171, y: 344}
+      - {x: -175, y: 340}
+      - {x: -175, y: 182}
+      - {x: -170, y: 178}
+      - {x: -10, y: 178}
+      - {x: -10, y: 340}
+      - {x: -14, y: 346}
+    - - {x: 0, y: 190}
+      - {x: 0, y: 183}
+      - {x: 1, y: 181}
+      - {x: 8, y: 181}
+      - {x: 10, y: 183}
+      - {x: 10, y: 188}
+      - {x: 9, y: 190}
+    - - {x: 0, y: 339}
+      - {x: 1, y: 336}
+      - {x: 8, y: 336}
+      - {x: 10, y: 338}
+      - {x: 9, y: 341}
+      - {x: 2, y: 341}
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

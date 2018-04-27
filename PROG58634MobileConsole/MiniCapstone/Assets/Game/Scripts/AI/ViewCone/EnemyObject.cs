@@ -1,0 +1,8 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class EnemyObject : MonoBehaviour, IInterestingObject
+{
+    public abstract void OnInsideView(ViewObject view);
+}

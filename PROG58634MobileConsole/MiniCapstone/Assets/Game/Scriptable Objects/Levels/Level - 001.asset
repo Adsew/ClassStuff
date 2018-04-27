@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5e5a33dac18a54d9b9cff06d3659fb, type: 3}
+  m_Name: Level - 001
+  m_EditorClassIdentifier: 
+  levelName: Level - 001
+  image: {fileID: 21300000, guid: 09d1541d88ee4ef4b8b6ec41f721c2d5, type: 3}
+  activeScene:
+    m_SceneAsset: {fileID: 102900000, guid: b4eb367a3e14c004fa5496561bdc5e39, type: 3}
+    m_SceneName: Level - 001 - Mechanic
+  scenes:
+  - m_SceneAsset: {fileID: 102900000, guid: 72c8f20558ed8ae448c0635a4d4cd264, type: 3}
+    m_SceneName: Level - 001 - Art
+  - m_SceneAsset: {fileID: 102900000, guid: b4eb367a3e14c004fa5496561bdc5e39, type: 3}
+    m_SceneName: Level - 001 - Mechanic

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3758f8f58fdef43803eb9be1df0608, type: 3}
+  m_Name: PhotonServerSettings
+  m_EditorClassIdentifier: 
+  AppID: 8a9dc8f7-d099-479d-99d3-4ab2e803b702
+  VoiceAppID: 
+  ChatAppID: 
+  HostType: 1
+  PreferredRegion: 1
+  EnabledRegions: -1
+  Protocol: 0
+  ServerAddress: 
+  ServerPort: 5055
+  VoiceServerPort: 5055
+  JoinLobby: 0
+  EnableLobbyStatistics: 0
+  PunLogging: 2
+  NetworkLogging: 1
+  RunInBackground: 1
+  RpcList:
+  - Chat
+  - ColorRpc
+  - DestroyRpc
+  - DoJump
+  - Flash
+  - InstantiateRpc
+  - Marco
+  - PickupItemInit
+  - Polo
+  - PunPickup
+  - PunPickupSimple
+  - PunRespawn
+  - RequestForPickupItems
+  - RequestForPickupTimes
+  - TaggedPlayer
+  - RPC_CharacterChanged
+  - RPC_CountdownSync
+  - RPC_CountdownStop
+  - OnReadyToSpawn
+  - RPC_TriggerAbility
+  - RPC_TriggerAttack
+  - RPC_TriggerJump
+  - RPC_TakeDamage
+  - RPC_UpdateHealth
+  - ThrowRock
+  - RPC_ThrowRock
+  - RPC_TriggerAbilityAnimation
+  - RPC_TriggerAttackAnimation
+  - RPC_Jump
+  - RPC_UpdateAnimatorSpeed
+  - RPC_FiringBullet
+  - RPC_TriggerSpecialEffect
+  - RPC_OnPlayerHasDied
+  - RPC_CharacterWon
+  - RPC_TriggerThrowRockAnim
+  DisableAutoOpenWizard: 1

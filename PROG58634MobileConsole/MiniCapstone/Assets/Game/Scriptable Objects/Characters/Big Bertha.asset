@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb4d82fe8eca2046b7ca7760c744481, type: 3}
+  m_Name: Big Bertha
+  m_EditorClassIdentifier: 
+  characterName: Big Bertha
+  prefabLocation: Prefabs/Character/BigBertha
+  image: {fileID: 21300054, guid: 6c5e4060283f92e4b85db05d71cc81c3, type: 3}

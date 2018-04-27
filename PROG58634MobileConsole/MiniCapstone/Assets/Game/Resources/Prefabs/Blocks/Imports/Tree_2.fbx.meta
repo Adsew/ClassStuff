@@ -1,0 +1,769 @@
+fileFormatVersion: 2
+guid: 7e877e6460d6c4b44abae1213293e3de
+timeCreated: 1520985448
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Leaf.028
+    100002: Leaf.029
+    100004: Leaf.030
+    100006: Leaf.031
+    100008: Leaf.032
+    100010: Leaf.033
+    100012: Leaf.034
+    100014: Leaf.036
+    100016: Leaf.038
+    100018: Leaf.039
+    100020: Leaf.040
+    100022: Leaf.042
+    100024: Leaf.046
+    100026: Leaf.047
+    100028: Leaf.048
+    100030: Leaf.049
+    100032: Leaf.050
+    100034: Leaf.051
+    100036: Leaf.052
+    100038: Leaf.057
+    100040: Leaf.058
+    100042: Leaf.064
+    100044: Leaf.066
+    100046: Leaf.067
+    100048: Leaf.068
+    100050: Leaf.072
+    100052: Leaf.074
+    100054: Leaf.075
+    100056: Leaf.077
+    100058: Leaf.080
+    100060: Leaf.082
+    100062: Leaf.083
+    100064: Leaf.084
+    100066: Leaf.085
+    100068: Leaf.089
+    100070: Leaf.092
+    100072: Leaf.094
+    100074: Leaf.095
+    100076: Leaf.096
+    100078: Leaf.097
+    100080: Leaf.099
+    100082: Leaf.102
+    100084: Leaf.103
+    100086: Leaf.104
+    100088: Leaf.105
+    100090: Leaf.106
+    100092: Leaf.107
+    100094: Leaf.113
+    100096: Leaf.114
+    100098: Leaf.115
+    100100: Leaf.119
+    100102: Leaf.121
+    100104: Tree-Block.001
+    100106: Tree-Block.003
+    100108: Tree-Block.004
+    100110: Tree-Block.005
+    100112: Tree_002.001
+    100114: Tree_002.002
+    100116: Tree_002.003
+    100118: Tree_002.004
+    100120: Tree_002.005
+    100122: //RootNode
+    400000: Leaf.028
+    400002: Leaf.029
+    400004: Leaf.030
+    400006: Leaf.031
+    400008: Leaf.032
+    400010: Leaf.033
+    400012: Leaf.034
+    400014: Leaf.036
+    400016: Leaf.038
+    400018: Leaf.039
+    400020: Leaf.040
+    400022: Leaf.042
+    400024: Leaf.046
+    400026: Leaf.047
+    400028: Leaf.048
+    400030: Leaf.049
+    400032: Leaf.050
+    400034: Leaf.051
+    400036: Leaf.052
+    400038: Leaf.057
+    400040: Leaf.058
+    400042: Leaf.064
+    400044: Leaf.066
+    400046: Leaf.067
+    400048: Leaf.068
+    400050: Leaf.072
+    400052: Leaf.074
+    400054: Leaf.075
+    400056: Leaf.077
+    400058: Leaf.080
+    400060: Leaf.082
+    400062: Leaf.083
+    400064: Leaf.084
+    400066: Leaf.085
+    400068: Leaf.089
+    400070: Leaf.092
+    400072: Leaf.094
+    400074: Leaf.095
+    400076: Leaf.096
+    400078: Leaf.097
+    400080: Leaf.099
+    400082: Leaf.102
+    400084: Leaf.103
+    400086: Leaf.104
+    400088: Leaf.105
+    400090: Leaf.106
+    400092: Leaf.107
+    400094: Leaf.113
+    400096: Leaf.114
+    400098: Leaf.115
+    400100: Leaf.119
+    400102: Leaf.121
+    400104: Tree-Block.001
+    400106: Tree-Block.003
+    400108: Tree-Block.004
+    400110: Tree-Block.005
+    400112: Tree_002.001
+    400114: Tree_002.002
+    400116: Tree_002.003
+    400118: Tree_002.004
+    400120: Tree_002.005
+    400122: //RootNode
+    2100000: Minecraft-Block.243
+    2100002: Minecraft-Block.244
+    2100004: Minecraft-Block.245
+    2100006: Minecraft-Block.246
+    2100008: Minecraft-Block.247
+    2100010: Minecraft-Block.255
+    2100012: Minecraft-Block.257
+    2100014: Minecraft-Block.258
+    2100016: Minecraft-Block.259
+    2100018: Minecraft-Block.261
+    2100020: Minecraft-Block.262
+    2100022: Minecraft-Block.355
+    2100024: Minecraft-Block.353
+    2100026: Minecraft-Block.349
+    2100028: Minecraft-Block.348
+    2100030: Minecraft-Block.347
+    2100032: Minecraft-Block.341
+    2100034: Minecraft-Block.340
+    2100036: Minecraft-Block.339
+    2100038: Minecraft-Block.338
+    2100040: Minecraft-Block.337
+    2100042: Minecraft-Block.336
+    2100044: Minecraft-Block.333
+    2100046: Minecraft-Block.331
+    2100048: Minecraft-Block.330
+    2100050: Minecraft-Block.329
+    2100052: Minecraft-Block.328
+    2100054: Minecraft-Block.326
+    2100056: Minecraft-Block.323
+    2100058: Minecraft-Block.319
+    2100060: Minecraft-Block.318
+    2100062: Minecraft-Block.317
+    2100064: Minecraft-Block.316
+    2100066: Minecraft-Block.314
+    2100068: Minecraft-Block.311
+    2100070: Minecraft-Block.309
+    2100072: Minecraft-Block.308
+    2100074: Minecraft-Block.306
+    2100076: Minecraft-Block.302
+    2100078: Minecraft-Block.301
+    2100080: Minecraft-Block.300
+    2100082: Minecraft-Block.298
+    2100084: Minecraft-Block.292
+    2100086: Minecraft-Block.291
+    2100088: Minecraft-Block.286
+    2100090: Minecraft-Block.285
+    2100092: Minecraft-Block.284
+    2100094: Minecraft-Block.283
+    2100096: Minecraft-Block.282
+    2100098: Minecraft-Block.281
+    2100100: Minecraft-Block.280
+    2100102: Minecraft-Block.276
+    2100104: Minecraft-Block.274
+    2100106: Minecraft-Block.273
+    2100108: Minecraft-Block.272
+    2100110: Minecraft-Block.270
+    2100112: Minecraft-Block.268
+    2100114: Minecraft-Block.267
+    2100116: Minecraft-Block.266
+    2100118: Minecraft-Block.265
+    2100120: Minecraft-Block.264
+    2100122: Minecraft-Block.263
+    2300000: Leaf.028
+    2300002: Leaf.029
+    2300004: Leaf.030
+    2300006: Leaf.031
+    2300008: Leaf.032
+    2300010: Leaf.033
+    2300012: Leaf.034
+    2300014: Leaf.036
+    2300016: Leaf.038
+    2300018: Leaf.039
+    2300020: Leaf.040
+    2300022: Leaf.042
+    2300024: Leaf.046
+    2300026: Leaf.047
+    2300028: Leaf.048
+    2300030: Leaf.049
+    2300032: Leaf.050
+    2300034: Leaf.051
+    2300036: Leaf.052
+    2300038: Leaf.057
+    2300040: Leaf.058
+    2300042: Leaf.064
+    2300044: Leaf.066
+    2300046: Leaf.067
+    2300048: Leaf.068
+    2300050: Leaf.072
+    2300052: Leaf.074
+    2300054: Leaf.075
+    2300056: Leaf.077
+    2300058: Leaf.080
+    2300060: Leaf.082
+    2300062: Leaf.083
+    2300064: Leaf.084
+    2300066: Leaf.085
+    2300068: Leaf.089
+    2300070: Leaf.092
+    2300072: Leaf.094
+    2300074: Leaf.095
+    2300076: Leaf.096
+    2300078: Leaf.097
+    2300080: Leaf.099
+    2300082: Leaf.102
+    2300084: Leaf.103
+    2300086: Leaf.104
+    2300088: Leaf.105
+    2300090: Leaf.106
+    2300092: Leaf.107
+    2300094: Leaf.113
+    2300096: Leaf.114
+    2300098: Leaf.115
+    2300100: Leaf.119
+    2300102: Leaf.121
+    2300104: Tree-Block.001
+    2300106: Tree-Block.003
+    2300108: Tree-Block.004
+    2300110: Tree-Block.005
+    2300112: Tree_002.001
+    2300114: Tree_002.002
+    2300116: Tree_002.003
+    2300118: Tree_002.004
+    2300120: Tree_002.005
+    2300122: //RootNode
+    3300000: Leaf.028
+    3300002: Leaf.029
+    3300004: Leaf.030
+    3300006: Leaf.031
+    3300008: Leaf.032
+    3300010: Leaf.033
+    3300012: Leaf.034
+    3300014: Leaf.036
+    3300016: Leaf.038
+    3300018: Leaf.039
+    3300020: Leaf.040
+    3300022: Leaf.042
+    3300024: Leaf.046
+    3300026: Leaf.047
+    3300028: Leaf.048
+    3300030: Leaf.049
+    3300032: Leaf.050
+    3300034: Leaf.051
+    3300036: Leaf.052
+    3300038: Leaf.057
+    3300040: Leaf.058
+    3300042: Leaf.064
+    3300044: Leaf.066
+    3300046: Leaf.067
+    3300048: Leaf.068
+    3300050: Leaf.072
+    3300052: Leaf.074
+    3300054: Leaf.075
+    3300056: Leaf.077
+    3300058: Leaf.080
+    3300060: Leaf.082
+    3300062: Leaf.083
+    3300064: Leaf.084
+    3300066: Leaf.085
+    3300068: Leaf.089
+    3300070: Leaf.092
+    3300072: Leaf.094
+    3300074: Leaf.095
+    3300076: Leaf.096
+    3300078: Leaf.097
+    3300080: Leaf.099
+    3300082: Leaf.102
+    3300084: Leaf.103
+    3300086: Leaf.104
+    3300088: Leaf.105
+    3300090: Leaf.106
+    3300092: Leaf.107
+    3300094: Leaf.113
+    3300096: Leaf.114
+    3300098: Leaf.115
+    3300100: Leaf.119
+    3300102: Leaf.121
+    3300104: Tree-Block.001
+    3300106: Tree-Block.003
+    3300108: Tree-Block.004
+    3300110: Tree-Block.005
+    3300112: Tree_002.001
+    3300114: Tree_002.002
+    3300116: Tree_002.003
+    3300118: Tree_002.004
+    3300120: Tree_002.005
+    3300122: //RootNode
+    4300000: Tree_002
+    4300002: Tree-Block.005
+    4300004: Tree-Block.001
+    4300006: Tree-Block.004
+    4300008: Tree-Block.003
+    4300010: Leaf.028
+    4300012: Tree_002.001
+    4300014: Tree_002.002
+    4300016: Tree_002.003
+    4300018: Tree_002.004
+    4300020: Tree_002.005
+    4300022: Leaf.121
+    4300024: Leaf.119
+    4300026: Leaf.115
+    4300028: Leaf.114
+    4300030: Leaf.113
+    4300032: Leaf.107
+    4300034: Leaf.106
+    4300036: Leaf.105
+    4300038: Leaf.104
+    4300040: Leaf.103
+    4300042: Leaf.102
+    4300044: Leaf.099
+    4300046: Leaf.097
+    4300048: Leaf.096
+    4300050: Leaf.095
+    4300052: Leaf.094
+    4300054: Leaf.092
+    4300056: Leaf.089
+    4300058: Leaf.085
+    4300060: Leaf.084
+    4300062: Leaf.083
+    4300064: Leaf.082
+    4300066: Leaf.080
+    4300068: Leaf.077
+    4300070: Leaf.075
+    4300072: Leaf.074
+    4300074: Leaf.072
+    4300076: Leaf.068
+    4300078: Leaf.067
+    4300080: Leaf.066
+    4300082: Leaf.064
+    4300084: Leaf.058
+    4300086: Leaf.057
+    4300088: Leaf.052
+    4300090: Leaf.051
+    4300092: Leaf.050
+    4300094: Leaf.049
+    4300096: Leaf.048
+    4300098: Leaf.047
+    4300100: Leaf.046
+    4300102: Leaf.042
+    4300104: Leaf.040
+    4300106: Leaf.039
+    4300108: Leaf.038
+    4300110: Leaf.036
+    4300112: Leaf.034
+    4300114: Leaf.033
+    4300116: Leaf.032
+    4300118: Leaf.031
+    4300120: Leaf.030
+    4300122: Leaf.029
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.243
+    second: {fileID: 2100000, guid: 94729bcae1609ce448d48fcad03ae6f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.244
+    second: {fileID: 2100000, guid: 5f2eaac13fe779f4fbc4d052515e56e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.245
+    second: {fileID: 2100000, guid: 0994e0b6d75191146a5319128b9fc2c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.246
+    second: {fileID: 2100000, guid: b8ae1ffc9a2693149a696b1ce7c53a22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.247
+    second: {fileID: 2100000, guid: 52ad7b3f5607dc5488da0eab3d0ba7c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.255
+    second: {fileID: 2100000, guid: 6c061a5bf4502de49b5384bb5efebb4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.257
+    second: {fileID: 2100000, guid: e31f85ac5a519b04b8961750e9484fa7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.258
+    second: {fileID: 2100000, guid: 0126a53c82c9c314c883d8d7afbad63e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.259
+    second: {fileID: 2100000, guid: 3f338bd885000294c86f78dc46414da1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.261
+    second: {fileID: 2100000, guid: 586c3334cea246a4c8a5135ade7635a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.262
+    second: {fileID: 2100000, guid: fa3fb749ae00b9144a6c9733ef1bb581, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.263
+    second: {fileID: 2100000, guid: 0585e891a3a9c2a488488acda19f44a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.264
+    second: {fileID: 2100000, guid: 60ca78da96b010e4cbdb9b8af635cb78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.265
+    second: {fileID: 2100000, guid: 9535ed45685c20e489c8b2114c9257d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.266
+    second: {fileID: 2100000, guid: 9ef1e31d5097f0341bcc13786eab1906, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.267
+    second: {fileID: 2100000, guid: 864bd7483adb1ef42991d2d875fae9d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.268
+    second: {fileID: 2100000, guid: 6a974d778c0040e4fa13b5f81802d762, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.270
+    second: {fileID: 2100000, guid: 758164d2b2a4a484b9ed1c9d6aa76cc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.272
+    second: {fileID: 2100000, guid: 8dd79c295b407a444b9028f6ecf7a0e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.273
+    second: {fileID: 2100000, guid: 2a4247a8c7cc6144fa2b4715d033310a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.274
+    second: {fileID: 2100000, guid: d4f4dab1a545b284cbcdc76bcd82665b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.276
+    second: {fileID: 2100000, guid: b211536be588cad4999f9bad41d4f8df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.280
+    second: {fileID: 2100000, guid: 94902a021dc138649b7a5029fbc24dad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.281
+    second: {fileID: 2100000, guid: e3a6042e1abe9d7438201a791392eda7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.282
+    second: {fileID: 2100000, guid: 6cb388054fc5a754ead57f3d11cc0421, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.283
+    second: {fileID: 2100000, guid: a3cd8196798a91b4bb613749c9520b39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.284
+    second: {fileID: 2100000, guid: a49e1ea2c463fe64bafccf5c8fc0f139, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.285
+    second: {fileID: 2100000, guid: a511a1bec95c5a54d9d8437a66cfe665, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.286
+    second: {fileID: 2100000, guid: 81d52d831c2cc5646b040208fb7758ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.291
+    second: {fileID: 2100000, guid: e35744035d360ec4ca706e86be0ee0e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.292
+    second: {fileID: 2100000, guid: 964a2b15fc7aaa949aeff42007241010, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.298
+    second: {fileID: 2100000, guid: fa1ee6d9d2914a046989b080cab6358d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.300
+    second: {fileID: 2100000, guid: 315022309e55b674b999c014b15b9ce2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.301
+    second: {fileID: 2100000, guid: f1cb863fc23ce1a4fb05c25ab77aa54f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.302
+    second: {fileID: 2100000, guid: 884bb7624ebe05646a0042ce67110a8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.306
+    second: {fileID: 2100000, guid: ef4e1101f672d3f408bcf18c36da7e25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.308
+    second: {fileID: 2100000, guid: 29eabba5479cc7a48b357e63d80f7164, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.309
+    second: {fileID: 2100000, guid: 9faff8367acef294a80022e1ccc6e09a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.311
+    second: {fileID: 2100000, guid: be12f0abe421b2e40a650ec6720f8eb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.314
+    second: {fileID: 2100000, guid: 3d951cc0f8e0244428f4127f41c1058b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.316
+    second: {fileID: 2100000, guid: 71c0b7360d869b147be52c3a492cb911, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.317
+    second: {fileID: 2100000, guid: 5d8107b8f235d3d43ba592e17688bc8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.318
+    second: {fileID: 2100000, guid: 5a2d9e10f9d95f048b572e46a71028c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.319
+    second: {fileID: 2100000, guid: d5eaeb4e7fdc22d48a3cb0df5bc2c92c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.323
+    second: {fileID: 2100000, guid: b1c2e06c7f014794d90623df77ed2989, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.326
+    second: {fileID: 2100000, guid: f81217a79a04ddf4da6daa08a63a7dc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.328
+    second: {fileID: 2100000, guid: 00cfa3f34b0c4f24ea747212888e4ff5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.329
+    second: {fileID: 2100000, guid: 1e215441b403cfe4a97cdb16b0b7c84a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.330
+    second: {fileID: 2100000, guid: 88f1a0824cebf2745b2c125de570ee69, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.331
+    second: {fileID: 2100000, guid: b3c7b887fd8357840827c2de94cfbca6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.333
+    second: {fileID: 2100000, guid: 60510d91117ecb44fa2e66f4025f1ac0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.336
+    second: {fileID: 2100000, guid: bc539abff5f705c40bc38243972a929b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.337
+    second: {fileID: 2100000, guid: 6f05d0c357e949a488e57ed84882e5e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.338
+    second: {fileID: 2100000, guid: 411b448b06e1b324a8221d2d96d32fdb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.339
+    second: {fileID: 2100000, guid: 788bea88910078448a376d0362bd14d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.340
+    second: {fileID: 2100000, guid: a84640c495e400445a9b72463db04f6b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.341
+    second: {fileID: 2100000, guid: 628bea844c505aa479aa93caba3cd131, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.347
+    second: {fileID: 2100000, guid: e4ad27dd2cbff2c4082a0b9eb5d78c97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.348
+    second: {fileID: 2100000, guid: 3299ee04d6434ee4babf47d46ad24bfd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.349
+    second: {fileID: 2100000, guid: 3238b5aabd6cc7d4c813651da8e2dd27, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.353
+    second: {fileID: 2100000, guid: 01b88f16306805741a9c7deb863e6472, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Minecraft-Block.355
+    second: {fileID: 2100000, guid: 126416a99185e4a4ca08ad9b28b41cd3, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

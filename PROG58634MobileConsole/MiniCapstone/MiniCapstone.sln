@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniCapstone", "MiniCapstone.csproj", "{655CE9B3-7232-3083-37E5-FF02A5D4828A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniCapstone.Plugins", "MiniCapstone.Plugins.csproj", "{89458B00-4560-5A61-F9FB-40715074C9C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniCapstone.Editor", "MiniCapstone.Editor.csproj", "{4A2A1037-505D-5C6B-BB4F-BA2B2199249F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{655CE9B3-7232-3083-37E5-FF02A5D4828A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655CE9B3-7232-3083-37E5-FF02A5D4828A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655CE9B3-7232-3083-37E5-FF02A5D4828A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655CE9B3-7232-3083-37E5-FF02A5D4828A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89458B00-4560-5A61-F9FB-40715074C9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89458B00-4560-5A61-F9FB-40715074C9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89458B00-4560-5A61-F9FB-40715074C9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89458B00-4560-5A61-F9FB-40715074C9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A2A1037-505D-5C6B-BB4F-BA2B2199249F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A2A1037-505D-5C6B-BB4F-BA2B2199249F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A2A1037-505D-5C6B-BB4F-BA2B2199249F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A2A1037-505D-5C6B-BB4F-BA2B2199249F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
